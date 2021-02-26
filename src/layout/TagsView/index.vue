@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-11 13:35:58
- * @LastEditTime: 2020-12-14 10:56:39
+ * @LastEditTime: 2021-02-25 17:01:07
  * @Description: 标签选项卡组件
 -->
 <template>
@@ -19,7 +19,7 @@
       >
         <span v-if="tag.icon" :class="'el-icon-' + tag.icon" />
         {{ tag.title }}
-        <span v-if="!isAffix(tag)" class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag)" />
+        <span v-if="!isAffix(tag) && (visitedViews.length > 1)" class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag)" />
       </router-link>
     </scroll-pane>
     <young-context-menu
@@ -95,10 +95,11 @@ export default defineComponent({
       if (lastView) {
         router.push(lastView.fullPath);
       } else {
-        if (view.name === 'Dashboard') {
+        if (view.name === 'default') {
           addTags();
         } else {
-          router.push('/');
+          initTags();
+          addTags();
         }
       }
     };
@@ -238,6 +239,11 @@ export default defineComponent({
       });
     });
 
+    /**
+     * 关闭标签页
+     */
+    const closeSelectedTag: (tag?: RouteLocation | null) => void = menuHandlers['closeThis']
+
     onMounted(() => {
       initTags();
       addTags();
@@ -254,7 +260,7 @@ export default defineComponent({
       visitedViews,
       isActive,
       isAffix,
-      closeSelectedTag: menuHandlers['closeThis']
+      closeSelectedTag
     };
   }
 });

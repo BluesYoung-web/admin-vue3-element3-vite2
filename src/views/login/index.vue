@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-03 14:25:49
- * @LastEditTime: 2020-12-10 11:50:04
+ * @LastEditTime: 2021-02-25 16:24:23
  * @Description: 登录
 -->
 <template>
@@ -54,7 +54,7 @@ export default defineComponent({
      * 路由实例，记录当前路径之类的
      */
     const route = useRoute();
-    const redirect = route.query?.redirect??'/';
+    const redirect = route.query?.redirect ?? '/';
     /**
      * 路由器实例，负责改变路由
      */

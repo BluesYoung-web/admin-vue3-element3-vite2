@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-07 16:10:23
- * @LastEditTime: 2020-12-10 11:17:03
+ * @LastEditTime: 2021-02-26 09:25:25
  * @Description: 窗口相关的 VueX
  */
 import { Commit, Dispatch, StoreOptions } from "vuex";
@@ -47,7 +47,7 @@ const app: StoreOptions<any> = {
   state: () => ({
     // 侧边栏开启状态
     sidebar: {
-      opened: !!getCookie(SIDE_BAR_STATUS) && (getCookie(SIDE_BAR_STATUS) ===  '1'),
+      opened: !!getCookie(SIDE_BAR_STATUS) && (getCookie(SIDE_BAR_STATUS) ===  '1') || true,
       withoutAnimation: false
     },
     // 设备类型

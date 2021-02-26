@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-03 14:06:59
- * @LastEditTime: 2020-12-12 10:40:39
+ * @LastEditTime: 2021-02-25 18:05:46
  * @Description: 前端路由
  */
 import { createRouter, createWebHashHistory } from 'vue-router';
@@ -16,37 +16,59 @@ export const routes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/dashboard',
-    name: 'Dashboard',
+    redirect: '/myMatch/apply',
+    name: 'default'
+  },
+  {
+    path: '/myMatch',
+    component: Layout,
+    redirect: '/myMatch',
+    name: 'myMatch',
+    // ---- 商户 | 管理员 可执行 ----
     children: [
       {
-        path: '/dashboard',
-        name: 'Dashboard',
-        component: () => import('/src/views/test/index.vue'),
-        meta: { title: 'Home', affix: true, icon: 's-home' }
+        path: '/myMatch/apply',
+        name: 'apply',
+        component: () => import('/src/views/myMatch/apply.vue'),
+        meta: { title: '赛事申请' }
       },
       {
-        path: '/000',
-        name: '000',
-        component: () => import('/src/views/test/000.vue'),
-        meta: { title: '测试000' }
+        path: '/myMatch/list',
+        name: 'list',
+        component: () => import('/src/views/myMatch/list.vue'),
+        meta: { title: '赛事列表' }
+      }
+    ]
+  },
+  {
+    path: '/matchAudit',
+    component: Layout,
+    redirect: '/matchAudit',
+    name: 'matchAudit',
+    // ---- 商户 | 管理员 可执行 ----
+    children: [
+      {
+        path: '/matchAudit/audit',
+        name: 'audit',
+        component: () => import('/src/views/matchAudit/audit.vue'),
+        meta: { title: '审核列表' }
       },
       {
-        path: '/111',
-        name: '111',
-        component: () => import('/src/views/test/111.vue'),
-        meta: { title: '测试111' }
+        path: '/matchAudit/exchange',
+        name: 'exchange',
+        component: () => import('/src/views/matchAudit/exchange.vue'),
+        meta: { title: '兑换记录查询' }
       },
       {
-        path: '/222',
-        name: '222',
-        component: () => import('/src/views/test/222.vue'),
-        meta: { title: '222' }
+        path: '/matchAudit/flow',
+        name: 'flow',
+        component: () => import('/src/views/matchAudit/flow.vue'),
+        meta: { title: '流水查询' }
       }
     ]
   },
   // 页面不存在，重定向到 404,必须放在最后！！！
-  { path: '/:allMatch(.*)', redirect: '/404', hidden: true }
+  { path: '/:pathMatch(.*)*', redirect: '/404', hidden: true }
 
 ];
 

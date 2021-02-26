@@ -3,7 +3,7 @@ import router from '..'
 /*
  * @Author: zhangyang
  * @Date: 2020-12-03 14:58:35
- * @LastEditTime: 2020-12-04 09:17:54
+ * @LastEditTime: 2021-02-25 15:35:51
  * @Description: 通用路由
  */
 const route = [

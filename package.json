@@ -5,8 +5,8 @@
   "main": "main.ts",
   "scripts": {
     "dev": "SET NODE_ENV=development&& vite",
-    "build": "vite build",
-    "pre": "SET NODE_ENV=production&& SET IS_ONLINE=true&& vite preview"
+    "build": "SET NODE_ENV=production&& SET IS_ONLINE=true&& vite build",
+    "pre": "vite preview"
   },
   "dependencies": {
     "axios": "^0.21.1",
@@ -30,9 +30,6 @@
     "@vitejs/plugin-vue": "^1.1.4",
     "@vitejs/plugin-vue-jsx": "^1.1.1",
     "@vue/compiler-sfc": "^3.0.5",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^7.20.0",
-    "eslint-plugin-vue": "^7.6.0",
     "sass": "^1.32.8",
     "typescript": "^4.1.3",
     "vite": "^2.0.1"

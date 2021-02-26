@@ -1,19 +1,24 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-09 17:21:19
- * @LastEditTime: 2021-02-25 11:17:25
+ * @LastEditTime: 2021-02-26 09:55:35
  * @Description: 页面权限控制
  */
 import router from './route/index';
-// @ts-ignore
 import NProgress from 'nprogress';
 
 import { ElMessageBox, ElMessage } from 'element-plus';
 import { getToken } from './util/auth';
+import { getRoleRoute } from './store/sessionStorage/index';
 
 NProgress.configure({
   showSpinner: false
 });
+
+const hasPermission = (route: string) => {
+  const roleRoute = getRoleRoute();
+  return roleRoute.includes(route);
+}
 
 /**
  * 前置导航守卫
@@ -21,15 +26,6 @@ NProgress.configure({
 router.beforeEach(async (to, from, next) => {
   NProgress.start();
   document.title = (to.meta.title as string) || '小黑后台';
-
-  const canvas: HTMLElement | null = document.querySelector('#number-rain-canvas');
-  if (canvas) {
-    if (to.path !== '/login') {
-      canvas.style.display = 'none';
-    } else {
-      canvas.style.display = 'block';
-    }
-  }
 
   // 此处添加鉴权
   if (!getToken().token && to.path !== '/login') {
@@ -46,13 +42,10 @@ router.beforeEach(async (to, from, next) => {
     });
 
     NProgress.done();
-  } else if (false) {
-    // // 具体页面权限 map 判断
-    // ElMessage.error('权限不足，无法进入');
-    // if (from.path === '/login') {
-    //   canvas && (canvas.style.display = 'block');
-    // }
-    // next(from.path);
+  } else if (!hasPermission(to.path) && to.path !== '/login') {
+    // 具体页面权限 map 判断
+    ElMessage.error('暂时无权访问该页面，请勿进行恶意操作');
+    next(from.path);
   } else {
     next();
   }

@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 15:46:00
- * @LastEditTime: 2020-12-12 14:02:38
+ * @LastEditTime: 2021-02-25 17:52:50
  * @Description: 侧边栏组件
 -->
 <template>
@@ -46,7 +46,7 @@ export default defineComponent({
   
     const leftNavArr: ComputedRef<NavArrItem[]> = computed(() => store.getters.leftArr);
     
-    const finalRoutes = computed(() => leftNavArr.value.filter((item) => item.part.length > 0));
+    const finalRoutes = computed(() => leftNavArr.value);
     
 
     const activeMenu = computed(() => {

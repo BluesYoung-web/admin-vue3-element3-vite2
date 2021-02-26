@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-08 11:26:10
- * @LastEditTime: 2020-12-12 15:53:04
+ * @LastEditTime: 2021-02-25 17:37:50
  * @Description: HTTP 网络请求模块
  */
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
@@ -81,7 +81,7 @@ net.interceptors.response.use((response: AxiosResponse<any>) => {
       type: 'warning'
     }).finally(() => {
       removeToken();
-      location.reload();
+      location.href='/#/login'
     });
   } else {
     const ErrMsg = (res as ResponseObj).msg;

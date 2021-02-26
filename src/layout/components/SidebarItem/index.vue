@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 15:26:18
- * @LastEditTime: 2020-12-12 13:58:46
+ * @LastEditTime: 2021-02-26 09:50:24
  * @Description: 侧边栏菜单项
 -->
 <template>
@@ -17,7 +17,7 @@
       <template #title>
         <sub-item v-if="item.is_show" :title="item.node_name" :icon="item.icon" />
       </template>
-      <sidebar-item v-for="child in item.part" :key="child.node_path" :item="child" :is-nest="true" :bath-path="resolvePath(child.node_path)" class="nest-menu" />
+      <sidebar-item v-for="child in item.part" :key="child.node_path" :item="child" :is-nest="isOne" :bath-path="resolvePath(child.node_path)" class="nest-menu" />
     </el-submenu>
   </div>
 </template>
@@ -28,6 +28,7 @@ import SubItem from '../SubItem/index';
 import AppLink from '../Link/index.vue';
 
 import { NavArrItem } from '../../../store/modules/nav';
+import { getUrl } from '../../../route/navMap';
 export default defineComponent({
   name: 'SidebarItem',
   components: {
@@ -41,9 +42,9 @@ export default defineComponent({
   },
   setup(props) {
     let onlyOneChild = null;
-    
-    const isOne = computed(() => hasOneShowingChild((props.item as NavArrItem).part, (props.item as NavArrItem)));
-
+    /**
+     * 是否拥有要显示的子节点
+     */
     const hasOneShowingChild = (children: NavArrItem[], parent: NavArrItem) => {
       const showingChildren = children.filter((item) => {
         if (!item.is_show) {
@@ -53,9 +54,9 @@ export default defineComponent({
           return true;
         }
       });
-      if (showingChildren.length === 1) {
-        return true;
-      }
+      // if (showingChildren.length === 1) {
+      //   return true;
+      // }
       if (showingChildren.length === 0) {
         onlyOneChild = {
           ...parent,
@@ -67,8 +68,8 @@ export default defineComponent({
       return false;
     };
 
-    const resolvePath = () => '/test';
-
+    const resolvePath = (path: string) => getUrl(path);
+    const isOne = computed(() => hasOneShowingChild((props.item as NavArrItem).part, (props.item as NavArrItem)));
     return {
       isOne,
       ...toRefs(props),

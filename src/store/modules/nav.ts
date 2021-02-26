@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-08 09:26:11
- * @LastEditTime: 2020-12-12 14:04:22
+ * @LastEditTime: 2021-02-25 17:09:38
  * @Description: 导航栏相关的 Vuex
  */
 import { Commit, Dispatch, StoreOptions } from "vuex";
@@ -48,7 +48,7 @@ export interface NavArrItem {
   /**
    * 此节点下的子节点
    */
-  part: NavArrItem[];
+  part: NavArrItem[] | [];
   /**
    * 图标名称
    */

@@ -1,13 +1,16 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-10 08:57:28
- * @LastEditTime: 2020-12-10 11:22:43
+ * @LastEditTime: 2021-02-26 09:58:47
  * @Description: 获取用户详细信息及其拥有权限的路由
  */
 import { getUserInfo } from '../api/user';
 import { NavArrItem } from './../store/modules/nav';
 import { isArray } from './isType';
-import { setUserInfo, setNavArr, setRoleRoute, UserInfo, getRoleRoute } from '../store/sessionStorage/index';
+import { setUserInfo, setNavArr, setRoleRoute, UserInfo } from '../store/sessionStorage/index';
+import { commonNavArr, adminNavArr } from '../route/navArr';
+import { getUrl } from '../route/navMap';
+
 
 let role_route: string[] = [];
 
@@ -49,8 +52,11 @@ const generateUserInfo = async () => {
       is_enable,
       tel: phone_number || ''
     };
-    const navArr: NavArrItem[] = menuBar;
-    const roleRoute: string[] = generateRoleRoute(navArr, 1);
+    // 根据用户角色，返回特定的导航栏数组
+    const navArr: NavArrItem[] = adminNavArr;
+    const routes: string[] = generateRoleRoute(navArr, 1);
+    // 生成角色有权访问的路由
+    const roleRoute: string[] = routes.map((route) => getUrl(route));
   
     setUserInfo(userInfo);
     setNavArr(navArr);

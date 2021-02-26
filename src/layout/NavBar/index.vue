@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 11:30:30
- * @LastEditTime: 2020-12-11 17:03:24
+ * @LastEditTime: 2021-02-26 09:53:24
  * @Description: 顶部导航栏组件
 -->
 <template>
@@ -110,7 +110,10 @@ export default defineComponent({
     const admin_name = computed(() => getUserInfo().admin_name);
     const role_name = computed(() => getUserInfo().role_name[0]);
 
-    const loginOut = () => console.log('退出登录');
+    const loginOut = () => {
+      sessionStorage.clear();
+      location.href = '/#/login';
+    };
     const saveHandler = () => {
       console.log('确认修改');
       isEdit.value = false;

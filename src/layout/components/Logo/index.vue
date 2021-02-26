@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 14:10:09
- * @LastEditTime: 2020-12-11 10:52:25
+ * @LastEditTime: 2021-02-25 15:17:47
  * @Description: 侧边栏 logo 组件
 -->
 <template>
@@ -26,8 +26,7 @@ export default defineComponent({
     collapse: { type: Boolean, required: true }
   },
   setup(props) {
-    // @ts-ignore-line
-    const title = ref((import.meta.env as any).VITE_TITLE);
+    const title = ref(import.meta.env.VITE_TITLE);
     return {
       title,
       ...toRefs(props)
