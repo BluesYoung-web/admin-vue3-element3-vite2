@@ -1,10 +1,8 @@
 language: node_js
 # node 版本
 node_js:
-    - 12.8.1
-    - lts/*
+  - 12.8.1
 os:
-  - linux
   - windows
 # 只监听主分支
 branches:
