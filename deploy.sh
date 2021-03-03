@@ -3,7 +3,7 @@
 set -e
 # 进入构建目录
 cd dist
-git config --global user.eamil "15171255945@163.com"
+git config --global user.email "15171255945@163.com"
 git config --global user.name "BluesYoung-web"
 git init
 git add -A
