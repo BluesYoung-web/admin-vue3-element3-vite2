@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 15:46:00
- * @LastEditTime: 2021-02-25 17:52:50
+ * @LastEditTime: 2021-02-26 15:13:44
  * @Description: 侧边栏组件
 -->
 <template>
@@ -29,8 +29,6 @@ import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
 import Logo from '../components/Logo/index.vue';
 import SidebarItem from '../components/SidebarItem/index.vue';
-
-import { NavArrItem } from '../../store/modules/nav';
 
 export default defineComponent({
   name: 'Sidebar',

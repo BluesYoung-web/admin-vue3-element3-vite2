@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 11:30:30
- * @LastEditTime: 2021-02-26 09:53:24
+ * @LastEditTime: 2021-02-26 15:39:07
  * @Description: 顶部导航栏组件
 -->
 <template>
@@ -71,7 +71,6 @@ import { getUserInfo } from '../../store/sessionStorage/index';
 import Hamburger from '../components/Hamburger/index.vue';
 import HeadNav from '../components/HeadNav/index.vue';
 import YoungDialog from '/src/components/YoungDialog/index.vue';
-import { LoginRule } from '../../form.d';
 export default defineComponent({
   name: 'NavBar',
   components: {

@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-07 16:10:23
- * @LastEditTime: 2021-02-26 09:25:25
+ * @LastEditTime: 2021-03-02 10:18:53
  * @Description: 窗口相关的 VueX
  */
 import { Commit, Dispatch, StoreOptions } from "vuex";
@@ -22,7 +22,7 @@ export interface Sidebar {
   withoutAnimation: boolean;
 }
 
-interface AppState {
+export interface AppState {
   /**
    * 侧边栏状态
    */

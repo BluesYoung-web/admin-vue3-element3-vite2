@@ -1,28 +1,32 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-02-25 11:33:36
+ * @LastEditTime: 2021-03-02 14:36:25
  * @Description: 配置文件
  */
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
-import legacy from '@vitejs/plugin-legacy'
+import { defineConfig } from 'vite';
+import vue from '@vitejs/plugin-vue';
+import vueJsx from '@vitejs/plugin-vue-jsx';
+import legacy from '@vitejs/plugin-legacy';
 
-import { resolve } from 'path'
-import { writeFileSync, unlinkSync, readFileSync } from 'fs'
-import dotenv from 'dotenv'
+import { resolve } from 'path';
+import { writeFileSync, unlinkSync, readFileSync } from 'fs';
+import dotenv from 'dotenv';
 
 const envFiles = [
   /** default file */ `.env`,
   /** mode file */ `.env.${process.env.NODE_ENV}`
 ];
 
-for (const file of envFiles) {
-  const envConfig = dotenv.parse(readFileSync(file));
-  for (const k in envConfig) {
-    process.env[k] = envConfig[k];
+try {
+  for (const file of envFiles) {
+    const envConfig = dotenv.parse(readFileSync(file));
+    for (const k in envConfig) {
+      process.env[k] = envConfig[k];
+    }
   }
+} catch (error) {
+  console.log(error);
 }
 // 打包的文件没有代理，直接换为原地址；
 // 如果此处不换则需后端设置 nginx 代理
@@ -32,7 +36,7 @@ if (process.env.IS_ONLINE) {
   try {
     unlinkSync('.env.local');
   } catch (error) {
-    null;
+    console.log(error);
   }
 }
 
@@ -41,10 +45,8 @@ export default defineConfig({
   resolve: {
     alias: {
       '/@': resolve(__dirname, './src'),
-      '/img': resolve(__dirname, './src/assets/img'),
       '/components': resolve(__dirname, './src/components'),
-      '/views': resolve(__dirname, './src/views'),
-      '/utils': resolve(__dirname, './src/util')
+      '/views': resolve(__dirname, './src/views')
     }
   },
   plugins: [
@@ -54,6 +56,7 @@ export default defineConfig({
   ],
   server: {
     open: true,
+    port: 9527,
     /**
      * 本地代理服务器
      */
@@ -67,7 +70,8 @@ export default defineConfig({
     }
   },
   build: {
-    target: 'es2015'
+    target: 'es2015',
+    // sourcemap: true
   },
   optimizeDeps: {
     include: [

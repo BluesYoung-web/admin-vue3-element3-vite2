@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-11 13:35:58
- * @LastEditTime: 2021-02-25 17:01:07
+ * @LastEditTime: 2021-03-02 14:11:08
  * @Description: 标签选项卡组件
 -->
 <template>
@@ -60,7 +60,7 @@ export default defineComponent({
      * 上下文菜单项
      */
     const menuList: MenuItem[] = reactive([
-      { title: '刷新此页面', handlerName: 'refresh' },
+      // { title: '刷新此页面', handlerName: 'refresh' },
       { title: '关闭此页面', handlerName: 'closeThis' },
       { title: '关闭其他页面', handlerName: 'closeOthers' },
       { title: '关闭所有页面', handlerName: 'closeAll' }
@@ -122,12 +122,8 @@ export default defineComponent({
     const menuHandlers: Handlers = {
       'refresh': () => {
         store.dispatch('tagsView/delCachedViewAsync', selectedTag.value).then(() => {
-          const { fullPath } = (selectedTag.value as any as RouteLocation);
-          nextTick(() => {
-            router.replace({
-              path: 'redirect' + fullPath
-            });
-          });
+          const { fullPath } = (selectedTag.value as unknown as RouteLocation);
+          nextTick(() => router.replace(fullPath));
         });
       },
       'closeThis': (tag = selectedTag.value) => {

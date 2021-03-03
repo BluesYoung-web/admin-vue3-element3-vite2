@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-09 17:21:19
- * @LastEditTime: 2021-02-26 09:55:35
+ * @LastEditTime: 2021-03-02 08:38:14
  * @Description: 页面权限控制
  */
 import router from './route/index';
@@ -16,7 +16,7 @@ NProgress.configure({
 });
 
 const hasPermission = (route: string) => {
-  const roleRoute = getRoleRoute();
+  const roleRoute = getRoleRoute().concat('/login', '/404');
   return roleRoute.includes(route);
 }
 
@@ -42,7 +42,7 @@ router.beforeEach(async (to, from, next) => {
     });
 
     NProgress.done();
-  } else if (!hasPermission(to.path) && to.path !== '/login') {
+  } else if (!hasPermission(to.path)) {
     // 具体页面权限 map 判断
     ElMessage.error('暂时无权访问该页面，请勿进行恶意操作');
     next(from.path);

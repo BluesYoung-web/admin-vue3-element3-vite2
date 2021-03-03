@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 15:26:18
- * @LastEditTime: 2021-02-26 09:50:24
+ * @LastEditTime: 2021-02-26 15:38:38
  * @Description: 侧边栏菜单项
 -->
 <template>
@@ -27,7 +27,6 @@ import { computed, defineComponent, toRefs } from 'vue';
 import SubItem from '../SubItem/index';
 import AppLink from '../Link/index.vue';
 
-import { NavArrItem } from '../../../store/modules/nav';
 import { getUrl } from '../../../route/navMap';
 export default defineComponent({
   name: 'SidebarItem',

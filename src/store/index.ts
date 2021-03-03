@@ -1,15 +1,15 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-07 15:38:07
- * @LastEditTime: 2020-12-10 17:50:23
+ * @LastEditTime: 2021-03-02 10:23:30
  * @Description: Vuex 模块
  */
 import { createStore } from 'vuex';
 
-import app, { Sidebar } from './modules/app';
-import tagsView from './modules/tags-view';
-import nav from './modules/nav';
-import routes from './modules/routes';
+import app, { AppState } from './modules/app';
+import tagsView, { RouteState } from './modules/tags-view';
+import nav, { NavState } from './modules/nav';
+import routes, { RoutesState } from './modules/routes';
 
 // 无用，仅作为提示
 export interface StoreObj{
@@ -42,6 +42,13 @@ export interface StoreObj{
   actions: object
 }
 
+interface SModule {
+  app: AppState;
+  tagsView: RouteState;
+  nav: NavState;
+  routes: RoutesState
+}
+
 const store = createStore({
   modules: {
     app,
@@ -50,16 +57,16 @@ const store = createStore({
     routes
   },
   getters: {
-    sidebar: (state): Sidebar => state?.app?.sidebar,
-    size: (state) => state?.app?.size,
-    device: (state) => state?.app?.device,
+    sidebar: (state: SModule) => state.app.sidebar,
+    size: (state) => state.app.size,
+    device: (state) => state.app.device,
 
-    visitedViews: (state) => state?.tagsView?.visitedViews,
-    cachedViews: (state) => state?.tagsView?.cachedViews,
+    visitedViews: (state) => state.tagsView.visitedViews,
+    cachedViews: (state) => state.tagsView.cachedViews,
 
-    leftArr: (state) => state?.nav?.leftArr,
+    leftArr: (state) => state.nav.leftArr,
 
-    routes: (state) => state?.routes?.routes
+    routes: (state) => state.routes.routes
     
   }
 });

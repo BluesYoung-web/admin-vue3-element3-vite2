@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-03 14:06:59
- * @LastEditTime: 2021-02-25 18:05:46
+ * @LastEditTime: 2021-03-02 08:40:24
  * @Description: 前端路由
  */
 import { createRouter, createWebHashHistory } from 'vue-router';
@@ -45,7 +45,7 @@ export const routes = [
     component: Layout,
     redirect: '/matchAudit',
     name: 'matchAudit',
-    // ---- 商户 | 管理员 可执行 ----
+    // ---- 仅管理员 可执行 ----
     children: [
       {
         path: '/matchAudit/audit',
@@ -64,6 +64,33 @@ export const routes = [
         name: 'flow',
         component: () => import('/src/views/matchAudit/flow.vue'),
         meta: { title: '流水查询' }
+      }
+    ]
+  },
+  {
+    path: '/system',
+    component: Layout,
+    redirect: '/system',
+    name: 'system',
+    // ---- 仅管理员 可执行 ----
+    children: [
+      {
+        path: '/system/node',
+        name: 'node',
+        component: () => import('/src/views/system/node.vue'),
+        meta: { title: '节点列表' }
+      },
+      {
+        path: '/system/role',
+        name: 'role',
+        component: () => import('/src/views/system/role.vue'),
+        meta: { title: '角色列表' }
+      },
+      {
+        path: '/system/admin',
+        name: 'admin',
+        component: () => import('/src/views/system/admin.vue'),
+        meta: { title: '管理员列表' }
       }
     ]
   },

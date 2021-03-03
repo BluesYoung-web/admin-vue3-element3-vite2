@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-11-12 10:21:58
- * @LastEditTime: 2020-12-08 14:22:25
+ * @LastEditTime: 2021-02-26 16:35:58
  * @Description: 深度克隆
  */
 import { isArray } from './isType';
@@ -21,4 +21,5 @@ export default function deepClone(obj: any) {
       temp[key] = typeof obj[key] === 'object' ? deepClone(obj[key]) : obj[key];
     }
   }
+  return temp;
 }

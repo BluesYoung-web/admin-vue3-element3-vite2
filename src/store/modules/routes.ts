@@ -1,14 +1,14 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-10 17:40:51
- * @LastEditTime: 2020-12-10 17:49:01
+ * @LastEditTime: 2021-03-02 10:22:50
  * @Description: 路由表
  */
 import { routes } from '../../route/index';
 import { RouteRecord } from 'vue-router';
 import { Commit, Dispatch, StoreOptions } from 'vuex';
 
-interface RouteState {
+export interface RoutesState {
   /**
    * 当前所有的路由
    */
@@ -22,7 +22,7 @@ interface RouteState {
 interface ActionParams {
   dispatch: Dispatch,
   commit: Commit,
-  state: RouteState
+  state: RoutesState
 }
 
 const route: StoreOptions<any> = {
@@ -30,7 +30,7 @@ const route: StoreOptions<any> = {
     routes
   }),
   mutations: {
-    setRoutes: (state: RouteState, routes: RouteRecord[]) => {
+    setRoutes: (state: RoutesState, routes: RouteRecord[]) => {
       state.addRoutes = routes;
       state.routes = routes.concat(routes);
     }

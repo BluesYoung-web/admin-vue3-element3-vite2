@@ -1,10 +1,10 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-25 17:25:47
- * @LastEditTime: 2021-02-26 09:51:12
+ * @LastEditTime: 2021-02-26 15:39:21
  * @Description: 
  */
-import { NavArrItem } from './../store/modules/nav';
+
 /**
  * 通用导航对象
  */
@@ -90,6 +90,51 @@ const adminNavArr: NavArrItem[] = [
         node_sort: 0,
         node_type: 2,
         parent_id: 2,
+        part: []
+      }
+    ]
+  },
+  {
+    autoid: 3,
+    is_show: 1,
+    node_desc: '仅管理员可见',
+    node_name: '系统后台',
+    node_path: '',
+    node_sort: 0,
+    node_type: 1,
+    parent_id: 0,
+    part: [
+      {
+        autoid: 31,
+        is_show: 1,
+        node_desc: '节点列表',
+        node_name: '节点列表',
+        node_path: '10086/31',
+        node_sort: 0,
+        node_type: 2,
+        parent_id: 3,
+        part: []
+      },
+      {
+        autoid: 32,
+        is_show: 1,
+        node_desc: '角色列表',
+        node_name: '角色列表',
+        node_path: '10086/32',
+        node_sort: 0,
+        node_type: 2,
+        parent_id: 3,
+        part: []
+      },
+      {
+        autoid: 33,
+        is_show: 1,
+        node_desc: '管理员列表',
+        node_name: '管理员列表',
+        node_path: '10086/33',
+        node_sort: 0,
+        node_type: 2,
+        parent_id: 3,
         part: []
       }
     ]

@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-03 14:25:49
- * @LastEditTime: 2021-02-25 16:24:23
+ * @LastEditTime: 2021-03-02 09:47:14
  * @Description: 登录
 -->
 <template>
@@ -34,13 +34,13 @@
 </template>
 
 <script lang="ts">
-import { ref, reactive, toRefs, watch, defineComponent, Ref } from 'vue';
+import { ref, reactive, defineComponent, Ref } from 'vue';
 import { login } from '../../api/user';
 import { setToken, UserKey } from '../../util/auth';
 import { generateUserInfo } from '../../util/generateUserInfo';
 import { ElMessage } from 'element-plus';
 import { useRoute, useRouter } from 'vue-router';
-import { LoginRule } from '../../../src/form.d';
+import { RefElement } from 'element-plus/lib/el-popper/src/use-popper';
 
 interface LoginForm {
   username: string;
@@ -54,13 +54,13 @@ export default defineComponent({
      * 路由实例，记录当前路径之类的
      */
     const route = useRoute();
-    const redirect = route.query?.redirect ?? '/';
+    const redirect = route.query.redirect || '/';
     /**
      * 路由器实例，负责改变路由
      */
     const router = useRouter();
     
-    const loginRef: Ref = ref(null);
+    const loginRef: Ref<RefElement> = ref(null);
     const loginForm: LoginForm = reactive({
       username: '',
       password: ''
@@ -87,7 +87,7 @@ export default defineComponent({
     let loading = ref(false);
 
     const loginHandler = () => {
-      loginRef.value?.validate(async (valid: boolean) => {
+      loginRef.value.validate(async (valid: boolean) => {
         if (valid) {
           loading.value = true;
           const data = await login(loginForm.username, loginForm.password);

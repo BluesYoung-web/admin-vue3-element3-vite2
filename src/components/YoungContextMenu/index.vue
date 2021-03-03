@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-11 13:56:45
- * @LastEditTime: 2020-12-11 15:11:40
+ * @LastEditTime: 2021-03-03 10:21:51
  * @Description: 上下文菜单组件
 -->
 <template>
@@ -21,15 +21,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, toRefs } from 'vue';
-
+import { defineComponent, toRefs, PropType } from 'vue';
+interface ContextMenuItem {
+  handlerName: string;
+  title: string;
+}
 export default defineComponent({
   name: 'YoungContextMenu',
   props: {
     showContextMenu: { type: Boolean, required: true },
     left: { type: [Number, String], required: true },
     top: { type: [Number, String], required: true },
-    menuList: { type: Array, required: true }
+    menuList: { type: Object as PropType<ContextMenuItem[]>, required: true }
   },
   emits: ['clickItem'],
   setup(props, { emit }) {

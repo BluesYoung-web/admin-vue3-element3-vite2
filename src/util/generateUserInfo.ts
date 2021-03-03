@@ -1,11 +1,10 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-10 08:57:28
- * @LastEditTime: 2021-02-26 09:58:47
+ * @LastEditTime: 2021-02-26 15:14:11
  * @Description: 获取用户详细信息及其拥有权限的路由
  */
 import { getUserInfo } from '../api/user';
-import { NavArrItem } from './../store/modules/nav';
 import { isArray } from './isType';
 import { setUserInfo, setNavArr, setRoleRoute, UserInfo } from '../store/sessionStorage/index';
 import { commonNavArr, adminNavArr } from '../route/navArr';

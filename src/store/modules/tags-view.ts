@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-07 17:24:01
- * @LastEditTime: 2020-12-12 14:54:22
+ * @LastEditTime: 2021-03-02 10:20:22
  * @Description: 标签选项卡 Vuex
  */
 import { RouteLocation } from "vue-router";
@@ -10,7 +10,7 @@ import { Commit, Dispatch, StoreOptions } from "vuex";
 const visitedViews: RouteLocation[] = [];
 const cachedViews: (string | symbol | undefined)[] = [];
 
-interface RouteState {
+export interface RouteState {
   /**
    * 访问过的页面，路由对象
    */

@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-08 11:26:10
- * @LastEditTime: 2021-02-25 17:37:50
+ * @LastEditTime: 2021-02-26 16:27:51
  * @Description: HTTP 网络请求模块
  */
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
@@ -87,6 +87,7 @@ net.interceptors.response.use((response: AxiosResponse<any>) => {
     const ErrMsg = (res as ResponseObj).msg;
     console.error(ErrMsg);
     ElMessage.error(ErrMsg);
+    return Promise.reject(ErrMsg);
   }
 }, (error) => {
   endLoading();
