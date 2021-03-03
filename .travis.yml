@@ -1,0 +1,22 @@
+language: node_js
+# node 版本
+node_js:
+    - 12.8.1
+    - lts/*
+# 只监听主分支
+branches:
+  only:
+    - master
+# 缓存
+cache:
+  apt: true
+  yarn: true
+  directories:
+    - node_modules
+# 装依赖
+install:
+  - yarn
+# 运行脚本
+script:
+  - yarn build
+  - sh ./deploy.sh
