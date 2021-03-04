@@ -21,4 +21,11 @@ install:
 # 运行脚本
 script:
   - yarn build
-  - sh ./deploy.sh
+  #- sh ./deploy.sh
+# 部署
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $GITHUB_TOKEN # travis-ci.org 中设置的环境变量
+  on:
+    branch: master
