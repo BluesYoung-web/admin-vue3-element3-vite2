@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-26 11:50:08
- * @LastEditTime: 2021-03-03 10:14:04
+ * @LastEditTime: 2021-03-04 17:04:36
  * @Description: 管理员列表
 -->
 <template>
@@ -17,6 +17,7 @@
     </young-table>
     <young-pagination v-model:page="query.page" v-model:limit="query.limit" :total="query.total" @page-change="pageChange" />
     <young-img-upload v-model:imgs="imgs" />
+    <span v-timegap v-text="1614848661656" />
   </div>
 </template>
 

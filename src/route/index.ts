@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-03 14:06:59
- * @LastEditTime: 2021-03-02 08:40:24
+ * @LastEditTime: 2021-03-05 10:47:37
  * @Description: 前端路由
  */
 import { createRouter, createWebHashHistory } from 'vue-router';
@@ -94,14 +94,22 @@ export const routes = [
       }
     ]
   },
-  // 页面不存在，重定向到 404,必须放在最后！！！
-  { path: '/:pathMatch(.*)*', redirect: '/404', hidden: true }
+  // 页面不存在，404,必须放在最后！！！
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: () => import('/src/views/404.vue'),
+    hidden: true
+  }
 
 ];
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
+  routes,
+  scrollBehavior() {
+    return { top: 0 };
+  }
 });
 
 export default router;

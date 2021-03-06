@@ -8,7 +8,6 @@ os:
 branches:
   only:
     - master
-    - test
 # 缓存
 cache:
   apt: true

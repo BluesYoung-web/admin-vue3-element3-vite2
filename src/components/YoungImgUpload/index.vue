@@ -43,7 +43,7 @@ export default defineComponent({
   name: 'YoungImgUpload',
   props: {
     limit: { type: Number, default: 10 },
-    comTask: { type: Object, default: '' },
+    comTask: { type: Object, default: () => ({}) },
     imgs: { type: Object as PropType<string[]>, required: true },
     showUpload: { type: Boolean, default: true }
   },

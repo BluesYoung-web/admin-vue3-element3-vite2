@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-02-25 11:38:13
+ * @LastEditTime: 2021-03-04 16:03:08
  * @Description: 项目入口文件
  */
 
@@ -33,6 +33,9 @@ import '/@/styles/index.scss';
 import { createApp } from 'vue';
 import App from './App.vue';
 
+// 引入自定义插件
+import MyPlugins from './plugins/index';
+
 // 刷新页面的时候，如果存在 token 就直接获取导航栏列表
 if (getToken().token) {
   generateUserInfo();
@@ -47,7 +50,8 @@ app.use(Router);
 // 使用 Vuex
 app.use(Vuex);
 
-app.config
+// 安装自定义插件
+app.use(MyPlugins, '来了老弟');
 
 // 挂载应用
 app.mount('#app');

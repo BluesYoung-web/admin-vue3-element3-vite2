@@ -12,6 +12,7 @@
     "axios": "^0.21.1",
     "core-js": "^3.9.0",
     "element-plus": "^1.0.2-beta.32",
+    "highlight.js": "^10.6.0",
     "js-cookie": "^2.2.1",
     "normalize.css": "^8.0.1",
     "nprogress": "^0.2.0",
@@ -19,7 +20,8 @@
     "svgo": "^2.1.0",
     "vue": "^3.0.5",
     "vue-router": "^4.0.4",
-    "vuex": "^4.0.0"
+    "vuex": "^4.0.0",
+    "wangeditor": "^4.6.8"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
