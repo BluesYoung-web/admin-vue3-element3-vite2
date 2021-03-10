@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-08 11:26:10
- * @LastEditTime: 2021-02-26 16:27:51
+ * @LastEditTime: 2021-03-10 14:52:21
  * @Description: HTTP 网络请求模块
  */
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
@@ -32,11 +32,7 @@ const endLoading = () => {
 /**
  * 请求地址
  */
-const IS_ON_LINE = (import.meta.env as any).VITE_ONLINE_FLAG;
-/**
- * 本地开发版使用代理路径，打包发布版使用真实路径
- */
-const BASE_URL = !!IS_ON_LINE ? (import.meta.env as any).VITE_BASE_HTTP : (import.meta.env as any).VITE_API;
+const BASE_URL = (import.meta.env?.VITE_BASE_HTTP as unknown as string)??'/api';
 /**
  * 创建 Axios 实例
  */
