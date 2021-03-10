@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-26 11:49:46
- * @LastEditTime: 2021-03-01 15:59:38
+ * @LastEditTime: 2021-03-10 10:29:55
  * @Description: 角色列表
 -->
 <template>
@@ -212,6 +212,8 @@ export default defineComponent({
         is_enable: 1,
         platform_type: 0
       };
+      tableData.value = [];
+      getList();
     };
     /**
      * 提交编辑
@@ -225,7 +227,6 @@ export default defineComponent({
         ElMessage.success('角色修改成功！');
       }
       clear();
-      getList();
     };
     
     /**

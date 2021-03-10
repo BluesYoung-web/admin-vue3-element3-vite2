@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-26 11:49:25
- * @LastEditTime: 2021-03-01 11:08:54
+ * @LastEditTime: 2021-03-10 10:06:40
  * @Description: 节点列表
 -->
 <template>
@@ -159,6 +159,7 @@ export default defineComponent({
         is_show: 1,
         parent_id: 0
       }
+      tableData.value = [];
       getList();
     }
     const sure = async () => {
