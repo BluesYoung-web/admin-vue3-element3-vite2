@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-03-10 15:26:51
+ * @LastEditTime: 2021-03-10 15:34:56
  * @Description: 配置文件
  */
 import { defineConfig } from 'vite';
@@ -25,7 +25,7 @@ if (process.env.USE_MOCK) {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/dist',
+  base: './',
   resolve: {
     alias: {
       '/@': resolve(__dirname, './src'),
