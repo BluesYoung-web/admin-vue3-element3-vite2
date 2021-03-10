@@ -1,10 +1,11 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-09 17:21:19
- * @LastEditTime: 2021-03-02 08:38:14
+ * @LastEditTime: 2021-03-10 11:45:59
  * @Description: 页面权限控制
  */
 import router from './route/index';
+import common from './route/common/index';
 import NProgress from 'nprogress';
 
 import { ElMessageBox, ElMessage } from 'element-plus';
@@ -15,8 +16,12 @@ NProgress.configure({
   showSpinner: false
 });
 
+const getCommonRoutes = () => {
+  return common.map((item) => item.path);
+}
+
 const hasPermission = (route: string) => {
-  const roleRoute = getRoleRoute().concat('/login', '/404');
+  const roleRoute = getRoleRoute().concat(getCommonRoutes());
   return roleRoute.includes(route);
 }
 
@@ -28,7 +33,7 @@ router.beforeEach(async (to, from, next) => {
   document.title = (to.meta.title as string) || '小黑后台';
 
   // 此处添加鉴权
-  if (!getToken().token && to.path !== '/login') {
+  if (!getToken().token && !getCommonRoutes().includes(to.path)) {
     await ElMessageBox.confirm('请先去登录', '提示', {
       type: 'error',
       showCancelButton: false,

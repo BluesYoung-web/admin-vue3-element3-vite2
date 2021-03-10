@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-25 17:05:01
- * @LastEditTime: 2021-02-26 11:49:06
+ * @LastEditTime: 2021-03-10 11:44:12
  * @Description: 前端路由鉴权
  */
 /**
@@ -9,15 +9,12 @@
  */
 const navMap = new Map();
 // 商户 + 管理员
-navMap.set('10086/11', '/myMatch/apply');
-navMap.set('10086/12', '/myMatch/list');
+navMap.set('10086/11', '/myComponents/imgUpload');
+navMap.set('10086/12', '/myComponents/richTextEditor');
+navMap.set('10086/13', '/myComponents/table');
 // 仅管理员
-navMap.set('10086/21', '/matchAudit/audit');
-navMap.set('10086/22', '/matchAudit/exchange');
-navMap.set('10086/23', '/matchAudit/flow');
 navMap.set('10086/31', '/system/node');
 navMap.set('10086/32', '/system/role');
-navMap.set('10086/33', '/system/admin');
 /**
  * 获取真实路由
  */

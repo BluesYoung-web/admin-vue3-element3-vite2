@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-03 14:06:59
- * @LastEditTime: 2021-03-05 10:47:37
+ * @LastEditTime: 2021-03-10 11:44:52
  * @Description: 前端路由
  */
 import { createRouter, createWebHashHistory } from 'vue-router';
@@ -16,54 +16,33 @@ export const routes = [
   {
     path: '/',
     component: Layout,
-    redirect: '/myMatch/apply',
+    redirect: '/myComponents/table',
     name: 'default'
   },
   {
-    path: '/myMatch',
+    path: '/myComponents',
     component: Layout,
-    redirect: '/myMatch',
-    name: 'myMatch',
+    redirect: '/myComponents',
+    name: 'myComponents',
     // ---- 商户 | 管理员 可执行 ----
     children: [
       {
-        path: '/myMatch/apply',
-        name: 'apply',
-        component: () => import('/src/views/myMatch/apply.vue'),
-        meta: { title: '赛事申请' }
+        path: '/myComponents/table',
+        name: 'table',
+        component: () => import('/src/views/myComponents/table.vue'),
+        meta: { title: '表格组件' }
       },
       {
-        path: '/myMatch/list',
-        name: 'list',
-        component: () => import('/src/views/myMatch/list.vue'),
-        meta: { title: '赛事列表' }
-      }
-    ]
-  },
-  {
-    path: '/matchAudit',
-    component: Layout,
-    redirect: '/matchAudit',
-    name: 'matchAudit',
-    // ---- 仅管理员 可执行 ----
-    children: [
-      {
-        path: '/matchAudit/audit',
-        name: 'audit',
-        component: () => import('/src/views/matchAudit/audit.vue'),
-        meta: { title: '审核列表' }
+        path: '/myComponents/imgUpload',
+        name: 'imgUpload',
+        component: () => import('/src/views/myComponents/imgUpload.vue'),
+        meta: { title: '图片上传组件' }
       },
       {
-        path: '/matchAudit/exchange',
-        name: 'exchange',
-        component: () => import('/src/views/matchAudit/exchange.vue'),
-        meta: { title: '兑换记录查询' }
-      },
-      {
-        path: '/matchAudit/flow',
-        name: 'flow',
-        component: () => import('/src/views/matchAudit/flow.vue'),
-        meta: { title: '流水查询' }
+        path: '/myComponents/richTextEditor',
+        name: 'richTextEditor',
+        component: () => import('/src/views/myComponents/richTextEditor.vue'),
+        meta: { title: '富文本编辑器' }
       }
     ]
   },
@@ -85,12 +64,6 @@ export const routes = [
         name: 'role',
         component: () => import('/src/views/system/role.vue'),
         meta: { title: '角色列表' }
-      },
-      {
-        path: '/system/admin',
-        name: 'admin',
-        component: () => import('/src/views/system/admin.vue'),
-        meta: { title: '管理员列表' }
       }
     ]
   },

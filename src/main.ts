@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-03-04 16:03:08
+ * @LastEditTime: 2021-03-10 14:12:40
  * @Description: 项目入口文件
  */
 
@@ -15,7 +15,7 @@ import 'element-plus/lib/theme-chalk/index.css';
 // 引入中文资源(默认英文)
 // vite 警告，将后面引号的内容加入 vite.config.js 的 optimizeDeps 的 include 里面可解决
 import locale from 'element-plus/lib/locale/lang/zh-cn';
-
+import useMock from '../mock/index';
 // 引入 VueRouter
 import Router from './route/index';
 // 引入 Vuex
@@ -39,6 +39,11 @@ import MyPlugins from './plugins/index';
 // 刷新页面的时候，如果存在 token 就直接获取导航栏列表
 if (getToken().token) {
   generateUserInfo();
+}
+
+const USE_MOCK = import.meta.env?.VITE_USE_MOCK ?? false;
+if (USE_MOCK) {
+  useMock();
 }
 
 // 创建应用实例
