@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-05 13:41:16
- * @LastEditTime: 2021-03-05 17:24:26
+ * @LastEditTime: 2021-03-10 16:12:57
  * @Description: 富文本编辑器的基本配置
  */
 import { ElMessage } from 'element-plus';
@@ -60,7 +60,7 @@ export interface CommonConfig {
 
 const EditorConfig: CommonConfig = {
   height: 600,
-  zIndex: 10000,
+  zIndex: 9,
   placeholder: '',
   focus: true,
   languageTab: '  ',

@@ -1,11 +1,13 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-25 15:23:19
- * @LastEditTime: 2021-03-10 10:50:15
+ * @LastEditTime: 2021-03-10 16:09:08
  * @Description: 富文本编辑器
 -->
 <template>
-  <young-editor @submit="submitHandler" />
+  <div class="rich">
+    <young-editor @submit="submitHandler" />
+  </div>
 </template>
 
 <script lang="ts">
@@ -22,3 +24,9 @@ export default defineComponent({
   }
 });
 </script>
+
+<style lang="scss" scoped>
+.rich {
+  width: 1580px;
+}
+</style>
