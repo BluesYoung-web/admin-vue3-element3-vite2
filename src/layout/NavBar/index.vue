@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 11:30:30
- * @LastEditTime: 2021-02-26 15:39:07
+ * @LastEditTime: 2021-03-12 15:57:00
  * @Description: 顶部导航栏组件
 -->
 <template>
@@ -63,9 +63,8 @@
 </template>
 
 <script lang="ts">
-import { ref, reactive, computed, ComputedRef, defineComponent, watch } from 'vue';
-import { useStore } from 'vuex';
-import { Sidebar } from '../../store/modules/app';
+import { ref, reactive, computed, defineComponent } from 'vue';
+import { useApp } from '../../store';
 import { getUserInfo } from '../../store/sessionStorage/index';
 
 import Hamburger from '../components/Hamburger/index.vue';
@@ -79,13 +78,7 @@ export default defineComponent({
     HeadNav
   },
   setup() {
-    const store = useStore();
-    
-    const sidebar: ComputedRef<Sidebar> = computed(() => store.getters.sidebar);
-
-    const toggleClick = () => {
-      store.dispatch('app/toggleSideBarAsync');
-    };
+    const { toggleSideBar: toggleClick, sidebar } = useApp();
 
     const formRef = ref(null);
     const form = reactive({

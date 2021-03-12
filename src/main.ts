@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-03-10 14:12:40
+ * @LastEditTime: 2021-03-12 16:00:10
  * @Description: 项目入口文件
  */
 
@@ -18,8 +18,6 @@ import locale from 'element-plus/lib/locale/lang/zh-cn';
 import useMock from '../mock/index';
 // 引入 VueRouter
 import Router from './route/index';
-// 引入 Vuex
-import Vuex from './store/index';
 // 引入路由导航守卫
 import './permission';
 import { getToken } from './util/auth';
@@ -52,8 +50,6 @@ const app = createApp(App);
 app.use(ElementPlus, { locale, size: 'mini' });
 // 使用路由
 app.use(Router);
-// 使用 Vuex
-app.use(Vuex);
 
 // 安装自定义插件
 app.use(MyPlugins, '来了老弟');

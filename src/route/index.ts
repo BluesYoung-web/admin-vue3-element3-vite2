@@ -1,17 +1,17 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-03 14:06:59
- * @LastEditTime: 2021-03-10 11:44:52
+ * @LastEditTime: 2021-03-12 14:27:25
  * @Description: 前端路由
  */
-import { createRouter, createWebHashHistory } from 'vue-router';
+import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
 
 import commonRoute from './common/index';
 
 import Layout from '/src/layout/index.vue';
 
 
-export const routes = [
+export const routes: RouteRecordRaw[] = [
   ...commonRoute,
   {
     path: '/',

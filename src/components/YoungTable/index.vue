@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-03-01 16:41:54
- * @LastEditTime: 2021-03-03 09:11:10
+ * @LastEditTime: 2021-03-12 16:35:46
  * @Description: 自定义表格组件
 -->
 <template>
@@ -101,7 +101,7 @@ export default defineComponent({
   emits: ['sort-change'],
   setup(props, { emit }) {
     const tableRef: Ref<RefElement> = ref(null);
-    let height = ref(500);
+    let height = computed(() => document.body.clientHeight - 84 - 72 - 32 - 32 - 44);
     /**
      * 修复表格切换时，显示出现错位的 bug
      */
@@ -111,9 +111,6 @@ export default defineComponent({
       });
     });
 
-    computed(() => {
-      height.value = document.body.clientHeight - 84 - 72 - 32 - 32 - 44;
-    });
     return {
       ...toRefs(props),
       tableRef,

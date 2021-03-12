@@ -1,23 +1,25 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-11 13:56:45
- * @LastEditTime: 2021-03-03 10:21:51
+ * @LastEditTime: 2021-03-12 15:50:01
  * @Description: 上下文菜单组件
 -->
 <template>
-  <ul
-    v-show="showContextMenu"
-    :style="{ left: left + 'px', top: top + 'px' }"
-    class="contextmenu"
-  >
-    <li
-      v-for="(item, index) in menuList"
-      :key="index + 'fsdjfljk'"
-      @click="clickHandler(item.handlerName)"
+  <teleport to="body">
+    <ul
+      v-show="showContextMenu"
+      :style="{ left: left + 'px', top: top + 'px' }"
+      class="contextmenu"
     >
-      {{ item.title }}
-    </li>
-  </ul>
+      <li
+        v-for="(item, index) in menuList"
+        :key="index + 'fsdjfljk'"
+        @click="clickHandler(item.handlerName)"
+      >
+        {{ item.title }}
+      </li>
+    </ul>
+  </teleport>
 </template>
 
 <script lang="ts">

@@ -1,9 +1,7 @@
-import router from '..'
-
 /*
  * @Author: zhangyang
  * @Date: 2020-12-03 14:58:35
- * @LastEditTime: 2021-03-01 17:34:35
+ * @LastEditTime: 2021-03-12 16:04:04
  * @Description: 通用路由
  */
 const route = [
