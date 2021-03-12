@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 10:51:05
- * @LastEditTime: 2020-12-10 14:00:33
+ * @LastEditTime: 2021-03-12 16:33:25
  * @Description: 弹出层组件，封装常用的按钮
 -->
 <template>
@@ -68,7 +68,10 @@ export default defineComponent({
       }
       return str;
     });
-    const showDialog = computed(() => props.isAdd || props.isMore || props.isEdit);
+    const showDialog = computed({
+      get: () => props.isAdd || props.isMore || props.isEdit,
+      set: (v) => null
+    });
 
     const sure = () => {
       if (props.isMore) {

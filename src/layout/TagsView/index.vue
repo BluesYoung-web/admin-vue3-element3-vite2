@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-11 13:35:58
- * @LastEditTime: 2021-03-12 16:08:37
+ * @LastEditTime: 2021-03-12 16:23:44
  * @Description: 标签选项卡组件
 -->
 <template>
@@ -17,8 +17,8 @@
         class="tags-view-item"
         @contextmenu.prevent="openContextMenu(tag, $event)"
       >
-        <span v-if="tag.icon" :class="'el-icon-' + tag.icon" />
-        {{ tag.title }}
+        <span v-if="tag.meta.icon && tag.meta.icon" :class="'el-icon-' + tag.meta.icon" />
+        {{ tag.meta.title }}
         <span v-if="!isAffix(tag) && (visitedViews.length > 1)" class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag)" />
       </router-link>
     </scroll-pane>
@@ -83,7 +83,7 @@ export default defineComponent({
     /**
      * 判断该标签是否为固定标签
      */
-    const isAffix = (route: RouteRecordRaw) => route && route.meta && route.meta.affix;
+    const isAffix = (route: RouteRecordRaw | RouteLocation) => route && route.meta && route.meta.affix;
     /**
      * 返回上一个激活的页面
      */
