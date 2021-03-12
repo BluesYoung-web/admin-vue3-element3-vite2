@@ -1,12 +1,12 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 15:46:00
- * @LastEditTime: 2021-02-26 15:13:44
+ * @LastEditTime: 2021-03-12 14:56:37
  * @Description: 侧边栏组件
 -->
 <template>
   <div :class="showLogo ? 'has-logo' : ''">
-    <logo v-if="showLogo" :collapse="isCollapse" />
+    <logo v-if="showLogo" />
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         :unique-opened="false"
@@ -24,11 +24,11 @@
 </template>
 
 <script lang="ts">
-import { computed, ComputedRef, defineComponent, ref } from 'vue';
-import { useStore } from 'vuex';
+import { computed, defineComponent, ref } from 'vue';
 import { useRoute } from 'vue-router';
 import Logo from '../components/Logo/index.vue';
 import SidebarItem from '../components/SidebarItem/index.vue';
+import { useApp, useNav } from '../../store';
 
 export default defineComponent({
   name: 'Sidebar',
@@ -38,12 +38,9 @@ export default defineComponent({
   },
   setup() {
     const showLogo = ref(true);
-
-    const store = useStore();
-    const isCollapse = computed(() => !store.getters.sidebar.opened);
-  
-    const leftNavArr: ComputedRef<NavArrItem[]> = computed(() => store.getters.leftArr);
-    
+    const { sidebar } = useApp();
+    const isCollapse = computed(() => sidebar.value.opened);
+    const { leftArr: leftNavArr } = useNav();
     const finalRoutes = computed(() => leftNavArr.value);
     
 

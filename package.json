@@ -22,7 +22,6 @@
     "svgo": "^2.1.0",
     "vue": "^3.0.5",
     "vue-router": "^4.0.4",
-    "vuex": "^4.0.0",
     "wangeditor": "^4.6.8"
   },
   "devDependencies": {

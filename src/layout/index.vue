@@ -1,13 +1,12 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 17:14:23
- * @LastEditTime: 2020-12-11 10:44:15
+ * @LastEditTime: 2021-03-12 15:56:01
  * @Description: 整体布局
 -->
 <template>
   <!-- 页面整体布局 -->
   <div :class="classObj" class="app-wrapper">
-    <!-- <div v-if="device === 'mobile' && sidebar.opened && null" class="drawer-bg" @click="handleClickOutside" /> -->
     <sidebar class="sidebar-container" />
     <div class="main-container">
       <div class="fixed-header">
@@ -22,7 +21,7 @@
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
 import { NavBar, Sidebar, AppMain, TagsView } from './AppMain/index';
-import { useStore } from 'vuex';
+import { useApp } from '../store';
 export default defineComponent({
   name: 'Layout',
   components: {
@@ -32,10 +31,7 @@ export default defineComponent({
     TagsView
   },
   setup() {
-    const store = useStore();
-
-    const sidebar = computed(() => store.getters.sidebar);
-    const device = computed(() => store.getters.device);
+    const { sidebar, device } = useApp();
 
     const classObj = computed(() => {
       return {
@@ -46,12 +42,8 @@ export default defineComponent({
       };
     });
 
-    const handleClickOutside = () => {
-      store.dispatch('app/closeSideBarAsync', { withoutAnimation: false });
-    }
     return {
       sidebar,
-      device,
       classObj
     };
   }

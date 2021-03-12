@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 14:10:09
- * @LastEditTime: 2021-02-25 15:17:47
+ * @LastEditTime: 2021-03-12 16:04:46
  * @Description: 侧边栏 logo 组件
 -->
 <template>
@@ -19,17 +19,17 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, ref, toRefs } from 'vue';
+import { computed, defineComponent, ref, watch } from 'vue';
+import { useApp } from '../../../store';
 export default defineComponent({
   name: 'Logo',
-  props: {
-    collapse: { type: Boolean, required: true }
-  },
-  setup(props) {
+  setup() {
     const title = ref(import.meta.env.VITE_TITLE);
+    const { sidebar } = useApp();
+    const collapse = computed(() => !sidebar.value.opened);
     return {
       title,
-      ...toRefs(props)
+      collapse
     };
   }
 });

@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 17:07:36
- * @LastEditTime: 2020-12-12 11:24:30
+ * @LastEditTime: 2021-03-12 15:56:42
  * @Description: 所有的子页面都在此组件内部显示
 -->
 <template>
@@ -20,14 +20,12 @@
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
-import { useStore } from 'vuex';
 import { useRoute } from 'vue-router';
+import { useTagsView } from '../../store';
 export default defineComponent({
   name: 'AppMain',
   setup() {
-    const store = useStore();
-    const cachedViews = computed(() => store.getters.cachedViews);
-
+    const { cachedViews } = useTagsView();
     const route = useRoute();
     const path = computed(() => route.path);
     return {

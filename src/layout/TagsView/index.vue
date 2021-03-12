@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-11 13:35:58
- * @LastEditTime: 2021-03-02 14:11:08
+ * @LastEditTime: 2021-03-12 16:08:37
  * @Description: 标签选项卡组件
 -->
 <template>
@@ -36,8 +36,8 @@
 import { defineComponent, reactive, ref, nextTick, computed, watch, onMounted, Ref, toRefs } from 'vue';
 import YoungContextMenu from '../../components/YoungContextMenu/index.vue';
 import { RouteLocation, RouteRecordRaw, useRoute, useRouter } from 'vue-router';
-import { useStore } from 'vuex';
 import ScrollPane from '../components/ScrollPane/index.vue';
+import { useApp, useRoutes, useTagsView } from '../../store';
 
 export interface MenuItem {
   title: string;
@@ -60,14 +60,11 @@ export default defineComponent({
      * 上下文菜单项
      */
     const menuList: MenuItem[] = reactive([
-      // { title: '刷新此页面', handlerName: 'refresh' },
       { title: '关闭此页面', handlerName: 'closeThis' },
       { title: '关闭其他页面', handlerName: 'closeOthers' },
       { title: '关闭所有页面', handlerName: 'closeAll' }
     ]);
-
-    const store = useStore();
-
+    const { sidebar } = useApp();
     const router = useRouter();
     const route = useRoute();
     /**
@@ -106,6 +103,14 @@ export default defineComponent({
 
     const tagList = ref(null);
     const scrollPane = ref(null);
+    const {
+      visitedViews,
+      updateVisitedView,
+      delView,
+      delOtherViews,
+      delAllViews,
+      addView
+    } = useTagsView();
     /**
      * 移动到当前标签位置
      */
@@ -113,36 +118,29 @@ export default defineComponent({
       nextTick(() => {
         const SP = scrollPane.value;
         SP && (SP as any).moveToTarget();
-        SP && store.dispatch('tagsView/updateVisitedViewAsync', route);
+        SP && updateVisitedView(route);
       });
     };
     /**
      * 上下文菜单对应的处理函数对象
      */
     const menuHandlers: Handlers = {
-      'refresh': () => {
-        store.dispatch('tagsView/delCachedViewAsync', selectedTag.value).then(() => {
-          const { fullPath } = (selectedTag.value as unknown as RouteLocation);
-          nextTick(() => router.replace(fullPath));
-        });
-      },
       'closeThis': (tag = selectedTag.value) => {
-        !isAffix(tag as any as RouteRecordRaw) && store.dispatch('tagsView/delViewAsync', tag).then(({ visitedViews }) => {
-          isActive(tag as any as RouteLocation);
-          toLastView(visitedViews, (tag as any as RouteLocation));
-        });
+        if (!isAffix(tag as any as RouteRecordRaw) && tag) {
+          delView(tag);
+          isActive(tag as any as RouteLocation) && toLastView(visitedViews.value, (tag as any as RouteLocation));
+        }
       },
       'closeOthers': () => {
         router.push((selectedTag.value as any as RouteLocation));
-        store.dispatch('tagsView/delOthersViewsAsync', selectedTag.value);
+        selectedTag.value && delOtherViews(selectedTag.value);
       },
       'closeAll': () => {
-        store.dispatch('tagsView/delAllViewsAsync').then(({ visitedViews }) => {
-          if ((affixTags as any as RouteLocation[]).some((tag) => tag.path === (selectedTag.value as any as RouteLocation).path)) {
-            return;
-          }
-          toLastView(visitedViews, (selectedTag.value as any as RouteLocation));
-        });
+        delAllViews();
+        if ((affixTags as any as RouteLocation[]).some((tag) => tag.path === (selectedTag.value as any as RouteLocation).path)) {
+          return;
+        }
+        toLastView(visitedViews.value, (selectedTag.value as any as RouteLocation));
       }
     };
     /**
@@ -157,12 +155,11 @@ export default defineComponent({
      */
     const openContextMenu = (tag: RouteLocation, e: MouseEvent) => {
       const menuMinWidth = 105;
-      const sideWidth = 210;
       const screenWidth = window.innerWidth;
-      const normal = e.clientX - sideWidth;
+      const normal = e.clientX;
       left.value = (normal + menuMinWidth + 200 < screenWidth) ? normal : (normal - menuMinWidth);
       
-      const opened = store.getters.sidebar.opened;
+      const opened = sidebar.value.opened;
       !opened && (left.value += 156);
       top.value = e.clientY;
       showContextMenu.value = true;
@@ -173,7 +170,7 @@ export default defineComponent({
      */
     const addTags = () => {
       const { name } = route;
-      name && store.dispatch('tagsView/addViewAsync', route);
+      name && addView(route);
     };
     /**
      * 初始化标签
@@ -181,7 +178,7 @@ export default defineComponent({
     const initTags = () => {
       affixTags = filterAffixTags(routes.value as any as RouteRecordRaw[]);
       for (const tag of affixTags) {
-        tag.name && store.dispatch('tagsView/addVisitedViewAsync', tag);
+        tag.name && addView(tag);
       }
     };
     /**
@@ -220,13 +217,9 @@ export default defineComponent({
     };
 
     /**
-     * 访问过的页面
-     */
-    const visitedViews = computed(() => store.getters.visitedViews);
-    /**
      * 路由表
      */
-    const routes = computed(() => store.getters.routes);
+    const { currentRoutes: routes } = useRoutes();
 
     watch(() => route.fullPath, () => {
       addTags();
