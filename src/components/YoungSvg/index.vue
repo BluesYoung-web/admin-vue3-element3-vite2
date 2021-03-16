@@ -1,31 +1,29 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 14:54:02
- * @LastEditTime: 2020-12-12 11:26:24
+ * @LastEditTime: 2021-03-16 15:14:05
  * @Description: SVG 图标组件
 -->
 <template>
   <div v-if="isExternal" :style="styleExternalIcon" class="svg-external-icon svg-icon" />
-  <svg
-    v-else
-    :class="svgClass"
-    v-html="iconName"
-  />
+  <svg v-else :class="svgClass" aria-hidden="true">
+    <use :xlink:href="iconName" />
+  </svg>
 </template>
 
 <script lang="ts">
 import { computed, defineComponent } from 'vue';
 import { isHttpUrl } from '../../util/valid';
-import SvgJson from '../../assets/svg/svg'
 export default defineComponent({
-  name: 'SvgIcon',
+  name: 'YoungSvg',
   props: {
-    iconClass: { type: String, required: true },
+    name: { type: String, required: true },
+    prefix: { type: String, default: 'icon' },
     className: { type: String, default: '' }
   },
   setup(props) {
-    const isExternal = computed(() => isHttpUrl(props.iconClass));
-    const iconName = computed(() => (SvgJson as any)[`${props.iconClass}`]);
+    const isExternal = computed(() => isHttpUrl(props.name));
+    const iconName = computed(() => `#${props.prefix}-${props.name}`);
     const svgClass = computed(() => {
       if (props.className) {
         return 'svg-icon ' + props.className;
@@ -35,8 +33,8 @@ export default defineComponent({
     });
     const styleExternalIcon = computed(() => {
       return {
-        mask: `url(${props.iconClass}) no-repeat 50% 50%`,
-        '-webkit-mask': `url(${props.iconClass}) no-repeat 50% 50%`
+        mask: `url(${props.name}) no-repeat 50% 50%`,
+        '-webkit-mask': `url(${props.name}) no-repeat 50% 50%`
       }
     });
 

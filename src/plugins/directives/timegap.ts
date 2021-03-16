@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-04 16:25:06
- * @LastEditTime: 2021-03-04 16:59:16
+ * @LastEditTime: 2021-03-16 13:48:51
  * @Description: v-timegap 显示当前时间与自定义时间戳之间的间隔
  */
 import { App } from 'vue';
@@ -35,13 +35,6 @@ const getGap = (el: HTMLElement) => {
 }
 export default {
   install: (app: App<Element>, options: any) => {
-    app.directive('timegap', {
-      mounted(el: HTMLElement, binding, vnode, preVnode) {
-        getGap(el);
-      },
-      updated(el: HTMLElement) {
-        getGap(el);
-      }
-    });
+    app.directive('timegap', getGap);
   }
 };

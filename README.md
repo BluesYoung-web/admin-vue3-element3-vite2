@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-03-12 17:00:22
+ * @LastEditTime: 2021-03-16 15:21:55
  * @Description: 项目说明
 -->
 # 后台管理系统
@@ -33,4 +33,5 @@ yarn pre
 - 此版本为 admin-vue3-element3 的改进版：
   - [x] 采用全新的 vite2.0
   - [x] 加入了 polyfill
-  - [ ] 加入了 svg 图标组件
+  - [x] 加入了 svg 图标组件
+  - [x] 防抖与节流的自定义指令
