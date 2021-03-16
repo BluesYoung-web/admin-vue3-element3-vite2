@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-04 17:08:50
- * @LastEditTime: 2021-03-15 10:54:44
+ * @LastEditTime: 2021-03-15 14:09:41
  * @Description: v-pin 弹幕组件
  */
 import { App, DirectiveBinding } from 'vue';
@@ -29,6 +29,7 @@ const danmu = (el: HTMLElement, binding: DirectiveBinding<any>) => {
   tween.to({x: 100, y: 300}, 2000)
     .easing(Easing.Bounce.Out)
     .onUpdate(() => el.style.setProperty('transform', `translate(${originPosition.x}px, ${originPosition.y}px)`))
+    .repeat(3)
     .start();
 }
 

@@ -1,13 +1,13 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-26 11:50:08
- * @LastEditTime: 2021-03-10 11:53:22
+ * @LastEditTime: 2021-03-16 11:49:27
  * @Description: 自定义表格组件
 -->
 <template>
   <div class="filter-box">
     <div class="filter-item">
-      <el-input placeholder="请输入uid" />
+      <el-input v-model="uid" v-debounce="inputObj" placeholder="请输入uid" />
     </div>
     <div class="filter-item">
       <el-input placeholder="请输入手机号" />
@@ -16,7 +16,7 @@
       <el-input placeholder="请输入姓名" />
     </div>
     <div class="filter-item">
-      <el-button type="primary">查询</el-button>
+      <el-button v-throttle="debounceSearchObj" type="primary">查询</el-button>
     </div>
   </div>
   <young-table class="list" :table-head="tableHead" :table-data="tableData" :table-height="700">
@@ -175,7 +175,18 @@ export default defineComponent({
       tableData,
       tableHead,
       pageChange,
-      query
+      query,
+      debounceSearchObj: {
+        listener: 'click',
+        delay: 1000,
+        cbk: console.log
+      },
+      uid: ref(''),
+      inputObj: {
+        listener: 'input',
+        delay: 100,
+        cbk: console.log
+      }
     };
   }
 });
