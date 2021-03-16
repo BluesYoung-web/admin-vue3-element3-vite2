@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-03-12 16:00:10
+ * @LastEditTime: 2021-03-16 15:06:42
  * @Description: 项目入口文件
  */
 
@@ -22,6 +22,9 @@ import Router from './route/index';
 import './permission';
 import { getToken } from './util/auth';
 import { generateUserInfo } from './util/generateUserInfo';
+
+// 注册 svg icons
+import 'vite-plugin-svg-icons/register';
 
 // 统一浏览器样式
 import 'normalize.css/normalize.css';
