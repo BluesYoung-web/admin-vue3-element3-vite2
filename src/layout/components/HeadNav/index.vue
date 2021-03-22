@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 10:10:36
- * @LastEditTime: 2021-03-12 14:57:03
+ * @LastEditTime: 2021-03-22 15:24:19
  * @Description: 顶部导航(一级节点)
 -->
 <template>
@@ -21,13 +21,13 @@ export default defineComponent({
     const routes = computed(() => getNavArr().filter((item) => item.is_show === 1));
     // 设置对应的侧边导航栏数据(二级节点及以后)
     const { setLeftArr } = useNav();
-    setLeftArr(routes.value[0].part);
+    setLeftArr(routes.value[0]?.part ?? []);
 
     // 初始激活标签
-    let activeIndex = ref(routes.value[0].node_name);
+    let activeIndex = ref(routes.value[0]?.node_name ?? '');
 
     const handleSelect = (key: string) => {
-      routes.value.forEach((item) => {
+      routes.value?.forEach((item) => {
         item.node_name === key && setLeftArr(item.part);
       });
     }
