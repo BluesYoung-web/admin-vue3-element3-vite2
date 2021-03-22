@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 15:46:00
- * @LastEditTime: 2021-03-12 14:56:37
+ * @LastEditTime: 2021-03-20 16:08:38
  * @Description: 侧边栏组件
 -->
 <template>
@@ -10,7 +10,7 @@
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         :unique-opened="false"
-        :collapse="isCollapse"
+        :collapse="!isCollapse"
         :default-active="activeMenu"
         background-color="#304156"
         active-text-color="#409EFF"

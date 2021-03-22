@@ -1,36 +1,38 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 10:51:05
- * @LastEditTime: 2021-03-12 16:33:25
+ * @LastEditTime: 2021-03-20 16:45:08
  * @Description: 弹出层组件，封装常用的按钮
 -->
 <template>
-  <el-dialog
-    v-model="showDialog"
-    :title="realTitle || title"
-    :width="width"
-    :fullscreen="fullscreen"
-    :top="top"
-    :modal="modal"
-    :append-to-body="appendToBody"
-    :lock-scroll="lockScroll"
-    :custom-class="customClass"
-    :close-on-click-modal="closeOnClickModal"
-    :close-on-press-escape="closeOnPressEscape"
-    :show-close="showClose"
-    :before-close="beforeClose"
-    :center="center"
-    :destroy-on-close="destroyOnClose"
-  >
-    <slot name="body" />
-    <template #footer>
-      <slot name="button" />
-      <el-button size="mini" @click="beforeClose">取 消</el-button>
-      <slot name="step1" />
-      <slot name="step2" />
-      <el-button size="mini" type="primary" @click="sure">确 定</el-button>
-    </template>
-  </el-dialog>
+  <teleport to='body'>
+    <el-dialog
+      v-model="showDialog"
+      :title="realTitle || title"
+      :width="width"
+      :fullscreen="fullscreen"
+      :top="top"
+      :modal="modal"
+      :append-to-body="appendToBody"
+      :lock-scroll="lockScroll"
+      :custom-class="customClass"
+      :close-on-click-modal="closeOnClickModal"
+      :close-on-press-escape="closeOnPressEscape"
+      :show-close="showClose"
+      :before-close="beforeClose"
+      :center="center"
+      :destroy-on-close="destroyOnClose"
+    >
+      <slot name="body" />
+      <template #footer>
+        <slot name="button" />
+        <el-button size="mini" @click="beforeClose">取 消</el-button>
+        <slot name="step1" />
+        <slot name="step2" />
+        <el-button size="mini" type="primary" @click="sure">确 定</el-button>
+      </template>
+    </el-dialog>
+  </teleport>
 </template>
 
 <script lang="ts">
