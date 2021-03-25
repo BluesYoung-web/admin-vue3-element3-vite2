@@ -1,19 +1,20 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 17:07:36
- * @LastEditTime: 2021-03-12 15:56:42
+ * @LastEditTime: 2021-03-25 17:21:01
  * @Description: 所有的子页面都在此组件内部显示
 -->
 <template>
   <div class="app-main">
-    <router-view :key="path" v-slot="{ Component }">
-      <keep-alive :include="cachedViews">
-        <transition name="fade-transform" mode="out-in">
-          <div>
-            <component :is="Component" />
-          </div>
-        </transition>
-      </keep-alive>
+    <router-view v-slot="{ Component }">
+      <transition name="fade-transform" mode="out-in">
+        <div>
+          <keep-alive>
+            <component v-if="isCached" :is="Component" :key="path" />
+          </keep-alive>
+          <component v-if="!isCached" :is="Component" :key="path" />
+        </div>
+      </transition>
     </router-view>
   </div>
 </template>
@@ -25,12 +26,15 @@ import { useTagsView } from '../../store';
 export default defineComponent({
   name: 'AppMain',
   setup() {
-    const { cachedViews } = useTagsView();
     const route = useRoute();
+    const { cachedViews } = useTagsView();
     const path = computed(() => route.path);
+    const name = computed(() => route.name);
+    const isCached = computed(() => cachedViews.value.includes(name.value));
     return {
-      cachedViews,
-      path
+      isCached,
+      path,
+      cachedViews
     };
   }
 });

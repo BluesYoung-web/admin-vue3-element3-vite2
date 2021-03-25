@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-12 15:00:45
- * @LastEditTime: 2021-03-12 15:36:52
+ * @LastEditTime: 2021-03-25 17:17:48
  * @Description: 
  */
 import { RouteLocation } from "vue-router";
@@ -19,7 +19,7 @@ interface TagsViewState {
 };
 interface Instance {
   visitedViews: Ref<RouteLocation[]>;
-  cachedViews: Ref<RouteLocation[]>;
+  cachedViews: Ref<CachedView[]>;
   addView: (view: RouteLocation) => void;
   delView: (view: RouteLocation) => void;
   delOtherViews: (view: RouteLocation) => void;
