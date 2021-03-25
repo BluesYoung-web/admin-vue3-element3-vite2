@@ -18,7 +18,8 @@ label {
 
 html {
   height: 100%;
-  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
 }
 
 #app {
@@ -28,7 +29,8 @@ html {
 *,
 *:before,
 *:after {
-  box-sizing: inherit;
+  -webkit-box-sizing: inherit;
+          box-sizing: inherit;
 }
 
 a:focus,
@@ -62,4 +64,28 @@ div:focus {
 // main-container global css
 .app-container {
   padding: 20px;
+}
+
+.filter-box {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 10px;
+  .filter-item {
+    margin-right: 10px;
+    .el-input__inner {
+      height: 32px;
+      line-height: 32px;
+    }
+    .el-input__icon {
+      line-height: 33px;
+    }
+    .el-range__icon {
+      line-height: 25px;
+    }
+    .el-range-separator {
+      line-height: 26px;
+    }
+  }
 }

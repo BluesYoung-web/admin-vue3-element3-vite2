@@ -1,11 +1,12 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-03-01 16:41:54
- * @LastEditTime: 2021-03-12 16:35:46
+ * @LastEditTime: 2021-03-24 17:56:01
  * @Description: 自定义表格组件
 -->
 <template>
   <el-table
+    v-bind="$attrs"
     ref="tableRef"
     :data="tableData"
     style="width: 100%"
@@ -40,18 +41,18 @@
         <span v-if="!(scope.row[item.prop] instanceof Array)" v-html="scope.row[item.prop]" />
         <span v-else>
           <!-- 图片 -->
-          <span v-if="item.prop === 'imgs'">
+          <span v-if="item.prop.indexOf('imgs') === 0">
             <el-image
-              v-for="(it, id) in scope.row.imgs"
+              v-for="(it, id) in scope.row[item.prop]"
                 :key="id"
                 :src="it"
-                :preview-src-list="scope.row.imgs"
+                :preview-src-list="scope.row[item.prop]"
                 class="img"
-              >
-                <template #error class="image-slot">
-                  <i style="font-size: 50px" class="el-icon-picture-outline img" />
-                </template>
-              </el-image>
+            >
+              <template #error class="image-slot">
+                <i style="font-size: 50px" class="el-icon-picture-outline img" />
+              </template>
+            </el-image>
           </span>
           <!-- 多行 -->
           <span v-else>

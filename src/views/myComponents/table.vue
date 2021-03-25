@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-26 11:50:08
- * @LastEditTime: 2021-03-16 11:49:27
+ * @LastEditTime: 2021-03-25 11:40:30
  * @Description: 自定义表格组件
 -->
 <template>
@@ -33,8 +33,6 @@
 
 <script lang="ts">
 import { defineComponent, Ref, ref } from 'vue';
-import YoungTable from '/components/YoungTable/index.vue';
-import YoungPagination from '/components/YoungPagination/index.vue';
 
 interface TableDataItem {
   date: string;
@@ -43,11 +41,10 @@ interface TableDataItem {
   imgs: string[];
   m1: MultiRows[];
   m2: MultiRows[];
-}
+};
 
 export default defineComponent({
   name: 'Table',
-  components: { YoungTable, YoungPagination },
   setup() {
     let tableData: Ref<TableDataItem[]> = ref([]);
     let tableHead: Ref<TableHeadItem[]> = ref([]);
@@ -195,25 +192,5 @@ export default defineComponent({
 <style lang="scss" scoped>
 .list {
   margin-top: 30px;
-}
-.filter-box {
-  display: flex;
-  margin-bottom: 10px;
-  .filter-item {
-    margin-right: 10px;
-    .el-input__inner {
-      height: 32px;
-      line-height: 32px;
-    }
-    .el-input__icon {
-      line-height: 33px;
-    }
-    .el-range__icon {
-      line-height: 25px;
-    }
-    .el-range-separator {
-      line-height: 26px;
-    }
-  }
 }
 </style>

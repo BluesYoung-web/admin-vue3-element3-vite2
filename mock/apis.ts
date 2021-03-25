@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-09 17:50:01
- * @LastEditTime: 2021-03-10 10:55:37
+ * @LastEditTime: 2021-03-25 13:38:35
  * @Description: 所有假接口
  */
 import Mock from 'mockjs';
@@ -60,6 +60,17 @@ export const operate = (params: Map<string, any>, body: any) => {
                 node_type: 2,
                 parent_id: 3,
                 part: []
+              },
+              {
+                autoid: 33,
+                is_show: 1,
+                node_desc: '管理员列表',
+                node_name: '管理员列表',
+                node_path: '10086/33',
+                node_sort: 0,
+                node_type: 2,
+                parent_id: 3,
+                part: []
               }
             ]
           },
@@ -96,11 +107,22 @@ export const operate = (params: Map<string, any>, body: any) => {
                 part: []
               },
               {
-                autoid: 12,
+                autoid: 13,
                 is_show: 1,
                 node_desc: '富文本编辑器',
                 node_name: '富文本编辑器',
                 node_path: '10086/12',
+                node_sort: 0,
+                node_type: 2,
+                parent_id: 1,
+                part: []
+              },
+              {
+                autoid: 14,
+                is_show: 1,
+                node_desc: 'tab组件',
+                node_name: 'tab组件',
+                node_path: '10086/14',
                 node_sort: 0,
                 node_type: 2,
                 parent_id: 1,
@@ -111,7 +133,7 @@ export const operate = (params: Map<string, any>, body: any) => {
         ]
       });
       break;
-    case 10:
+    case 4:
       data = Mock.mock([
         {
           'autoid': 1,
@@ -217,7 +239,7 @@ export const operate = (params: Map<string, any>, body: any) => {
         }
       ]);
       break;
-    case 14:
+    case 8:
       data = Mock.mock({
         'data|6-10': [
           {
@@ -231,7 +253,7 @@ export const operate = (params: Map<string, any>, body: any) => {
         ]
       }).data;
       break;
-    case 15:
+    case 9:
       data = Mock.mock({
         'autoid|1-99': 99,
         'is_enable|0-1': 1,
@@ -355,8 +377,64 @@ export const operate = (params: Map<string, any>, body: any) => {
             ]
           }
         ])
-      })
+      });
       break;
+    case 13:
+      data = Mock.mock({
+        'list|6-10': [
+          {
+            'autoid|1-99': 99,
+            'is_enable|0-1': 1,
+            'admin_name': Mock.Random.name(),
+            'admin_password': Mock.Random.name(),
+            'create_time': Math.floor(new Date().getTime() / 1000),
+            'last_time': Math.floor(new Date().getTime() / 1000),
+            'login_time': Math.floor(new Date().getTime() / 1000),
+            'login_ip': Mock.Random.ip(),
+            'phone_number': /^1[0-9]{10}$/,
+            'real_name': Mock.Random.cname(),
+            'role_des': Mock.Random.ctitle()
+          }
+        ],
+        'total|10-99': 10
+      });
+      break;
+    case 14:
+        data = Mock.mock({
+          'info': {
+            'autoid|1-99': 99,
+            'is_enable|0-1': 1,
+            'admin_name': Mock.Random.name(),
+            'admin_password': Mock.Random.name(),
+            'create_time': Math.floor(new Date().getTime() / 1000),
+            'last_time': Math.floor(new Date().getTime() / 1000),
+            'login_time': Math.floor(new Date().getTime() / 1000),
+            'login_ip': Mock.Random.ip(),
+            'phone_number': /^1[0-9]{10}$/,
+            'real_name': Mock.Random.cname()
+          },
+          'role_list': {
+            '1': {
+              'autoid': 1,
+              'is_checked|0-1': 1,
+              'is_enable': 1,
+              'parent_role_id': 0,
+              'platform_type': 0,
+              'role_desc': "超管",
+              'role_name': "超级管理员"
+            },
+            '33': {
+              'autoid': 33,
+              'is_checked|0-1': 1,
+              'is_enable': 1,
+              'parent_role_id': 0,
+              'platform_type': 0,
+              'role_desc': "产品超管",
+              'role_name': "产品超管"
+            }
+          }
+        });
+        break;
     default:
       data = {};
       break;

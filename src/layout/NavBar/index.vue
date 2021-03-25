@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 11:30:30
- * @LastEditTime: 2021-03-12 15:57:00
+ * @LastEditTime: 2021-03-24 17:51:00
  * @Description: 顶部导航栏组件
 -->
 <template>
@@ -99,8 +99,8 @@ export default defineComponent({
     });
 
     const isEdit = ref(false);
-    const admin_name = computed(() => getUserInfo().admin_name);
-    const role_name = computed(() => getUserInfo().role_name[0]);
+    const admin_name = computed(() => getUserInfo()?.admin_name);
+    const role_name = computed(() => getUserInfo()?.role_name?.[0]);
 
     const loginOut = () => {
       sessionStorage.clear();

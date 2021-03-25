@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-03 14:06:59
- * @LastEditTime: 2021-03-12 14:27:25
+ * @LastEditTime: 2021-03-24 18:05:02
  * @Description: 前端路由
  */
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
@@ -10,72 +10,44 @@ import commonRoute from './common/index';
 
 import Layout from '/src/layout/index.vue';
 
-
-export const routes: RouteRecordRaw[] = [
+const routes: RouteRecordRaw[] = [
   ...commonRoute,
   {
     path: '/',
     component: Layout,
-    redirect: '/myComponents/table',
+    redirect: '/Dashboard/dashboard',
     name: 'default'
   },
   {
-    path: '/myComponents',
+    path: '/Dashboard',
     component: Layout,
-    redirect: '/myComponents',
-    name: 'myComponents',
-    // ---- 商户 | 管理员 可执行 ----
+    redirect: '/Dashboard',
+    name: 'dashboard',
     children: [
       {
-        path: '/myComponents/table',
-        name: 'table',
-        component: () => import('/src/views/myComponents/table.vue'),
-        meta: { title: '表格组件' }
-      },
-      {
-        path: '/myComponents/imgUpload',
-        name: 'imgUpload',
-        component: () => import('/src/views/myComponents/imgUpload.vue'),
-        meta: { title: '图片上传组件' }
-      },
-      {
-        path: '/myComponents/richTextEditor',
-        name: 'richTextEditor',
-        component: () => import('/src/views/myComponents/richTextEditor.vue'),
-        meta: { title: '富文本编辑器' }
+        path: '/Dashboard/dashboard',
+        name: 'dashboard',
+        component: () => import('/src/views/dashboard/index.vue'),
+        meta: { title: '欢迎使用' }
       }
     ]
-  },
-  {
-    path: '/system',
-    component: Layout,
-    redirect: '/system',
-    name: 'system',
-    // ---- 仅管理员 可执行 ----
-    children: [
-      {
-        path: '/system/node',
-        name: 'node',
-        component: () => import('/src/views/system/node.vue'),
-        meta: { title: '节点列表' }
-      },
-      {
-        path: '/system/role',
-        name: 'role',
-        component: () => import('/src/views/system/role.vue'),
-        meta: { title: '角色列表' }
-      }
-    ]
-  },
-  // 页面不存在，404,必须放在最后！！！
+  }
+];
+
+const others = import.meta.globEager('./others/*.ts');
+for (const rts of Object.values(others)) {
+  routes.push(...rts.default);
+}
+// 页面不存在，404,必须放在最后！！！
+routes.push(
   {
     path: '/:pathMatch(.*)*',
     name: 'NotFound',
     component: () => import('/src/views/404.vue'),
+    // @ts-ignore
     hidden: true
   }
-
-];
+);
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -86,3 +58,4 @@ const router = createRouter({
 });
 
 export default router;
+export { routes };
