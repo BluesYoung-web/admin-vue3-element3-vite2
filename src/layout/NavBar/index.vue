@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 11:30:30
- * @LastEditTime: 2021-03-24 17:51:00
+ * @LastEditTime: 2021-03-26 17:44:36
  * @Description: 顶部导航栏组件
 -->
 <template>
@@ -64,6 +64,7 @@
 
 <script lang="ts">
 import { ref, reactive, computed, defineComponent } from 'vue';
+import { login_out } from '../../api/user';
 import { useApp } from '../../store';
 import { getUserInfo } from '../../store/sessionStorage/index';
 
@@ -102,7 +103,8 @@ export default defineComponent({
     const admin_name = computed(() => getUserInfo()?.admin_name);
     const role_name = computed(() => getUserInfo()?.role_name?.[0]);
 
-    const loginOut = () => {
+    const loginOut = async () => {
+      await login_out();
       sessionStorage.clear();
       location.href = '/#/login';
     };

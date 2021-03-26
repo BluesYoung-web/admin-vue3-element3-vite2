@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-11 13:35:58
- * @LastEditTime: 2021-03-12 16:23:44
+ * @LastEditTime: 2021-03-26 17:48:48
  * @Description: 标签选项卡组件
 -->
 <template>
@@ -17,13 +17,13 @@
         class="tags-view-item"
         @contextmenu.prevent="openContextMenu(tag, $event)"
       >
-        <span v-if="tag.meta.icon && tag.meta.icon" :class="'el-icon-' + tag.meta.icon" />
+        <span v-if="tag.meta && tag.meta.icon" :class="'el-icon-' + tag.meta.icon" />
         {{ tag.meta.title }}
         <span v-if="!isAffix(tag) && (visitedViews.length > 1)" class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag)" />
       </router-link>
     </scroll-pane>
     <young-context-menu
-      :show-context-menu="showContextMenu"
+      v-model="showContextMenu"
       :left="left"
       :top="top"
       :menu-list="menuList"
@@ -37,7 +37,7 @@ import { defineComponent, reactive, ref, nextTick, computed, watch, onMounted, R
 import YoungContextMenu from '../../components/YoungContextMenu/index.vue';
 import { RouteLocation, RouteRecordRaw, useRoute, useRouter } from 'vue-router';
 import ScrollPane from '../components/ScrollPane/index.vue';
-import { useApp, useRoutes, useTagsView } from '../../store';
+import { useRoutes, useTagsView } from '../../store';
 
 export interface MenuItem {
   title: string;
@@ -59,12 +59,20 @@ export default defineComponent({
     /**
      * 上下文菜单项
      */
-    const menuList: MenuItem[] = reactive([
-      { title: '关闭此页面', handlerName: 'closeThis' },
-      { title: '关闭其他页面', handlerName: 'closeOthers' },
-      { title: '关闭所有页面', handlerName: 'closeAll' }
-    ]);
-    const { sidebar } = useApp();
+    const menuList = computed(() => {
+      let baseMenu = [
+        { title: '关闭此页面', handlerName: 'closeThis' },
+        { title: '关闭其他页面', handlerName: 'closeOthers' }
+      ];
+      const all = visitedViews.value.length;
+      if (all === 1) {
+        baseMenu = [];
+      }
+      const { name } = route;
+      const s_name = selectedTag.value?.name;
+      const res = (cachedViews.value.includes(s_name) && name === s_name) ? [{ title: '刷新此页面', handlerName: 'refresh' }].concat(baseMenu) : baseMenu;
+      return res;
+    });
     const router = useRouter();
     const route = useRoute();
     /**
@@ -74,7 +82,7 @@ export default defineComponent({
     /**
      * 所有固定的标签(禁止关闭)
      */
-    let affixTags: any[] = reactive([]);
+    let affixTags = reactive<RouteLocation[]>([]);
 
     /**
      * 判断激活的标签是否为当前页
@@ -83,7 +91,7 @@ export default defineComponent({
     /**
      * 判断该标签是否为固定标签
      */
-    const isAffix = (route: RouteRecordRaw | RouteLocation) => route && route.meta && route.meta.affix;
+    const isAffix = (route: RouteRecordRaw | RouteLocation) => route?.meta?.affix;
     /**
      * 返回上一个激活的页面
      */
@@ -105,8 +113,10 @@ export default defineComponent({
     const scrollPane = ref(null);
     const {
       visitedViews,
+      cachedViews,
       updateVisitedView,
       delView,
+      delCachedView,
       delOtherViews,
       delAllViews,
       addView
@@ -117,6 +127,8 @@ export default defineComponent({
     const moveToCurrentTag = () => {
       nextTick(() => {
         const SP = scrollPane.value;
+        console.log(SP);
+        
         SP && (SP as any).moveToTarget();
         SP && updateVisitedView(route);
       });
@@ -125,22 +137,36 @@ export default defineComponent({
      * 上下文菜单对应的处理函数对象
      */
     const menuHandlers: Handlers = {
+      'refresh': () => {
+        const tag = selectedTag.value;
+        if (tag) {
+          delCachedView(tag);
+        }
+      },
       'closeThis': (tag = selectedTag.value) => {
-        if (!isAffix(tag as any as RouteRecordRaw) && tag) {
-          delView(tag);
-          isActive(tag as any as RouteLocation) && toLastView(visitedViews.value, (tag as any as RouteLocation));
+        if (tag) {
+          if (!isAffix(tag)) {
+            delView(tag);
+            isActive(tag) && toLastView(visitedViews.value, tag);
+          }
         }
       },
       'closeOthers': () => {
-        router.push((selectedTag.value as any as RouteLocation));
-        selectedTag.value && delOtherViews(selectedTag.value);
+        const tag = selectedTag.value;
+        if (tag) {
+          router.push(tag);
+          delOtherViews(tag);
+        }
       },
       'closeAll': () => {
         delAllViews();
-        if ((affixTags as any as RouteLocation[]).some((tag) => tag.path === (selectedTag.value as any as RouteLocation).path)) {
-          return;
+        const sTag = selectedTag.value;
+        if (sTag) {
+          if (affixTags.some((tag) => tag.path === sTag.path)) {
+            return;
+          }
+          toLastView(visitedViews.value, sTag);
         }
-        toLastView(visitedViews.value, (selectedTag.value as any as RouteLocation));
       }
     };
     /**
@@ -154,16 +180,19 @@ export default defineComponent({
      * 显示上下文菜单
      */
     const openContextMenu = (tag: RouteLocation, e: MouseEvent) => {
-      const menuMinWidth = 105;
-      const screenWidth = window.innerWidth;
-      const normal = e.clientX;
-      left.value = (normal + menuMinWidth + 200 < screenWidth) ? normal : (normal - menuMinWidth);
-      
-      const opened = sidebar.value.opened;
-      !opened && (left.value += 156);
-      top.value = e.clientY;
-      showContextMenu.value = true;
-      selectedTag.value = tag;
+      nextTick(() => {
+        if (menuList.value.length === 0) {
+          return;
+        }
+        const menuMinWidth = 105;
+        const screenWidth = window.innerWidth;
+        const normal = e.clientX;
+        left.value = (normal + menuMinWidth + 200 < screenWidth) ? normal : (normal - menuMinWidth);
+        
+        top.value = e.clientY;
+        showContextMenu.value = true;
+        selectedTag.value = tag;
+      });
     };
     /**
      * 添加标签
@@ -176,9 +205,9 @@ export default defineComponent({
      * 初始化标签
      */
     const initTags = () => {
-      affixTags = filterAffixTags(routes.value as any as RouteRecordRaw[]);
+      affixTags = filterAffixTags(routes.value as unknown as RouteRecordRaw[]);
       for (const tag of affixTags) {
-        tag.name && addView(tag);
+        tag.name && addView(tag as unknown as RouteLocation);
       }
     };
     /**
