@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-12 10:29:25
- * @LastEditTime: 2021-03-12 13:55:04
+ * @LastEditTime: 2021-03-26 17:25:09
  * @Description: 侧边栏相关
  */
 import { toRefs, reactive, Ref } from 'vue';
@@ -37,9 +37,9 @@ interface AppState {
 };
 
 interface Instance {
-  toggleSideBar: () => void;
-  setSize: (size: string) => void;
-  setDevice: (device: string) => void;
+  toggleSideBar(): void;
+  setSize(size: string): void;
+  setDevice(device: string): void;
   sidebar: Ref<{
     opened: boolean;
     withoutAnimation: boolean;

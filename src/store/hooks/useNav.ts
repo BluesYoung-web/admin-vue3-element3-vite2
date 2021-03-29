@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-12 13:40:11
- * @LastEditTime: 2021-03-12 13:48:27
+ * @LastEditTime: 2021-03-26 17:24:53
  * @Description: 导航相关
  */
 import { reactive, Ref, toRefs } from 'vue';
@@ -13,7 +13,7 @@ interface NavState {
 
 interface Instance {
   leftArr: Ref<NavArrItem[]>;
-  setLeftArr: (arr: NavArrItem[]) => void;
+  setLeftArr(arr: NavArrItem[]): void;
 };
 
 let instance: Instance;

@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-12 14:06:12
- * @LastEditTime: 2021-03-12 14:59:32
+ * @LastEditTime: 2021-03-26 17:24:36
  * @Description: 路由相关
  */
 import { reactive, Ref, toRefs } from 'vue';
@@ -23,7 +23,7 @@ interface RoutesState {
 interface Instance {
   currentRoutes: Ref<RouteRecordRaw[]>;
   addRoutes: Ref<RouteRecordRaw[]>;
-  setRoutes: (r: RouteRecordRaw[]) => void;
+  setRoutes(r: RouteRecordRaw[]): void;
 };
 
 let instance: Instance;

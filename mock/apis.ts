@@ -1,14 +1,15 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-09 17:50:01
- * @LastEditTime: 2021-03-25 13:38:35
+ * @LastEditTime: 2021-03-26 17:39:55
  * @Description: 所有假接口
  */
 import Mock from 'mockjs';
 
-export const operate = (params: Map<string, any>, body: any) => {
+export const operate = (params: Map<string, any>, body: FormData) => {
   let data = null;
-  switch (+params.get('task')) {
+  const sw = +(params.get('task') ?? body.get('task'));
+  switch (sw) {
     case 1:
       data = Mock.mock({
         'admin_id|1-99': 99,

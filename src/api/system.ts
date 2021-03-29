@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-26 13:54:37
- * @LastEditTime: 2021-03-25 11:45:31
+ * @LastEditTime: 2021-03-29 16:07:46
  * @Description: 系统相关的请求
  */
 import { basicRequest } from '../util/request';
@@ -28,6 +28,7 @@ const addNode = async (nodeItem: AddNodeItem) => {
     task,
     ...nodeItem
   };
+  params.node_path = encodeURI(params.node_path);
 
   return await basicRequest(params);
 };
@@ -42,6 +43,7 @@ const editNode = async (nodeItem: EditNodeItem) => {
     task,
     ...nodeItem
   };
+  params.node_path = encodeURI(params.node_path);
 
   return await basicRequest(params);
 };

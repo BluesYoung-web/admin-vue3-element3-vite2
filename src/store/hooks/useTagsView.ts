@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-12 15:00:45
- * @LastEditTime: 2021-03-25 17:17:48
+ * @LastEditTime: 2021-03-26 17:24:24
  * @Description: 
  */
 import { RouteLocation } from "vue-router";
@@ -19,12 +19,13 @@ interface TagsViewState {
 };
 interface Instance {
   visitedViews: Ref<RouteLocation[]>;
-  cachedViews: Ref<CachedView[]>;
-  addView: (view: RouteLocation) => void;
-  delView: (view: RouteLocation) => void;
-  delOtherViews: (view: RouteLocation) => void;
-  delAllViews: () => void;
-  updateVisitedView: (view: RouteLocation) => void;
+  cachedViews: Ref<(CachedView)[]>;
+  addView(view: RouteLocation): void;
+  delView(view: RouteLocation): void;
+  delOtherViews(view: RouteLocation): void;
+  delAllViews(): void;
+  delCachedView(view: RouteLocation): void;
+  updateVisitedView(view: RouteLocation): void;
 };
 
 let instance: Instance;
@@ -47,7 +48,12 @@ export default () => {
           icon: view.meta.icon??null
         }));
       }
-
+      addToCache(view);
+    };
+    /**
+     * 添加页面到缓存
+     */
+    const addToCache = (view: RouteLocation) => {
       // 查询该标签是否已缓存
       if (state.cachedViews.includes(view.name)) {
         null;
@@ -67,6 +73,12 @@ export default () => {
         }
       }
       // 删除缓存
+      delCachedView(view);
+    };
+    /**
+     * 删除页面缓存
+     */
+    const delCachedView = (view: RouteLocation) => {
       const index = state.cachedViews.indexOf(view.name);
       index > -1 && state.cachedViews.splice(index, 1);
     };
@@ -105,6 +117,7 @@ export default () => {
       ...toRefs(state),
       addView,
       delView,
+      delCachedView,
       delOtherViews,
       delAllViews,
       updateVisitedView
