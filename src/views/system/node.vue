@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-26 11:49:25
- * @LastEditTime: 2021-03-10 10:06:40
+ * @LastEditTime: 2021-03-29 18:00:35
  * @Description: 节点列表
 -->
 <template>
@@ -44,7 +44,7 @@
             v-if="scope.row.node_type < 4"
             type="success"
             plain
-            @click="add(scope.row.autoid)"
+            @click="add(scope.row)"
           >添加子节点</el-button>
         </template>
       </el-table-column>
@@ -58,29 +58,27 @@
       @clear="clear"
     >
       <template #body>
-        <div class="tjglyFat">
-        <div class="disF"><span>节点名称</span>
-          <el-input v-model="form.node_name" />
-        </div>
-        <div class="disF"><span>节点描述</span>
-          <el-input v-model="form.node_desc" />
-        </div>
-        <div class="disF"><span>节点路径</span>
-          <el-input v-model.trim="form.node_path" />
-        </div>
-        <div class="disF"><span>排序(升序)</span>
-          <el-input v-model="form.node_sort" />
-        </div>
-        <div class="disF"><span>显示|隐藏</span>
-          <div class="mar7">
+        <el-form :model="form" label-width="80px">
+          <el-form-item label="节点名称">
+            <el-input v-model="form.node_name" />
+          </el-form-item>
+          <el-form-item label="节点描述">
+            <el-input v-model="form.node_desc" />
+          </el-form-item>
+          <el-form-item label="节点路径">
+            <el-input v-model="form.node_path" />
+          </el-form-item>
+          <el-form-item label="排序(升序)">
+            <el-input v-model.number="form.node_sort" />
+          </el-form-item>
+          <el-form-item label="显示|隐藏">
             <el-radio v-model="form.is_show" :label="0">隐藏</el-radio>
             <el-radio v-model="form.is_show" :label="1">显示</el-radio>
-          </div>
-        </div>
-        <div class="disF"><span>父节点ID</span>
-          <el-input v-model="form.parent_id" disabled />
-        </div>
-      </div>
+          </el-form-item>
+          <el-form-item label="父节点ID">
+            <el-input v-model="form.parent_id" disabled />
+          </el-form-item>
+        </el-form>
       </template>
     </young-dialog>
   </div>
@@ -122,9 +120,16 @@ export default defineComponent({
     /**
      * 添加节点
      */
-    const add = (parent_id = 0) => {
-      isAdd.value = true;
+    const add = (parent: any) => {
+      let parent_id = 0;
+      if (typeof parent === 'object') {
+        if (parent.node_type === 3) {
+          form.value.is_show = 0;
+        }
+        parent_id = parent.autoid;
+      }
       form.value.parent_id = parent_id;
+      isAdd.value = true;
     };
     /**
      * 编辑节点
@@ -186,33 +191,3 @@ export default defineComponent({
   }
 });
 </script>
-
-<style scoped lang="scss">
-  .index {
-    .tjglyFat {
-      .disF {
-        margin-bottom: 10px;
-
-        >span {
-          width: 80px;
-          min-width: 80px;
-          line-height: 32px;
-          text-align: right;
-          margin-right: 15px;
-        }
-
-        .switchTop {
-          margin-top: 6px
-        }
-      }
-
-      .el-input__suffix-inner {
-        margin-right: 0 !important;
-      }
-
-      .mar7 {
-        margin-top: 7px;
-      }
-    }
-  }
-</style>
