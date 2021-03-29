@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 10:51:05
- * @LastEditTime: 2021-03-20 16:45:08
+ * @LastEditTime: 2021-03-29 16:12:38
  * @Description: 弹出层组件，封装常用的按钮
 -->
 <template>
@@ -26,22 +26,24 @@
       <slot name="body" />
       <template #footer>
         <slot name="button" />
-        <el-button size="mini" @click="beforeClose">取 消</el-button>
+        <el-button size="mini" @click="beforeClose">{{ cancelText }}</el-button>
         <slot name="step1" />
         <slot name="step2" />
-        <el-button size="mini" type="primary" @click="sure">确 定</el-button>
+        <el-button v-show="showSure" size="mini" type="primary" @click="sure">{{ sureText }}</el-button>
       </template>
     </el-dialog>
   </teleport>
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, toRefs, watchEffect } from 'vue';
+import { computed, defineComponent, toRefs } from 'vue';
 import { ElMessageBox } from 'element-plus';
 export default defineComponent({
   name: 'YoungDialog',
   props: {
     realTitle: { type: String, default: '' },
+    sureText: { type: String, default: '确 定' },
+    cancelText: { type: String, default: '取 消' },
     width: { type: String, default: '50%' },
     fullscreen: { type: Boolean, default: false },
     top: { type: String, default: '15vh' },
@@ -52,6 +54,7 @@ export default defineComponent({
     closeOnClickModal: { type: Boolean, default: false },
     closeOnPressEscape: { type: Boolean, default: false },
     showClose: { type: Boolean, default: true },
+    showSure: { type: Boolean, default: true },
     center: { type: Boolean, default: false },
     destroyOnClose: { type: Boolean, default: false },
     isAdd: { type: Boolean, default: false },
