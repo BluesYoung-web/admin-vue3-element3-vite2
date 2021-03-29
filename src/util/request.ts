@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-09 16:02:36
- * @LastEditTime: 2021-03-26 15:23:34
+ * @LastEditTime: 2021-03-29 16:06:23
  * @Description: 封装不同的请求方法
  */
 import net from './net';
@@ -31,7 +31,7 @@ const basicRequest = (param: ParamsObj) => {
   param['aid'] = aid;
   const data = new FormData();
   for (const [key, value] of Object.entries(param)) {
-    data.append(key, encodeURIComponent(value));
+    data.append(key, value);
   }
   return net({
     method: 'post',
