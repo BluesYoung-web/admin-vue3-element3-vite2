@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-03-24 17:57:33
+ * @LastEditTime: 2021-04-01 17:12:06
  * @Description: 项目入口文件
  */
 
@@ -47,8 +47,7 @@ if (getToken().token) {
   generateUserInfo();
 }
 
-const USE_MOCK = import.meta.env?.VITE_USE_MOCK ?? false;
-if (USE_MOCK) {
+if (import.meta.env.MODE === 'mock') {
   useMock();
 }
 
