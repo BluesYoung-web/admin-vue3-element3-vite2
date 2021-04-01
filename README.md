@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-03-16 15:21:55
+ * @LastEditTime: 2021-04-01 17:24:29
  * @Description: 项目说明
 -->
 # 后台管理系统
@@ -14,14 +14,22 @@
 ```bash
 # 装依赖
 yarn
-# 本地运行(请求真实服务器)
+# 本地运行(请求真实开发服服务器)
 yarn dev
 # 本地运行(使用 mock，账号密码随便填)
 yarn dev:mock
-# 打真实包
-yarn build
+# 本地运行(请求测试服务器)
+yarn dev:test
+# 本地运行(请求正式服务器)
+yarn dev:prod
 # 打mock包
 yarn build:mock
+# 打开发服包
+yarn build:dev
+# 打测试服包
+yarn build:test
+# 打正式服包
+yarn build:prod
 # 本地预览打包后的页面
 yarn pre
 ```
@@ -33,5 +41,13 @@ yarn pre
 - 此版本为 admin-vue3-element3 的改进版：
   - [x] 采用全新的 vite2.0
   - [x] 加入了 polyfill
-  - [x] 加入了 svg 图标组件
   - [x] 防抖与节流的自定义指令
+  - [x] 二次封装常用组件
+    - 表格
+    - 右键菜单
+    - 弹出层
+    - 富文本编辑器
+    - 分页
+    - tab
+    - svg
+    - ...

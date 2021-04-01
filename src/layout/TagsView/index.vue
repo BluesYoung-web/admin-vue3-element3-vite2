@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-11 13:35:58
- * @LastEditTime: 2021-03-26 17:48:48
+ * @LastEditTime: 2021-04-01 17:17:13
  * @Description: 标签选项卡组件
 -->
 <template>
@@ -127,8 +127,6 @@ export default defineComponent({
     const moveToCurrentTag = () => {
       nextTick(() => {
         const SP = scrollPane.value;
-        console.log(SP);
-        
         SP && (SP as any).moveToTarget();
         SP && updateVisitedView(route);
       });

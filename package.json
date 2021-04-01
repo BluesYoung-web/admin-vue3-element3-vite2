@@ -5,9 +5,13 @@
   "main": "main.ts",
   "scripts": {
     "dev": "vite",
-    "dev:mock": "SET USE_MOCK=true&& vite",
-    "build": "vite build",
-    "build:mock": "SET USE_MOCK=true&& vite build",
+    "dev:mock": "vite --mode mock",
+    "dev:test": "vite --mode test",
+    "dev:prod": "vite --mode production",
+    "build:mock": "vite build --mode mock",
+    "build:dev": "vite build --mode development",
+    "build:test": "vite build --mode test",
+    "build:prod": "vite build",
     "pre": "vite preview"
   },
   "dependencies": {
