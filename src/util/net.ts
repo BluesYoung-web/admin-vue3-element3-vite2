@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-08 11:26:10
- * @LastEditTime: 2021-03-10 14:52:21
+ * @LastEditTime: 2021-04-02 12:24:46
  * @Description: HTTP 网络请求模块
  */
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
@@ -32,7 +32,12 @@ const endLoading = () => {
 /**
  * 请求地址
  */
-const BASE_URL = (import.meta.env?.VITE_BASE_HTTP as unknown as string)??'/api';
+let BASE_URL = import.meta.env.VITE_BASE_HTTP as string;
+let mode = import.meta.env.MODE;
+const arr = mode.split('.');
+if (arr[1]) {
+  BASE_URL = `${BASE_URL}/${arr[0]}`;
+}
 /**
  * 创建 Axios 实例
  */

@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-04-01 17:24:29
+ * @LastEditTime: 2021-04-02 11:30:47
  * @Description: 项目说明
 -->
 # 后台管理系统
@@ -26,10 +26,16 @@ yarn dev:prod
 yarn build:mock
 # 打开发服包
 yarn build:dev
+# 打开发服包(后端配置了 nginx 代理，请求'/api/dev')
+yarn build:dev.nginx
 # 打测试服包
 yarn build:test
+# 打测试服包(后端配置了 nginx 代理，请求'/api/test')
+yarn build:test.nginx
 # 打正式服包
 yarn build:prod
+# 打正式服包(后端配置了 nginx 代理，请求'/api/prod')
+yarn build:prod.nginx
 # 本地预览打包后的页面
 yarn pre
 ```
