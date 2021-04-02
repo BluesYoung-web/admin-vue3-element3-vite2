@@ -10,8 +10,11 @@
     "dev:prod": "vite --mode production",
     "build:mock": "vite build --mode mock",
     "build:dev": "vite build --mode development",
+    "build:dev.nginx": "vite build --mode dev.nginx",
     "build:test": "vite build --mode test",
+    "build:test.nginx": "vite build --mode test.nginx",
     "build:prod": "vite build",
+    "build:prod.nginx": "vite build --mode prod.nginx",
     "pre": "vite preview"
   },
   "dependencies": {
