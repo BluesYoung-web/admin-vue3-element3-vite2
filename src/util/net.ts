@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-08 11:26:10
- * @LastEditTime: 2021-04-02 12:24:46
+ * @LastEditTime: 2021-04-06 11:39:48
  * @Description: HTTP 网络请求模块
  */
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
@@ -80,7 +80,7 @@ net.interceptors.response.use((response: AxiosResponse<any>) => {
     ElMessageBox.confirm('登录信息过期，请重新登录！', '提示', {
       showCancelButton: false,
       type: 'warning'
-    }).finally(() => {
+    }).catch(() => null).finally(() => {
       removeToken();
       location.href='/#/login'
     });
