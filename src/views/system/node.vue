@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-26 11:49:25
- * @LastEditTime: 2021-04-16 11:46:24
+ * @LastEditTime: 2021-04-16 14:40:46
  * @Description: 节点列表
 -->
 <template>
@@ -15,7 +15,7 @@
       style="width: 100%; margin-bottom: 20px;"
       size="medium"
       :tree-props="{ children: 'part', hasChildren: 'hasChildren' }"
-      :row-key="getRowKey"
+      row-key="autoid"
       :expand-row-keys="[...expandKeys]"
       @expand-change="expandChange"
     >
@@ -91,6 +91,7 @@ import { ElMessage, ElMessageBox } from 'element-plus';
 import { getNodeList, addNode, editNode, delNode } from '../../api/system';
 import deepClone from '../../util/deepClone';
 import YoungDialog from '/components/YoungDialog/index.vue';
+import { isArray } from '../../util/isType';
 
 export default defineComponent({
   name: 'Node',
@@ -100,17 +101,31 @@ export default defineComponent({
   setup() {
     let isAdd = ref(false);
     let isEdit = ref(false);
-    const expandKeys = ref<Set<number>>(new Set());
+    // key 的类型必须为 string 才会生效！！！
+    const expandKeys = ref<Set<string>>(new Set());
+    let tempArr: string[] = [];
+    const getFatherAndSon = (arr: NavArrItem[], num?: number): string[] => {
+      if (num === 1) {
+        tempArr = [];
+      }
+      for (const item of arr) {
+        tempArr.push(item.autoid + '');
+        if (isArray(item.part) && item.part.length > 0) {
+          getFatherAndSon(deepClone(item.part));
+        }
+      }
+      return tempArr;
+    };
     const expandChange = (...args: any) => {
-      const [row, isOpen] = args as [EditNodeItem, boolean];
+      const [row, isOpen] = args as [NavArrItem, boolean];
       const autoid = row.autoid;
       if (isOpen) {
-        expandKeys.value.add(autoid);
+        expandKeys.value.add(autoid + '');
       } else {
-        expandKeys.value.delete(autoid);
+        const allSub = getFatherAndSon([row], 1);
+        allSub.forEach((v) => expandKeys.value.delete(v));
       }
     };
-    const getRowKey = (row: any) => row.autoid;
     const form: Ref<AddNodeItem> = ref({
       autoid: 0,
       node_name: '',
@@ -203,8 +218,7 @@ export default defineComponent({
       isAdd,
       isEdit,
       expandKeys,
-      expandChange,
-      getRowKey
+      expandChange
     };
   }
 });
