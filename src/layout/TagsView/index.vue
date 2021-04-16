@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-11 13:35:58
- * @LastEditTime: 2021-04-01 17:17:13
+ * @LastEditTime: 2021-04-16 11:50:36
  * @Description: 标签选项卡组件
 -->
 <template>
@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref, nextTick, computed, watch, onMounted, Ref, toRefs } from 'vue';
+import { defineComponent, reactive, ref, nextTick, computed, onMounted, Ref, watchEffect } from 'vue';
 import YoungContextMenu from '../../components/YoungContextMenu/index.vue';
 import { RouteLocation, RouteRecordRaw, useRoute, useRouter } from 'vue-router';
 import ScrollPane from '../components/ScrollPane/index.vue';
@@ -248,9 +248,10 @@ export default defineComponent({
      */
     const { currentRoutes: routes } = useRoutes();
 
-    watch(() => route.fullPath, () => {
-      addTags();
+    watchEffect(() => {
+      route.fullPath; // 仅为触发副作用
       nextTick(() => {
+        addTags();
         moveToCurrentTag();
       });
     });

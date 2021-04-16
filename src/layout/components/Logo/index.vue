@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 14:10:09
- * @LastEditTime: 2021-03-12 16:04:46
+ * @LastEditTime: 2021-04-16 11:51:50
  * @Description: 侧边栏 logo 组件
 -->
 <template>
@@ -19,7 +19,7 @@
 </template>
 
 <script lang="ts">
-import { computed, defineComponent, ref, watch } from 'vue';
+import { computed, defineComponent, ref } from 'vue';
 import { useApp } from '../../../store';
 export default defineComponent({
   name: 'Logo',

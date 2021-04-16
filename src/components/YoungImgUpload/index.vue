@@ -36,7 +36,7 @@
 <script lang="ts">
 import { ElMessage } from 'element-plus';
 import { RefElement } from 'element-plus/lib/el-popper/src/use-popper';
-import { defineComponent, Ref, ref, watch, PropType } from 'vue';
+import { defineComponent, Ref, ref, PropType, watchEffect } from 'vue';
 import { upload } from '../../util/request';
 
 export default defineComponent({
@@ -57,8 +57,8 @@ export default defineComponent({
 
 
     const closeMenu = () => visible.value = false;
-    watch(() => visible.value, (val) => {
-      if (val) {
+    watchEffect(() => {
+      if (visible.value) {
         document.body.addEventListener('click', closeMenu);
       } else {
         document.body.removeEventListener('click', closeMenu);

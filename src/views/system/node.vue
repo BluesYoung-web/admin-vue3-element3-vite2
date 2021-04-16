@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-26 11:49:25
- * @LastEditTime: 2021-03-29 18:00:35
+ * @LastEditTime: 2021-04-16 11:46:24
  * @Description: 节点列表
 -->
 <template>
@@ -13,10 +13,11 @@
     <el-table
       :data="tableData"
       style="width: 100%; margin-bottom: 20px;"
-      row-key="autoid"
-      :default-expand-all="false"
       size="medium"
       :tree-props="{ children: 'part', hasChildren: 'hasChildren' }"
+      :row-key="getRowKey"
+      :expand-row-keys="[...expandKeys]"
+      @expand-change="expandChange"
     >
       <el-table-column prop="node_name" label="节点名称" width="240" />
       <el-table-column prop="autoid" label="ID" />
@@ -99,6 +100,17 @@ export default defineComponent({
   setup() {
     let isAdd = ref(false);
     let isEdit = ref(false);
+    const expandKeys = ref<Set<number>>(new Set());
+    const expandChange = (...args: any) => {
+      const [row, isOpen] = args as [EditNodeItem, boolean];
+      const autoid = row.autoid;
+      if (isOpen) {
+        expandKeys.value.add(autoid);
+      } else {
+        expandKeys.value.delete(autoid);
+      }
+    };
+    const getRowKey = (row: any) => row.autoid;
     const form: Ref<AddNodeItem> = ref({
       autoid: 0,
       node_name: '',
@@ -113,8 +125,11 @@ export default defineComponent({
      * 获取节点列表
      */
     const getList = async () => {
+      sessionStorage.setItem('system_open_keys', JSON.stringify([...expandKeys.value]));
       const temp = await getNodeList();
       tableData.value = deepClone(temp);
+      const res = sessionStorage.getItem('system_open_keys') as string;
+      expandKeys.value = new Set(JSON.parse(res));
     };
     onMounted(() => getList());
     /**
@@ -166,7 +181,7 @@ export default defineComponent({
       }
       tableData.value = [];
       getList();
-    }
+    };
     const sure = async () => {
       if (isAdd.value) {
         await addNode(form.value);
@@ -186,7 +201,10 @@ export default defineComponent({
       form,
       tableData,
       isAdd,
-      isEdit
+      isEdit,
+      expandKeys,
+      expandChange,
+      getRowKey
     };
   }
 });
