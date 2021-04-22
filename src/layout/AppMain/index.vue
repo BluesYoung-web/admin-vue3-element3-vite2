@@ -30,7 +30,11 @@ export default defineComponent({
     const { cachedViews } = useTagsView();
     const path = computed(() => route.path);
     const name = computed(() => route.name);
-    const isCached = computed(() => cachedViews.value.includes(name.value));
+    const isCached = computed(() => {
+      const arr = visitedViews.value.map((view) => view.name);
+      // 已经缓存，或者首次打开(防止二次初始化)
+      return cachedViews.value.includes(name.value) || !arr.includes(name.value);
+    });
     return {
       isCached,
       path,
