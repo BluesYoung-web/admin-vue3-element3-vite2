@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 17:07:36
- * @LastEditTime: 2021-03-25 17:21:01
+ * @LastEditTime: 2021-04-22 14:50:56
  * @Description: 所有的子页面都在此组件内部显示
 -->
 <template>
@@ -27,7 +27,7 @@ export default defineComponent({
   name: 'AppMain',
   setup() {
     const route = useRoute();
-    const { cachedViews } = useTagsView();
+    const { cachedViews, visitedViews } = useTagsView();
     const path = computed(() => route.path);
     const name = computed(() => route.name);
     const isCached = computed(() => {
