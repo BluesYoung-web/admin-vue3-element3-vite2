@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-03 14:25:49
- * @LastEditTime: 2021-03-16 15:17:54
+ * @LastEditTime: 2021-04-25 17:55:54
  * @Description: 登录
 -->
 <template>
@@ -59,7 +59,7 @@ export default defineComponent({
      * 路由器实例，负责改变路由
      */
     const router = useRouter();
-    
+
     const loginRef: Ref<RefElement> = ref(null);
     const loginForm: LoginForm = reactive({
       username: '',
@@ -115,7 +115,7 @@ export default defineComponent({
 });
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 
 $bg:#283443;
 $light_gray:#fff;
