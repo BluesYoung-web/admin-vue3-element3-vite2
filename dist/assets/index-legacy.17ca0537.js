@@ -1,1 +1,0 @@
-System.register(["./index-legacy.5f67a86b.js","./vendor-legacy.68531bbe.js"],(function(e){"use strict";var n,t;return{setters:[function(e){n=e.o,t=e.c},function(){}],execute:function(){e("default",{}).render=function(e,r){return n(),t("h1",null,"欢迎使用")}}}}));
