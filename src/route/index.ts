@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-03 14:06:59
- * @LastEditTime: 2021-03-24 18:05:02
+ * @LastEditTime: 2021-04-25 16:27:26
  * @Description: 前端路由
  */
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
@@ -21,7 +21,7 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/Dashboard',
     component: Layout,
-    redirect: '/Dashboard',
+    redirect: '/Dashboard/dashboard',
     name: 'dashboard',
     children: [
       {
