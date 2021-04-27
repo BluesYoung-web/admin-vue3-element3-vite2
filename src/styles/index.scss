@@ -1,3 +1,9 @@
+/* 引入 tailwind */
+/*! @import */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @import './variables.scss';
 @import './mixin.scss';
 @import './transition.scss';

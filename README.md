@@ -1,15 +1,26 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-04-02 11:30:47
+ * @LastEditTime: 2021-04-27 21:12:41
  * @Description: 项目说明
 -->
 # 后台管理系统
+
+## 环境要求
+
+```bash
+# node >= 12.13.0
+```
 
 ## 权限管理
 
 - 所有用户必须登录
 - 后端权限管理 + 前端权限管理
+
+## 运行 | 打包
+
+- 推荐使用(`yarn build | yarn build:prod | yarn build:prod.nginx`)
+- 生产模式下包的体积最小(各种摇树优化)
 
 ```bash
 # 装依赖
@@ -22,6 +33,9 @@ yarn dev:mock
 yarn dev:test
 # 本地运行(请求正式服务器)
 yarn dev:prod
+
+# ------ 本地打包 ------
+# --- 依赖 .env.{MODE}.local 内部的环境变量 ---
 # 打mock包
 yarn build:mock
 # 打开发服包
@@ -38,6 +52,13 @@ yarn build:prod
 yarn build:prod.nginx
 # 本地预览打包后的页面
 yarn pre
+
+# ------ 服务器打包 ------
+# 1. 注入环境变量
+# VITE_BASE_HTTP = '接口请求地址(必须)'
+# VITE_TITLE = '后台标题(可选)'
+# 2. 打包
+yarn build
 ```
 ## 项目说明
 
@@ -57,3 +78,4 @@ yarn pre
     - tab
     - svg
     - ...
+- 引入了 tailwindcss，样式编写更加快捷方便

@@ -1,13 +1,13 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-03-25 11:46:31
- * @LastEditTime: 2021-03-25 11:52:16
+ * @LastEditTime: 2021-04-27 21:48:30
  * @Description: tab 组件
 -->
 <template>
   <young-tabs v-model="activeTab" :tabs-menu="tabsMenu">
     <template #t1>
-      <h1>我是标签页1</h1>
+      <h1 class="h1-test">我是标签页1</h1>
     </template>
     <template #t2>
       <h1>我是标签页2</h1>
@@ -36,3 +36,9 @@ export default defineComponent({
   }
 });
 </script>
+
+<style scoped>
+.h1-test {
+  @apply text-9xl text-center text-blue-600 sm:bg-black;
+}
+</style>
