@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-03-25 11:46:31
- * @LastEditTime: 2021-04-27 21:48:30
+ * @LastEditTime: 2021-04-28 10:19:52
  * @Description: tab 组件
 -->
 <template>
@@ -38,6 +38,11 @@ export default defineComponent({
 </script>
 
 <style scoped>
+/* 引入 tailwind */
+/*! @import */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 .h1-test {
   @apply text-9xl text-center text-blue-600 sm:bg-black;
 }
