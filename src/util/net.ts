@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-08 11:26:10
- * @LastEditTime: 2021-04-06 11:39:48
+ * @LastEditTime: 2021-05-13 16:47:40
  * @Description: HTTP 网络请求模块
  */
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
@@ -59,41 +59,41 @@ net.interceptors.request.use((req: AxiosRequestConfig) => {
 
 enum Status {
   TOKEN_NO_USE = -1,
-  OK
-}
+  OK = 0
+};
 
 interface ResponseObj {
   status: number;
   data: any;
   msg: string;
-}
+};
 
 /**
  * 设置响应拦截器
  */
-net.interceptors.response.use((response: AxiosResponse<any>) => {
+ net.interceptors.response.use((response: AxiosResponse<ResponseObj>) => {
   endLoading();
   const res = response.data;
-  if ((res as ResponseObj).status === Status.OK) {
-    return (res as ResponseObj).data;
-  } else if ((res as ResponseObj).status === Status.TOKEN_NO_USE) {
+  if (res.status === Status.OK) {
+    return res.data;
+  } else if (res.status === Status.TOKEN_NO_USE) {
     ElMessageBox.confirm('登录信息过期，请重新登录！', '提示', {
       showCancelButton: false,
       type: 'warning'
     }).catch(() => null).finally(() => {
       removeToken();
-      location.href='/#/login'
+      location.href='/#/login';
     });
   } else {
-    const ErrMsg = (res as ResponseObj).msg;
-    console.error(ErrMsg);
+    const ErrMsg = res.msg;
     ElMessage.error(ErrMsg);
-    return Promise.reject(ErrMsg);
+    throw new Error(ErrMsg);
   }
-}, (error) => {
+}, (error: Error) => {
   endLoading();
   console.error(error);
-  ElMessage.error(error);
+  ElMessage.error(error.message);
+  throw new Error(error.message);
 });
 
 export default net;
