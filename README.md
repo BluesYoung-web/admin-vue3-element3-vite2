@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-04-27 21:12:41
+ * @LastEditTime: 2021-05-27 16:20:16
  * @Description: 项目说明
 -->
 # 后台管理系统
@@ -25,6 +25,11 @@
 ```bash
 # 装依赖
 yarn
+# 依赖升级(同时更新 yarn.lock 和 package.json)
+yarn upgrade-interactive --latest
+# 手动升级 vue-router (使用上面的更新会回导致回退到 3.X，后续可能不用)
+yarn upgrade vue-router@next
+
 # 本地运行(请求真实开发服服务器)
 yarn dev
 # 本地运行(使用 mock，账号密码随便填)
