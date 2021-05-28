@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-05-27 16:20:16
+ * @LastEditTime: 2021-05-28 09:04:20
  * @Description: 项目说明
 -->
 # 后台管理系统
@@ -83,4 +83,5 @@ yarn build
     - tab
     - svg
     - ...
-- 引入了 tailwindcss，样式编写更加快捷方便
+- <strike>引入了 tailwindcss，样式编写更加快捷方便</strike>
+- 使用兼容 tailwindcss 的 windicss 替换 tailwindcss，更加快捷，零配置自动 css 摇树优化

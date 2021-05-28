@@ -1,14 +1,18 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-04-01 17:12:06
+ * @LastEditTime: 2021-05-28 10:36:35
  * @Description: 项目入口文件
  */
 
 // polyfill
 import 'core-js/stable';
 import 'regenerator-runtime/runtime';
-
+// 引入 windicss 的样式
+// 不引入 windi-base 是为了防止影响现有的样式，引入另外的两个是保证 windicss 可以正常使用
+// import 'virtual:windi-base.css';
+import 'virtual:windi-components.css';
+import 'virtual:windi-utilities.css';
 //  引入 Element Plus
 import ElementPlus from 'element-plus';
 import 'element-plus/lib/theme-chalk/index.css';
@@ -25,7 +29,6 @@ import { generateUserInfo } from './util/generateUserInfo';
 
 // 注册 svg icons
 import 'vite-plugin-svg-icons/register';
-
 // 统一浏览器样式
 import 'normalize.css/normalize.css';
 // 自定义样式
