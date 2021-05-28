@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-08 11:26:10
- * @LastEditTime: 2021-05-13 16:47:40
+ * @LastEditTime: 2021-05-14 11:35:10
  * @Description: HTTP 网络请求模块
  */
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios';
@@ -71,7 +71,7 @@ interface ResponseObj {
 /**
  * 设置响应拦截器
  */
- net.interceptors.response.use((response: AxiosResponse<ResponseObj>) => {
+net.interceptors.response.use((response: AxiosResponse<ResponseObj>) => {
   endLoading();
   const res = response.data;
   if (res.status === Status.OK) {

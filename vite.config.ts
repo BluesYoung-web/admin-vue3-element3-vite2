@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-04-01 17:13:02
+ * @LastEditTime: 2021-05-28 09:02:09
  * @Description: 配置文件
  */
 import { defineConfig } from 'vite';
@@ -9,6 +9,7 @@ import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import legacy from '@vitejs/plugin-legacy';
 import SvgIcons from 'vite-plugin-svg-icons';
+import Windicss from 'vite-plugin-windicss';
 
 import { resolve } from 'path';
 
@@ -26,6 +27,7 @@ export default defineConfig({
     vue(),
     vueJsx(),
     SvgIcons({ iconDirs: [resolve(__dirname, 'src/icons')], symbolId: 'icon-[dir]-[name]' }),
+    Windicss(),
     legacy()
   ],
   server: {

@@ -1,0 +1,16 @@
+{
+  "cSpell.words": [
+    "Windi",
+    "Windicss"
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "volar.tsPlugin": true,
+  "css.validate": false,
+  "less.validate": false,
+  "scss.validate": false,
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": false,
+    "strings": true
+  }
+}
