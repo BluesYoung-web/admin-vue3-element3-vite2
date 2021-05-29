@@ -20,9 +20,10 @@
   },
   "dependencies": {
     "@tweenjs/tween.js": "^18.6.4",
+    "@vueuse/core": "^4.11.1",
     "axios": "^0.21.1",
     "core-js": "^3.13.0",
-    "element-plus": "^1.0.2-beta.44",
+    "element-plus": "^1.0.2-beta.45",
     "highlight.js": "^10.7.2",
     "js-cookie": "^2.2.1",
     "normalize.css": "^8.0.1",
@@ -49,8 +50,8 @@
     "sass": "^1.34.0",
     "typescript": "^4.3.2",
     "vite": "^2.3.4",
-    "vite-plugin-svg-icons": "^0.6.1",
-    "vite-plugin-windicss": "^0.16.5",
+    "vite-plugin-svg-icons": "^0.6.2",
+    "vite-plugin-windicss": "^0.16.7",
     "windicss": "^3.0.12"
   },
   "keywords": [
