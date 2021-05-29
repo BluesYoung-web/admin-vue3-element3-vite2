@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-09 17:50:01
- * @LastEditTime: 2021-03-26 17:39:55
+ * @LastEditTime: 2021-05-29 16:50:27
  * @Description: 所有假接口
  */
 import Mock from 'mockjs';
@@ -124,6 +124,29 @@ export const operate = (params: Map<string, any>, body: FormData) => {
                 node_desc: 'tab组件',
                 node_name: 'tab组件',
                 node_path: '10086/14',
+                node_sort: 0,
+                node_type: 2,
+                parent_id: 1,
+                part: []
+              }
+            ]
+          },
+          {
+            autoid: 2,
+            is_show: 1,
+            node_desc: '商户/管理员可见',
+            node_name: 'VueUse使用示例',
+            node_path: '',
+            node_sort: 0,
+            node_type: 1,
+            parent_id: 0,
+            part: [
+              {
+                autoid: 21,
+                is_show: 1,
+                node_desc: '',
+                node_name: 'useEventListener',
+                node_path: '10086/21',
                 node_sort: 0,
                 node_type: 2,
                 parent_id: 1,
