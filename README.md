@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-06-08 17:31:21
+ * @LastEditTime: 2021-06-08 17:54:49
  * @Description: 项目说明
 -->
 # 后台管理系统
@@ -16,6 +16,20 @@
 
 - 所有用户必须登录
 - 后端权限管理 + 前端权限管理
+
+## 前置条件(本地运行)
+
+- 在项目根目录下新建 `.env.local` 文件，内容如下:
+
+```bash
+# ！！！ 变量名必须以 VITE_ 开头
+# 使用 import.meta.变量名 获取
+
+VITE_TITLE = '小黑后台'
+
+# 后端使用 nginx 代理来跨域时，使用绝对路径
+VITE_BASE_HTTP = '/api'
+```
 
 ## 运行 | 打包
 
@@ -39,7 +53,7 @@ yarn dev:test
 # 本地运行(请求正式服务器)
 yarn dev:prod
 
-# ------ 本地打包 ------
+# ------ 本地运行及打包 ------
 # --- 依赖 .env.{MODE}.local 内部的环境变量 ---
 # 打mock包
 yarn build:mock
@@ -83,5 +97,4 @@ yarn build
     - tab
     - svg
     - ...
-- <strike>引入了 tailwindcss，样式编写更加快捷方便</strike>
 - 使用兼容 tailwindcss 的 windicss 替换 tailwindcss，更加快捷，零配置自动 css 摇树优化
