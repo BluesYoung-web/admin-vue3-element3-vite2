@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-05-28 09:04:20
+ * @LastEditTime: 2021-06-08 17:31:21
  * @Description: 项目说明
 -->
 # 后台管理系统
@@ -27,8 +27,8 @@
 yarn
 # 依赖升级(同时更新 yarn.lock 和 package.json)
 yarn upgrade-interactive --latest
-# 手动升级 vue-router (使用上面的更新会回导致回退到 3.X，后续可能不用)
-yarn upgrade vue-router@next
+# 手动升级 vue vue-router (使用上面的更新会回导致回退到 3.X，21年6月底之后可能就不用了)
+yarn upgrade vue@next vue-router@next
 
 # 本地运行(请求真实开发服服务器)
 yarn dev
