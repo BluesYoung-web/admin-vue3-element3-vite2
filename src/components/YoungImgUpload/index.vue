@@ -36,7 +36,7 @@
 <script lang="ts">
 import { ElMessage } from 'element-plus';
 import { RefElement } from 'element-plus/lib/el-popper/src/use-popper';
-import { defineComponent, Ref, ref, PropType, watchEffect } from 'vue';
+import { defineComponent, ref, PropType, watchEffect } from 'vue';
 import { upload } from '../../util/request';
 
 export default defineComponent({
@@ -52,7 +52,7 @@ export default defineComponent({
     let addedListener = ref(false), visible = ref(false);
     let top = ref(0), left = ref(0);
     let toBeDel = '';
-    const imgRef: Ref<RefElement> = ref(null);
+    const imgRef = ref<RefElement>(null);
     const allFiles: File[] = [];
 
 
@@ -70,7 +70,7 @@ export default defineComponent({
         ElMessage.warning(`最多只能上传${props.limit}张`);
         return;
       }
-      
+
       emit('update:imgs', props.imgs.concat(Array.from(files).map((f) => {
         allFiles.push(f);
         return URL.createObjectURL(f);
@@ -87,7 +87,7 @@ export default defineComponent({
       const menuWidth = 105;
       const offsetLeft = 120;
       left.value = e.clientX - menuWidth - offsetLeft;
-      top.value = e.clientY; 
+      top.value = e.clientY;
       visible.value = true;
     };
 

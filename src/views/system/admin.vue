@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-03-20 16:46:54
- * @LastEditTime: 2021-03-23 14:28:34
+ * @LastEditTime: 2021-06-10 14:58:49
  * @Description: 管理员列表
 -->
 <template>
@@ -100,7 +100,17 @@ interface Query{
   limit: number;
   total: number;
 };
-
+interface Head {
+  autoid: number;
+  admin_name: string;
+  real_name: string;
+  phone_number: string;
+  create_time: string;
+  login_time: string;
+  login_ip: string;
+  last_time: string;
+  role_des: string;
+}
 export default defineComponent({
   name: 'Admin',
   setup() {
@@ -124,7 +134,7 @@ export default defineComponent({
       };
       getList();
     };
-    const tableHead = ref<TableHeadItem[]>([
+    const tableHead = ref<TableHeadItem<Head>[]>([
       { prop: 'autoid', label: 'id', width: '80' },
       { prop: 'admin_name', label: '账号', width: '120' },
       { prop: 'real_name', label: '真实姓名' },
@@ -135,7 +145,7 @@ export default defineComponent({
       { prop: 'last_time', label: '最后登录时间' },
       { prop: 'role_des', label: '角色' }
     ]);
-    const tableData = ref<TableDataItem[]>([]);
+    const tableData = ref<TableDataItem<Head>[]>([]);
     const getList = async () => {
       const { list, total } = await getAdminList(query.value) as unknown as any;
       tableData.value = list;
@@ -226,7 +236,7 @@ export default defineComponent({
         is_enable: 1
       };
     };
-    
+
     init();
     return {
       refForm,
