@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-26 11:50:08
- * @LastEditTime: 2021-03-25 11:40:30
+ * @LastEditTime: 2021-06-10 14:38:09
  * @Description: 自定义表格组件
 -->
 <template>
@@ -32,22 +32,22 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, Ref, ref } from 'vue';
-
-interface TableDataItem {
-  date: string;
-  autoid: number;
-  sp: unknown;
-  imgs: string[];
-  m1: MultiRows[];
-  m2: MultiRows[];
+import { defineComponent, ref } from 'vue';
+interface Head {
+  date: string,
+  autoid: number,
+  sp: string,
+  imgs: string[],
+  m1: MultiRows[],
+  m2: MultiRows[]
 };
-
 export default defineComponent({
   name: 'Table',
   setup() {
-    let tableData: Ref<TableDataItem[]> = ref([]);
-    let tableHead: Ref<TableHeadItem[]> = ref([]);
+    let tableData = ref<TableDataItem<Head>[]>([
+
+    ]);
+    let tableHead = ref<TableHeadItem<Head>[]>([]);
     tableHead.value = [
       { prop: 'date', label: '日期', tool_content: '来了老弟' },
       { prop: 'autoid', label: 'UID' },
@@ -56,7 +56,6 @@ export default defineComponent({
       { prop: 'm1', label: '多行1' },
       { prop: 'm2', label: '多行2', show_all: true }
     ];
-
     tableData.value = [
       {
         date: '2021-01-01',
@@ -140,23 +139,11 @@ export default defineComponent({
       },
       {
         date: '2021-01-01',
-        autoid: 100,
-        sp: `<button>来了老弟</button>`,
-        imgs: ['12321', 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'],
-        m1: [
-          { value: 1 },
-          { value: 1 },
-          { value: 1 },
-          { value: 1 },
-          { value: 1 }
-        ],
-        m2: [
-          { value: 1 },
-          { value: 1 },
-          { value: 1 },
-          { value: 1 },
-          { value: 1 }
-        ]
+        autoid: 123,
+        sp: `<span style="color: red">特殊内容111</span>`,
+        imgs: ['1', '2', '3'],
+        m1: [{ value: '111' }],
+        m2: [{ value: '111' }],
       }
     ];
 

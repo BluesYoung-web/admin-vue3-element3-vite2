@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-11 13:35:58
- * @LastEditTime: 2021-04-16 11:50:36
+ * @LastEditTime: 2021-06-10 15:26:18
  * @Description: 标签选项卡组件
 -->
 <template>
@@ -33,7 +33,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive, ref, nextTick, computed, onMounted, Ref, watchEffect } from 'vue';
+import { defineComponent, reactive, ref, nextTick, computed, onMounted, watchEffect } from 'vue';
 import YoungContextMenu from '../../components/YoungContextMenu/index.vue';
 import { RouteLocation, RouteRecordRaw, useRoute, useRouter } from 'vue-router';
 import ScrollPane from '../components/ScrollPane/index.vue';
@@ -78,7 +78,7 @@ export default defineComponent({
     /**
      * 当前选中的标签
      */
-    const selectedTag: Ref<RouteLocation | null> = ref(null);
+    const selectedTag = ref<RouteLocation | null>(null);
     /**
      * 所有固定的标签(禁止关闭)
      */
@@ -186,7 +186,7 @@ export default defineComponent({
         const screenWidth = window.innerWidth;
         const normal = e.clientX;
         left.value = (normal + menuMinWidth + 200 < screenWidth) ? normal : (normal - menuMinWidth);
-        
+
         top.value = e.clientY;
         showContextMenu.value = true;
         selectedTag.value = tag;
@@ -213,7 +213,7 @@ export default defineComponent({
      */
     const filterAffixTags = (routes: RouteRecordRaw[], basePath = '/') => {
       let tags: any[] = [];
-      
+
       routes.forEach((route) => {
         if (isAffix(route)) {
           const tagPath = resolve(basePath, route.path);

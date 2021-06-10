@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-26 11:49:46
- * @LastEditTime: 2021-03-10 10:29:55
+ * @LastEditTime: 2021-06-10 15:28:34
  * @Description: 角色列表
 -->
 <template>
@@ -124,7 +124,7 @@
 
 <script lang="ts">
 import { ElMessage, ElMessageBox } from 'element-plus';
-import { defineComponent, onMounted, Ref, ref } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
 import { addRole, delRole, editRole, getRoleList, getRolePriorityList } from '../../api/system';
 import deepClone from '../../util/deepClone';
 import YoungDialog from '/components/YoungDialog/index.vue';
@@ -134,7 +134,7 @@ export default defineComponent({
     YoungDialog
   },
   setup() {
-    let formInfo: Ref<Role> = ref({
+    let formInfo = ref<Role>({
       autoid: 0,
       role_name: '',
       role_desc: '',
@@ -143,8 +143,8 @@ export default defineComponent({
       platform_type: 0,
       role_access: ''
     });
-    let tableData: Ref<Role[]> = ref([]);
-    let nodeList: Ref<PriorityItem[]> = ref([]);
+    let tableData = ref<Role[]>([]);
+    let nodeList = ref<PriorityItem[]>([]);
     let isAddInfo = ref(false);
     let isEditInfo = ref(false);
     let isEditPriority = ref(false);
@@ -228,7 +228,7 @@ export default defineComponent({
       }
       clear();
     };
-    
+
     /**
      * 多级联动选择
      */

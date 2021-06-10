@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-26 11:49:25
- * @LastEditTime: 2021-04-16 14:40:46
+ * @LastEditTime: 2021-06-10 15:27:50
  * @Description: 节点列表
 -->
 <template>
@@ -86,7 +86,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, Ref, ref } from 'vue';
+import { defineComponent, onMounted, ref } from 'vue';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import { getNodeList, addNode, editNode, delNode } from '../../api/system';
 import deepClone from '../../util/deepClone';
@@ -126,7 +126,7 @@ export default defineComponent({
         allSub.forEach((v) => expandKeys.value.delete(v));
       }
     };
-    const form: Ref<AddNodeItem> = ref({
+    const form = ref<AddNodeItem>({
       autoid: 0,
       node_name: '',
       node_desc: '',
@@ -135,7 +135,7 @@ export default defineComponent({
       is_show: 1,
       parent_id: 0
     });
-    let tableData: Ref<NavArrItem[]> = ref([]);
+    let tableData = ref<NavArrItem[]>([]);
     /**
      * 获取节点列表
      */

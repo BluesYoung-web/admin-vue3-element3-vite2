@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-09 17:50:01
- * @LastEditTime: 2021-05-29 16:50:27
+ * @LastEditTime: 2021-06-10 14:57:41
  * @Description: 所有假接口
  */
 import Mock from 'mockjs';
@@ -417,7 +417,8 @@ export const operate = (params: Map<string, any>, body: FormData) => {
             'login_ip': Mock.Random.ip(),
             'phone_number': /^1[0-9]{10}$/,
             'real_name': Mock.Random.cname(),
-            'role_des': Mock.Random.ctitle()
+            'role_des': Mock.Random.ctitle(),
+            'extra': '透传参数测试'
           }
         ],
         'total|10-99': 10

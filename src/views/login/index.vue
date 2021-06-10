@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-03 14:25:49
- * @LastEditTime: 2021-04-25 17:55:54
+ * @LastEditTime: 2021-06-10 15:27:27
  * @Description: 登录
 -->
 <template>
@@ -34,7 +34,7 @@
 </template>
 
 <script lang="ts">
-import { ref, reactive, defineComponent, Ref } from 'vue';
+import { ref, reactive, defineComponent } from 'vue';
 import { login } from '../../api/user';
 import { setToken, UserKey } from '../../util/auth';
 import { generateUserInfo } from '../../util/generateUserInfo';
@@ -60,7 +60,7 @@ export default defineComponent({
      */
     const router = useRouter();
 
-    const loginRef: Ref<RefElement> = ref(null);
+    const loginRef = ref<RefElement>(null);
     const loginForm: LoginForm = reactive({
       username: '',
       password: ''

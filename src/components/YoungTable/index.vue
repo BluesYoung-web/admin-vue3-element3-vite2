@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-03-01 16:41:54
- * @LastEditTime: 2021-03-24 17:56:01
+ * @LastEditTime: 2021-06-10 15:25:37
  * @Description: 自定义表格组件
 -->
 <template>
@@ -12,7 +12,7 @@
     style="width: 100%"
     size="medium"
     :height="tableHeight || height"
-    @sort-change="$emit('sort-change', $event)"  
+    @sort-change="$emit('sort-change', $event)"
   >
     <el-table-column
       v-for="(item, index) in tableHead"
@@ -79,7 +79,7 @@
 
 <script lang="ts">
 import { RefElement } from 'element-plus/lib/el-popper/src/use-popper';
-import { computed, defineComponent, nextTick, onActivated, PropType, Ref, ref, toRefs } from 'vue';
+import { computed, defineComponent, nextTick, onActivated, PropType, ref, toRefs } from 'vue';
 enum TableHeadAligin { 'left', 'center', 'right' }
 
 interface TableHeadItem {
@@ -101,7 +101,7 @@ export default defineComponent({
   },
   emits: ['sort-change'],
   setup(props, { emit }) {
-    const tableRef: Ref<RefElement> = ref(null);
+    const tableRef = ref<RefElement>(null);
     let height = computed(() => document.body.clientHeight - 84 - 72 - 32 - 32 - 44);
     /**
      * 修复表格切换时，显示出现错位的 bug
