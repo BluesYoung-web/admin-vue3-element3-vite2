@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-11 13:35:58
- * @LastEditTime: 2021-06-10 15:26:18
+ * @LastEditTime: 2021-06-16 16:54:52
  * @Description: 标签选项卡组件
 -->
 <template>
@@ -24,8 +24,6 @@
     </scroll-pane>
     <young-context-menu
       v-model="showContextMenu"
-      :left="left"
-      :top="top"
       :menu-list="menuList"
       @clickItem="clickItemHandler"
     />
@@ -54,8 +52,6 @@ export default defineComponent({
      * 显示上下文菜单的标志
      */
     const showContextMenu = ref(false);
-    const left = ref(0);
-    const top = ref(0);
     /**
      * 上下文菜单项
      */
@@ -182,12 +178,6 @@ export default defineComponent({
         if (menuList.value.length === 0) {
           return;
         }
-        const menuMinWidth = 105;
-        const screenWidth = window.innerWidth;
-        const normal = e.clientX;
-        left.value = (normal + menuMinWidth + 200 < screenWidth) ? normal : (normal - menuMinWidth);
-
-        top.value = e.clientY;
         showContextMenu.value = true;
         selectedTag.value = tag;
       });
@@ -259,7 +249,7 @@ export default defineComponent({
     /**
      * 关闭标签页
      */
-    const closeSelectedTag: (tag?: RouteLocation | null) => void = menuHandlers['closeThis']
+    const closeSelectedTag: (tag?: RouteLocation | null) => void = menuHandlers['closeThis'];
 
     onMounted(() => {
       initTags();
@@ -267,8 +257,6 @@ export default defineComponent({
     });
     return {
       showContextMenu,
-      left,
-      top,
       tagList,
       scrollPane,
       menuList,

@@ -1,13 +1,14 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-11 13:56:45
- * @LastEditTime: 2021-03-26 17:27:18
+ * @LastEditTime: 2021-06-16 17:01:40
  * @Description: 上下文菜单组件
 -->
 <template>
   <teleport to="body">
     <div v-show="modelValue" class="cover" @click="close">
       <ul
+        ref="menu"
         :style="{ left: left + 'px', top: top + 'px' }"
         class="contextmenu"
       >
@@ -24,21 +25,41 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import { defineComponent, nextTick, PropType, ref, watch, watchEffect } from 'vue';
+import { useMouse } from '@vueuse/core';
 interface ContextMenuItem {
   handlerName: string;
   title: string;
-}
+};
 export default defineComponent({
   name: 'YoungContextMenu',
   props: {
     modelValue: { type: Boolean, required: true },
-    left: { type: [Number, String], required: true },
-    top: { type: [Number, String], required: true },
     menuList: { type: Object as PropType<ContextMenuItem[]>, required: true }
   },
   emits: ['update:modelValue', 'clickItem'],
   setup(props, { emit }) {
+    const { x, y } = useMouse();
+    const left = ref(0);
+    const top = ref(0);
+    const menu = ref();
+    watch(() => props.modelValue, (newVal, oldVal) => {
+      if (newVal && !oldVal) {
+        nextTick(() => {
+          const { width, height } = window.getComputedStyle(menu.value as HTMLElement);
+          const { innerWidth, innerHeight } = window;
+          // 此时鼠标的坐标
+          const tx = x.value;
+          const ty = y.value;
+          // 此时自定义菜单的宽高
+          const rw = parseFloat(width);
+          const rh = parseFloat(height);
+          // 处理边界值
+          left.value = innerWidth - tx > rw ? tx : innerWidth - rw;
+          top.value = innerHeight - ty > rh ? ty : innerHeight - rh;
+        });
+      }
+    });
     const clickHandler = (handler: string) => {
       emit('clickItem', handler);
     };
@@ -47,7 +68,10 @@ export default defineComponent({
     };
     return {
       clickHandler,
-      close
+      close,
+      left,
+      top,
+      menu
     };
   }
 });
