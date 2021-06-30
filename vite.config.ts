@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-05-28 09:02:09
+ * @LastEditTime: 2021-06-30 15:06:45
  * @Description: 配置文件
  */
 import { defineConfig } from 'vite';
@@ -45,8 +45,10 @@ export default defineConfig({
       }
     }
   },
+  logLevel: 'warn',
   build: {
     target: 'es2015',
+    brotliSize: false,
     // sourcemap: true
   },
   optimizeDeps: {
