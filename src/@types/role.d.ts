@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-01 09:31:21
- * @LastEditTime: 2021-03-01 14:54:21
+ * @LastEditTime: 2021-06-30 17:28:22
  * @Description: 角色相关的数据结构定义
  */
 interface Role {
@@ -15,7 +15,7 @@ interface Role {
 }
 
 interface PriorityItem extends NavArrItem {
-  is_checked: number | boolean;
+  is_checked: 0 | 1;
   part: PriorityItem[];
 }
 
