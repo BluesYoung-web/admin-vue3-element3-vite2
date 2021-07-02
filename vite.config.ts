@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-06-30 15:06:45
+ * @LastEditTime: 2021-07-02 10:24:04
  * @Description: 配置文件
  */
 import { defineConfig } from 'vite';
@@ -18,7 +18,7 @@ export default defineConfig({
   base: './',
   resolve: {
     alias: {
-      '/@': resolve(__dirname, './src'),
+      '@': resolve(__dirname, './src'),
       '/components': resolve(__dirname, './src/components'),
       '/views': resolve(__dirname, './src/views')
     }

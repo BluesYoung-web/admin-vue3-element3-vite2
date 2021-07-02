@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-05-28 10:36:35
+ * @LastEditTime: 2021-07-02 10:21:02
  * @Description: 项目入口文件
  */
 
@@ -32,7 +32,7 @@ import 'vite-plugin-svg-icons/register';
 // 统一浏览器样式
 import 'normalize.css/normalize.css';
 // 自定义样式
-import '/@/styles/index.scss';
+import '@/styles/index.scss';
 // 常用的自定义组件
 import YoungTable from '/components/YoungTable/index.vue';
 import YoungPagination from '/components/YoungPagination/index.vue';

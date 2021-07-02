@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-03 15:02:28
- * @LastEditTime: 2021-02-25 11:47:18
+ * @LastEditTime: 2021-07-02 10:22:55
  * @Description: 404
 -->
 <template>
@@ -23,27 +23,17 @@
   </div>
 </template>
 
-<script>
+<script lang="ts" setup>
 import { ref } from 'vue';
 import { useRouter } from 'vue-router';
-import i_404 from '/@/assets/img/404_images/404.png';
-import i_404_cloud from '/@/assets/img/404_images/404_cloud.png';
-export default {
-  name: 'Page404',
-  setup() {
-    const msg = ref('页面不存在......');
-    const router = useRouter();
-    const goBack = () => {
-      router.back();
-    };
-    return {
-      msg,
-      goBack,
-      i_404,
-      i_404_cloud
-    };
-  }
+import i_404 from '@/assets/img/404_images/404.png';
+import i_404_cloud from '@/assets/img/404_images/404_cloud.png';
+const msg = ref('页面不存在......');
+const router = useRouter();
+const goBack = () => {
+  router.back();
 };
+
 </script>
 
 <style lang="scss" scoped>
