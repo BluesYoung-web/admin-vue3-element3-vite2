@@ -1,0 +1,12 @@
+// the :export directive is the magic sauce for webpack
+// https://www.bluematador.com/blog/how-to-share-variables-between-js-and-sass
+:export {
+  menuText: #bfcbd9;
+  menuActiveText: #409EFF;
+  subMenuActiveText: #efefff;
+  menuBg: #ccc;
+  menuHover: #ddd;
+  subMenuBg: #aaa;
+  subMenuHover: #690199;
+  youngBg: #bcde99;
+}
