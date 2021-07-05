@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-05-28 10:36:35
+ * @LastEditTime: 2021-07-05 12:09:28
  * @Description: 项目入口文件
  */
 
@@ -32,7 +32,7 @@ import 'vite-plugin-svg-icons/register';
 // 统一浏览器样式
 import 'normalize.css/normalize.css';
 // 自定义样式
-import '/@/styles/index.scss';
+import '@/styles/index.scss';
 // 常用的自定义组件
 import YoungTable from '/components/YoungTable/index.vue';
 import YoungPagination from '/components/YoungPagination/index.vue';
@@ -62,10 +62,10 @@ app.use(ElementPlus, { locale, size: 'mini' });
 app.use(Router);
 
 // 注册自定义组件
-app.component(YoungTable.name, YoungTable);
-app.component(YoungDialog.name, YoungDialog);
-app.component(YoungPagination.name, YoungPagination);
-app.component(YoungTabs.name, YoungTabs);
+app.component('YoungTable', YoungTable);
+app.component('YoungDialog', YoungDialog);
+app.component('YoungPagination', YoungPagination);
+app.component('YoungTabs', YoungTabs);
 
 // 安装自定义插件
 app.use(MyPlugins, '来了老弟');

@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-06-08 17:54:49
+ * @LastEditTime: 2021-07-01 15:49:05
  * @Description: 项目说明
 -->
 # 后台管理系统
@@ -25,11 +25,16 @@
 # ！！！ 变量名必须以 VITE_ 开头
 # 使用 import.meta.变量名 获取
 
-VITE_TITLE = '小黑后台'
+VITE_TITLE = '***后台'
 
 # 后端使用 nginx 代理来跨域时，使用绝对路径
 VITE_BASE_HTTP = '/api'
 ```
+
+## 注意事项
+
+- **因生产需要，将 node 运行内存设为了 1G(1024)**
+- **windows 电脑需使用 `yarn build:prod` 替换 `yarn build`，否则会报错**
 
 ## 运行 | 打包
 

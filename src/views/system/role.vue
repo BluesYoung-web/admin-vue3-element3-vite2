@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-26 11:49:46
- * @LastEditTime: 2021-06-10 15:28:34
+ * @LastEditTime: 2021-06-30 17:32:13
  * @Description: 角色列表
 -->
 <template>
@@ -95,7 +95,7 @@
           >
             <el-table-column prop="node_name" label="节点名称" width="240">
               <template #default="scope">
-                <el-checkbox v-model="scope.row.is_checked" @change="selectChange(scope.row)">{{ scope.row.node_name }}</el-checkbox>
+                <el-checkbox v-model="scope.row.is_checked" :true-label="1" :false-label="0" @change="selectChange(scope.row)">{{ scope.row.node_name }}</el-checkbox>
               </template>
             </el-table-column>
             <el-table-column prop="autoid" label="ID" />
@@ -167,19 +167,23 @@ export default defineComponent({
       formInfo.value = role;
       isEditInfo.value = true;
     };
+    const nodeMap = new Map<number, PriorityItem>();
+    const generateNodeMap = (list: PriorityItem[]) => {
+      for (const node of list) {
+        nodeMap.set(node.autoid, node);
+        if (node.part.length > 0) {
+          generateNodeMap(node.part);
+        }
+      }
+    };
     /**
      * 编辑角色权限
      */
     const editPriority = async (role: Role) => {
       const temp = await getRolePriorityList(role.autoid);
       let tn = await (temp as unknown as RolePriorityObj).nodeList;
-      tn.forEach((v) => {
-        if (v.is_checked) {
-          v.is_checked = true;
-        }
-        selectChange(v, true);
-      });
       nodeList.value = deepClone(tn);
+      generateNodeMap(nodeList.value);
       formInfo.value = role;
       isEditPriority.value = true;
     };
@@ -232,24 +236,23 @@ export default defineComponent({
     /**
      * 多级联动选择
      */
-    const selectChange = (item: PriorityItem, reverse: boolean = false) => {
+    const selectChange = (item: PriorityItem) => {
       if (item.part.length !== 0) {
         item.part.forEach((v) => {
-          if (reverse) {
-            if (v.is_checked) {
-              v.is_checked = true;
-            } else {
-              v.is_checked = false;
-            }
-          } else {
-            if (item.is_checked) {
-              v.is_checked = true;
-            } else {
-              v.is_checked = false;
-            }
-          }
-          selectChange(v, reverse);
+          v.is_checked = item.is_checked;
+          selectChange(v);
         });
+      }
+      if (item.is_checked) {
+        while (item.parent_id) {
+          const tp = nodeMap.get(item.parent_id);
+          if (tp) {
+            item = tp;
+            item && (item.is_checked = 1);
+          } else {
+            break;
+          }
+        }
       }
     };
     /**
@@ -258,9 +261,7 @@ export default defineComponent({
     const generatePriority = (arr: PriorityItem[], pSet: Set<number>) => {
       if (arr.length !== 0) {
         arr.forEach((v) => {
-          if (v.is_checked) {
-            pSet.add(v.autoid);
-          }
+          v.is_checked && pSet.add(v.autoid);
           generatePriority(v.part, pSet);
         });
       }

@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-09 16:02:36
- * @LastEditTime: 2021-03-29 16:06:23
+ * @LastEditTime: 2021-07-05 15:34:23
  * @Description: 封装不同的请求方法
  */
 import net from './net';
@@ -57,4 +57,4 @@ export {
   requestWithoutToken,
   basicRequest,
   upload
-}
+};

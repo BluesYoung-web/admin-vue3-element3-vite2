@@ -1,157 +1,94 @@
+<!--
+ * @Author: zhangyang
+ * @Date: 2021-03-03 13:55:37
+ * @LastEditTime: 2021-07-05 15:35:51
+ * @Description: 图片上传组件
+-->
 <template>
   <!-- 图片上传组件 -->
-  <div class="upload">
-    <input ref="imgRef" type="file" name="img" :multiple="(limit > 1)" hidden>
+  <div class="w-300px">
+    <input ref="imgRef" type="file" accept="image/*" name="img" :multiple="(limit > 1)" hidden>
     <div>
       <el-button
         v-if="showUpload"
         type="primary"
         icon="el-icon-picture"
-        :disabled="(imgs.length >= 10)"
+        :disabled="(modelValue.length >= 10)"
         @click="choseImg"
       >
         点击选取图片（不超过{{ limit }}张）
       </el-button>
       <el-button type="success" icon="el-icon-upload" @click="uploadHandler">上传</el-button>
     </div>
-    <el-image
-      v-for="(item, index) in imgs"
-      :key="item + '9527' + index"
-      :src="item"
-      :preview-src-list="imgs"
-      lazy
-      class="img"
-      @contextmenu.prevent="openMenu($event, item)"
-    />
-    <ul
-      v-show="visible"
-      :style="{left: left + 'px', top: top + 'px'}"
-      class="contextmenu"
-    >
-      <li @click="del">删除</li>
-    </ul>
+    <div class="flex flex-wrap">
+      <div
+        v-for="(item, index) in modelValue"
+        :key="item + '9527' + index"
+        class="relative"
+      >
+        <el-image :src="item" :preview-src-list="modelValue" lazy class="w-50px h-50px mr-5px mt-5px" />
+        <el-button v-if="!hideDel" icon="el-icon-delete" type="danger" circle class="absolute transform scale-65 right-0" @click="del(item)" />
+      </div>
+    </div>
   </div>
 </template>
-
-<script lang="ts">
+<script lang="ts" setup>
 import { ElMessage } from 'element-plus';
-import { RefElement } from 'element-plus/lib/el-popper/src/use-popper';
-import { defineComponent, ref, PropType, watchEffect } from 'vue';
+import { ref } from 'vue';
 import { upload } from '../../util/request';
+interface Props {
+  modelValue: string[];
+  showUpload?: boolean;
+  limit?: number;
+  params?: { [p: string]: any };
+  hideDel?: boolean;
+};
+const props = withDefaults(defineProps<Props>(), { showUpload: true, limit: 10, params: () => ({}) });
+interface Emits {
+  (e: 'update:modelValue', urls: string[]): void;
+  (e: 'did', urls: string[]): void;
+};
+const emit = defineEmits<Emits>();
 
-export default defineComponent({
-  name: 'YoungImgUpload',
-  props: {
-    limit: { type: Number, default: 10 },
-    comTask: { type: Object, default: () => ({}) },
-    imgs: { type: Object as PropType<string[]>, required: true },
-    showUpload: { type: Boolean, default: true }
-  },
-  emits: ['update:imgs', 'did'],
-  setup(props, { emit }) {
-    let addedListener = ref(false), visible = ref(false);
-    let top = ref(0), left = ref(0);
-    let toBeDel = '';
-    const imgRef = ref<RefElement>(null);
-    const allFiles: File[] = [];
+const addedListener = ref(false);
+const imgRef = ref<any>(null);
+const allFiles: File[] = [];
 
-
-    const closeMenu = () => visible.value = false;
-    watchEffect(() => {
-      if (visible.value) {
-        document.body.addEventListener('click', closeMenu);
-      } else {
-        document.body.removeEventListener('click', closeMenu);
-      }
-    });
-    const fileChange = (event: InputEvent) => {
-      const files = (event.target as HTMLInputElement).files ?? [];
-      if ((props.imgs.length + files.length) > props.limit) {
-        ElMessage.warning(`最多只能上传${props.limit}张`);
-        return;
-      }
-
-      emit('update:imgs', props.imgs.concat(Array.from(files).map((f) => {
-        allFiles.push(f);
-        return URL.createObjectURL(f);
-      })));
-    };
-    // 只监听一次，避免内存泄漏
-    const choseImg = () => {
-      !addedListener.value && imgRef.value.addEventListener('change', fileChange) && (addedListener.value = true);
-      imgRef.value.click();
-    };
-
-    const openMenu = (e: MouseEvent, url: string) => {
-      toBeDel = url;
-      const menuWidth = 105;
-      const offsetLeft = 120;
-      left.value = e.clientX - menuWidth - offsetLeft;
-      top.value = e.clientY;
-      visible.value = true;
-    };
-
-    const del = () => {
-      const index = props.imgs.indexOf(toBeDel);
-      allFiles.splice(index, 1);
-      props.imgs.splice(index, 1);
-      emit('update:imgs', props.imgs);
-      visible.value = false;
-    };
-
-    const uploadHandler = async () => {
-      const formData = new FormData();
-      allFiles.forEach((v, i) => formData.append('img' + i, v));
-      const res = await upload(props.comTask, formData);
-      emit('did', res);
-    };
-    return {
-      addedListener,
-      visible,
-      top,
-      left,
-      toBeDel,
-      imgRef,
-      choseImg,
-      openMenu,
-      del,
-      uploadHandler
-    };
+const fileChange = (event: InputEvent) => {
+  const files = (event.target as HTMLInputElement).files ?? [];
+  const curr_nums = props.modelValue.length;
+  const add_nums = files.length;
+  if (curr_nums + add_nums > props.limit) {
+    emit('update:modelValue', props.modelValue.concat(Array.from(files).slice(0, props.limit - curr_nums).map((f) => {
+      allFiles.push(f);
+      return URL.createObjectURL(f);
+    })));
+    ElMessage.warning(`最多只能上传${props.limit}张`);
+    return;
   }
-});
+
+  emit('update:modelValue', props.modelValue.concat(Array.from(files).map((f) => {
+    allFiles.push(f);
+    return URL.createObjectURL(f);
+  })));
+};
+// 只监听一次，避免内存泄漏
+const choseImg = () => {
+  !addedListener.value && imgRef.value.addEventListener('change', fileChange) && (addedListener.value = true);
+  imgRef.value.click();
+};
+
+const del = (url: string) => {
+  const index = props.modelValue.indexOf(url);
+  allFiles.splice(index, 1);
+  props.modelValue.splice(index, 1);
+  emit('update:modelValue', props.modelValue);
+};
+
+const uploadHandler = async () => {
+  const formData = new FormData();
+  allFiles.forEach((v, i) => formData.append('img' + i, v));
+  const res = await upload(props.params, formData) as unknown as string[];
+  emit('did', res);
+};
 </script>
-
-<style lang="scss" scoped>
-.upload {
-  width: 300px
-}
-.img {
-  width: 50px;
-  height: 50px;
-  margin-right: 5px;
-  margin-top: 5px;
-}
-
-.contextmenu {
-  margin: 0;
-  background: #fff;
-  z-index: 3000;
-  position: absolute;
-  list-style-type: none;
-  padding: 0;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: 400;
-  color: #333;
-  box-shadow: 2px 2px 3px 0 rgba(0, 0, 0, 0.3);
-  li {
-    margin: 0;
-    padding: 0;
-    color:red;
-    cursor: pointer;
-    &:hover {
-      background: #eee;
-    }
-  }
-}
-</style>
