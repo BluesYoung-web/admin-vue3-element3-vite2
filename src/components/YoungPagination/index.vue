@@ -1,11 +1,11 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-03-02 15:41:33
- * @LastEditTime: 2021-03-02 17:19:11
+ * @LastEditTime: 2021-07-05 14:38:04
  * @Description: 分页组件
 -->
 <template>
-  <div class="pagination-container">
+  <div class="bg-white pt-20px">
     <el-pagination
       :background="background"
       :current-page="page"
@@ -19,43 +19,31 @@
     />
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent, toRefs } from 'vue';
-export default defineComponent({
-  name: 'YoungPagination',
-  props: {
-    total: { type: Number, required: true },
-    page: { type: Number, required: true },
-    limit: { type: Number, required: true },
-    pageSizes: { type: Array, default: (() => [10, 20, 30, 50]) },
-    layout: { type: String, default: 'total, sizes, prev, pager, next, jumper' },
-    background: { type: Boolean, default: true },
-    autoScroll: { type: Boolean, default: true },
-    hidden: { type: Boolean, default: false }
-  },
-  emits: ['page-change', 'update:page', 'update:limit'],
-  setup(props, { emit }) {
-    const sizeChange = (val: number) => {
-      emit('update:page', 1);
-      emit('update:limit', val);
-    };
-    const pageChange = (val: number) => {
-      emit('update:page', val);
-      emit('page-change');
-    };
-    return {
-      ...toRefs(props),
-      sizeChange,
-      pageChange
-    };
-  }
+<script lang="ts" setup>
+interface Props {
+  total: number;
+  page: number;
+  limit: number;
+  pageSizes?: number[];
+  layout?: string;
+  background?: boolean;
+  autoScroll?: boolean;
+  hidden?: boolean;
+};
+const props = withDefaults(defineProps<Props>(), {
+  pageSizes: () => [10, 20, 30, 50],
+  layout: 'total, sizes, prev, pager, next, jumper',
+  background: true,
+  autoScroll: true,
+  hidden: false
 });
+const emit = defineEmits(['page-change', 'update:page', 'update:limit']);
+const sizeChange = (val: number) => {
+  emit('update:page', 1);
+  emit('update:limit', val);
+};
+const pageChange = (val: number) => {
+  emit('update:page', val);
+  emit('page-change');
+};
 </script>
-
-<style scoped>
-.pagination-container {
-  background: #fff;
-  padding-top:20px;
-}
-</style>

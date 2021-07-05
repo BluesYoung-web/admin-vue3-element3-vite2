@@ -1,14 +1,14 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-25 15:20:24
- * @LastEditTime: 2021-03-15 10:54:14
- * @Description: 
+ * @LastEditTime: 2021-07-05 16:31:42
+ * @Description:
 -->
 <template>
   <div v-for="(item, index) in danmus" :key="index">
     <h1 v-pin="item">来了老弟</h1>
   </div>
-  <young-img-upload v-model:imgs="imgs" />
+  <young-img-upload v-model="imgs" />
 </template>
 
 <script lang="ts">
@@ -28,7 +28,7 @@ export default defineComponent({
         color: 'gray'
       })
     }
-    
+
     return {
       danmus,
       imgs

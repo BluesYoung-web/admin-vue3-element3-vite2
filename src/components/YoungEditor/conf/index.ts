@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-05 13:41:16
- * @LastEditTime: 2021-03-10 16:12:57
+ * @LastEditTime: 2021-07-05 16:25:46
  * @Description: 富文本编辑器的基本配置
  */
 import { ElMessage } from 'element-plus';
@@ -11,8 +11,8 @@ type DicType = {
   [key: string]: string;
 };
 type CustomUpload = (files: FileList, insertImgCbk: Function) => void;
-
-export interface CommonConfig {
+// class 仅为保持编辑器不报错，效果同 interface
+export class CommonConfig {
   height?: number;
   zIndex?: number;
   placeholder?: string;
@@ -112,7 +112,7 @@ const EditorConfig: CommonConfig = {
     return useFulStr;
   },
   uploadImgShowBase64: true
-  
+
 }
 
 export default EditorConfig;

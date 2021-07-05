@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-26 11:50:08
- * @LastEditTime: 2021-06-10 14:38:09
+ * @LastEditTime: 2021-07-05 14:11:20
  * @Description: 自定义表格组件
 -->
 <template>
@@ -19,7 +19,7 @@
       <el-button v-throttle="debounceSearchObj" type="primary">查询</el-button>
     </div>
   </div>
-  <young-table class="list" :table-head="tableHead" :table-data="tableData" :table-height="700">
+  <young-table class="list" :table-head="tableHead" :table-data="tableData" :table-height="700" @sort-change="log">
     <template #operate>
       <el-table-column label="操作" fixed="right" width="120">
         <template #default="scope">
@@ -44,14 +44,12 @@ interface Head {
 export default defineComponent({
   name: 'Table',
   setup() {
-    let tableData = ref<TableDataItem<Head>[]>([
-
-    ]);
-    let tableHead = ref<TableHeadItem<Head>[]>([]);
+    const tableData = ref<TableDataItem<Head>[]>([]);
+    const tableHead = ref<TableHeadItem<Head>[]>([]);
     tableHead.value = [
       { prop: 'date', label: '日期', tool_content: '来了老弟' },
       { prop: 'autoid', label: 'UID' },
-      { prop: 'sp', label: '特殊内容' },
+      { prop: 'sp', label: '特殊内容', sortable: true },
       { prop: 'imgs', label: '图片' },
       { prop: 'm1', label: '多行1' },
       { prop: 'm2', label: '多行2', show_all: true }
@@ -170,7 +168,8 @@ export default defineComponent({
         listener: 'input',
         delay: 100,
         cbk: console.log
-      }
+      },
+      log: console.log
     };
   }
 });

@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-07-02 10:21:02
+ * @LastEditTime: 2021-07-05 12:09:28
  * @Description: 项目入口文件
  */
 
@@ -62,10 +62,10 @@ app.use(ElementPlus, { locale, size: 'mini' });
 app.use(Router);
 
 // 注册自定义组件
-app.component(YoungTable.name, YoungTable);
-app.component(YoungDialog.name, YoungDialog);
-app.component(YoungPagination.name, YoungPagination);
-app.component(YoungTabs.name, YoungTabs);
+app.component('YoungTable', YoungTable);
+app.component('YoungDialog', YoungDialog);
+app.component('YoungPagination', YoungPagination);
+app.component('YoungTabs', YoungTabs);
 
 // 安装自定义插件
 app.use(MyPlugins, '来了老弟');

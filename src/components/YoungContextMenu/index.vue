@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-11 13:56:45
- * @LastEditTime: 2021-06-16 17:01:40
+ * @LastEditTime: 2021-07-05 15:13:29
  * @Description: 上下文菜单组件
 -->
 <template>
@@ -23,58 +23,51 @@
     </div>
   </teleport>
 </template>
-
-<script lang="ts">
-import { defineComponent, nextTick, PropType, ref, watch, watchEffect } from 'vue';
+<script lang="ts" setup>
 import { useMouse } from '@vueuse/core';
+import { nextTick, ref, watch } from 'vue';
+
 interface ContextMenuItem {
   handlerName: string;
   title: string;
 };
-export default defineComponent({
-  name: 'YoungContextMenu',
-  props: {
-    modelValue: { type: Boolean, required: true },
-    menuList: { type: Object as PropType<ContextMenuItem[]>, required: true }
-  },
-  emits: ['update:modelValue', 'clickItem'],
-  setup(props, { emit }) {
-    const { x, y } = useMouse();
-    const left = ref(0);
-    const top = ref(0);
-    const menu = ref();
-    watch(() => props.modelValue, (newVal, oldVal) => {
-      if (newVal && !oldVal) {
-        nextTick(() => {
-          const { width, height } = window.getComputedStyle(menu.value as HTMLElement);
-          const { innerWidth, innerHeight } = window;
-          // 此时鼠标的坐标
-          const tx = x.value;
-          const ty = y.value;
-          // 此时自定义菜单的宽高
-          const rw = parseFloat(width);
-          const rh = parseFloat(height);
-          // 处理边界值
-          left.value = innerWidth - tx > rw ? tx : innerWidth - rw;
-          top.value = innerHeight - ty > rh ? ty : innerHeight - rh;
-        });
-      }
+interface Props {
+  modelValue: boolean;
+  menuList: ContextMenuItem[];
+};
+const props = defineProps<Props>();
+interface Emits {
+  (e: 'update:modelValue', v: boolean): void;
+  (e: 'clickItem', v: string): void;
+};
+const emit = defineEmits<Emits>();
+const { x, y } = useMouse();
+const left = ref(0);
+const top = ref(0);
+const menu = ref();
+watch(() => props.modelValue, (newVal, oldVal) => {
+  if (newVal && !oldVal) {
+    nextTick(() => {
+      const { width, height } = window.getComputedStyle(menu.value as HTMLElement);
+      const { innerWidth, innerHeight } = window;
+      // 此时鼠标的坐标
+      const tx = x.value;
+      const ty = y.value;
+      // 此时自定义菜单的宽高
+      const rw = parseFloat(width);
+      const rh = parseFloat(height);
+      // 处理边界值
+      left.value = innerWidth - tx > rw ? tx : innerWidth - rw;
+      top.value = innerHeight - ty > rh ? ty : innerHeight - rh;
     });
-    const clickHandler = (handler: string) => {
-      emit('clickItem', handler);
-    };
-    const close = () => {
-      emit('update:modelValue', false);
-    };
-    return {
-      clickHandler,
-      close,
-      left,
-      top,
-      menu
-    };
   }
 });
+const clickHandler = (handler: string) => {
+  emit('clickItem', handler);
+};
+const close = () => {
+  emit('update:modelValue', false);
+};
 </script>
 
 <style lang="scss" scoped>

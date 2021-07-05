@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 11:30:30
- * @LastEditTime: 2021-03-26 17:44:36
+ * @LastEditTime: 2021-07-05 15:50:25
  * @Description: 顶部导航栏组件
 -->
 <template>
@@ -46,7 +46,7 @@
       @clear="closeHandler"
     >
       <template #body>
-        <el-form ref="formRef" :model="form" :rules="formRules" label-width="70px">
+        <el-form ref="formRef" :model="form" :rules="formRules" label-width="80px">
           <el-form-item prop="old_pwd" label="原密码">
             <el-input v-model="form.old_pwd" placeholder="请输入原密码" type="password" size="small" />
           </el-form-item>
@@ -116,7 +116,7 @@ export default defineComponent({
       console.log('取消修改');
       isEdit.value = false;
     };
-    
+
 
     return {
       sidebar,

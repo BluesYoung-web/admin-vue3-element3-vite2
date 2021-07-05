@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-03-01 16:41:54
- * @LastEditTime: 2021-06-10 15:25:37
+ * @LastEditTime: 2021-07-05 14:40:16
  * @Description: 自定义表格组件
 -->
 <template>
@@ -25,16 +25,16 @@
       :align="item.aligin || 'left'"
     >
       <template #header="scope">
-        <div v-if="tableHead[scope.$index].tool_content">
-            <span>{{ scope.column.label }}</span>
-            <el-tooltip class="item" effect="dark" placement="bottom">
-              <template #content>
-                <div v-html="tableHead[scope.$index].tool_content" />
-              </template>
-              <i class="el-icon-warning-outline" style="margin: 0px;color: #1890ff;" />
-            </el-tooltip>
-          </div>
-          <div v-else>{{scope.column.label}}</div>
+        <span v-if="tableHead[scope.$index].tool_content">
+          <span>{{ scope.column.label }}</span>
+          <el-tooltip class="item" effect="dark" placement="bottom">
+            <template #content>
+              <div v-html="tableHead[scope.$index].tool_content" />
+            </template>
+            <i class="el-icon-warning-outline" style="margin: 0px;color: #1890ff;" />
+          </el-tooltip>
+        </span>
+        <span v-else>{{ scope.column.label }}</span>
       </template>
       <template #default="scope">
         <!-- 普通内容 -->
@@ -44,26 +44,26 @@
           <span v-if="item.prop.indexOf('imgs') === 0">
             <el-image
               v-for="(it, id) in scope.row[item.prop]"
-                :key="id"
+                :key="Number(id)"
                 :src="it"
                 :preview-src-list="scope.row[item.prop]"
-                class="img"
+                class="w-50px h-50px mr-5px"
             >
               <template #error class="image-slot">
-                <i style="font-size: 50px" class="el-icon-picture-outline img" />
+                <i style="font-size: 50px" class="el-icon-picture-outline w-50px h-50px mr-5px" />
               </template>
             </el-image>
           </span>
           <!-- 多行 -->
           <span v-else>
-            <div v-for="(value, i) in scope.row[item.prop]" :key="i">
+            <div v-for="(value, i) in scope.row[item.prop]" :key="Number(i)">
                 <!-- 全部显示 -->
                 <span v-if="item.show_all">
                   {{ (value.before || '') + value.value + (value.after || '') }}
                 </span>
                 <!-- 部分显示 -->
                 <span v-else>
-                  <span v-if="i < 3">{{ (value.before || '') + value.value + (value.after || '') }}</span>
+                  <span v-if="Number(i) < 3">{{ (value.before || '') + value.value + (value.after || '') }}</span>
                   <span v-if="i === 3">......</span>
                 </span>
               </div>
@@ -76,55 +76,44 @@
     <slot name="operate" />
   </el-table>
 </template>
-
-<script lang="ts">
-import { RefElement } from 'element-plus/lib/el-popper/src/use-popper';
-import { computed, defineComponent, nextTick, onActivated, PropType, ref, toRefs } from 'vue';
-enum TableHeadAligin { 'left', 'center', 'right' }
-
+<script lang="ts" setup>
+import { ref, nextTick, onActivated, computed } from 'vue';
+/**
+ * 定义组件属性
+ */
+enum TableHeadAligin { 'left', 'center', 'right' };
 interface TableHeadItem {
   prop: string;
   label: string;
   width?: string;
-  sortable?: boolean;
+  sortable?: boolean | 'custom';
   fixed?: boolean;
   aligin?: TableHeadAligin;
   show_all?: boolean;
   tool_content?: string;
-}
-export default defineComponent({
-  name: 'YoungTable',
-  props: {
-    tableData: { type: Array, required: true },
-    tableHead: { type: Object as PropType<TableHeadItem[]>, required: true },
-    tableHeight: { type: Number, default: 0 }
-  },
-  emits: ['sort-change'],
-  setup(props, { emit }) {
-    const tableRef = ref<RefElement>(null);
-    let height = computed(() => document.body.clientHeight - 84 - 72 - 32 - 32 - 44);
-    /**
-     * 修复表格切换时，显示出现错位的 bug
-     */
-    onActivated(() => {
-      nextTick(() => {
-        tableRef.value.doLayout();
-      });
-    });
-
-    return {
-      ...toRefs(props),
-      tableRef,
-      height
-    };
-  }
+};
+interface Props {
+  tableData: any[];
+  tableHead: TableHeadItem[];
+  tableHeight?: number;
+};
+const props = defineProps<Props>();
+/**
+ * 定义事件
+ */
+const emit = defineEmits(['sort-change']);
+/**
+ * 引用表格元素
+ */
+const tableRef = ref<any>(null);
+// 修复表格切换时，显示出现错位的 bug
+onActivated(() => {
+  nextTick(() => {
+    tableRef.value.doLayout();
+  });
 });
+/**
+ * 默认表格高度
+ */
+const height = computed(() => document.body.clientHeight - 84 - 72 - 32 - 32 - 44);
 </script>
-
-<style lang='scss' scope>
-.img {
-  width: 50px;
-  height: 50px;
-  margin-right: 5px;
-}
-</style>
