@@ -1,0 +1,1 @@
+System.register(["./vendor-legacy.4133a91d.js"],(function(e){"use strict";var t,n;return{setters:[function(e){t=e.o,n=e.c}],execute:function(){e("default",{}).render=function(e,r){return t(),n("h1",null,"欢迎使用")}}}}));
