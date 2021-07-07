@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-07-07 15:59:17
+ * @LastEditTime: 2021-07-07 17:45:02
  * @Description: 项目说明
 -->
 # 后台管理系统
@@ -33,8 +33,8 @@ VITE_BASE_HTTP = '/api'
 
 ## 注意事项
 
-- **因生产需要，将 node 运行内存设为了 1G(1024)**
-- **windows 电脑需使用 `yarn build:prod` 替换 `yarn build`，否则会报错**
+- `yarn build`**因生产需要，将 node 运行内存设为了 1G(1024)**
+- `yarn build:prod` 无内存限制
 
 ## 运行 | 打包
 
