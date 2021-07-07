@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-03-01 16:41:54
- * @LastEditTime: 2021-07-07 12:00:30
+ * @LastEditTime: 2021-07-07 16:15:07
  * @Description: 自定义表格组件
 -->
 <template>
@@ -34,7 +34,7 @@
             <i class="el-icon-warning-outline" style="margin: 0px;color: #1890ff;" />
           </el-tooltip>
         </span>
-        <span v-if="!tableHead[scope.$index].only_export">{{ scope.column.label }}</span>
+        <span v-if="!tableHead[scope.$index].tool_content && !tableHead[scope.$index].only_export">{{ scope.column.label }}</span>
       </template>
       <template #default="scope">
         <!-- 普通内容 -->
