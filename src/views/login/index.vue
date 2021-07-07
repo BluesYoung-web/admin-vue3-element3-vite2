@@ -1,24 +1,24 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-03 14:25:49
- * @LastEditTime: 2021-06-10 15:27:27
+ * @LastEditTime: 2021-07-07 11:42:04
  * @Description: 登录
 -->
 <template>
   <!-- 登录 -->
-  <div class="main">
-    <el-card class="login-card">
-    <div class="login-container">
+  <div class="flex items-center justify-center opacity-98 h-full">
+    <el-card class="w-600px">
+    <div class="bg-color-white overflow-hidden">
       <el-form
         ref="loginRef"
         :model="loginForm"
         :rules="loginRules"
-        class="login-form"
+        class="relative w-520px max-w-full py-50px px-35px my-0 mx-auto overflow-hidden"
         auto-complete="on"
         @keyup.enter="loginHandler"
       >
-      <div class="title-container">
-        <h3 class="title">管理员登录</h3>
+      <div class="relative">
+        <h3 class="text-3xl text-center mb-60px font-bold">管理员登录</h3>
       </div>
       <el-form-item prop="username">
         <el-input v-model="loginForm.username" placeholder="请输入账户" tabindex="1" auto-complete="on" size="large" clearable />
@@ -32,133 +32,59 @@
   </el-card>
   </div>
 </template>
-
-<script lang="ts">
-import { ref, reactive, defineComponent } from 'vue';
+<script lang="ts" setup>
+import { ref } from 'vue';
 import { login } from '../../api/user';
-import { setToken, UserKey } from '../../util/auth';
+import { setToken } from '../../util/auth';
 import { generateUserInfo } from '../../util/generateUserInfo';
 import { ElMessage } from 'element-plus';
 import { useRoute, useRouter } from 'vue-router';
-import { RefElement } from 'element-plus/lib/el-popper/src/use-popper';
 
 interface LoginForm {
   username: string;
   password: string;
-}
+};
 
-export default defineComponent({
-  name: 'Login',
-  setup() {
-    /**
-     * 路由实例，记录当前路径之类的
-     */
-    const route = useRoute();
-    const redirect = route.query.redirect || '/';
-    /**
-     * 路由器实例，负责改变路由
-     */
-    const router = useRouter();
+/**
+ * 路由实例，记录当前路径之类的
+ */
+const route = useRoute();
+const redirect = route.query.redirect || '/';
+/**
+ * 路由器实例，负责改变路由
+ */
+const router = useRouter();
 
-    const loginRef = ref<RefElement>(null);
-    const loginForm: LoginForm = reactive({
-      username: '',
-      password: ''
-    });
-    const loginRules: LoginRule = reactive({
-      username: [
-        {
-          required: true,
-          type: 'string',
-          trigger: 'blur',
-          message: '请输入账户'
-        }
-      ],
-      password: [
-        {
-          required: true,
-          type: 'string',
-          trigger: 'blur',
-          message: '请输入密码'
-        }
-      ]
-    });
-
-    let loading = ref(false);
-
-    const loginHandler = () => {
-      loginRef.value.validate(async (valid: boolean) => {
-        if (valid) {
-          loading.value = true;
-          const data = await login(loginForm.username, loginForm.password);
-          if (data) {
-            setToken(data as unknown as UserKey);
-            await generateUserInfo();
-            loading.value = false;
-            router.push(redirect as string);
-          }
-        } else {
-          ElMessage.error('请仔细检查表单内容');
-          return;
-        }
-      });
-    }
-
-    return {
-      loading,
-      loginHandler,
-      loginRef,
-      loginForm,
-      loginRules
-    }
-  }
+const loginRef = ref<any>(null);
+const loginForm = ref<LoginForm>({
+  username: '',
+  password: ''
 });
-</script>
-
-<style lang="scss" scoped>
-
-$bg:#283443;
-$light_gray:#fff;
-$cursor: #fff;
-
-.main {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0.98;
-  height: 100%;
-}
-
-.login-card {
-  width: 600px;
-}
-
-.login-container {
-  background-color: $light_gray;
-}
-
-.login-container {
-  overflow: hidden;
-
-  .login-form {
-    position: relative;
-    width: 520px;
-    max-width: 100%;
-    padding: 80px 35px;
-    margin: 0 auto;
-    overflow: hidden;
-  }
-
-  .title-container {
-    position: relative;
-    .title {
-      font-size: 26px;
-      color: $bg;
-      margin: 0px auto 60px auto;
-      text-align: center;
-      font-weight: bold;
+const loginRules = ref<LoginRule>({
+  username: [{ required: true, type: 'string', trigger: 'blur', message: '请输入账户' }],
+  password: [{ required: true, type: 'string', trigger: 'blur', message: '请输入密码' }]
+});
+const loading = ref(false);
+const loginHandler = () => {
+  loginRef.value?.validate(async (valid: boolean) => {
+    try {
+      if (valid) {
+        loading.value = true;
+        const data = await login(loginForm.value.username, loginForm.value.password);
+        if (data) {
+          setToken(data as unknown as UserKey);
+          await generateUserInfo();
+          loading.value = false;
+          router.push(redirect as string);
+        }
+      } else {
+        ElMessage.error('请仔细检查表单内容');
+        return;
+      }
+    } catch (error) {
+      console.error(error);
+      loading.value = false;
     }
-  }
-
-}
-</style>
+  });
+};
+</script>

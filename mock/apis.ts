@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-09 17:50:01
- * @LastEditTime: 2021-07-07 08:29:08
+ * @LastEditTime: 2021-07-07 09:51:01
  * @Description: 所有假接口
  */
 import Mock from 'mockjs';
@@ -33,7 +33,7 @@ export const operate = (params: Map<string, any>, body: FormData) => {
           {
             autoid: 1,
             is_show: 1,
-            node_desc: '商户/管理员可见',
+            node_desc: '',
             node_name: '常用组件',
             node_path: '',
             node_sort: 0,
@@ -89,7 +89,7 @@ export const operate = (params: Map<string, any>, body: FormData) => {
           {
             autoid: 2,
             is_show: 1,
-            node_desc: '商户/管理员可见',
+            node_desc: '',
             node_name: 'VueUse使用示例',
             node_path: '',
             node_sort: 0,
@@ -112,7 +112,7 @@ export const operate = (params: Map<string, any>, body: FormData) => {
           {
             autoid: 3,
             is_show: 1,
-            node_desc: '仅管理员可见',
+            node_desc: '',
             node_name: '系统后台',
             node_path: '',
             node_sort: 0,
@@ -293,7 +293,6 @@ export const operate = (params: Map<string, any>, body: FormData) => {
             'autoid|1-99': 99,
             'is_enable|0-1': 1,
             'parent_role_id': 0,
-            'platform_type|0-1': 0,
             'role_desc': Mock.Random.cword(3, 5),
             'role_name': Mock.Random.cname()
           }
@@ -305,7 +304,6 @@ export const operate = (params: Map<string, any>, body: FormData) => {
         'autoid|1-99': 99,
         'is_enable|0-1': 1,
         'parent_role_id': 0,
-        'platform_type|0-1': 0,
         'role_desc': Mock.Random.cword(3, 5),
         'role_name': Mock.Random.cname(),
         'nodeList': Mock.mock([
@@ -467,7 +465,6 @@ export const operate = (params: Map<string, any>, body: FormData) => {
               'is_checked|0-1': 1,
               'is_enable': 1,
               'parent_role_id': 0,
-              'platform_type': 0,
               'role_desc': "超管",
               'role_name': "超级管理员"
             },
@@ -476,7 +473,6 @@ export const operate = (params: Map<string, any>, body: FormData) => {
               'is_checked|0-1': 1,
               'is_enable': 1,
               'parent_role_id': 0,
-              'platform_type': 0,
               'role_desc': "产品超管",
               'role_name': "产品超管"
             }

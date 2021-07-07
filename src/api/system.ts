@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-26 13:54:37
- * @LastEditTime: 2021-03-29 16:07:46
+ * @LastEditTime: 2021-07-07 10:19:17
  * @Description: 系统相关的请求
  */
 import { basicRequest } from '../util/request';
@@ -185,7 +185,7 @@ const getAdminInfo = async (admin_id: number) => {
 
   const res = await basicRequest(params);
   const { info = {}, role_list = {} } = res as unknown as any;
-  
+
   const temp_info = {
     admin_id: info.autoid,
     name: info.admin_name,
@@ -195,36 +195,27 @@ const getAdminInfo = async (admin_id: number) => {
     is_enable: info.is_enable,
     role: []
   };
-  
+
   return { info: temp_info, role_list: Object.values(role_list) };
 };
-export interface UserInfo {
-  admin_id: number;
-  name: string;
-  pwd: string;
-  phone: string;
-  real_name: string;
-  role: number[];
-  is_enable: 0 | 1;
-}
 /**
  * 添加管理员
  */
-const addAdminUserInfo = async (info: UserInfo, task:number = 15) => {
+const addAdminUserInfo = async (info: any, task:number = 15) => {
   const params = {
     com: Params.com,
     task,
     ...info,
     role: info.role.join(',')
   };
-  
+
   return await basicRequest(params);
 };
 
 /**
  * 编辑管理员
  */
-const editAdminUserInfo = async (info: UserInfo, task: number = 16) => {
+const editAdminUserInfo = async (info: any, task: number = 16) => {
   addAdminUserInfo(info, task);
 };
 

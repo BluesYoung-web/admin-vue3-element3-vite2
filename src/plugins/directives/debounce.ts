@@ -9,14 +9,14 @@ export default {
   install: (app: App<Element>, options: any) => {
     app.directive('debounce', {
       mounted(el: HTMLElement, binding) {
-        const { listener, delay, cbk } = binding.value;
+        const { listener, delay, cbk } = binding.value as unknown as DeBounceValue;
         let timer: NodeJS.Timeout | null = null;
         el.addEventListener(listener, (e) => {
           if (timer) {
             clearTimeout(timer);
           }
           timer = setTimeout(() => {
-            cbk?.(e);
+            cbk(e);
           }, delay);
         });
       }

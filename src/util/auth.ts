@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-08 11:15:26
- * @LastEditTime: 2020-12-09 17:04:18
+ * @LastEditTime: 2021-07-07 11:29:01
  * @Description: 用户身份认证 Cookie
  */
 import { get, set, remove } from 'js-cookie';
@@ -16,13 +16,9 @@ const getToken = () => {
   return JSON.parse(token);
 };
 
-export interface UserKey {
-  admin_id: number;
-  token: string;
-}
 /**
  * 设置 Token
- * @param key 后端返回的用户信息 
+ * @param key 后端返回的用户信息
  */
 const setToken = (key: UserKey) => {
   const { token, admin_id: autoid } = key;
