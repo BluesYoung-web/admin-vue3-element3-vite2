@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-07-01 15:49:05
+ * @LastEditTime: 2021-07-07 15:59:17
  * @Description: 项目说明
 -->
 # 后台管理系统
@@ -84,17 +84,23 @@ yarn pre
 # 2. 打包
 yarn build
 ```
+
+## <span style="color: red">自动创建页面</span>
+
+- <span style="color: red">装完依赖之后，需要执行 `npm link ./bin`</span>
+- 执行完成之后可以直接在命令行输入 `create-new-page` 即可(拥有命令自动补全)
+
 ## 项目说明
 
 - [在线预览](https://bluseyoung-web.gitee.io/admin-vue3-element3-vite2)
-- 本项目是基于 Vue-Element-Admin 样式的 Vue3 版本重构，省略了测试代码
+- 本项目创意源自 Vue-Element-Admin
 - 主用技术栈：Vue3 Element-Plus TypeScript
 - 此版本为 admin-vue3-element3 的改进版：
   - [x] 采用全新的 vite2.0
-  - [x] 加入了 polyfill
+  - [x] 加入了 polyfill，兼容性(**国产浏览器的极速模式及所有的现代浏览器**)
   - [x] 防抖与节流的自定义指令
   - [x] 二次封装常用组件
-    - 表格
+    - 表格(配套导出为Excel表的方法)
     - 右键菜单
     - 弹出层
     - 富文本编辑器
@@ -102,4 +108,5 @@ yarn build
     - tab
     - svg
     - ...
-- 使用兼容 tailwindcss 的 windicss 替换 tailwindcss，更加快捷，零配置自动 css 摇树优化
+- **使用 windicss，零配置自动 css 摇树优化**
+- **拥有自动创建页面的 node 脚本，实现页面创建及路由注册自动化**

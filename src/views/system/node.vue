@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-26 11:49:25
- * @LastEditTime: 2021-06-10 15:27:50
+ * @LastEditTime: 2021-07-06 10:17:01
  * @Description: 节点列表
 -->
 <template>
@@ -85,141 +85,111 @@
   </div>
 </template>
 
-<script lang="ts">
-import { defineComponent, onMounted, ref } from 'vue';
+<script lang="ts" setup>
+import { onMounted, ref } from 'vue';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import { getNodeList, addNode, editNode, delNode } from '../../api/system';
 import deepClone from '../../util/deepClone';
-import YoungDialog from '/components/YoungDialog/index.vue';
 import { isArray } from '../../util/isType';
-
-export default defineComponent({
-  name: 'Node',
-  components: {
-    YoungDialog
-  },
-  setup() {
-    let isAdd = ref(false);
-    let isEdit = ref(false);
-    // key 的类型必须为 string 才会生效！！！
-    const expandKeys = ref<Set<string>>(new Set());
-    let tempArr: string[] = [];
-    const getFatherAndSon = (arr: NavArrItem[], num?: number): string[] => {
-      if (num === 1) {
-        tempArr = [];
-      }
-      for (const item of arr) {
-        tempArr.push(item.autoid + '');
-        if (isArray(item.part) && item.part.length > 0) {
-          getFatherAndSon(deepClone(item.part));
-        }
-      }
-      return tempArr;
-    };
-    const expandChange = (...args: any) => {
-      const [row, isOpen] = args as [NavArrItem, boolean];
-      const autoid = row.autoid;
-      if (isOpen) {
-        expandKeys.value.add(autoid + '');
-      } else {
-        const allSub = getFatherAndSon([row], 1);
-        allSub.forEach((v) => expandKeys.value.delete(v));
-      }
-    };
-    const form = ref<AddNodeItem>({
-      autoid: 0,
-      node_name: '',
-      node_desc: '',
-      node_path: '',
-      node_sort: 0,
-      is_show: 1,
-      parent_id: 0
-    });
-    let tableData = ref<NavArrItem[]>([]);
-    /**
-     * 获取节点列表
-     */
-    const getList = async () => {
-      sessionStorage.setItem('system_open_keys', JSON.stringify([...expandKeys.value]));
-      const temp = await getNodeList();
-      tableData.value = deepClone(temp);
-      const res = sessionStorage.getItem('system_open_keys') as string;
-      expandKeys.value = new Set(JSON.parse(res));
-    };
-    onMounted(() => getList());
-    /**
-     * 添加节点
-     */
-    const add = (parent: any) => {
-      let parent_id = 0;
-      if (typeof parent === 'object') {
-        if (parent.node_type === 3) {
-          form.value.is_show = 0;
-        }
-        parent_id = parent.autoid;
-      }
-      form.value.parent_id = parent_id;
-      isAdd.value = true;
-    };
-    /**
-     * 编辑节点
-     */
-    const edit = async (nav: NavArrItem) => {
-      isEdit.value = true;
-      form.value = nav;
-      form.value.node_id = nav.autoid;
-    };
-
-    /**
-     * 删除节点
-     */
-    const del = (nav: NavArrItem) => {
-      ElMessageBox.confirm('确认删除该节点？', '提示', {
-        type: 'warning'
-      }).then(async () => {
-        await delNode(nav.autoid);
-        ElMessage.success('节点删除成功！');
-        getList();
-      }).catch(() => null);
-    };
-    const clear = () => {
-      isAdd.value = false;
-      isEdit.value = false;
-      form.value = {
-        autoid: 0,
-        node_name: '',
-        node_desc: '',
-        node_path: '',
-        node_sort: 0,
-        is_show: 1,
-        parent_id: 0
-      }
-      tableData.value = [];
-      getList();
-    };
-    const sure = async () => {
-      if (isAdd.value) {
-        await addNode(form.value);
-        ElMessage.success('节点添加成功！');
-      } else if (isEdit.value) {
-        await editNode(form.value as EditNodeItem);
-        ElMessage.success('节点修改成功！');
-      }
-      clear();
-    };
-    return {
-      add,
-      edit,
-      del,
-      sure,
-      clear,
-      form,
-      tableData,
-      isAdd,
-      isEdit,
-      expandKeys,
-      expandChange
-    };
+const FORM_TEMP: AddNodeItem = {
+  autoid: 0,
+  node_name: '',
+  node_desc: '',
+  node_path: '',
+  node_sort: 0,
+  is_show: 1,
+  parent_id: 0
+};
+const isAdd = ref(false);
+const isEdit = ref(false);
+// key 的类型必须为 string 才会生效！！！
+const expandKeys = ref<Set<string>>(new Set());
+let tempArr: string[] = [];
+const getFatherAndSon = (arr: NavArrItem[], num?: number): string[] => {
+  if (num === 1) {
+    tempArr = [];
   }
-});
+  for (const item of arr) {
+    tempArr.push(item.autoid + '');
+    if (isArray(item.part) && item.part.length > 0) {
+      getFatherAndSon(deepClone(item.part));
+    }
+  }
+  return tempArr;
+};
+const expandChange = (...args: any) => {
+  const [row, isOpen] = args as [NavArrItem, boolean];
+  const autoid = row.autoid;
+  if (isOpen) {
+    expandKeys.value.add(autoid + '');
+  } else {
+    const allSub = getFatherAndSon([row], 1);
+    allSub.forEach((v) => expandKeys.value.delete(v));
+  }
+};
+const form = ref<AddNodeItem>(deepClone(FORM_TEMP));
+let tableData = ref<NavArrItem[]>([]);
+/**
+ * 获取节点列表
+ */
+const getList = async () => {
+  sessionStorage.setItem('system_open_keys', JSON.stringify([...expandKeys.value]));
+  const temp = await getNodeList();
+  tableData.value = deepClone(temp);
+  const res = sessionStorage.getItem('system_open_keys') as string;
+  expandKeys.value = new Set(JSON.parse(res));
+};
+onMounted(() => getList());
+/**
+ * 添加节点
+ */
+const add = (parent: any) => {
+  let parent_id = 0;
+  if (typeof parent === 'object') {
+    if (parent.node_type === 3) {
+      form.value.is_show = 0;
+    }
+    parent_id = parent.autoid;
+  }
+  form.value.parent_id = parent_id;
+  isAdd.value = true;
+};
+/**
+ * 编辑节点
+ */
+const edit = async (nav: NavArrItem) => {
+  isEdit.value = true;
+  form.value = nav;
+  form.value.node_id = nav.autoid;
+};
+
+/**
+ * 删除节点
+ */
+const del = (nav: NavArrItem) => {
+  ElMessageBox.confirm('确认删除该节点？', '提示', {
+    type: 'warning'
+  }).then(async () => {
+    await delNode(nav.autoid);
+    ElMessage.success('节点删除成功！');
+    getList();
+  }).catch(() => null);
+};
+const clear = () => {
+  isAdd.value = false;
+  isEdit.value = false;
+  form.value = deepClone(FORM_TEMP);
+  tableData.value = [];
+  getList();
+};
+const sure = async () => {
+  if (isAdd.value) {
+    await addNode(form.value);
+    ElMessage.success('节点添加成功！');
+  } else if (isEdit.value) {
+    await editNode(form.value as EditNodeItem);
+    ElMessage.success('节点修改成功！');
+  }
+  clear();
+};
 </script>

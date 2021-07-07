@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-25 17:05:01
- * @LastEditTime: 2021-05-29 16:48:18
+ * @LastEditTime: 2021-07-07 08:26:38
  * @Description: 前端路由鉴权
  */
 /**
@@ -25,6 +25,10 @@ navMap.set('10086/21', '/vueUse/useEventListener');
 navMap.set('10086/31', '/system/node');
 navMap.set('10086/32', '/system/role');
 navMap.set('10086/33', '/system/admin');
+/**
+ * 测试
+ */
+navMap.set('10086/41', '/autoTest/test01');
 /**
  * 获取真实路由
  */

@@ -1,20 +1,14 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-04 17:08:50
- * @LastEditTime: 2021-03-15 14:09:41
+ * @LastEditTime: 2021-07-07 10:30:19
  * @Description: v-pin 弹幕组件
  */
 import { App, DirectiveBinding } from 'vue';
 import { Tween, Easing, update } from '@tweenjs/tween.js';
 
-export interface TextConfig {
-  start: number;
-  top: number;
-  color: string;
-}
-
 const danmu = (el: HTMLElement, binding: DirectiveBinding<any>) => {
-  let { start, top, color } = binding.value as TextConfig;
+  let { start, top, color } = binding.value as Pin_Text_Config;
   el.style.position = 'fixed';
   el.style.color = color;
 

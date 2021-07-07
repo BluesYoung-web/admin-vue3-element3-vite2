@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-25 15:20:24
- * @LastEditTime: 2021-07-05 16:31:42
+ * @LastEditTime: 2021-07-07 10:30:37
  * @Description:
 -->
 <template>
@@ -10,29 +10,16 @@
   </div>
   <young-img-upload v-model="imgs" />
 </template>
-
-<script lang="ts">
-import { defineComponent, ref } from 'vue';
+<script lang="ts" setup>
+import { ref } from 'vue';
 import YoungImgUpload from '/components/YoungImgUpload/index.vue';
-import { TextConfig } from '../../plugins/directives/pin';
-export default defineComponent({
-  name: 'ImgUpload',
-  components: { YoungImgUpload },
-  setup() {
-    let imgs = ref([]);
-    let danmus = ref<TextConfig[]>([]);
-    for (let i = 0; i < 10; i++) {
-      danmus.value.push({
-        top: 100 + Math.floor(Math.random() * 600),
-        start: 1700 + Math.floor(Math.random() * 3000),
-        color: 'gray'
-      })
-    }
-
-    return {
-      danmus,
-      imgs
-    };
-  }
-});
+const imgs = ref([]);
+const danmus = ref<Pin_Text_Config[]>([]);
+for (let i = 0; i < 10; i++) {
+  danmus.value.push({
+    top: 100 + Math.floor(Math.random() * 600),
+    start: 1700 + Math.floor(Math.random() * 3000),
+    color: 'gray'
+  });
+}
 </script>
