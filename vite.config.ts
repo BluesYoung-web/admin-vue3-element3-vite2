@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-07-02 10:24:04
+ * @LastEditTime: 2021-07-07 15:58:10
  * @Description: 配置文件
  */
 import { defineConfig } from 'vite';
@@ -28,7 +28,9 @@ export default defineConfig({
     vueJsx(),
     SvgIcons({ iconDirs: [resolve(__dirname, 'src/icons')], symbolId: 'icon-[dir]-[name]' }),
     Windicss(),
-    legacy()
+    // 不生成同名 polyfill 文件，打包速度翻倍
+    // 如果出现兼容问题，可以删除此配置
+    legacy({ renderLegacyChunks: false })
   ],
   server: {
     open: true,

@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-07-07 12:19:24
+ * @LastEditTime: 2021-07-07 15:59:17
  * @Description: 项目说明
 -->
 # 后台管理系统
@@ -97,7 +97,7 @@ yarn build
 - 主用技术栈：Vue3 Element-Plus TypeScript
 - 此版本为 admin-vue3-element3 的改进版：
   - [x] 采用全新的 vite2.0
-  - [x] 加入了 polyfill，理论上来说打包之后可兼容 IE11，如无需兼容可删除 /src/main.ts 之中相应的代码
+  - [x] 加入了 polyfill，兼容性(**国产浏览器的极速模式及所有的现代浏览器**)
   - [x] 防抖与节流的自定义指令
   - [x] 二次封装常用组件
     - 表格(配套导出为Excel表的方法)

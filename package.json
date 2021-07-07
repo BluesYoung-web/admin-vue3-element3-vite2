@@ -15,7 +15,7 @@
     "build:test.nginx": "vite build --mode test.nginx",
     "build:prod": "vite build",
     "build:prod.nginx": "vite build --mode prod.nginx",
-    "pre": "vite preview",
+    "pre": "vite preview --host",
     "build": "node --max_old_space_size=1024 ./node_modules/.bin/vite build"
   },
   "dependencies": {
