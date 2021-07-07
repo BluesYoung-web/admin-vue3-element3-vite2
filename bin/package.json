@@ -1,0 +1,4 @@
+{
+  "name": "create-new-page",
+  "bin": "./createNewPage.js"
+}
