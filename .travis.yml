@@ -1,7 +1,7 @@
 language: node_js
 # node 版本
 node_js:
-  - 12.8.1
+  - 12.13
 os:
   - windows
 # 只监听主分支

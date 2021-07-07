@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-03 14:06:59
- * @LastEditTime: 2021-07-07 08:21:30
+ * @LastEditTime: 2021-07-07 09:09:48
  * @Description: 前端路由
  */
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
@@ -51,6 +51,8 @@ for (const path of Object.keys(pages)) {
     routeItem.children?.push({
       path: `/${path}/${name}`,
       name,
+      // 动态生成的导入名称必须为相对路径，而且必须有扩展名
+      // https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations
       component: () => import(`../views/${path}/${name}.vue`),
       meta: { title }
     });
