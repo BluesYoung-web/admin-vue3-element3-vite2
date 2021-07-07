@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-03-01 16:41:54
- * @LastEditTime: 2021-07-05 14:40:16
+ * @LastEditTime: 2021-07-07 12:00:30
  * @Description: 自定义表格组件
 -->
 <template>
@@ -25,7 +25,7 @@
       :align="item.aligin || 'left'"
     >
       <template #header="scope">
-        <span v-if="tableHead[scope.$index].tool_content">
+        <span v-if="tableHead[scope.$index].tool_content && !tableHead[scope.$index].only_export">
           <span>{{ scope.column.label }}</span>
           <el-tooltip class="item" effect="dark" placement="bottom">
             <template #content>
@@ -34,7 +34,7 @@
             <i class="el-icon-warning-outline" style="margin: 0px;color: #1890ff;" />
           </el-tooltip>
         </span>
-        <span v-else>{{ scope.column.label }}</span>
+        <span v-if="!tableHead[scope.$index].only_export">{{ scope.column.label }}</span>
       </template>
       <template #default="scope">
         <!-- 普通内容 -->
@@ -91,6 +91,9 @@ interface TableHeadItem {
   aligin?: TableHeadAligin;
   show_all?: boolean;
   tool_content?: string;
+  not_sum?: boolean;
+  separator?: boolean;
+  only_export?: boolean;
 };
 interface Props {
   tableData: any[];

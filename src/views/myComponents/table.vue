@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-26 11:50:08
- * @LastEditTime: 2021-07-07 11:18:00
+ * @LastEditTime: 2021-07-07 12:18:10
  * @Description: 自定义表格组件
 -->
 <template>
@@ -17,6 +17,9 @@
     </div>
     <div class="filter-item">
       <el-button v-throttle="debounceSearchObj" type="primary">查询</el-button>
+    </div>
+    <div class="filter-item">
+      <el-button @click="exportHandler" type="success">导出</el-button>
     </div>
   </div>
   <young-table class="mt-30px" :table-head="tableHead" :table-data="tableData" :table-height="700" @sort-change="log">
@@ -160,4 +163,10 @@ const inputObj: DeBounceValue = {
 };
 const uid = ref('');
 const log = console.log;
+
+const exportHandler = async () => {
+  // 懒加载分包
+  const { youngExport } = await import('../../util/youngExport');
+  youngExport({ filename: '导出测试', tableHead: tableHead.value, tableData: tableData.value });
+};
 </script>
