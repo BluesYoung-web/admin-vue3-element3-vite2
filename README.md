@@ -1,10 +1,14 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-07-08 16:05:55
+ * @LastEditTime: 2021-07-08 17:59:00
  * @Description: 项目说明
 -->
 # 后台管理系统
+
+## 配套后端程序
+
+- [admin-server正在开发中...](https://gitee.com/BluseYoung-web/admin-server.git)
 
 ## 环境要求
 
