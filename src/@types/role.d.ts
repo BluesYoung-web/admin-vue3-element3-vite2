@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-01 09:31:21
- * @LastEditTime: 2021-07-07 11:29:16
+ * @LastEditTime: 2021-07-10 19:52:20
  * @Description: 角色相关的数据结构定义
  */
 interface Role {
@@ -23,6 +23,6 @@ interface RolePriorityObj extends Role {
 }
 
 interface UserKey {
-  admin_id: number;
+  aid: number;
   token: string;
 }

@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-09 16:02:36
- * @LastEditTime: 2021-07-05 15:34:23
+ * @LastEditTime: 2021-07-10 19:34:35
  * @Description: 封装不同的请求方法
  */
 import net from './net';
@@ -16,9 +16,13 @@ interface ParamsObj {
  * 不需要 token 的请求，默认 post 请求
  */
 const requestWithoutToken = (param: ParamsObj, method: Method = 'post') => {
+  const data = new FormData();
+  for (const [key, value] of Object.entries(param)) {
+    data.append(key, value);
+  }
   return net({
-    url: `?${new URLSearchParams(param).toString()}`,
-    method
+    method: 'post',
+    data
   });
 };
 
@@ -29,14 +33,7 @@ const basicRequest = (param: ParamsObj) => {
   const { token, aid } = getToken();
   param['token'] = token;
   param['aid'] = aid;
-  const data = new FormData();
-  for (const [key, value] of Object.entries(param)) {
-    data.append(key, value);
-  }
-  return net({
-    method: 'post',
-    data
-  });
+  return requestWithoutToken(param);
 };
 /**
  * 文件上传

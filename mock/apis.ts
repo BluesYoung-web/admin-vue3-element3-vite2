@@ -12,7 +12,7 @@ export const operate = (params: Map<string, any>, body: FormData) => {
   switch (sw) {
     case 1:
       data = Mock.mock({
-        'admin_id|1-99': 99,
+        'aid|1-99': 99,
         'token': /(\d|\w){32}/
       });
       break;

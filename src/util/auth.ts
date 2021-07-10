@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-08 11:15:26
- * @LastEditTime: 2021-07-07 11:29:01
+ * @LastEditTime: 2021-07-10 19:53:40
  * @Description: 用户身份认证 Cookie
  */
 import { get, set, remove } from 'js-cookie';
@@ -21,8 +21,7 @@ const getToken = () => {
  * @param key 后端返回的用户信息
  */
 const setToken = (key: UserKey) => {
-  const { token, admin_id: autoid } = key;
-  return set(TONKEN_KEY, { token, autoid });
+  return set(TONKEN_KEY, key);
 };
 /**
  * 删除 Token，退出登录
