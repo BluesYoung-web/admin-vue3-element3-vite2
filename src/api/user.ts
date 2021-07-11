@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-09 15:56:27
- * @LastEditTime: 2021-03-25 10:38:40
+ * @LastEditTime: 2021-07-11 17:14:09
  * @Description: 用户相关的请求接口
  */
 import { requestWithoutToken, basicRequest } from '../util/request';
@@ -40,9 +40,10 @@ const getUserInfo = async () => {
 };
 
 const modifyPassword = async (old_pass: string, pass: string) => {
+  const task = 4;
   const params = {
     com: Params.com,
-    task: 18,
+    task,
     old_pass,
     pass
   };

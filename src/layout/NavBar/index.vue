@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 11:30:30
- * @LastEditTime: 2021-07-05 15:50:25
+ * @LastEditTime: 2021-07-11 17:34:52
  * @Description: 顶部导航栏组件
 -->
 <template>
@@ -43,7 +43,7 @@
       real-title="修改密码"
       width="500px"
       @sure="saveHandler"
-      @clear="closeHandler"
+      @clear="isEdit=false"
     >
       <template #body>
         <el-form ref="formRef" :model="form" :rules="formRules" label-width="80px">
@@ -61,78 +61,65 @@
     </young-dialog>
   </div>
 </template>
-
-<script lang="ts">
-import { ref, reactive, computed, defineComponent } from 'vue';
-import { login_out } from '../../api/user';
+<script lang="ts" setup>
+import { ElMessage } from 'element-plus';
+import { ref, computed } from 'vue';
+import { login_out, modifyPassword } from '../../api/user';
 import { useApp } from '../../store';
 import { getUserInfo } from '../../store/sessionStorage/index';
+import { removeToken } from '../../util/auth';
 
 import Hamburger from '../components/Hamburger/index.vue';
 import HeadNav from '../components/HeadNav/index.vue';
-import YoungDialog from '/src/components/YoungDialog/index.vue';
-export default defineComponent({
-  name: 'NavBar',
-  components: {
-    YoungDialog,
-    Hamburger,
-    HeadNav
-  },
-  setup() {
-    const { toggleSideBar: toggleClick, sidebar } = useApp();
 
-    const formRef = ref(null);
-    const form = reactive({
-      old_pwd: '',
-      new_pwd: '',
-      new_pwd_again: ''
-    });
-    const formRules: LoginRule = reactive({
-      old_pwd: [
-        { required: true, message: '请输入原始密码', trigger: 'blur' }
-      ],
-      new_pwd: [
-        { required: true, message: '请输入新密码', trigger: 'blur' }
-      ],
-      new_pwd_again: [
-        { required: true, message: '请再次输入新密码', trigger: 'blur' }
-      ]
-    });
-
-    const isEdit = ref(false);
-    const admin_name = computed(() => getUserInfo()?.admin_name);
-    const role_name = computed(() => getUserInfo()?.role_name?.[0]);
-
-    const loginOut = async () => {
-      await login_out();
-      sessionStorage.clear();
-      location.href = '/#/login';
-    };
-    const saveHandler = () => {
-      console.log('确认修改');
-      isEdit.value = false;
-    };
-    const closeHandler = () => {
-      console.log('取消修改');
-      isEdit.value = false;
-    };
-
-
-    return {
-      sidebar,
-      toggleClick,
-      formRef,
-      form,
-      formRules,
-      isEdit,
-      admin_name,
-      role_name,
-      loginOut,
-      saveHandler,
-      closeHandler
-    }
-  }
+const { toggleSideBar: toggleClick, sidebar } = useApp();
+const formRef = ref<any>(null);
+const form = ref({
+  old_pwd: '',
+  new_pwd: '',
+  new_pwd_again: ''
 });
+const beSame = (rule: any, value: any, callback: any) => {
+  if (value === form.value.new_pwd) {
+    callback();
+  } else {
+    callback(new Error('两次输入的密码不一致'));
+  }
+};
+const formRules = ref<LoginRule>({
+  old_pwd: [
+    { required: true, message: '请输入原始密码', trigger: 'blur' }
+  ],
+  new_pwd: [
+    { required: true, message: '请输入新密码', trigger: 'blur' }
+  ],
+  new_pwd_again: [
+    { required: true, message: '请再次输入新密码', trigger: 'blur' },
+    { validator: beSame, trigger: 'blur' }
+  ]
+});
+const isEdit = ref(false);
+const admin_name = computed(() => getUserInfo()?.admin_name);
+const role_name = computed(() => getUserInfo()?.role_name?.[0]);
+
+const loginOut = async () => {
+  await login_out();
+  sessionStorage.clear();
+  removeToken();
+  location.href = '/#/login';
+};
+const saveHandler = () => {
+  formRef.value?.validate(async (valid: boolean) => {
+    if (valid) {
+      await modifyPassword(form.value.old_pwd, form.value.new_pwd);
+      isEdit.value = false;
+      form.value.old_pwd = '';
+      form.value.new_pwd = '';
+      form.value.new_pwd_again = '';
+      ElMessage.success('修改成功');
+    }
+  });
+};
 </script>
 
 <style lang="scss" scoped>
