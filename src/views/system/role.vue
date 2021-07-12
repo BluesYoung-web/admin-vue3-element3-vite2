@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-26 11:49:46
- * @LastEditTime: 2021-07-07 10:04:27
+ * @LastEditTime: 2021-07-12 12:08:46
  * @Description: 角色列表
 -->
 <template>
@@ -33,9 +33,12 @@
     </el-table-column>
     <el-table-column label="操作" width="300">
       <template #default="scope">
-        <el-button @click="editInfo(scope.row)">信息编辑</el-button>
-        <el-button @click="editPriority(scope.row)" type="primary" plain>权限编辑</el-button>
-        <el-button v-if="+scope.row.autoid !== 1" type="danger" @click="del(scope.row)">删除</el-button>
+        <p v-if="scope.row.autoid === 1">超管自动拥有所有权限</p>
+        <div v-else>
+          <el-button @click="editInfo(scope.row)">信息编辑</el-button>
+          <el-button @click="editPriority(scope.row)" type="primary" plain>权限编辑</el-button>
+          <el-button type="danger" @click="del(scope.row)">删除</el-button>
+        </div>
       </template>
     </el-table-column>
   </el-table>
@@ -158,7 +161,7 @@ const generateNodeMap = (list: PriorityItem[]) => {
  */
 const editPriority = async (role: Role) => {
   const temp = await getRolePriorityList(role.autoid);
-  let tn = await (temp as unknown as RolePriorityObj).nodeList;
+  let tn = await (temp as unknown as RolePriorityObj).list;
   nodeList.value = deepClone(tn);
   generateNodeMap(nodeList.value);
   formInfo.value = role;

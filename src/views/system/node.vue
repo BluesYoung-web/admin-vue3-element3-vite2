@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-26 11:49:25
- * @LastEditTime: 2021-07-06 10:17:01
+ * @LastEditTime: 2021-07-12 17:52:29
  * @Description: 节点列表
 -->
 <template>
@@ -86,7 +86,7 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue';
+import { ref } from 'vue';
 import { ElMessage, ElMessageBox } from 'element-plus';
 import { getNodeList, addNode, editNode, delNode } from '../../api/system';
 import deepClone from '../../util/deepClone';
@@ -139,7 +139,6 @@ const getList = async () => {
   const res = sessionStorage.getItem('system_open_keys') as string;
   expandKeys.value = new Set(JSON.parse(res));
 };
-onMounted(() => getList());
 /**
  * 添加节点
  */
@@ -192,4 +191,6 @@ const sure = async () => {
   }
   clear();
 };
+
+getList()
 </script>

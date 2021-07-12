@@ -1,18 +1,18 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-26 13:54:37
- * @LastEditTime: 2021-07-07 10:19:17
+ * @LastEditTime: 2021-07-12 17:27:57
  * @Description: 系统相关的请求
  */
 import { basicRequest } from '../util/request';
-import { formatDate } from '../util/timeFormat';
 import { Params } from './_config';
+import moment from 'moment';
 
 /**
  * 获取节点列表
  */
 const getNodeList = async () =>{
-  const task = 4;
+  const task = 5;
   const params = { com: Params.com, task };
 
   return await basicRequest(params);
@@ -21,13 +21,8 @@ const getNodeList = async () =>{
 /**
  * 添加节点
  */
-const addNode = async (nodeItem: AddNodeItem) => {
-  const task = 5;
-  const params = {
-    com: Params.com,
-    task,
-    ...nodeItem
-  };
+const addNode = async (nodeItem: AddNodeItem, task = 6) => {
+  const params = { com: Params.com, task, ...nodeItem };
   params.node_path = encodeURI(params.node_path);
 
   return await basicRequest(params);
@@ -37,15 +32,7 @@ const addNode = async (nodeItem: AddNodeItem) => {
  * 编辑节点
  */
 const editNode = async (nodeItem: EditNodeItem) => {
-  const task = 6;
-  const params = {
-    com: Params.com,
-    task,
-    ...nodeItem
-  };
-  params.node_path = encodeURI(params.node_path);
-
-  return await basicRequest(params);
+  return await addNode(nodeItem);
 };
 
 /**
@@ -53,11 +40,7 @@ const editNode = async (nodeItem: EditNodeItem) => {
  */
 const delNode = async (node_id: number) => {
   const task = 7;
-  const params = {
-    com: Params.com,
-    task,
-    node_id
-  };
+  const params = { com: Params.com, task, node_id };
 
   return await basicRequest(params);
 };
@@ -67,24 +50,7 @@ const delNode = async (node_id: number) => {
  */
 const getRoleList = async () => {
   const task = 8;
-  const params = {
-    com: Params.com,
-    task
-  };
-
-  return await basicRequest(params);
-};
-
-/**
- * 获取角色权限列表
- */
-const getRolePriorityList = async (role_id: number) => {
-  const task = 9;
-  const params = {
-    com: Params.com,
-    task,
-    role_id
-  };
+  const params = { com: Params.com, task };
 
   return await basicRequest(params);
 };
@@ -92,14 +58,8 @@ const getRolePriorityList = async (role_id: number) => {
 /**
  * 添加角色
  */
-const addRole = async (role: Role) => {
-  const task = 10;
-  const params = {
-    com: Params.com,
-    task,
-    ...role
-  };
-
+const addRole = async (role: Role, task = 9) => {
+  const params = { com: Params.com, task, ...role };
   return await basicRequest(params);
 };
 
@@ -107,49 +67,37 @@ const addRole = async (role: Role) => {
  * 编辑角色
  */
 const editRole = async (role: Role) => {
-  const task = 11;
-  const params = {
-    com: Params.com,
-    task,
-    role_id: role.autoid,
-    ...role
-  };
-
-  return await basicRequest(params);
+  return await addRole(role);
 };
 
 /**
  * 删除角色
  */
 const delRole = async (role_id: number) => {
-  const task = 12;
-  const params = {
-    com: Params.com,
-    task,
-    role_id,
-    oper: 0
-  };
-
+  const task = 10;
+  const params = { com: Params.com, task, role_id };
   return await basicRequest(params);
 };
 
 /**
+ * 获取角色权限列表
+ */
+const getRolePriorityList = async (role_id: number) => {
+  const task = 11;
+  const params = { com: Params.com, task, role_id };
+  return await basicRequest(params);
+};
+/**
  * 获取管理员列表
  */
 const getAdminList = async (args: any) => {
-  const task = 13;
-  const params = {
-    com: Params.com,
-    task,
-    ...args
-  };
+  const task = 12;
+  const params = { com: Params.com, task, ...args };
 
   const res = await basicRequest(params);
   const { list = [], total = 0 } = res as unknown as any;
   list.map((item: any) => {
-    item.create_time = formatDate(item.create_time * 1000, 'Y/M/D h:m:s');
-    item.last_time = formatDate(item.last_time * 1000, 'Y/M/D h:m:s');
-    item.login_time = formatDate(item.login_time * 1000, 'Y/M/D h:m:s');
+    item.create_time = moment(item.create_time).format('YYYY-MM-DD kk:mm:ss');;
     return item;
   });
   return { list, total };

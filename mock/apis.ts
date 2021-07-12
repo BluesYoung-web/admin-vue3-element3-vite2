@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-09 17:50:01
- * @LastEditTime: 2021-07-07 09:51:01
+ * @LastEditTime: 2021-07-12 12:12:31
  * @Description: 所有假接口
  */
 import Mock from 'mockjs';
@@ -124,7 +124,7 @@ export const operate = (params: Map<string, any>, body: FormData) => {
                 is_show: 1,
                 node_desc: '节点列表',
                 node_name: '节点列表',
-                node_path: '10086/31',
+                node_path: '10000/5',
                 node_sort: 0,
                 node_type: 2,
                 parent_id: 3,
@@ -135,7 +135,7 @@ export const operate = (params: Map<string, any>, body: FormData) => {
                 is_show: 1,
                 node_desc: '角色列表',
                 node_name: '角色列表',
-                node_path: '10086/32',
+                node_path: '10000/8',
                 node_sort: 0,
                 node_type: 2,
                 parent_id: 3,
@@ -146,7 +146,7 @@ export const operate = (params: Map<string, any>, body: FormData) => {
                 is_show: 1,
                 node_desc: '管理员列表',
                 node_name: '管理员列表',
-                node_path: '10086/33',
+                node_path: '10000/12',
                 node_sort: 0,
                 node_type: 2,
                 parent_id: 3,
@@ -180,7 +180,7 @@ export const operate = (params: Map<string, any>, body: FormData) => {
         ]
       });
       break;
-    case 4:
+    case 5:
       data = Mock.mock([
         {
           'autoid': 1,
@@ -299,7 +299,7 @@ export const operate = (params: Map<string, any>, body: FormData) => {
         ]
       }).data;
       break;
-    case 9:
+    case 11:
       data = Mock.mock({
         'autoid|1-99': 99,
         'is_enable|0-1': 1,

@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-03-20 16:46:54
- * @LastEditTime: 2021-07-07 10:19:49
+ * @LastEditTime: 2021-07-12 17:35:45
  * @Description: 管理员列表
 -->
 <template>
@@ -33,7 +33,7 @@
               :inactive-value="0"
               active-color="#409EFF"
               inactive-color="#909399"
-              @change="changeState($event, scope.row)"
+              :disabled="true"
             />
           </template>
         </el-table-column>
@@ -42,7 +42,7 @@
         <el-table-column label="操作" fixed="right" width="220">
           <template #default="scope">
             <el-button type="primary" @click="editUser(scope.row)">编辑</el-button>
-            <el-button type="danger" @click="delUser(scope.row)">删除</el-button>
+            <el-button v-if="+scope.row.autoid !== 1" type="danger" @click="delUser(scope.row)">删除</el-button>
           </template>
         </el-table-column>
       </template>
@@ -146,9 +146,9 @@ const tableHead = ref<TableHeadItem<Head>[]>([
   { prop: 'real_name', label: '真实姓名' },
   { prop: 'phone_number', label: '手机号' },
   { prop: 'create_time', label: '创建时间' },
-  { prop: 'login_time', label: '登录时间' },
-  { prop: 'login_ip', label: '登录IP' },
-  { prop: 'last_time', label: '最后登录时间' },
+  // { prop: 'login_time', label: '登录时间' },
+  // { prop: 'login_ip', label: '登录IP' },
+  // { prop: 'last_time', label: '最后登录时间' },
   { prop: 'role_des', label: '角色' }
 ]);
 const tableData = ref<TableDataItem<Head>[]>([]);
@@ -162,11 +162,6 @@ const init = () => {
   getList();
 };
 
-const changeState = async (is_enable: 0 | 1, row: any) => {
-  await changeAdminState({ is_enable, oper: 1, admin_id: row.autoid });
-  ElMessage.success('处理成功！');
-  init();
-};
 const delUser = async (row: any) => {
   ElMessageBox.confirm('确认删除该管理员？', '提示', {
     type: 'warning'

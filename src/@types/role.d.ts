@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-01 09:31:21
- * @LastEditTime: 2021-07-10 19:52:20
+ * @LastEditTime: 2021-07-12 12:08:35
  * @Description: 角色相关的数据结构定义
  */
 interface Role {
@@ -18,8 +18,9 @@ interface PriorityItem extends NavArrItem {
   part: PriorityItem[];
 }
 
-interface RolePriorityObj extends Role {
-  nodeList: PriorityItem[]
+interface RolePriorityObj {
+  info: Role;
+  list: PriorityItem[];
 }
 
 interface UserKey {

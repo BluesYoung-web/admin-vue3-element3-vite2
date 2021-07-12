@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-25 17:05:01
- * @LastEditTime: 2021-07-07 08:26:38
+ * @LastEditTime: 2021-07-12 11:03:48
  * @Description: 前端路由鉴权
  */
 /**
@@ -22,9 +22,9 @@ navMap.set('10086/21', '/vueUse/useEventListener');
 /**
  * 系统节点
  */
-navMap.set('10086/31', '/system/node');
-navMap.set('10086/32', '/system/role');
-navMap.set('10086/33', '/system/admin');
+navMap.set('10000/5', '/system/node');
+navMap.set('10000/8', '/system/role');
+navMap.set('10000/12', '/system/admin');
 /**
  * 测试
  */
