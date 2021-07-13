@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-07-05 12:09:28
+ * @LastEditTime: 2021-07-13 16:49:58
  * @Description: 项目入口文件
  */
 
@@ -44,6 +44,8 @@ import App from './App.vue';
 
 // 引入自定义插件
 import MyPlugins from './plugins/index';
+// 引入 console.log 美化
+import './assets/js/console-butifull';
 
 // 刷新页面的时候，如果存在 token 就直接获取导航栏列表
 if (getToken().token) {

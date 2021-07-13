@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-03 14:25:49
- * @LastEditTime: 2021-07-07 11:42:04
+ * @LastEditTime: 2021-07-13 16:16:22
  * @Description: 登录
 -->
 <template>
@@ -57,8 +57,8 @@ const router = useRouter();
 
 const loginRef = ref<any>(null);
 const loginForm = ref<LoginForm>({
-  username: '',
-  password: ''
+  username: 'guest',
+  password: '111111'
 });
 const loginRules = ref<LoginRule>({
   username: [{ required: true, type: 'string', trigger: 'blur', message: '请输入账户' }],
