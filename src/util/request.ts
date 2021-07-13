@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-09 16:02:36
- * @LastEditTime: 2021-07-10 19:34:35
+ * @LastEditTime: 2021-07-13 15:35:12
  * @Description: 封装不同的请求方法
  */
 import net from './net';
@@ -42,10 +42,11 @@ const upload = (param: ParamsObj, formData: FormData) => {
   const { token, aid } = getToken();
   param['token'] = token;
   param['aid'] = aid;
+  for (const [key, value] of Object.entries(param)) {
+    formData.append(key, value);
+  }
   return net({
-    url: `?${new URLSearchParams(param).toString()}`,
     method: 'post',
-    headers: { 'Content-type': 'multipart/form-data' },
     data: formData
   });
 };

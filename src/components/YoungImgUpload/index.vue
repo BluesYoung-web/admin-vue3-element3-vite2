@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-03-03 13:55:37
- * @LastEditTime: 2021-07-05 15:35:51
+ * @LastEditTime: 2021-07-13 16:03:03
  * @Description: 图片上传组件
 -->
 <template>
@@ -43,7 +43,7 @@ interface Props {
   params?: { [p: string]: any };
   hideDel?: boolean;
 };
-const props = withDefaults(defineProps<Props>(), { showUpload: true, limit: 10, params: () => ({}) });
+const props = withDefaults(defineProps<Props>(), { showUpload: true, limit: 10, params: () => ({ com: 10000, task: 22 }) });
 interface Emits {
   (e: 'update:modelValue', urls: string[]): void;
   (e: 'did', urls: string[]): void;
@@ -86,8 +86,12 @@ const del = (url: string) => {
 };
 
 const uploadHandler = async () => {
+  if (allFiles.length === 0) {
+    ElMessage.error('请至少选择一个文件');
+    return;
+  }
   const formData = new FormData();
-  allFiles.forEach((v, i) => formData.append('img' + i, v));
+  allFiles.forEach((v, i) => formData.append(`img[${i}]`, v));
   const res = await upload(props.params, formData) as unknown as string[];
   emit('did', res);
 };
