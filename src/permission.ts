@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-09 17:21:19
- * @LastEditTime: 2021-04-25 16:28:56
+ * @LastEditTime: 2021-07-13 11:36:50
  * @Description: 页面权限控制
  */
 import router from './route/index';
@@ -22,7 +22,7 @@ const getCommonRoutes = () => {
 
 const hasPermission = (route: string) => {
   const roleRoute = getRoleRoute().concat(getCommonRoutes());
-  return roleRoute.map((item) => item.includes(route));
+  return roleRoute.includes(route);
 }
 
 /**
