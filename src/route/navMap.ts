@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-25 17:05:01
- * @LastEditTime: 2021-07-12 11:03:48
+ * @LastEditTime: 2021-07-13 11:08:55
  * @Description: 前端路由鉴权
  */
 /**
@@ -11,14 +11,14 @@ const navMap = new Map();
 /**
  * 自定义组件
  */
-navMap.set('10086/11', '/myComponents/imgUpload');
-navMap.set('10086/12', '/myComponents/richTextEditor');
-navMap.set('10086/13', '/myComponents/table');
-navMap.set('10086/14', '/myComponents/tab');
+navMap.set('10000/16', '/myComponents/table');
+navMap.set('10000/17', '/myComponents/tab');
+navMap.set('10000/18', '/myComponents/imgUpload');
+navMap.set('10000/19', '/myComponents/richTextEditor');
 /**
  * VueUse 使用示例
  */
-navMap.set('10086/21', '/vueUse/useEventListener');
+navMap.set('10000/20', '/vueUse/useEventListener');
 /**
  * 系统节点
  */
@@ -28,7 +28,7 @@ navMap.set('10000/12', '/system/admin');
 /**
  * 测试
  */
-navMap.set('10086/41', '/autoTest/test01');
+navMap.set('10000/21', '/autoTest/test01');
 /**
  * 获取真实路由
  */

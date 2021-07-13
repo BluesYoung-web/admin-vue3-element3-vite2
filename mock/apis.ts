@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-09 17:50:01
- * @LastEditTime: 2021-07-13 10:59:36
+ * @LastEditTime: 2021-07-13 11:13:26
  * @Description: 所有假接口
  */
 import Mock from 'mockjs';
@@ -48,7 +48,7 @@ export const operate = (params: Map<string, any>, body: FormData) => {
                 node_path: '10000/5',
                 node_sort: 0,
                 node_type: 2,
-                parent_id: 3,
+                parent_id: 1,
                 part: []
               },
               {
@@ -59,7 +59,7 @@ export const operate = (params: Map<string, any>, body: FormData) => {
                 node_path: '10000/8',
                 node_sort: 0,
                 node_type: 2,
-                parent_id: 3,
+                parent_id: 1,
                 part: []
               },
               {
@@ -70,7 +70,7 @@ export const operate = (params: Map<string, any>, body: FormData) => {
                 node_path: '10000/12',
                 node_sort: 0,
                 node_type: 2,
-                parent_id: 3,
+                parent_id: 1,
                 part: []
               }
             ]
@@ -90,32 +90,10 @@ export const operate = (params: Map<string, any>, body: FormData) => {
                 is_show: 1,
                 node_desc: '表格组件',
                 node_name: '表格组件',
-                node_path: '10086/13',
+                node_path: '10000/16',
                 node_sort: 0,
                 node_type: 2,
-                parent_id: 1,
-                part: []
-              },
-              {
-                autoid: 22,
-                is_show: 1,
-                node_desc: '图片上传组件',
-                node_name: '图片上传组件',
-                node_path: '10086/11',
-                node_sort: 0,
-                node_type: 2,
-                parent_id: 1,
-                part: []
-              },
-              {
-                autoid: 23,
-                is_show: 1,
-                node_desc: '富文本编辑器',
-                node_name: '富文本编辑器',
-                node_path: '10086/12',
-                node_sort: 0,
-                node_type: 2,
-                parent_id: 1,
+                parent_id: 2,
                 part: []
               },
               {
@@ -123,10 +101,32 @@ export const operate = (params: Map<string, any>, body: FormData) => {
                 is_show: 1,
                 node_desc: 'tab组件',
                 node_name: 'tab组件',
-                node_path: '10086/14',
+                node_path: '10000/17',
                 node_sort: 0,
                 node_type: 2,
-                parent_id: 1,
+                parent_id: 2,
+                part: []
+              },
+              {
+                autoid: 22,
+                is_show: 1,
+                node_desc: '图片上传组件',
+                node_name: '图片上传组件',
+                node_path: '10000/18',
+                node_sort: 0,
+                node_type: 2,
+                parent_id: 2,
+                part: []
+              },
+              {
+                autoid: 23,
+                is_show: 1,
+                node_desc: '富文本编辑器',
+                node_name: '富文本编辑器',
+                node_path: '10000/19',
+                node_sort: 0,
+                node_type: 2,
+                parent_id: 2,
                 part: []
               }
             ]
@@ -146,10 +146,10 @@ export const operate = (params: Map<string, any>, body: FormData) => {
                 is_show: 1,
                 node_desc: '',
                 node_name: 'useEventListener',
-                node_path: '10086/21',
+                node_path: '10000/20',
                 node_sort: 0,
                 node_type: 2,
-                parent_id: 1,
+                parent_id: 3,
                 part: []
               }
             ]
@@ -169,7 +169,7 @@ export const operate = (params: Map<string, any>, body: FormData) => {
                 is_show: 1,
                 node_desc: '自动创建测试',
                 node_name: '自动创建测试',
-                node_path: '10086/41',
+                node_path: '10000/21',
                 node_sort: 0,
                 node_type: 2,
                 parent_id: 4,
