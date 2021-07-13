@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-26 13:54:37
- * @LastEditTime: 2021-07-12 17:27:57
+ * @LastEditTime: 2021-07-13 10:56:36
  * @Description: 系统相关的请求
  */
 import { basicRequest } from '../util/request';
@@ -98,64 +98,30 @@ const getAdminList = async (args: any) => {
   const { list = [], total = 0 } = res as unknown as any;
   list.map((item: any) => {
     item.create_time = moment(item.create_time).format('YYYY-MM-DD kk:mm:ss');;
+    item.name = item.admin_name;
+    item.phone = item.phone_number;
+    item.role = Number(item.role_id) || 1;
+    item.admin_id = item.autoid;
+    item.pwd = '';
     return item;
   });
   return { list, total };
 };
 
 /**
- * 删除 | 启用 | 禁用 管理员
+ * 获取启用状态的角色列表
  */
-type state = 0 | 1;
-const changeAdminState = async ({ admin_id, oper, is_enable }:{ admin_id: number; oper: state; is_enable: state; }) => {
-  const task = 17;
-  const params = {
-    com: Params.com,
-    task,
-    admin_id,
-    oper,
-    is_enable
-  };
+const getAdminInfo = async () => {
+  const task = 13;
+  const params = { com: Params.com, task };
 
   return await basicRequest(params);
 };
-
 /**
- * 获取管理员详情
+ * 添加|编辑 管理员
  */
-const getAdminInfo = async (admin_id: number) => {
-  const task = 14;
-  const params = {
-    com: Params.com,
-    task,
-    admin_id
-  };
-
-  const res = await basicRequest(params);
-  const { info = {}, role_list = {} } = res as unknown as any;
-
-  const temp_info = {
-    admin_id: info.autoid,
-    name: info.admin_name,
-    pwd: info.admin_password || '',
-    phone: info.phone_number,
-    real_name: info.real_name,
-    is_enable: info.is_enable,
-    role: []
-  };
-
-  return { info: temp_info, role_list: Object.values(role_list) };
-};
-/**
- * 添加管理员
- */
-const addAdminUserInfo = async (info: any, task:number = 15) => {
-  const params = {
-    com: Params.com,
-    task,
-    ...info,
-    role: info.role.join(',')
-  };
+const addAdminUserInfo = async (info: any, task = 14) => {
+  const params = { com: Params.com, task, ...info };
 
   return await basicRequest(params);
 };
@@ -163,8 +129,16 @@ const addAdminUserInfo = async (info: any, task:number = 15) => {
 /**
  * 编辑管理员
  */
-const editAdminUserInfo = async (info: any, task: number = 16) => {
-  addAdminUserInfo(info, task);
+const editAdminUserInfo = addAdminUserInfo;
+
+/**
+ * 删除管理员
+ */
+const changeAdminState = async (admin_id: number) => {
+  const task = 15;
+  const params = { com: Params.com, task, admin_id };
+
+  return await basicRequest(params);
 };
 
 export {

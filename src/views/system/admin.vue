@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-03-20 16:46:54
- * @LastEditTime: 2021-07-12 17:35:45
+ * @LastEditTime: 2021-07-13 10:57:17
  * @Description: 管理员列表
 -->
 <template>
@@ -71,15 +71,23 @@
           <el-input v-model.trim="form.real_name" placeholder="请输入真实姓名" />
         </el-form-item>
         <el-form-item label="角色" prop="role">
-          <el-checkbox-group v-model="form.role">
-            <el-checkbox
+          <el-select v-model="form.role" placeholder="请选择角色">
+            <el-option
               v-for="(item, index) in roleArr"
               :key="index + 'eweqe432'"
-              :label="item.autoid"
-            >
-              {{ item.role_name }}
-            </el-checkbox>
-          </el-checkbox-group>
+              :value="item.autoid"
+              :label="item.role_name"
+            />
+          </el-select>
+        </el-form-item>
+        <el-form-item label="是否启用">
+          <el-switch
+            v-model="form.is_enable"
+            :active-value="1"
+            :inactive-value="0"
+            active-color="#409EFF"
+            inactive-color="#909399"
+          />
         </el-form-item>
       </el-form>
     </template>
@@ -125,7 +133,7 @@ interface User_Info {
   pwd: string;
   phone: string;
   real_name: string;
-  role: number[];
+  role: number;
   is_enable: 0 | 1;
 }
 const FORM_TEMP: User_Info = {
@@ -134,7 +142,7 @@ const FORM_TEMP: User_Info = {
   pwd: '',
   phone: '',
   real_name: '',
-  role: [],
+  role: 1,
   is_enable: 1
 };
 
@@ -166,7 +174,7 @@ const delUser = async (row: any) => {
   ElMessageBox.confirm('确认删除该管理员？', '提示', {
     type: 'warning'
   }).then(async () => {
-    await changeAdminState({ oper: 0, is_enable: 0, admin_id: row.autoid })
+    await changeAdminState(row.autoid);
     ElMessage.success('删除成功！');
     init();
   }).catch(() => null);
@@ -179,28 +187,23 @@ const rules = ref<LoginRule>({
   name: [{ required: true, trigger: 'blur', message: '请输入用户名' }],
   real_name: [{ required: true, trigger: 'blur', message: '请输入真实姓名' }],
   pwd: [{ required: true, trigger: 'blur', message: '请输入密码' }],
-  role: [{ required: true, trigger: 'change', message: '请至少选择一个角色' }]
+  role: [{ required: true, trigger: 'change', message: '请至选择角色' }]
 });
 const roleArr = ref<{
   autoid: number;
   role_name: string;
-  is_checked: 0 | 1
 }[]>([]);
 
 const addUser = async () => {
-  const temp = await getAdminInfo(0);
-  roleArr.value = Object.values((temp as unknown as any).role_list);
+  const role_list = await getAdminInfo();
+  roleArr.value = deepClone(role_list);
   isAdd.value = true;
 };
 const editUser = async (row: any) => {
-  const { info, role_list } = await getAdminInfo(row.autoid) as unknown as any;
-  roleArr.value = role_list;
-  form.value = info;
-  roleArr.value.forEach((v) => {
-    if (v.is_checked === 1) {
-      form.value.role.push(v.autoid);
-    }
-  });
+  const role_list = await getAdminInfo() as unknown as any;
+  console.log(role_list);
+  roleArr.value = deepClone(role_list);
+  form.value = deepClone(row);
   isEdit.value = true;
 };
 const sure = () => {

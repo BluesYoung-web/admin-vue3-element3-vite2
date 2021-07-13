@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-09 17:50:01
- * @LastEditTime: 2021-07-12 12:12:31
+ * @LastEditTime: 2021-07-13 10:59:36
  * @Description: 所有假接口
  */
 import Mock from 'mockjs';
@@ -34,7 +34,7 @@ export const operate = (params: Map<string, any>, body: FormData) => {
             autoid: 1,
             is_show: 1,
             node_desc: '',
-            node_name: '常用组件',
+            node_name: '系统后台',
             node_path: '',
             node_sort: 0,
             node_type: 1,
@@ -42,6 +42,51 @@ export const operate = (params: Map<string, any>, body: FormData) => {
             part: [
               {
                 autoid: 11,
+                is_show: 1,
+                node_desc: '节点列表',
+                node_name: '节点列表',
+                node_path: '10000/5',
+                node_sort: 0,
+                node_type: 2,
+                parent_id: 3,
+                part: []
+              },
+              {
+                autoid: 12,
+                is_show: 1,
+                node_desc: '角色列表',
+                node_name: '角色列表',
+                node_path: '10000/8',
+                node_sort: 0,
+                node_type: 2,
+                parent_id: 3,
+                part: []
+              },
+              {
+                autoid: 13,
+                is_show: 1,
+                node_desc: '管理员列表',
+                node_name: '管理员列表',
+                node_path: '10000/12',
+                node_sort: 0,
+                node_type: 2,
+                parent_id: 3,
+                part: []
+              }
+            ]
+          },
+          {
+            autoid: 2,
+            is_show: 1,
+            node_desc: '',
+            node_name: '常用组件',
+            node_path: '',
+            node_sort: 0,
+            node_type: 1,
+            parent_id: 0,
+            part: [
+              {
+                autoid: 21,
                 is_show: 1,
                 node_desc: '表格组件',
                 node_name: '表格组件',
@@ -52,7 +97,7 @@ export const operate = (params: Map<string, any>, body: FormData) => {
                 part: []
               },
               {
-                autoid: 12,
+                autoid: 22,
                 is_show: 1,
                 node_desc: '图片上传组件',
                 node_name: '图片上传组件',
@@ -63,7 +108,7 @@ export const operate = (params: Map<string, any>, body: FormData) => {
                 part: []
               },
               {
-                autoid: 13,
+                autoid: 23,
                 is_show: 1,
                 node_desc: '富文本编辑器',
                 node_name: '富文本编辑器',
@@ -74,7 +119,7 @@ export const operate = (params: Map<string, any>, body: FormData) => {
                 part: []
               },
               {
-                autoid: 14,
+                autoid: 24,
                 is_show: 1,
                 node_desc: 'tab组件',
                 node_name: 'tab组件',
@@ -87,7 +132,7 @@ export const operate = (params: Map<string, any>, body: FormData) => {
             ]
           },
           {
-            autoid: 2,
+            autoid: 3,
             is_show: 1,
             node_desc: '',
             node_name: 'VueUse使用示例',
@@ -97,7 +142,7 @@ export const operate = (params: Map<string, any>, body: FormData) => {
             parent_id: 0,
             part: [
               {
-                autoid: 21,
+                autoid: 31,
                 is_show: 1,
                 node_desc: '',
                 node_name: 'useEventListener',
@@ -105,51 +150,6 @@ export const operate = (params: Map<string, any>, body: FormData) => {
                 node_sort: 0,
                 node_type: 2,
                 parent_id: 1,
-                part: []
-              }
-            ]
-          },
-          {
-            autoid: 3,
-            is_show: 1,
-            node_desc: '',
-            node_name: '系统后台',
-            node_path: '',
-            node_sort: 0,
-            node_type: 1,
-            parent_id: 0,
-            part: [
-              {
-                autoid: 31,
-                is_show: 1,
-                node_desc: '节点列表',
-                node_name: '节点列表',
-                node_path: '10000/5',
-                node_sort: 0,
-                node_type: 2,
-                parent_id: 3,
-                part: []
-              },
-              {
-                autoid: 32,
-                is_show: 1,
-                node_desc: '角色列表',
-                node_name: '角色列表',
-                node_path: '10000/8',
-                node_sort: 0,
-                node_type: 2,
-                parent_id: 3,
-                part: []
-              },
-              {
-                autoid: 33,
-                is_show: 1,
-                node_desc: '管理员列表',
-                node_name: '管理员列表',
-                node_path: '10000/12',
-                node_sort: 0,
-                node_type: 2,
-                parent_id: 3,
                 part: []
               }
             ]
@@ -301,12 +301,15 @@ export const operate = (params: Map<string, any>, body: FormData) => {
       break;
     case 11:
       data = Mock.mock({
-        'autoid|1-99': 99,
-        'is_enable|0-1': 1,
-        'parent_role_id': 0,
-        'role_desc': Mock.Random.cword(3, 5),
-        'role_name': Mock.Random.cname(),
-        'nodeList': Mock.mock([
+        'info': {
+          'autoid|1-99': 99,
+          'is_enable|0-1': 1,
+          'parent_role_id': 0,
+          'role_desc': Mock.Random.cword(3, 5),
+          'role_name': Mock.Random.cname(),
+          'role_access': '1,5,8,9,6,13,14,15,7,2,3,12'
+        },
+        'list': Mock.mock([
           {
             'autoid': 1,
             'is_checked|0-1': 1,
@@ -424,7 +427,7 @@ export const operate = (params: Map<string, any>, body: FormData) => {
         ])
       });
       break;
-    case 13:
+    case 12:
       data = Mock.mock({
         'list|6-10': [
           {
@@ -445,39 +448,25 @@ export const operate = (params: Map<string, any>, body: FormData) => {
         'total|10-99': 10
       });
       break;
-    case 14:
-        data = Mock.mock({
-          'info': {
-            'autoid|1-99': 99,
-            'is_enable|0-1': 1,
-            'admin_name': Mock.Random.name(),
-            'admin_password': Mock.Random.name(),
-            'create_time': Math.floor(new Date().getTime() / 1000),
-            'last_time': Math.floor(new Date().getTime() / 1000),
-            'login_time': Math.floor(new Date().getTime() / 1000),
-            'login_ip': Mock.Random.ip(),
-            'phone_number': /^1[0-9]{10}$/,
-            'real_name': Mock.Random.cname()
+    case 13:
+        data = Mock.mock([
+          {
+            'autoid': 1,
+            'is_enable': 1,
+            'parent_role_id': 0,
+            'role_desc': "超管",
+            'role_name': "超级管理员",
+            'platform_type|0-1': 0
           },
-          'role_list': {
-            '1': {
-              'autoid': 1,
-              'is_checked|0-1': 1,
-              'is_enable': 1,
-              'parent_role_id': 0,
-              'role_desc': "超管",
-              'role_name': "超级管理员"
-            },
-            '33': {
-              'autoid': 33,
-              'is_checked|0-1': 1,
-              'is_enable': 1,
-              'parent_role_id': 0,
-              'role_desc': "产品超管",
-              'role_name': "产品超管"
-            }
+          {
+            'autoid': 2,
+            'is_enable': 1,
+            'parent_role_id': 0,
+            'role_desc': "产品",
+            'role_name': "产品管理员",
+            'platform_type|0-1': 0
           }
-        });
+        ]);
         break;
     default:
       data = {};
