@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 14:41:26
- * @LastEditTime: 2021-02-26 08:49:25
+ * @LastEditTime: 2021-07-14 12:16:26
  * @Description: 点击跳转组件(内部 / 外链)
 -->
 <template>
@@ -12,26 +12,8 @@
     <slot />
   </router-link>
 </template>
-
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script lang="ts" setup>
 import { isHttpUrl } from '../../../util/valid';
-export default defineComponent({
-  name: 'Link',
-  props: {
-    to: { type: String, required: true }
-  },
-  setup() {
-    const linkProps = (url: string) => {
-      if (isHttpUrl(url)) {
-        return 'a';
-      } else {
-        return 'router-link'
-      }
-    }
-    return {
-      linkProps
-    };
-  }
-});
+const props = defineProps<{ to: string }>();
+const linkProps = (url: string) => isHttpUrl(url) ? 'a' : 'router-link';
 </script>

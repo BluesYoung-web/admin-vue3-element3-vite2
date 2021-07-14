@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 17:14:23
- * @LastEditTime: 2021-03-12 15:56:01
+ * @LastEditTime: 2021-07-14 15:26:34
  * @Description: 整体布局
 -->
 <template>
@@ -17,36 +17,19 @@
     </div>
   </div>
 </template>
-
-<script lang="ts">
-import { computed, defineComponent } from 'vue';
+<script lang="ts" setup>
+import { computed } from 'vue';
 import { NavBar, Sidebar, AppMain, TagsView } from './AppMain/index';
 import { useApp } from '../store';
-export default defineComponent({
-  name: 'Layout',
-  components: {
-    NavBar,
-    Sidebar,
-    AppMain,
-    TagsView
-  },
-  setup() {
-    const { sidebar, device } = useApp();
-
-    const classObj = computed(() => {
-      return {
-        hideSidebar: !sidebar.value.opened,
-        openSidebar: sidebar.value.opened,
-        withoutAnimation: sidebar.value.withoutAnimation,
-        mobile: device.value === 'mobile'
-      };
-    });
-
-    return {
-      sidebar,
-      classObj
-    };
-  }
+// sidebar 与组件重名，会导致解析异常
+const { sidebar: sideBarStatus, device } = useApp();
+const classObj = computed(() => {
+  return {
+    hideSidebar: !sideBarStatus.value.opened,
+    openSidebar: sideBarStatus.value.opened,
+    withoutAnimation: sideBarStatus.value.withoutAnimation,
+    mobile: device.value === 'mobile'
+  };
 });
 </script>
 

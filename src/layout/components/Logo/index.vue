@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 14:10:09
- * @LastEditTime: 2021-04-27 20:58:25
+ * @LastEditTime: 2021-07-14 12:19:04
  * @Description: 侧边栏 logo 组件
 -->
 <template>
@@ -17,22 +17,13 @@
     </transition>
   </div>
 </template>
-
-<script lang="ts">
-import { computed, defineComponent } from 'vue';
+<script lang="ts" setup>
+import { computed } from 'vue';
 import { useApp } from '../../../store';
-export default defineComponent({
-  name: 'Logo',
-  setup() {
-    const title = import.meta.env.VITE_TITLE??'小黑后台';
-    const { sidebar } = useApp();
-    const collapse = computed(() => !sidebar.value.opened);
-    return {
-      title,
-      collapse
-    };
-  }
-});
+
+const title = import.meta.env.VITE_TITLE??'小黑后台';
+const { sidebar } = useApp();
+const collapse = computed(() => !sidebar.value.opened);
 </script>
 
 <style lang="scss" scoped>
