@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 17:07:36
- * @LastEditTime: 2021-04-22 14:50:56
+ * @LastEditTime: 2021-07-14 15:15:42
  * @Description: 所有的子页面都在此组件内部显示
 -->
 <template>
@@ -19,28 +19,18 @@
   </div>
 </template>
 
-<script lang="ts">
-import { computed, defineComponent } from 'vue';
+<script lang="ts" setup>
+import { computed } from 'vue';
 import { useRoute } from 'vue-router';
 import { useTagsView } from '../../store';
-export default defineComponent({
-  name: 'AppMain',
-  setup() {
-    const route = useRoute();
-    const { cachedViews, visitedViews } = useTagsView();
-    const path = computed(() => route.path);
-    const name = computed(() => route.name);
-    const isCached = computed(() => {
-      const arr = visitedViews.value.map((view) => view.name);
-      // 已经缓存，或者首次打开(防止二次初始化)
-      return cachedViews.value.includes(name.value) || !arr.includes(name.value);
-    });
-    return {
-      isCached,
-      path,
-      cachedViews
-    };
-  }
+const route = useRoute();
+const { cachedViews, visitedViews } = useTagsView();
+const path = computed(() => route.path);
+const name = computed(() => route.name);
+const isCached = computed(() => {
+  const arr = visitedViews.value.map((view) => view.name);
+  // 已经缓存，或者首次打开(防止二次初始化)
+  return cachedViews.value.includes(name.value) || !arr.includes(name.value as unknown as string);
 });
 </script>
 
@@ -61,4 +51,3 @@ export default defineComponent({
     }
   }
 </style>
-

@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 10:10:36
- * @LastEditTime: 2021-03-22 15:24:19
+ * @LastEditTime: 2021-07-14 12:13:22
  * @Description: 顶部导航(一级节点)
 -->
 <template>
@@ -9,36 +9,24 @@
     <el-menu-item v-for="(route, index) in routes" :key="index" :item="route" :index="route.node_name" v-text="route.node_name" />
   </el-menu>
 </template>
-
-<script lang="ts">
-import { defineComponent, computed, ref } from 'vue';
+<script lang="ts" setup>
+import { ref, computed } from 'vue';
 import { getNavArr } from '../../../store/sessionStorage/index';
 import { useNav } from '../../../store';
-export default defineComponent({
-  name: 'HeadNav',
-  setup() {
-    // 获取顶部导航栏数据(一级节点)
-    const routes = computed(() => getNavArr().filter((item) => item.is_show === 1));
-    // 设置对应的侧边导航栏数据(二级节点及以后)
-    const { setLeftArr } = useNav();
-    setLeftArr(routes.value[0]?.part ?? []);
 
-    // 初始激活标签
-    let activeIndex = ref(routes.value[0]?.node_name ?? '');
+// 获取顶部导航栏数据(一级节点)
+const routes = computed(() => getNavArr().filter((item) => item.is_show === 1));
+// 设置对应的侧边导航栏数据(二级节点及以后)
+const { setLeftArr } = useNav();
+setLeftArr(routes.value[0]?.part ?? []);
+// 初始激活标签
+const activeIndex = ref(routes.value[0]?.node_name ?? '');
 
-    const handleSelect = (key: string) => {
-      routes.value?.forEach((item) => {
-        item.node_name === key && setLeftArr(item.part);
-      });
-    }
-
-    return {
-      routes,
-      activeIndex,
-      handleSelect
-    }
-  }
-});
+const handleSelect = (key: string) => {
+  routes.value?.forEach((item) => {
+    item.node_name === key && setLeftArr(item.part);
+  });
+}
 </script>
 
 <style scoped>

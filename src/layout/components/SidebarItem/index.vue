@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 15:26:18
- * @LastEditTime: 2021-02-26 15:38:38
+ * @LastEditTime: 2021-07-14 14:28:12
  * @Description: 侧边栏菜单项
 -->
 <template>
@@ -21,59 +21,49 @@
     </el-submenu>
   </div>
 </template>
-
 <script lang="ts">
-import { computed, defineComponent, toRefs } from 'vue';
+import { defineComponent } from 'vue';
+export default defineComponent({
+  name: 'SidebarItem' // 自引用，必须定义 name 属性
+});
+</script>
+<script lang="ts" setup>
+import { computed } from 'vue';
 import SubItem from '../SubItem/index';
 import AppLink from '../Link/index.vue';
-
 import { getUrl } from '../../../route/navMap';
-export default defineComponent({
-  name: 'SidebarItem',
-  components: {
-    SubItem,
-    AppLink
-  },
-  props: {
-    item: { type: Object, required: true },
-    isNest: { type: Boolean, default: false },
-    bashPath: { type: String, default: '' }
-  },
-  setup(props) {
-    let onlyOneChild = null;
-    /**
-     * 是否拥有要显示的子节点
-     */
-    const hasOneShowingChild = (children: NavArrItem[], parent: NavArrItem) => {
-      const showingChildren = children.filter((item) => {
-        if (!item.is_show) {
-          return false;
-        } else {
-          onlyOneChild = item;
-          return true;
-        }
-      });
-      // if (showingChildren.length === 1) {
-      //   return true;
-      // }
-      if (showingChildren.length === 0) {
-        onlyOneChild = {
-          ...parent,
-          node_path: '',
-          noShowingChildren: true
-        };
-        return true;
-      }
+interface Props {
+  item: NavArrItem;
+  isNest?: boolean;
+};
+const props = withDefaults(defineProps<Props>(), { isNest: false });
+let onlyOneChild: any = null;
+/**
+ * 是否拥有要显示的子节点
+ */
+const hasOneShowingChild = (children: NavArrItem[], parent: NavArrItem) => {
+  const showingChildren = children.filter((item) => {
+    if (!item.is_show) {
       return false;
+    } else {
+      onlyOneChild = item;
+      return true;
+    }
+  });
+  // if (showingChildren.length === 1) {
+  //   return true;
+  // }
+  if (showingChildren.length === 0) {
+    onlyOneChild = {
+      ...parent,
+      node_path: '',
+      noShowingChildren: true
     };
-
-    const resolvePath = (path: string) => getUrl(path);
-    const isOne = computed(() => hasOneShowingChild((props.item as NavArrItem).part, (props.item as NavArrItem)));
-    return {
-      isOne,
-      ...toRefs(props),
-      resolvePath
-    };
+    return true;
   }
-});
+  return false;
+};
+
+const resolvePath = (path: string) => getUrl(path);
+const isOne = computed(() => hasOneShowingChild((props.item as NavArrItem).part, (props.item as NavArrItem)));
 </script>

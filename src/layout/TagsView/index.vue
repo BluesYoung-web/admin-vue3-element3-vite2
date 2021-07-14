@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-11 13:35:58
- * @LastEditTime: 2021-06-16 16:54:52
+ * @LastEditTime: 2021-07-14 15:07:19
  * @Description: 标签选项卡组件
 -->
 <template>
@@ -29,245 +29,175 @@
     />
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent, reactive, ref, nextTick, computed, onMounted, watchEffect } from 'vue';
+<script lang="ts" setup>
+import { ref, nextTick, computed, onMounted, watchEffect } from 'vue';
 import YoungContextMenu from '../../components/YoungContextMenu/index.vue';
-import { RouteLocation, RouteRecordRaw, useRoute, useRouter } from 'vue-router';
 import ScrollPane from '../components/ScrollPane/index.vue';
 import { useRoutes, useTagsView } from '../../store';
-
-export interface MenuItem {
+import { useRoute, useRouter } from 'vue-router';
+interface MenuItem {
   title: string;
   handlerName: string;
 };
 interface Handlers {
-  [props: string] : () => void
+  [props: string]: () => void
 };
-export default defineComponent({
-  name: 'TagsView',
-  components: { ScrollPane, YoungContextMenu },
-  setup() {
-    /**
-     * 显示上下文菜单的标志
-     */
-    const showContextMenu = ref(false);
-    /**
-     * 上下文菜单项
-     */
-    const menuList = computed(() => {
-      let baseMenu = [
-        { title: '关闭此页面', handlerName: 'closeThis' },
-        { title: '关闭其他页面', handlerName: 'closeOthers' }
-      ];
-      const all = visitedViews.value.length;
-      if (all === 1) {
-        baseMenu = [];
-      }
-      const { name } = route;
-      const s_name = selectedTag.value?.name;
-      const res = (cachedViews.value.includes(s_name) && name === s_name) ? [{ title: '刷新此页面', handlerName: 'refresh' }].concat(baseMenu) : baseMenu;
-      return res;
-    });
-    const router = useRouter();
-    const route = useRoute();
-    /**
-     * 当前选中的标签
-     */
-    const selectedTag = ref<RouteLocation | null>(null);
-    /**
-     * 所有固定的标签(禁止关闭)
-     */
-    let affixTags = reactive<RouteLocation[]>([]);
+const showContextMenu = ref(false);
+const { visitedViews, cachedViews, updateVisitedView, delView, delCachedView, delOtherViews, delAllViews, addView } = useTagsView();
+const menuList = computed(() => {
+  let baseMenu: MenuItem[] = [
+    { title: '关闭此页面', handlerName: 'closeThis' },
+    { title: '关闭其他页面', handlerName: 'closeOthers' }
+  ];
+  if (visitedViews.value.length === 1) {
+    baseMenu = [];
+  }
+  const { name } = route;
+  const s_name = selectedTag.value?.name ?? '';
+  // 当前页为激活状态才允许刷新
+  const res = (cachedViews.value.includes(s_name) && name === s_name) ? [{ title: '刷新此页面', handlerName: 'refresh' }].concat(baseMenu) : baseMenu;
+  return res;
+});
+const router = useRouter();
+const route = useRoute();
+/**
+ * 当前选中的标签
+ */
+const selectedTag = ref<YoungRoute | null>(null);
+/**
+ * 所有固定的标签(禁止关闭)
+ */
+const affixTags = ref<YoungRoute[]>([]);
 
-    /**
-     * 判断激活的标签是否为当前页
-     */
-    const isActive = (view: RouteLocation) => view.path === route.path;
-    /**
-     * 判断该标签是否为固定标签
-     */
-    const isAffix = (route: RouteRecordRaw | RouteLocation) => route?.meta?.affix;
-    /**
-     * 返回上一个激活的页面
-     */
-    const toLastView = (visitedViews: RouteLocation[], view: RouteLocation) => {
-      const lastView = visitedViews.slice(-1)[0];
-      if (lastView) {
-        router.push(lastView.fullPath);
-      } else {
-        if (view.name === 'default') {
-          addTags();
-        } else {
-          initTags();
-          addTags();
-        }
-      }
-    };
+const isActive = (view: YoungRoute) => view.path === route.path;
+const isAffix = (route: YoungRoute) => route?.meta?.affix ?? false;
 
-    const tagList = ref(null);
-    const scrollPane = ref(null);
-    const {
-      visitedViews,
-      cachedViews,
-      updateVisitedView,
-      delView,
-      delCachedView,
-      delOtherViews,
-      delAllViews,
-      addView
-    } = useTagsView();
-    /**
-     * 移动到当前标签位置
-     */
-    const moveToCurrentTag = () => {
-      nextTick(() => {
-        const SP = scrollPane.value;
-        SP && (SP as any).moveToTarget();
-        SP && updateVisitedView(route);
-      });
-    };
-    /**
-     * 上下文菜单对应的处理函数对象
-     */
-    const menuHandlers: Handlers = {
-      'refresh': () => {
-        const tag = selectedTag.value;
-        if (tag) {
-          delCachedView(tag);
-        }
-      },
-      'closeThis': (tag = selectedTag.value) => {
-        if (tag) {
-          if (!isAffix(tag)) {
-            delView(tag);
-            isActive(tag) && toLastView(visitedViews.value, tag);
-          }
-        }
-      },
-      'closeOthers': () => {
-        const tag = selectedTag.value;
-        if (tag) {
-          router.push(tag);
-          delOtherViews(tag);
-        }
-      },
-      'closeAll': () => {
-        delAllViews();
-        const sTag = selectedTag.value;
-        if (sTag) {
-          if (affixTags.some((tag) => tag.path === sTag.path)) {
-            return;
-          }
-          toLastView(visitedViews.value, sTag);
-        }
-      }
-    };
-    /**
-     * 点击上下文菜单的回调函数
-     */
-    const clickItemHandler = (handler: string) => {
-      menuHandlers[handler] && menuHandlers[handler]();
-      showContextMenu.value = false;
-    };
-    /**
-     * 显示上下文菜单
-     */
-    const openContextMenu = (tag: RouteLocation, e: MouseEvent) => {
-      nextTick(() => {
-        if (menuList.value.length === 0) {
-          return;
-        }
-        showContextMenu.value = true;
-        selectedTag.value = tag;
-      });
-    };
-    /**
-     * 添加标签
-     */
-    const addTags = () => {
-      const { name } = route;
-      name && addView(route);
-    };
-    /**
-     * 初始化标签
-     */
-    const initTags = () => {
-      affixTags = filterAffixTags(routes.value as unknown as RouteRecordRaw[]);
-      for (const tag of affixTags) {
-        tag.name && addView(tag as unknown as RouteLocation);
-      }
-    };
-    /**
-     * 过滤固定标签
-     */
-    const filterAffixTags = (routes: RouteRecordRaw[], basePath = '/') => {
-      let tags: any[] = [];
-
-      routes.forEach((route) => {
-        if (isAffix(route)) {
-          const tagPath = resolve(basePath, route.path);
-          tags.push({
-            path: tagPath,
-            name: route.name,
-            meta: { ...route.meta }
-          });
-          if (route.children) {
-            const tempTags = filterAffixTags(route.children, route.path);
-            if (tempTags.length > 0) {
-              tags = [...tags, ...tempTags]
-            }
-          }
-        }
-      });
-      return tags;
-    };
-    /**
-     * 路径拼接
-     */
-    const resolve = (base: string, path: string) => {
-      if (base.slice(-1) === '/') {
-        return `${base.substr(0, base.length)}${path}`
-      } else {
-        return `${base}${path}`
-      }
-    };
-
-    /**
-     * 路由表
-     */
-    const { currentRoutes: routes } = useRoutes();
-
-    watchEffect(() => {
-      route.fullPath; // 仅为触发副作用
-      nextTick(() => {
-        addTags();
-        moveToCurrentTag();
-      });
-    });
-
-    /**
-     * 关闭标签页
-     */
-    const closeSelectedTag: (tag?: RouteLocation | null) => void = menuHandlers['closeThis'];
-
-    onMounted(() => {
+const toLastView = (visitedViews: YoungRoute[], view: YoungRoute) => {
+  const lastView = visitedViews.slice(-1)[0];
+  if (lastView) {
+    router.push(lastView.fullPath);
+  } else {
+    if (view.name === 'default') {
+      addTags();
+    } else {
       initTags();
       addTags();
-    });
-    return {
-      showContextMenu,
-      tagList,
-      scrollPane,
-      menuList,
-      clickItemHandler,
-      openContextMenu,
-      visitedViews,
-      isActive,
-      isAffix,
-      closeSelectedTag
-    };
+    }
   }
+};
+
+const tagList = ref(null);
+const scrollPane = ref(null);
+
+const moveToCurrentTag = () => {
+  nextTick(() => {
+    const SP = scrollPane.value as unknown as any;
+    SP && SP.moveToTarget?.();
+    SP && updateVisitedView(route as unknown as YoungRoute);
+  });
+};
+
+const menuHandlers: Handlers = {
+  'refresh': () => {
+    const tag = selectedTag.value;
+    tag && delCachedView(tag);
+  },
+  'closeThis': (tag = selectedTag.value) => {
+    if (tag) {
+      if (!isAffix(tag)) {
+        delView(tag);
+        isActive(tag) && toLastView(visitedViews.value, tag);
+      }
+    }
+  },
+  'closeOthers': () => {
+    const tag = selectedTag.value;
+    if (tag) {
+      router.push(tag);
+      delOtherViews(tag);
+    }
+  },
+  'closeAll': () => {
+    delAllViews();
+    const sTag = selectedTag.value;
+    if (sTag) {
+      if (affixTags.value.some((tag) => tag.path === sTag.path)) {
+        return;
+      }
+      toLastView(visitedViews.value, sTag);
+    }
+  }
+};
+const clickItemHandler = (handler: string) => {
+  menuHandlers?.[handler]?.();
+  showContextMenu.value = false;
+};
+const openContextMenu = (tag: YoungRoute, e: MouseEvent) => {
+  nextTick(() => {
+    if (menuList.value.length === 0) {
+      return;
+    }
+    showContextMenu.value = true;
+    selectedTag.value = tag;
+  });
+};
+const addTags = () => {
+  const { name } = route;
+  name && addView(route as unknown as YoungRoute);
+};
+const resolve = (base: string, path: string) => {
+  if (base.slice(-1) === '/') {
+    return `${base.substr(0, base.length)}${path}`
+  } else {
+    return `${base}${path}`
+  }
+};
+const filterAffixTags = (routes: YoungRoute[], basePath = '/') => {
+  let tags: any[] = [];
+  routes.forEach((route) => {
+    if (isAffix(route)) {
+      const tagPath = resolve(basePath, route.path);
+      tags.push({
+        path: tagPath,
+        name: route.name,
+        meta: { ...route.meta }
+      });
+      if (route.children) {
+        const tempTags = filterAffixTags(route.children, route.path);
+        if (tempTags.length > 0) {
+          tags = [...tags, ...tempTags]
+        }
+      }
+    }
+  });
+  return tags;
+};
+/**
+ * 路由表
+ */
+const { currentRoutes: routes } = useRoutes();
+const initTags = () => {
+  affixTags.value = filterAffixTags(routes.value as unknown as YoungRoute[]);
+  for (const tag of affixTags.value) {
+    tag.name && addView(tag as unknown as YoungRoute);
+  }
+};
+watchEffect(() => {
+  route.fullPath; // 仅为触发副作用
+  nextTick(() => {
+    addTags();
+    moveToCurrentTag();
+  });
+});
+
+/**
+ * 关闭标签页
+ */
+const closeSelectedTag: (tag?: YoungRoute | null) => void = menuHandlers['closeThis'];
+
+onMounted(() => {
+  initTags();
+  addTags();
 });
 </script>
 

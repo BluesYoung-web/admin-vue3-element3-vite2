@@ -1,14 +1,14 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 10:04:10
- * @LastEditTime: 2020-12-10 10:39:55
+ * @LastEditTime: 2021-07-14 12:07:11
  * @Description: 侧边栏开关按钮组件
 -->
 <template>
-  <div style="padding: 0 15px;" @click="toggleClick">
+  <div class="px-15px" @click="$emit('toggleClick')">
     <svg
-      :class="isActive ? 'is-active': 'no-active'"
-      class="hamburger"
+      :class="isActive ? 'rotate-180': ''"
+      class="w-20px h-20px inline-block align-middle transform transition-transform duration-500 ease-in-out"
       viewBox="0 0 1024 1024"
       xmlns="http://www.w3.org/2000/svg"
       width="64"
@@ -18,43 +18,8 @@
     </svg>
   </div>
 </template>
-
-<script lang="ts">
-import { defineComponent, toRefs } from 'vue';
-export default defineComponent({
-  name: 'Hamburger',
-  props: {
-    isActive: {
-      type: Boolean,
-      default: false
-    }
-  },
-  emits: ['toggleClick'],
-  setup(props, { emit }) {
-    const toggleClick = () => {
-      emit('toggleClick')
-    };
-
-    return {
-      ...toRefs(props),
-      toggleClick
-    }
-  }
-});
+<script lang="ts" setup>
+interface Props { isActive: boolean };
+const props = withDefaults(defineProps<Props>(), { isActive: false });
+const emit = defineEmits(['toggleClick']);
 </script>
-
-<style lang="scss" scoped>
-  .hamburger {
-    display: inline-block;
-    vertical-align: middle;
-    width: 20px;
-    height: 20px;
-  }
-  .is-active {
-    transform: rotate(180deg);
-    transition: transform 0.5s;
-  }
-  .no-active {
-    transition: transform 0.5s;
-  }
-</style>
