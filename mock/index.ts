@@ -1,14 +1,14 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-09 16:36:49
- * @LastEditTime: 2021-07-02 10:15:16
+ * @LastEditTime: 2021-07-15 16:20:14
  * @Description: 模拟数据
  */
 import { Method } from 'axios';
 import Mock from 'mockjs';
 import { operate } from './apis';
 
-export default () => {
+export const useMock = () => {
   // 随机延时
   Mock.setup({ timeout: '300-500' });
   // 数据拦截

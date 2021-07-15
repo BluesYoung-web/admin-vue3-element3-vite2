@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-07-13 16:49:58
+ * @LastEditTime: 2021-07-15 16:22:02
  * @Description: 项目入口文件
  */
 
@@ -19,7 +19,6 @@ import 'element-plus/lib/theme-chalk/index.css';
 // 引入中文资源(默认英文)
 // vite 警告，将后面引号的内容加入 vite.config.js 的 optimizeDeps 的 include 里面可解决
 import locale from 'element-plus/lib/locale/lang/zh-cn';
-import useMock from '../mock/index';
 // 引入 VueRouter
 import Router from './route/index';
 // 引入路由导航守卫
@@ -46,15 +45,17 @@ import App from './App.vue';
 import MyPlugins from './plugins/index';
 // 引入 console.log 美化
 import './assets/js/console-butifull';
-
-// 刷新页面的时候，如果存在 token 就直接获取导航栏列表
-if (getToken().token) {
-  generateUserInfo();
-}
-
-if (import.meta.env.MODE === 'mock') {
-  useMock();
-}
+(async () => {
+  // mock，按需加载
+  if (import.meta.env.MODE === 'mock') {
+    const { useMock } = await import('../mock/index');
+    useMock();
+  }
+  // 刷新页面的时候，如果存在 token 就直接获取导航栏列表
+  if (getToken().token) {
+    generateUserInfo();
+  }
+})();
 
 // 创建应用实例
 const app = createApp(App);
