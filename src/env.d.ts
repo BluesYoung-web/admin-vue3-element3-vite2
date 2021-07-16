@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-07-02 10:13:01
- * @LastEditTime: 2021-07-02 10:17:55
+ * @LastEditTime: 2021-07-16 17:19:24
  * @Description: import.meta.env.xxx 智能提示
  */
 interface ImportMetaEnv {
@@ -13,4 +13,8 @@ interface ImportMetaEnv {
    * HTTP 请求地址
    */
   VITE_BASE_HTTP: string;
+  /**
+   * WebSocket 连接地址
+   */
+  VITE_BASE_WS: string;
 }
