@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-03 14:06:59
- * @LastEditTime: 2021-07-07 09:09:48
+ * @LastEditTime: 2021-07-22 16:32:47
  * @Description: 前端路由
  */
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
@@ -17,17 +17,15 @@ const routes: RouteRecordRaw[] = [
   {
     path: '/',
     component: Layout,
-    redirect: '/Dashboard/dashboard',
-    name: 'default'
+    redirect: '/Dashboard/dashboard'
   },
   {
     path: '/Dashboard',
     component: Layout,
     redirect: '/Dashboard/dashboard',
-    name: 'dashboard',
     children: [
       {
-        path: '/Dashboard/dashboard',
+        path: 'dashboard',
         name: 'dashboard',
         component: () => import('/src/views/dashboard/index.vue'),
         meta: { title: '欢迎使用' }
@@ -49,7 +47,7 @@ for (const path of Object.keys(pages)) {
   };
   for (const { name, title } of _conf) {
     routeItem.children?.push({
-      path: `/${path}/${name}`,
+      path: name,
       name,
       // 动态生成的导入名称必须为相对路径，而且必须有扩展名
       // https://github.com/rollup/plugins/tree/master/packages/dynamic-import-vars#limitations
