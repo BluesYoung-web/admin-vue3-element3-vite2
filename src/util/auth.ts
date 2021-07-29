@@ -1,10 +1,10 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-08 11:15:26
- * @LastEditTime: 2021-07-10 19:53:40
+ * @LastEditTime: 2021-07-29 19:48:22
  * @Description: 用户身份认证 Cookie
  */
-import { get, set, remove } from 'js-cookie';
+import Cookies from 'js-cookie';
 
 const TONKEN_KEY = 'www.bluesyoung-web.top';
 
@@ -12,7 +12,7 @@ const TONKEN_KEY = 'www.bluesyoung-web.top';
  * 获取 Token
  */
 const getToken = () => {
-  const token = get(TONKEN_KEY) || '{}'
+  const token = Cookies.get(TONKEN_KEY) || '{}'
   return JSON.parse(token);
 };
 
@@ -21,13 +21,13 @@ const getToken = () => {
  * @param key 后端返回的用户信息
  */
 const setToken = (key: UserKey) => {
-  return set(TONKEN_KEY, key);
+  return Cookies.set(TONKEN_KEY, key);
 };
 /**
  * 删除 Token，退出登录
  */
 const removeToken = () => {
-  return remove(TONKEN_KEY);
+  return Cookies.remove(TONKEN_KEY);
 };
 
 export {
