@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-07-15 16:22:02
+ * @LastEditTime: 2021-07-30 15:13:03
  * @Description: 项目入口文件
  */
 
@@ -44,7 +44,7 @@ import App from './App.vue';
 // 引入自定义插件
 import MyPlugins from './plugins/index';
 // 引入 console.log 美化
-import './assets/js/console-butifull';
+// import './assets/js/console-butifull';
 (async () => {
   // mock，按需加载
   if (import.meta.env.MODE === 'mock') {

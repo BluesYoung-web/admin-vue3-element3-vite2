@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-07-16 17:17:33
- * @LastEditTime: 2021-07-25 20:34:02
+ * @LastEditTime: 2021-07-30 15:07:54
  * @Description: 封装 WebSocket 相关的操作
  */
 import { useWebSocket } from '@vueuse/core';
@@ -16,7 +16,7 @@ export class MySocket {
   private readonly close;
   constructor() {
     const ws_url = import.meta.env.VITE_BASE_WS;
-    const full_url = import.meta.env.DEV ? ws_url : `ws://${location.host}${ws_url}`
+    const full_url = import.meta.env.DEV ? ws_url : `ws://${location.host}${ws_url}`;
     const { token, aid } = getToken();
     const { status, data, send, open, close } = useWebSocket(`${full_url}?sign=${md5(aid + token)}&aid=${aid}`, {
       autoReconnect: {
