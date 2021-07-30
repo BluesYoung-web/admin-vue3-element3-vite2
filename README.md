@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-07-08 17:59:00
+ * @LastEditTime: 2021-07-30 15:30:56
  * @Description: 项目说明
 -->
 # 后台管理系统
@@ -33,6 +33,8 @@ VITE_TITLE = '***后台'
 
 # 后端使用 nginx 代理来跨域时，使用绝对路径
 VITE_BASE_HTTP = '/api'
+# websocket 连接地址，使用NGINX代理时为绝对路径，其他情况需要使用带协议的完整路径
+VITE_BASE_WS = '/wss'
 ```
 
 ## 注意事项
