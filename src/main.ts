@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-07-30 15:13:03
+ * @LastEditTime: 2021-07-30 16:25:02
  * @Description: 项目入口文件
  */
 
@@ -16,9 +16,6 @@ import 'virtual:windi-utilities.css';
 //  引入 Element Plus
 import ElementPlus from 'element-plus';
 import 'element-plus/lib/theme-chalk/index.css';
-// 引入中文资源(默认英文)
-// vite 警告，将后面引号的内容加入 vite.config.js 的 optimizeDeps 的 include 里面可解决
-import locale from 'element-plus/lib/locale/lang/zh-cn';
 // 引入 VueRouter
 import Router from './route/index';
 // 引入路由导航守卫
@@ -59,8 +56,8 @@ import MyPlugins from './plugins/index';
 
 // 创建应用实例
 const app = createApp(App);
-// 使用 Element Plus，启用中文资源，全局默认小图标
-app.use(ElementPlus, { locale, size: 'mini' });
+// 使用 Element Plus，全局默认小图标
+app.use(ElementPlus, { size: 'mini' });
 // 使用路由
 app.use(Router);
 
