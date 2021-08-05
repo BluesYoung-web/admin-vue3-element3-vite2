@@ -344,10 +344,10 @@
   dependencies:
     regenerator-runtime "^0.13.4"
 
-"@babel/standalone@^7.14.8":
-  version "7.14.8"
-  resolved "https://registry.yarnpkg.com/@babel/standalone/-/standalone-7.14.8.tgz#4fbb0be8161dbdb30e68d903595fb6479ecf9209"
-  integrity sha512-5Aa1Bhis4oZD23iLJE5CDYHEs1zSC3ejppHE5aim0OWjGCWTa9Oq1PwopK4u1++ao6B6POW/PqNZjOCZNTSx0Q==
+"@babel/standalone@^7.14.9":
+  version "7.15.1"
+  resolved "https://registry.npmjs.org/@babel/standalone/-/standalone-7.15.1.tgz#9b5e0852fa37c9e1408163b9be6e3ec1feb872a2"
+  integrity sha512-OJvIUtmXWEnTFvm+/TSMFkJK9vmbOF1wNmu/vbU18/Hlj9E6JdrkWxTkwbrsM1UjLtyb4w+pwZ/A1C4XZXorXg==
 
 "@babel/template@^7.0.0", "@babel/template@^7.12.13":
   version "7.12.13"
@@ -445,6 +445,11 @@
   dependencies:
     "@babel/helper-validator-identifier" "^7.14.8"
     to-fast-properties "^2.0.0"
+
+"@element-plus/icons@^0.0.11":
+  version "0.0.11"
+  resolved "https://registry.npmjs.org/@element-plus/icons/-/icons-0.0.11.tgz#9b187c002774548b911850d17fa5fc2f9a515f57"
+  integrity sha512-iKQXSxXu131Ai+I9Ymtcof9WId7kaXvB1+WRfAfpQCW7UiAMYgdNDqb/u0hgTo2Yq3MwC4MWJnNuTBEpG8r7+A==
 
 "@nodelib/fs.scandir@2.1.4":
   version "2.1.4"
@@ -556,13 +561,13 @@
   resolved "https://registry.npmjs.org/@types/throttle-debounce/-/throttle-debounce-2.1.0.tgz"
   integrity sha512-5eQEtSCoESnh2FsiLTxE121IiE60hnMqcb435fShf4bpLRjEu1Eoekht23y6zXS9Ts3l+Szu3TARnTsA0GkOkQ==
 
-"@vitejs/plugin-legacy@^1.5.0":
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/@vitejs/plugin-legacy/-/plugin-legacy-1.5.0.tgz#92893847fe1b20ebd83ff2371dfd8bc9658e6faa"
-  integrity sha512-q3F6/AEn6LNvK0ERkn0t8gzXTwPdexW4FtsIeIsCxopj02EQLtKi3XfWukU9+kjU599QouyRihvr+C2qO+0Xeg==
+"@vitejs/plugin-legacy@^1.5.1":
+  version "1.5.1"
+  resolved "https://registry.npmjs.org/@vitejs/plugin-legacy/-/plugin-legacy-1.5.1.tgz#fef2a11c05d83f5ab13d2d04e52d75bac13c6e6c"
+  integrity sha512-g+0iy0X3NJRUSKZK+OCeSxNWnCuuE/6lsmr2WLWPOEt1vp6LdfHuNCYRooCm6s0ccTZ/SiumVk8vt9DWSYs+8A==
   dependencies:
-    "@babel/standalone" "^7.14.8"
-    core-js "^3.15.2"
+    "@babel/standalone" "^7.14.9"
+    core-js "^3.16.0"
     magic-string "^0.25.7"
     regenerator-runtime "^0.13.9"
     systemjs "^6.10.2"
@@ -1169,11 +1174,6 @@ core-js-pure@^3.0.0:
   resolved "https://registry.npm.taobao.org/core-js-pure/download/core-js-pure-3.9.1.tgz?cache=0&sync_timestamp=1614537348035&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcore-js-pure%2Fdownload%2Fcore-js-pure-3.9.1.tgz"
   integrity sha1-Z3syImcXK9SQ5EZGlveQy8NVvsU=
 
-core-js@^3.15.2:
-  version "3.15.2"
-  resolved "https://registry.npmjs.org/core-js/-/core-js-3.15.2.tgz"
-  integrity sha512-tKs41J7NJVuaya8DxIOCnl8QuPHx5/ZVbFo1oKgVl1qHFBBrDctzQGtuLjPpRdNTWmKPH6oEvgN/MUID+l485Q==
-
 core-js@^3.16.0:
   version "3.16.0"
   resolved "https://registry.nlark.com/core-js/download/core-js-3.16.0.tgz#1d46fb33720bc1fa7f90d20431f36a5540858986"
@@ -1397,11 +1397,12 @@ electron-to-chromium@^1.3.723:
   resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.3.740.tgz"
   integrity sha512-Mi2m55JrX2BFbNZGKYR+2ItcGnR4O5HhrvgoRRyZQlaMGQULqDhoGkLWHzJoshSzi7k1PUofxcDbNhlFrDZNhg==
 
-element-plus@^1.0.2-beta.65:
-  version "1.0.2-beta.65"
-  resolved "https://registry.yarnpkg.com/element-plus/-/element-plus-1.0.2-beta.65.tgz#e1ff997fe395dd2e31a16517970058bc4d45fb3c"
-  integrity sha512-qQLubUvseYlz5xIatDh4M1wd9mQ3ceEjE/cDtzJ4Y8/63fip96H/JCl39za7wEXiwhqglnu3Ag48MmMbqwgBdw==
+element-plus@^1.0.2-beta.69:
+  version "1.0.2-beta.69"
+  resolved "https://registry.npmjs.org/element-plus/-/element-plus-1.0.2-beta.69.tgz#afd426005e4d5774db60a726ac5c9e3b68ce5808"
+  integrity sha512-LXHbwI4V3Sdr6VvG22IcMZXmChiNsTmrJ93kDTkGNMto6CXDm2cd6+6d3qAJF5Gq+pS0+5YbQ9kr2imE4HHtgg==
   dependencies:
+    "@element-plus/icons" "^0.0.11"
     "@popperjs/core" "^2.4.4"
     async-validator "^3.4.0"
     dayjs "1.x"
@@ -2674,10 +2675,10 @@ safe-regex@^1.1.0:
   resolved "https://registry.npmjs.org/safer-buffer/-/safer-buffer-2.1.2.tgz"
   integrity sha512-YZo3K82SD7Riyi0E1EQPojLz7kpepnSQI9IyPbHHg1XXXevb5dJI7tpyN2ADxGcQbHG7vcyRHk0cbwqcQriUtg==
 
-sass@^1.37.0:
-  version "1.37.0"
-  resolved "https://registry.nlark.com/sass/download/sass-1.37.0.tgz#f1b03a9d072ee9053a29d125c8130c78e92827c2"
-  integrity sha1-8bA6nQcu6QU6KdElyBMMeOkoJ8I=
+sass@^1.37.5:
+  version "1.37.5"
+  resolved "https://registry.npmjs.org/sass/-/sass-1.37.5.tgz#f6838351f7cc814c4fcfe1d9a20e0cabbd1e7b3c"
+  integrity sha512-Cx3ewxz9QB/ErnVIiWg2cH0kiYZ0FPvheDTVC6BsiEGBTZKKZJ1Gq5Kq6jy3PKtL6+EJ8NIoaBW/RSd2R6cZOA==
   dependencies:
     chokidar ">=3.0.0 <4.0.0"
 
@@ -3052,10 +3053,10 @@ vary@^1:
   resolved "https://registry.npmjs.org/vary/-/vary-1.1.2.tgz"
   integrity sha1-IpnwLG3tMNSllhsLn3RSShj2NPw=
 
-vite-plugin-svg-icons@^1.0.3:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/vite-plugin-svg-icons/-/vite-plugin-svg-icons-1.0.3.tgz#5812ee61458e8e9fc0e0fe8a6a3abbc20e875b0a"
-  integrity sha512-3YLjemTDWabzrBtSJJyhA9ZIy+EeRS+cri44omS03BkrVG2xepbwbAv8WiDc7YugKqUkh0MGEEYajFixl905Wg==
+vite-plugin-svg-icons@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.npmjs.org/vite-plugin-svg-icons/-/vite-plugin-svg-icons-1.0.4.tgz#9f20feff4b3bfbdcf5401d3efa75d4813f27dc22"
+  integrity sha512-sRneOwVRA6F2zfNKtmwTQl4WwtrdzFq8REO5elX9rd9vC5gNxJ5v4TNlm8cHWGCwvLuxCu5lrnhEU2rcg8izgg==
   dependencies:
     "@types/svgo" "^2.3.1"
     cors "^2.8.5"
