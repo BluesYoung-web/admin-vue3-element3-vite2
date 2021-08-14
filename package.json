@@ -32,7 +32,7 @@
     "normalize.css": "^8.0.1",
     "nprogress": "^0.2.0",
     "regenerator-runtime": "^0.13.9",
-    "svgo": "^2.3.1",
+    "svgo": "^2.4.0",
     "vue": "^3.2.2",
     "vue-router": "^4.0.11",
     "wangeditor": "^4.7.6",
