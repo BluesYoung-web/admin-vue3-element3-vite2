@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-11-12 10:21:58
- * @LastEditTime: 2021-05-07 20:20:19
+ * @LastEditTime: 2021-08-16 14:58:00
  * @Description: 深度克隆
  */
 import { isArray } from './isType';
@@ -11,13 +11,13 @@ export default function deepClone(obj: any) {
     return obj;
   }
   // 原始数据类型
-  if (typeof obj !== 'object' && typeof obj !== 'function') {
+  if (typeof obj !== 'object') {
     return obj;
   }
   const temp:any = isArray(obj) ? [] : {};
   for (const key in obj) {
-    // 日期类型的属性特殊处理
-    if (obj[key] instanceof Date) {
+    // 日期 | 正则 | 函数 类型的属性特殊处理
+    if ([Date, RegExp, Function].some((_type) => obj[key] instanceof _type)) {
       temp[key] = obj[key];
       continue;
     }
