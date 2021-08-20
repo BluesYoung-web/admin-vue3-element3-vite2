@@ -36,7 +36,7 @@
     "vue": "^3.2.4",
     "vue-router": "^4.0.11",
     "wangeditor": "^4.7.6",
-    "xlsx": "^0.17.0"
+    "xlsx": "^0.17.1"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
