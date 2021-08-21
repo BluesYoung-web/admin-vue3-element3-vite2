@@ -3119,10 +3119,10 @@ vue@^3.2.4:
     "@vue/runtime-dom" "3.2.4"
     "@vue/shared" "3.2.4"
 
-wangeditor@^4.7.6:
-  version "4.7.6"
-  resolved "https://registry.nlark.com/wangeditor/download/wangeditor-4.7.6.tgz?cache=0&sync_timestamp=1627614400149&other_urls=https%3A%2F%2Fregistry.nlark.com%2Fwangeditor%2Fdownload%2Fwangeditor-4.7.6.tgz#d2e6ddecf2474ec26c42773be2fac433d1e0baaf"
-  integrity sha1-0ubd7PJHTsJsQnc74vrEM9Hguq8=
+wangeditor@^4.7.7:
+  version "4.7.7"
+  resolved "https://registry.nlark.com/wangeditor/download/wangeditor-4.7.7.tgz#3d600f3cbecde78f8177830d6cb081db1fa7c19a"
+  integrity sha1-PWAPPL7N54+Bd4MNbLCB2x+nwZo=
   dependencies:
     "@babel/runtime" "^7.11.2"
     "@babel/runtime-corejs3" "^7.11.2"
