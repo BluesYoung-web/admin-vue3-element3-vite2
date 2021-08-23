@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-09 17:50:01
- * @LastEditTime: 2021-07-13 11:13:26
+ * @LastEditTime: 2021-08-23 15:42:44
  * @Description: 所有假接口
  */
 import Mock from 'mockjs';
@@ -124,6 +124,17 @@ export const operate = (params: Map<string, any>, body: FormData) => {
                 node_desc: '富文本编辑器',
                 node_name: '富文本编辑器',
                 node_path: '10000/19',
+                node_sort: 0,
+                node_type: 2,
+                parent_id: 2,
+                part: []
+              },
+              {
+                autoid: 24,
+                is_show: 1,
+                node_desc: '滑块验证',
+                node_name: '滑块验证',
+                node_path: '10000/22',
                 node_sort: 0,
                 node_type: 2,
                 parent_id: 2,

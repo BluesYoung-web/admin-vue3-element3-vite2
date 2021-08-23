@@ -4,6 +4,7 @@
   "description": "基于 Vue3 和 Element Plus 的后台管理系统",
   "main": "main.ts",
   "scripts": {
+    "create-new-page": "node ./bin/createNewPage.js",
     "dev": "vite --host",
     "dev:mock": "vite --mode mock",
     "dev:test": "vite --mode test",

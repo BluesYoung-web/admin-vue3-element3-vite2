@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-07-30 15:30:56
+ * @LastEditTime: 2021-08-23 09:43:21
  * @Description: 项目说明
 -->
 # 后台管理系统
@@ -93,8 +93,10 @@ yarn build
 
 ## <span style="color: red">自动创建页面</span>
 
-- <span style="color: red">装完依赖之后，需要执行 `npm link ./bin`</span>
-- 执行完成之后可以直接在命令行输入 `create-new-page` 即可(拥有命令自动补全)
+- 快捷指令 `yarn create-new-page`
+- 命令行：
+  - <span style="color: red">装完依赖之后，需要执行 `npm link ./bin`</span>
+  - 执行完成之后可以直接在命令行输入 `create-new-page` 即可(拥有命令自动补全)
 
 ## 项目说明
 

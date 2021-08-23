@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-25 17:05:01
- * @LastEditTime: 2021-07-13 11:08:55
+ * @LastEditTime: 2021-08-23 15:42:14
  * @Description: 前端路由鉴权
  */
 /**
@@ -15,6 +15,7 @@ navMap.set('10000/16', '/myComponents/table');
 navMap.set('10000/17', '/myComponents/tab');
 navMap.set('10000/18', '/myComponents/imgUpload');
 navMap.set('10000/19', '/myComponents/richTextEditor');
+navMap.set('10000/22', '/myComponents/slide-verify');
 /**
  * VueUse 使用示例
  */
