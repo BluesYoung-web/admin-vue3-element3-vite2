@@ -15,7 +15,7 @@ import 'virtual:windi-components.css';
 import 'virtual:windi-utilities.css';
 //  引入 Element Plus
 import ElementPlus from 'element-plus';
-import 'element-plus/lib/theme-chalk/index.css';
+import 'element-plus/dist/index.css';
 // 引入 VueRouter
 import Router from './route/index';
 // 引入路由导航守卫
