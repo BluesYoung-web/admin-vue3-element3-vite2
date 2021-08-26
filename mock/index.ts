@@ -1,12 +1,14 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-09 16:36:49
- * @LastEditTime: 2021-07-15 16:20:14
+ * @LastEditTime: 2021-08-26 17:12:52
  * @Description: 模拟数据
  */
-import { Method } from 'axios';
+import type { Method } from 'axios';
 import Mock from 'mockjs';
-import { operate } from './apis';
+// 仅为触发装饰器，注册对应的回调
+import './Controller/index';
+import { controllerMap } from './decorator/MockApi';
 
 export const useMock = () => {
   // 随机延时
@@ -15,10 +17,11 @@ export const useMock = () => {
   const path = import.meta.env.VITE_BASE_HTTP??'/api';
   const reg = new RegExp(path + '.*');
   Mock.mock(reg, (options: {url: string; type: Method; body: any; }) => {
-    const { url, body } = options;
-    const p = new Map(new URLSearchParams(url.substr(5)) as any);
-    const data = operate(p as Map<string, any>, body);
+    const { body } = options;
+    const com = body.get('com');
+    const task = body.get('task');
 
-    return { status: 0, data, msg: 'ok'};
+    const handler = controllerMap.get(`${com}/${task}`);
+    return handler?.(body)??{};
   });
 }

@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-08-14 16:59:04
+ * @LastEditTime: 2021-08-26 17:25:31
  * @Description: 项目入口文件
  */
 
@@ -43,11 +43,6 @@ import MyPlugins from './plugins/index';
 // 引入 console.log 美化
 // import './assets/js/console-butifull';
 (async () => {
-  // mock，按需加载
-  if (import.meta.env.MODE === 'mock') {
-    const { useMock } = await import('../mock/index');
-    useMock();
-  }
   // 刷新页面的时候，如果存在 token 就直接获取导航栏列表
   if (getToken().token) {
     generateUserInfo();
