@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-08-26 17:25:31
+ * @LastEditTime: 2021-08-27 11:31:20
  * @Description: 项目入口文件
  */
 
@@ -33,7 +33,7 @@ import '@/styles/index.scss';
 import YoungTable from '/components/YoungTable/index.vue';
 import YoungPagination from '/components/YoungPagination/index.vue';
 import YoungDialog from '/components/YoungDialog/index.vue';
-import YoungTabs from '/src/components/YoungTabs/index.vue';
+import YoungTabs from '/components/YoungTabs/index.vue';
 
 import { createApp } from 'vue';
 import App from './App.vue';

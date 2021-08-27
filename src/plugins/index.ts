@@ -1,10 +1,10 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-04 15:51:05
- * @LastEditTime: 2021-03-04 17:01:39
+ * @LastEditTime: 2021-08-27 09:30:21
  * @Description: 批量安装自定义插件
  */
-import { App } from "vue";
+import type { App } from 'vue';
 
 export default {
   install: (app: App<Element>, options: any) => {

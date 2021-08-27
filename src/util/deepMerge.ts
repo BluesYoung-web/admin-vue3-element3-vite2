@@ -1,10 +1,9 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-11-12 10:31:39
- * @LastEditTime: 2020-12-08 14:24:09
+ * @LastEditTime: 2021-08-27 10:39:49
  * @Description: 对象深度合并
  */
-import deepClone from './deepClone';
 /**
  * 对象深度合并
  * @param {object} target 合并后的对象

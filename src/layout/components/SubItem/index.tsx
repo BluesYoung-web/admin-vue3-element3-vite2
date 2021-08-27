@@ -1,11 +1,10 @@
-/**
+/*
  * @Author: zhangyang
- * @Date: 2020-12-10 14:47:44
- * @LastEditTime: 2020-12-10 14:47:45
+ * @Date: 2021-07-29 19:34:25
+ * @LastEditTime: 2021-08-27 09:32:47
  * @Description: 子组件
  */
 
-import { defineComponent } from 'vue';
 export default defineComponent({
   name: 'SubItem',
   props: {

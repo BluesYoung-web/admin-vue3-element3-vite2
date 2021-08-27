@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-26 11:50:08
- * @LastEditTime: 2021-07-07 12:18:10
+ * @LastEditTime: 2021-08-27 09:25:22
  * @Description: 自定义表格组件
 -->
 <template>
@@ -35,7 +35,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
 interface Head {
   date: string,
   autoid: number,

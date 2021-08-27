@@ -1,11 +1,10 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-11-12 10:21:58
- * @LastEditTime: 2021-08-16 14:58:00
+ * @LastEditTime: 2021-08-27 11:47:00
  * @Description: 深度克隆
  */
-import { isArray } from './isType';
-export default function deepClone(obj: any) {
+export const deepClone = (obj: any) => {
   // 常见的 非 值
   if ([null, undefined, NaN, false].includes(obj)) {
     return obj;
@@ -27,4 +26,6 @@ export default function deepClone(obj: any) {
     }
   }
   return temp;
-}
+};
+
+export default deepClone;

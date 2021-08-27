@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-08-23 09:38:17
- * @LastEditTime: 2021-08-23 15:39:21
+ * @LastEditTime: 2021-08-27 09:36:49
  * @Description: 滑块验证
 -->
 <template>
@@ -21,8 +21,6 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, onBeforeUnmount, ref, watchEffect } from 'vue';
-
 const props = withDefaults(defineProps<{
   modelValue?: boolean;
   zIndex?: number;

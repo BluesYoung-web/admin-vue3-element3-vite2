@@ -1,53 +1,54 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-11-12 10:23:05
- * @LastEditTime: 2020-12-08 14:13:29
+ * @LastEditTime: 2021-08-27 10:06:48
  * @Description: 判断变量的类型
  */
+const _toString = Object.prototype.toString;
 function isArray(arr: any) {
-  return Object.prototype.toString.call(arr) === '[object Array]';
+  return _toString.call(arr) === '[object Array]';
 }
 function isObject(obj: any) {
-  return Object.prototype.toString.call(obj) === '[object Object]';
+  return _toString.call(obj) === '[object Object]';
 }
 function isNumber(num: any) {
-  return Object.prototype.toString.call(num) === '[object Number]';
+  return _toString.call(num) === '[object Number]';
 }
 function isString(str: any) {
-  return Object.prototype.toString.call(str) === '[object String]';
+  return _toString.call(str) === '[object String]';
 }
 function isBoolean(bool: any) {
-  return Object.prototype.toString.call(bool) === '[object Boolean]';
+  return _toString.call(bool) === '[object Boolean]';
 }
 function isNull(n: any) {
-  return Object.prototype.toString.call(n) === '[object Null]';
+  return _toString.call(n) === '[object Null]';
 }
 function isUndefined(u: any) {
-  return Object.prototype.toString.call(u) === '[object Undefined]';
+  return _toString.call(u) === '[object Undefined]';
 }
 function isMap(m: any) {
-  return Object.prototype.toString.call(m) === '[object Map]';
+  return _toString.call(m) === '[object Map]';
 }
 function isWeakMap(m: any) {
-  return Object.prototype.toString.call(m) === '[object WeakMap]';
+  return _toString.call(m) === '[object WeakMap]';
 }
 function isSet(s: any) {
-  return Object.prototype.toString.call(s) === '[object Set]';
+  return _toString.call(s) === '[object Set]';
 }
 function isWeakSet(s: any) {
-  return Object.prototype.toString.call(s) === '[object WeakSet]';
+  return _toString.call(s) === '[object WeakSet]';
 }
 function isArrayBuffer(s: any) {
-  return Object.prototype.toString.call(s) === '[object ArrayBuffer]';
+  return _toString.call(s) === '[object ArrayBuffer]';
 }
 function isRegExp(reg: any) {
-  return Object.prototype.toString.call(reg) === '[object RegExp]';
+  return _toString.call(reg) === '[object RegExp]';
 }
 function isFunction(f: any) {
-  return Object.prototype.toString.call(f) === '[object Function]';
+  return _toString.call(f) === '[object Function]';
 }
 function isSymbol(s: any) {
-  return Object.prototype.toString.call(s) === '[object Symbol]';
+  return _toString.call(s) === '[object Symbol]';
 }
 export {
   isArray,

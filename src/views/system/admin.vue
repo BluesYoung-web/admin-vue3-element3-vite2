@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-03-20 16:46:54
- * @LastEditTime: 2021-07-13 10:57:17
+ * @LastEditTime: 2021-08-27 10:52:55
  * @Description: 管理员列表
 -->
 <template>
@@ -95,11 +95,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
 import { addAdminUserInfo, changeAdminState, editAdminUserInfo, getAdminInfo, getAdminList } from '../../api/system';
-import { ElMessage, ElMessageBox } from 'element-plus';
-import deepClone from '../../util/deepClone';
-
 interface Query{
   name: string;
   phone: string;

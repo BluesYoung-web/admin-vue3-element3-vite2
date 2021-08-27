@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-26 11:49:46
- * @LastEditTime: 2021-07-12 12:08:46
+ * @LastEditTime: 2021-08-27 10:41:08
  * @Description: 角色列表
 -->
 <template>
@@ -114,10 +114,7 @@
   </young-dialog>
 </template>
 <script lang="ts" setup>
-import { ElMessage, ElMessageBox } from 'element-plus';
-import { ref } from 'vue';
 import { addRole, delRole, editRole, getRoleList, getRolePriorityList } from '../../api/system';
-import deepClone from '../../util/deepClone';
 
 const FORM_TEMP: Role = {
   autoid: 0,

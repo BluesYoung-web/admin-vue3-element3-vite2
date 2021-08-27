@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 14:54:02
- * @LastEditTime: 2021-07-05 14:20:58
+ * @LastEditTime: 2021-08-27 09:36:38
  * @Description: SVG 图标组件
 -->
 <template>
@@ -13,7 +13,6 @@
 
 <script lang="ts" setup>
 import { isHttpUrl } from '../../util/valid';
-import { computed } from 'vue';
 
 interface Props {
   name: string;

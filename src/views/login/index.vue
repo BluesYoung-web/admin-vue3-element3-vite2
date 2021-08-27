@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-03 14:25:49
- * @LastEditTime: 2021-07-13 16:16:22
+ * @LastEditTime: 2021-08-27 10:03:23
  * @Description: 登录
 -->
 <template>
@@ -33,12 +33,9 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue';
 import { login } from '../../api/user';
 import { setToken } from '../../util/auth';
 import { generateUserInfo } from '../../util/generateUserInfo';
-import { ElMessage } from 'element-plus';
-import { useRoute, useRouter } from 'vue-router';
 
 interface LoginForm {
   username: string;

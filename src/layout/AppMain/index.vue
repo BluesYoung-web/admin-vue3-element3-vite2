@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 17:07:36
- * @LastEditTime: 2021-07-14 15:15:42
+ * @LastEditTime: 2021-08-27 10:12:47
  * @Description: 所有的子页面都在此组件内部显示
 -->
 <template>
@@ -20,8 +20,6 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue';
-import { useRoute } from 'vue-router';
 import { useTagsView } from '../../store';
 const route = useRoute();
 const { cachedViews, visitedViews } = useTagsView();

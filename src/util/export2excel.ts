@@ -1,12 +1,11 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-07-06 14:22:37
- * @LastEditTime: 2021-07-07 11:55:39
+ * @LastEditTime: 2021-08-27 10:40:02
  * @Description: 文件导出为 Excel
  */
 import { saveAs } from 'file-saver';
 import XLSX from 'xlsx';
-import deepClone from './deepClone';
 
 function sheet_from_array_of_arrays(data: any[]) {
   const ws: any = {};

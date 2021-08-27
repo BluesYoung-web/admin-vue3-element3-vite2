@@ -1,14 +1,13 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-09 17:21:19
- * @LastEditTime: 2021-07-13 11:36:50
+ * @LastEditTime: 2021-08-27 11:31:15
  * @Description: 页面权限控制
  */
 import router from './route/index';
 import common from './route/common/index';
 import NProgress from 'nprogress';
 
-import { ElMessageBox, ElMessage } from 'element-plus';
 import { getToken } from './util/auth';
 import { getRoleRoute } from './store/sessionStorage/index';
 

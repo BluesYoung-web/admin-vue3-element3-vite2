@@ -1,11 +1,10 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-05 13:41:16
- * @LastEditTime: 2021-07-05 16:25:46
+ * @LastEditTime: 2021-08-27 10:14:05
  * @Description: 富文本编辑器的基本配置
  */
-import { ElMessage } from 'element-plus';
-import { EmotionsType } from 'wangeditor/dist/config/menus';
+import type { EmotionsType } from 'wangeditor/dist/config/menus';
 
 type DicType = {
   [key: string]: string;

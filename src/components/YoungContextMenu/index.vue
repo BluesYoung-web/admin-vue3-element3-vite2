@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-11 13:56:45
- * @LastEditTime: 2021-07-05 15:13:29
+ * @LastEditTime: 2021-08-27 09:38:16
  * @Description: 上下文菜单组件
 -->
 <template>
@@ -25,7 +25,6 @@
 </template>
 <script lang="ts" setup>
 import { useMouse } from '@vueuse/core';
-import { nextTick, ref, watch } from 'vue';
 
 interface ContextMenuItem {
   handlerName: string;

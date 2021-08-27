@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-11 11:02:54
- * @LastEditTime: 2021-07-14 15:28:56
+ * @LastEditTime: 2021-08-27 10:17:02
  * @Description: 滚动容器
 -->
 <template>
@@ -15,13 +15,11 @@
   </el-scrollbar>
 </template>
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
 type EL = Element | null;
 /**
  * 标签间距
  */
 const tagSpacing = 4;
-const left = ref(0);
 const scrollContainer = ref(null);
 // 获取容器实例 el-scrollbar__wrap
 const scrollWrapper = computed<HTMLElement>(() => (scrollContainer.value as any)?.wrap);

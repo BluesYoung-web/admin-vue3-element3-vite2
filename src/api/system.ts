@@ -1,13 +1,11 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-26 13:54:37
- * @LastEditTime: 2021-07-13 10:56:36
+ * @LastEditTime: 2021-08-27 11:31:22
  * @Description: 系统相关的请求
  */
 import { basicRequest } from '../util/request';
 import { Params } from './_config';
-import moment from 'moment';
-
 /**
  * 获取节点列表
  */
@@ -91,6 +89,8 @@ const getRolePriorityList = async (role_id: number) => {
  * 获取管理员列表
  */
 const getAdminList = async (args: any) => {
+  const moment = await (await import('moment')).default;
+
   const task = 12;
   const params = { com: Params.com, task, ...args };
 

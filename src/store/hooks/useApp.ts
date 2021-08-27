@@ -1,11 +1,11 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-12 10:29:25
- * @LastEditTime: 2021-07-29 19:49:45
+ * @LastEditTime: 2021-08-27 09:27:35
  * @Description: 侧边栏相关
  */
-import { toRefs, reactive, Ref } from 'vue';
 import Cookies from 'js-cookie';
+import type { Ref } from 'vue';
 
 const SIDE_BAR_STATUS = 'sidebarStatus';
 const SIZE = 'size';

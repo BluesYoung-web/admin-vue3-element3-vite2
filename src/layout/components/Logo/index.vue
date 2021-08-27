@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 14:10:09
- * @LastEditTime: 2021-07-14 12:19:04
+ * @LastEditTime: 2021-08-27 09:33:49
  * @Description: 侧边栏 logo 组件
 -->
 <template>
@@ -18,7 +18,6 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { computed } from 'vue';
 import { useApp } from '../../../store';
 
 const title = import.meta.env.VITE_TITLE??'小黑后台';

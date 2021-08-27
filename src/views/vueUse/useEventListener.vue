@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-05-29 16:37:49
- * @LastEditTime: 2021-07-07 10:25:52
+ * @LastEditTime: 2021-08-27 09:22:52
  * @Description: useEventListener 使用示例
 -->
 <template>
@@ -17,7 +17,6 @@
 
 <script setup lang="ts">
 import { useEventListener } from '@vueuse/core';
-import { ref } from 'vue';
 const inputMsg = ref('');
 const inputRef = ref<HTMLDivElement>();
 const toBeDisplay = ref('');

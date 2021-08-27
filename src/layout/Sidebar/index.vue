@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 15:46:00
- * @LastEditTime: 2021-07-14 14:34:54
+ * @LastEditTime: 2021-08-27 10:10:53
  * @Description: 侧边栏组件
 -->
 <template>
@@ -23,8 +23,6 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { computed, ref } from 'vue';
-import { useRoute } from 'vue-router';
 import Logo from '../components/Logo/index.vue';
 import SidebarItem from '../components/SidebarItem/index.vue';
 import { useApp, useNav } from '../../store';

@@ -1,13 +1,13 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-25 17:05:01
- * @LastEditTime: 2021-08-23 15:42:14
+ * @LastEditTime: 2021-08-27 09:29:55
  * @Description: 前端路由鉴权
  */
 /**
  * 路由映射表
  */
-const navMap = new Map();
+const navMap = new Map<string, string>();
 /**
  * 自定义组件
  */

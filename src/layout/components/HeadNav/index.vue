@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 10:10:36
- * @LastEditTime: 2021-07-14 12:13:22
+ * @LastEditTime: 2021-08-27 09:34:18
  * @Description: 顶部导航(一级节点)
 -->
 <template>
@@ -10,7 +10,6 @@
   </el-menu>
 </template>
 <script lang="ts" setup>
-import { ref, computed } from 'vue';
 import { getNavArr } from '../../../store/sessionStorage/index';
 import { useNav } from '../../../store';
 

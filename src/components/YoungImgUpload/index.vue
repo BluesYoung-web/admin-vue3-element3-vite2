@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-03-03 13:55:37
- * @LastEditTime: 2021-07-13 16:03:03
+ * @LastEditTime: 2021-08-27 10:13:39
  * @Description: 图片上传组件
 -->
 <template>
@@ -33,8 +33,6 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ElMessage } from 'element-plus';
-import { ref } from 'vue';
 import { upload } from '../../util/request';
 interface Props {
   modelValue: string[];

@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-11 13:35:58
- * @LastEditTime: 2021-07-14 15:07:19
+ * @LastEditTime: 2021-08-27 10:10:40
  * @Description: 标签选项卡组件
 -->
 <template>
@@ -30,11 +30,9 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref, nextTick, computed, onMounted, watchEffect } from 'vue';
 import YoungContextMenu from '../../components/YoungContextMenu/index.vue';
 import ScrollPane from '../components/ScrollPane/index.vue';
 import { useRoutes, useTagsView } from '../../store';
-import { useRoute, useRouter } from 'vue-router';
 interface MenuItem {
   title: string;
   handlerName: string;

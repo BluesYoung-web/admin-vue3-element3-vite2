@@ -1,13 +1,12 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-12 14:06:12
- * @LastEditTime: 2021-03-26 17:24:36
+ * @LastEditTime: 2021-08-27 10:39:03
  * @Description: 路由相关
  */
-import { reactive, Ref, toRefs } from 'vue';
+import type { Ref } from 'vue';
 import { routes } from '../../route/index';
 import { RouteRecordRaw } from 'vue-router';
-import deepClone from '../../util/deepClone';
 
 interface RoutesState {
   /**

@@ -1,11 +1,10 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-12 13:40:11
- * @LastEditTime: 2021-03-26 17:24:53
+ * @LastEditTime: 2021-08-27 10:38:23
  * @Description: 导航相关
  */
-import { reactive, Ref, toRefs } from 'vue';
-import deepClone from '../../util/deepClone';
+import type { Ref } from 'vue';
 
 interface NavState {
   leftArr: NavArrItem[];

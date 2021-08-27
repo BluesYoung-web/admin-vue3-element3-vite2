@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-07-07 08:25:23
- * @LastEditTime: 2021-07-17 20:12:06
+ * @LastEditTime: 2021-08-27 11:48:29
  * @Description: 自动创建页面测试
 -->
 <template>
@@ -15,8 +15,6 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref, watchEffect } from 'vue';
-import { isJsonStr } from '../../util/valid';
 import { MySocket, MsgConf } from '../../util/youngSocket';
 const ws = new MySocket();
 const msgList = ref<string[]>([]);

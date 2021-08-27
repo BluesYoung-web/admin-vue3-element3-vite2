@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-03-05 11:22:05
- * @LastEditTime: 2021-07-05 16:35:42
+ * @LastEditTime: 2021-08-27 09:37:54
  * @Description: 富文本编辑器组件
 -->
 <template>
@@ -17,7 +17,6 @@
 import Editor from 'wangeditor';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/monokai-sublime.css';
-import { onBeforeUnmount, onMounted } from 'vue';
 import conf from './conf/index';
 import { CommonConfig } from './conf/index';
 

@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 10:51:05
- * @LastEditTime: 2021-07-05 15:49:14
+ * @LastEditTime: 2021-08-27 10:14:18
  * @Description: 弹出层组件，封装常用的按钮
 -->
 <template>
@@ -26,9 +26,6 @@
   </teleport>
 </template>
 <script lang="ts" setup>
-import { ElMessageBox } from 'element-plus';
-import { computed } from 'vue';
-
 interface Props {
   modelValue?: boolean;
   realTitle?: string;

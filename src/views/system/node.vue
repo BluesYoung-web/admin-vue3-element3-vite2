@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-26 11:49:25
- * @LastEditTime: 2021-07-12 17:52:29
+ * @LastEditTime: 2021-08-27 11:47:59
  * @Description: 节点列表
 -->
 <template>
@@ -86,11 +86,7 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
-import { ElMessage, ElMessageBox } from 'element-plus';
 import { getNodeList, addNode, editNode, delNode } from '../../api/system';
-import deepClone from '../../util/deepClone';
-import { isArray } from '../../util/isType';
 const FORM_TEMP: AddNodeItem = {
   autoid: 0,
   node_name: '',
@@ -158,7 +154,7 @@ const add = (parent: any) => {
  */
 const edit = async (nav: NavArrItem) => {
   isEdit.value = true;
-  form.value = nav;
+  form.value = deepClone(nav);
   form.value.node_id = nav.autoid;
 };
 
@@ -178,8 +174,6 @@ const clear = () => {
   isAdd.value = false;
   isEdit.value = false;
   form.value = deepClone(FORM_TEMP);
-  tableData.value = [];
-  getList();
 };
 const sure = async () => {
   if (isAdd.value) {
@@ -190,6 +184,8 @@ const sure = async () => {
     ElMessage.success('节点修改成功！');
   }
   clear();
+  tableData.value = [];
+  getList();
 };
 
 getList()

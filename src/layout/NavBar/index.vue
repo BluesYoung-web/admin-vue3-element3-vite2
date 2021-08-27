@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 11:30:30
- * @LastEditTime: 2021-07-11 17:34:52
+ * @LastEditTime: 2021-08-27 10:11:03
  * @Description: 顶部导航栏组件
 -->
 <template>
@@ -62,8 +62,6 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ElMessage } from 'element-plus';
-import { ref, computed } from 'vue';
 import { login_out, modifyPassword } from '../../api/user';
 import { useApp } from '../../store';
 import { getUserInfo } from '../../store/sessionStorage/index';

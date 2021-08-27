@@ -1,10 +1,10 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-04 17:08:50
- * @LastEditTime: 2021-07-07 10:30:19
+ * @LastEditTime: 2021-08-27 09:31:04
  * @Description: v-pin 弹幕组件
  */
-import { App, DirectiveBinding } from 'vue';
+import type { App, DirectiveBinding } from 'vue';
 import { Tween, Easing, update } from '@tweenjs/tween.js';
 
 const danmu = (el: HTMLElement, binding: DirectiveBinding<any>) => {

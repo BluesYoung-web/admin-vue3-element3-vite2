@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 17:14:23
- * @LastEditTime: 2021-07-14 15:26:34
+ * @LastEditTime: 2021-08-27 09:31:56
  * @Description: 整体布局
 -->
 <template>
@@ -18,7 +18,6 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { computed } from 'vue';
 import { NavBar, Sidebar, AppMain, TagsView } from './AppMain/index';
 import { useApp } from '../store';
 // sidebar 与组件重名，会导致解析异常

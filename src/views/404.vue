@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-03 15:02:28
- * @LastEditTime: 2021-07-02 10:22:55
+ * @LastEditTime: 2021-08-27 10:01:24
  * @Description: 404
 -->
 <template>
@@ -15,7 +15,7 @@
       </div>
       <div class="bullshit">
         <div class="bullshit__oops">似乎出了什么问题！</div>
-        <div class="bullshit__headline">{{ msg }}</div>
+        <div class="bullshit__headline">{{ tips }}</div>
         <div class="bullshit__info">请仔细检查链接是否正确，点击按钮可返回上页</div>
         <a class="bullshit__return-home" @click.prevent="goBack">返回上个页面</a>
       </div>
@@ -24,11 +24,11 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
-import { useRouter } from 'vue-router';
 import i_404 from '@/assets/img/404_images/404.png';
 import i_404_cloud from '@/assets/img/404_images/404_cloud.png';
-const msg = ref('页面不存在......');
+withDefaults(defineProps<{ tips?: string; }>(), {
+  tips: '页面不存在......'
+});
 const router = useRouter();
 const goBack = () => {
   router.back();

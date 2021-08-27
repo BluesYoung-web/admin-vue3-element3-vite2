@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-25 15:20:24
- * @LastEditTime: 2021-07-13 16:03:28
+ * @LastEditTime: 2021-08-27 09:25:52
  * @Description:
 -->
 <template>
@@ -11,7 +11,6 @@
   <young-img-upload v-model="imgs" @did="success" />
 </template>
 <script lang="ts" setup>
-import { ref } from 'vue';
 import YoungImgUpload from '/components/YoungImgUpload/index.vue';
 const imgs = ref([]);
 const success = console.log;

@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-03-23 17:34:05
- * @LastEditTime: 2021-07-05 14:26:18
+ * @LastEditTime: 2021-08-27 09:35:55
  * @Description: 选项卡组件
 -->
 <template>
@@ -18,7 +18,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue';
 interface TabItem {
   label: string;
   name: string;

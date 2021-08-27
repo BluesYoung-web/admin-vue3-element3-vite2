@@ -1,48 +1,48 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-11-12 10:59:58
- * @LastEditTime: 2020-12-08 14:19:41
+ * @LastEditTime: 2021-08-27 11:47:40
  * @Description: 常用的正则验证函数
  */
-import { isString, isArray, isObject } from './isType';
+import { isString, isObject } from './isType';
 /**
  * 验证是否为合法的 email
- * @param {string} email 
+ * @param {string} email
  */
 function isEmail(email: string) {
   return /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/.test(email);
 }
 /**
  * 验证是否为合法的手机号
- * @param {string} tel 
+ * @param {string} tel
  */
 function isMobile(tel: string) {
   return /^1[23456789]\d{9}$/.test(tel);
 }
 /**
  * 验证是否为合法的 http url
- * @param {string} url 
+ * @param {string} url
  */
 function isHttpUrl(url: string) {
   return /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-.\/?%&=]*)?/.test(url);
 }
 /**
  * 验证是否为合法的 websocket url
- * @param {string} url 
+ * @param {string} url
  */
 function isWebSocketUrl(url: string) {
   return /ws(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-.\/?%&=]*)?/.test(url);
 }
 /**
  * 验证是否为合法的日期格式
- * @param {string} date 
+ * @param {string} date
  */
 function isDate(date: string | number | Date) {
   return !/Invalid|NaN/.test(new Date(date).toString());
 }
 /**
  * 验证是否为合法的ISO日期格式
- * @param {string} date 
+ * @param {string} date
  */
 function isISODate(date: string) {
   return /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/.test(new Date(date).toString());
@@ -63,14 +63,14 @@ function isInteger(num: string | number) {
 }
 /**
  * 是否为合法的身份证
- * @param {number} id 
+ * @param {number} id
  */
 function isIdCard(id: string | number) {
   return /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/.test(id + '');
 }
 /**
  * 是否为合法车牌号
- * @param {string} value 
+ * @param {string} value
  */
 function isLicensePlate(value: string) {
 	// 新能源车牌
@@ -87,28 +87,28 @@ function isLicensePlate(value: string) {
 }
 /**
  * 是否为中文（不包含标点符号）
- * @param {string} str 
+ * @param {string} str
  */
 function isChinese(str: string) {
   return /^[\u4e00-\u9fa5]+$/gi.test(str);
 }
 /**
  * 是否为英文字母
- * @param {string} str 
+ * @param {string} str
  */
 function isLetter(str: string) {
   return /^[a-zA-Z]+$/.test(str);
 }
 /**
  * 是否为合法的座机号码
- * @param {string} value 
+ * @param {string} value
  */
 function isLandline(value: string) {
 	return /^\d{3,4}-\d{7,8}(-\d{3,4})?$/.test(value);
 }
 /**
  * 是否为 JSON 字符串
- * @param {string} str 
+ * @param {string} str
  */
 function isJsonStr(str: any) {
   if (isString(str)) {

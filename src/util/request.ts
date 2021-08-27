@@ -1,12 +1,12 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-09 16:02:36
- * @LastEditTime: 2021-07-13 15:35:12
+ * @LastEditTime: 2021-08-27 10:08:23
  * @Description: 封装不同的请求方法
  */
 import net from './net';
 import { getToken } from './auth';
-import { Method } from 'axios';
+import type { Method } from 'axios';
 
 interface ParamsObj {
   [property: string]: any;

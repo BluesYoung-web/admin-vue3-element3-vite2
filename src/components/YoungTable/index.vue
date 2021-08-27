@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-03-01 16:41:54
- * @LastEditTime: 2021-07-07 16:15:07
+ * @LastEditTime: 2021-08-27 09:36:04
  * @Description: 自定义表格组件
 -->
 <template>
@@ -77,7 +77,6 @@
   </el-table>
 </template>
 <script lang="ts" setup>
-import { ref, nextTick, onActivated, computed } from 'vue';
 /**
  * 定义组件属性
  */
