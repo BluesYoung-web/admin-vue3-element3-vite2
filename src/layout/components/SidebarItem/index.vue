@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 15:26:18
- * @LastEditTime: 2021-08-27 09:33:34
+ * @LastEditTime: 2021-08-27 14:10:25
  * @Description: 侧边栏菜单项
 -->
 <template>
@@ -13,12 +13,12 @@
         </el-menu-item>
       </app-link>
     </template>
-    <el-submenu v-else :index="item.node_name" popper-append-to-body>
+    <el-sub-menu v-else :index="item.node_name" popper-append-to-body>
       <template #title>
         <sub-item v-if="item.is_show" :title="item.node_name" :icon="item.icon" />
       </template>
       <sidebar-item v-for="child in item.part" :key="child.node_path" :item="child" :is-nest="isOne" :bath-path="resolvePath(child.node_path)" class="nest-menu" />
-    </el-submenu>
+    </el-sub-menu>
   </div>
 </template>
 <script lang="ts">
