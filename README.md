@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-08-23 09:43:21
+ * @LastEditTime: 2021-08-28 18:53:19
  * @Description: 项目说明
 -->
 # 后台管理系统
@@ -13,7 +13,8 @@
 ## 环境要求
 
 ```bash
-# node >= 12.13.0
+# 本地开发      node >= 16
+# 打包             node >= 12.13.0
 ```
 
 ## 权限管理
@@ -57,7 +58,7 @@ yarn upgrade package-name@version
 
 # 本地运行(请求真实开发服服务器)
 yarn dev
-# 本地运行(使用 mock，账号密码随便填)
+# 本地运行(使用自定义vite插件注入的中间件实现 mock，可以在控制台看到真实的请求)
 yarn dev:mock
 # 本地运行(请求测试服务器)
 yarn dev:test
