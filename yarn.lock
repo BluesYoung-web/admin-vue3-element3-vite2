@@ -1852,6 +1852,11 @@ has-flag@^4.0.0:
   resolved "https://registry.npm.taobao.org/has-flag/download/has-flag-4.0.0.tgz"
   integrity sha1-lEdx/ZyByBJlxNaUGGDaBrtZR5s=
 
+has-pkg@^0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/has-pkg/-/has-pkg-0.0.1.tgz#f9d9139ed83e2487deae5eb4ac13182a2e903857"
+  integrity sha512-UuzsNxcEOdEwRsz4HtaceT7jg71L2gopEq8OMOGKtPLYhHhF4RJZtkcZ4Xn0jmAmBSNhm0xPhrywgZkLu4aMYQ==
+
 has-value@^0.3.1:
   version "0.3.1"
   resolved "https://registry.npmjs.org/has-value/-/has-value-0.3.1.tgz"
@@ -3390,10 +3395,30 @@ unplugin-auto-import@^0.2.0:
     magic-string "^0.25.7"
     unplugin "^0.2.1"
 
+unplugin-vue-components@^0.14.5:
+  version "0.14.5"
+  resolved "https://registry.yarnpkg.com/unplugin-vue-components/-/unplugin-vue-components-0.14.5.tgz#abbc8bf3671692524cc898c2efaee73fa8d099fd"
+  integrity sha512-E4iU7j/PjKer36MLNIQRKNa56hshNNwPxYXjR6elsXjnjDTlLk8hm5+mEF8NtlTlwMjqkRqJdE3eAjyOk072QA==
+  dependencies:
+    "@rollup/pluginutils" "^4.1.1"
+    debug "^4.3.2"
+    fast-glob "^3.2.7"
+    has-pkg "^0.0.1"
+    magic-string "^0.25.7"
+    minimatch "^3.0.4"
+    unplugin "^0.2.4"
+
 unplugin@^0.2.1:
   version "0.2.3"
   resolved "https://registry.nlark.com/unplugin/download/unplugin-0.2.3.tgz#01a405e4cb69d54229875c81561930d7b1630a97"
   integrity sha1-AaQF5Mtp1UIph1yBVhkw17FjCpc=
+  dependencies:
+    webpack-virtual-modules "^0.4.3"
+
+unplugin@^0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/unplugin/-/unplugin-0.2.4.tgz#a77b7ddb53fbbcdeb4dcb6e6dea36f62a9a7cb3e"
+  integrity sha512-BwiCOnbEx/LMKegZblvOO/pDORHiHJgWAiEwsSsF/KOOYvZWtIwrqGs2/kCWGlGIS+3AGbvcpzoGlKcdsf0LBQ==
   dependencies:
     webpack-virtual-modules "^0.4.3"
 

@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-08-27 11:43:22
+ * @LastEditTime: 2021-08-31 15:36:56
  * @Description: 配置文件
  */
 import { defineConfig, ConfigEnv, UserConfigExport, loadEnv } from 'vite';
@@ -11,6 +11,8 @@ import legacy from '@vitejs/plugin-legacy';
 import SvgIcons from 'vite-plugin-svg-icons';
 import Windicss from 'vite-plugin-windicss';
 import AutoImport from 'unplugin-auto-import/vite';
+import AutoComopnents from 'unplugin-vue-components/vite';
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 
 import { resolve } from 'path';
 import { createMockServe } from './mock/createMockServe';
@@ -33,6 +35,11 @@ export default ({ mode, command }: ConfigEnv): UserConfigExport => {
     plugins: [
       vue(),
       createMockServe({ viteEnv }),
+      AutoComopnents({
+        dirs: ['./src/components'],
+        dts: './src/auto-components.d.ts',
+        resolvers: [ElementPlusResolver({ importStyle: 'sass' })]
+      }),
       AutoImport({
         dts: './src/auto-imports.d.ts',
         imports: ['vue', 'vue-router', {

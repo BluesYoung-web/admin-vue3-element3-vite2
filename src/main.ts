@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-08-27 11:31:20
+ * @LastEditTime: 2021-08-31 17:50:40
  * @Description: 项目入口文件
  */
 
@@ -13,9 +13,11 @@ import 'regenerator-runtime/runtime';
 // import 'virtual:windi-base.css';
 import 'virtual:windi-components.css';
 import 'virtual:windi-utilities.css';
-//  引入 Element Plus
-import ElementPlus from 'element-plus';
+// to be fix 打包之后样式异常
 import 'element-plus/dist/index.css';
+//  引入弹框相关的样式(auto-import 只能识别 api，auto-component 只能识别 <tag />)
+// import 'element-plus/theme-chalk/el-message.css';
+// import 'element-plus/theme-chalk/el-message-box.css';
 // 引入 VueRouter
 import Router from './route/index';
 // 引入路由导航守卫
@@ -29,11 +31,6 @@ import 'virtual:svg-icons-register';
 import 'normalize.css/normalize.css';
 // 自定义样式
 import '@/styles/index.scss';
-// 常用的自定义组件
-import YoungTable from '/components/YoungTable/index.vue';
-import YoungPagination from '/components/YoungPagination/index.vue';
-import YoungDialog from '/components/YoungDialog/index.vue';
-import YoungTabs from '/components/YoungTabs/index.vue';
 
 import { createApp } from 'vue';
 import App from './App.vue';
@@ -51,17 +48,10 @@ import MyPlugins from './plugins/index';
 
 // 创建应用实例
 const app = createApp(App);
-// 使用 Element Plus，全局默认小图标
-app.use(ElementPlus, { size: 'mini' });
+// 使用 Element Plus 全局配置
+app.config.globalProperties.$ELEMENT = { size: 'mini' };
 // 使用路由
 app.use(Router);
-
-// 注册自定义组件
-app.component('YoungTable', YoungTable);
-app.component('YoungDialog', YoungDialog);
-app.component('YoungPagination', YoungPagination);
-app.component('YoungTabs', YoungTabs);
-
 // 安装自定义插件
 app.use(MyPlugins, '来了老弟');
 

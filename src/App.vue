@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-02 18:02:24
- * @LastEditTime: 2021-07-30 16:24:35
+ * @LastEditTime: 2021-08-31 15:08:10
  * @Description: 主页面
 -->
 <template>
@@ -11,6 +11,5 @@
 </template>
 
 <script lang="ts" setup>
-import { ElConfigProvider} from 'element-plus';
 import locale from 'element-plus/lib/locale/lang/zh-cn';
 </script>

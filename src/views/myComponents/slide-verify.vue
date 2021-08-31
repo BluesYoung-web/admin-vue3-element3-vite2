@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-08-23 09:44:43
- * @LastEditTime: 2021-08-27 10:02:53
+ * @LastEditTime: 2021-08-31 15:10:24
  * @Description: 滑块验证
 -->
 <template>
@@ -9,7 +9,6 @@
   <young-slide-verify v-model="showVerify" @success="success" @fail="fail" />
 </template>
 <script lang="ts" setup>
-import YoungSlideVerify from '../../components/YoungSlideVerify/index.vue';
 const showVerify = ref(false);
 const success = () => {
   showVerify.value = false;

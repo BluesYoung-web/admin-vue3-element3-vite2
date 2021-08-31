@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-25 15:23:19
- * @LastEditTime: 2021-07-07 10:53:31
+ * @LastEditTime: 2021-08-31 15:10:48
  * @Description: 富文本编辑器
 -->
 <template>
@@ -10,6 +10,5 @@
   </div>
 </template>
 <script lang="ts" setup>
-import YoungEditor from '/components/YoungEditor/index.vue';
 const submitHandler = (res: string) => console.log(res);
 </script>

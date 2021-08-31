@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-03-25 11:46:31
- * @LastEditTime: 2021-08-27 09:25:27
+ * @LastEditTime: 2021-08-31 15:09:57
  * @Description: tab 组件
 -->
 <template>
@@ -37,7 +37,6 @@
 </template>
 
 <script lang="ts" setup>
-import YoungContextMenu from '/components/YoungContextMenu/index.vue';
 import cssVar from '/src/styles/variables.module.scss';
 
 const data = ref();
