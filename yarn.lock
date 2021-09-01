@@ -2196,10 +2196,10 @@ js-base64@^2.1.9:
   resolved "https://registry.npmjs.org/js-base64/-/js-base64-2.6.4.tgz"
   integrity sha512-pZe//GGmwJndub7ZghVHz7vjb2LgC1m8B07Au3eYqeqv9emhESByMXxaEgkUkEqJe87oBbSniGYoQNIBklc7IQ==
 
-js-cookie@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/js-cookie/-/js-cookie-3.0.0.tgz#db1661d5459920ec95aaf186ccf74ceb4a495164"
-  integrity sha512-oUbbplKuH07/XX2YD2+Q+GMiPpnVXaRz8npE7suhBH9QEkJe2W7mQ6rwuMXHue3fpfcftQwzgyvGzIHyfCSngQ==
+js-cookie@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/js-cookie/-/js-cookie-3.0.1.tgz#9e39b4c6c2f56563708d7d31f6f5f21873a92414"
+  integrity sha512-+0rgsUXZu4ncpPxRL+lNEptWMOWl9etvPHc/koSRp6MPwpRYAhmk0dUG00J4bxVV3r9uUzfo24wW0knS07SKSw==
 
 js-tokens@^4.0.0:
   version "4.0.0"
@@ -3385,10 +3385,10 @@ universalify@^2.0.0:
   resolved "https://registry.npmjs.org/universalify/-/universalify-2.0.0.tgz"
   integrity sha512-hAZsKq7Yy11Zu1DE0OzWjw7nnLZmJZYTDZZyEFHZdUhV8FkH5MCfoU1XMaxXovpyW5nq5scPqq0ZDP9Zyl04oQ==
 
-unplugin-auto-import@^0.2.6:
-  version "0.2.6"
-  resolved "https://registry.yarnpkg.com/unplugin-auto-import/-/unplugin-auto-import-0.2.6.tgz#ab96a41a3b1590320dcab3d40fea59f92854ffc8"
-  integrity sha512-LBwsfJrwYiqFpUU3cBwzdlwEBuPMQzHXkDeOPsJJSza+zqufe8OxeACDYMeERUGb2+xj8IF+q2S6n/ilQLUyyg==
+unplugin-auto-import@^0.2.7:
+  version "0.2.7"
+  resolved "https://registry.yarnpkg.com/unplugin-auto-import/-/unplugin-auto-import-0.2.7.tgz#47276af071e6ef629bbdda7719139a5d75e9d54c"
+  integrity sha512-J9QAmI5WzjiW0bVaVeDEgZVxvjXBqB+sgAN+6/HRuOAaJoAbtE+oKa7H8TjlHvao+mKvvB3igUIMF35Mes5PYQ==
   dependencies:
     "@antfu/utils" "^0.3.0"
     "@rollup/pluginutils" "^4.1.1"
@@ -3396,10 +3396,10 @@ unplugin-auto-import@^0.2.6:
     magic-string "^0.25.7"
     unplugin "^0.2.1"
 
-unplugin-vue-components@^0.14.6:
-  version "0.14.6"
-  resolved "https://registry.yarnpkg.com/unplugin-vue-components/-/unplugin-vue-components-0.14.6.tgz#154ce2cb6400c081435316ee7ba91f72225ddd7a"
-  integrity sha512-zNNRFX/HM6vDj0rE/e1Ezc5Mjf3b76AUMbeHo742w3VASiODXqqN3WkRJnA2jSZQi5VrGqBv9t6aZSS8/A36Og==
+unplugin-vue-components@^0.14.7:
+  version "0.14.7"
+  resolved "https://registry.yarnpkg.com/unplugin-vue-components/-/unplugin-vue-components-0.14.7.tgz#83414e2b63f97c662c413bbd898053437b6e81f4"
+  integrity sha512-8akFOEbWK5mtxf89+kHwLSeSKnPwb/adaBsmPMd+WZGwwNF8dvtlA2ZMLCGemPZAayUdbLpTeupQrKxgPs6EaA==
   dependencies:
     "@rollup/pluginutils" "^4.1.1"
     debug "^4.3.2"
