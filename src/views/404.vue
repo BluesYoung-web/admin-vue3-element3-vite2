@@ -1,231 +1,481 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-03 15:02:28
- * @LastEditTime: 2021-08-27 10:01:24
+ * @LastEditTime: 2021-09-01 18:01:22
  * @Description: 404
 -->
 <template>
-  <div class="wscn-http404-container">
-    <div class="wscn-http404">
-      <div class="pic-404">
-        <img class="pic-404__parent" :src="i_404" alt="404">
-        <img class="pic-404__child left" :src="i_404_cloud" alt="404">
-        <img class="pic-404__child mid" :src="i_404_cloud" alt="404">
-        <img class="pic-404__child right" :src="i_404_cloud" alt="404">
-      </div>
-      <div class="bullshit">
-        <div class="bullshit__oops">似乎出了什么问题！</div>
-        <div class="bullshit__headline">{{ tips }}</div>
-        <div class="bullshit__info">请仔细检查链接是否正确，点击按钮可返回上页</div>
-        <a class="bullshit__return-home" @click.prevent="goBack">返回上个页面</a>
+  <div class="g-container">
+    <div class="rail">
+      <div class="stamp four">4</div>
+      <div class="stamp zero">0</div>
+      <div class="stamp four">4</div>
+      <div class="stamp zero">0</div>
+      <div class="stamp four">4</div>
+      <div class="stamp zero">0</div>
+      <div class="stamp four">4</div>
+      <div class="stamp zero">0</div>
+      <div class="stamp four">4</div>
+      <div class="stamp zero">0</div>
+      <div class="stamp four">4</div>
+      <div class="stamp zero">0</div>
+      <div class="stamp four">4</div>
+      <div class="stamp zero">0</div>
+      <div class="stamp four">4</div>
+      <div class="stamp zero">0</div>
+      <div class="stamp four">4</div>
+      <div class="stamp zero">0</div>
+      <div class="stamp four">4</div>
+      <div class="stamp zero">0</div>
+    </div>
+    <div class="world">
+      <div class="forward">
+        <div class="box">
+          <div class="wall"></div>
+          <div class="wall"></div>
+          <div class="wall"></div>
+          <div class="wall"></div>
+          <div class="wall"></div>
+          <div class="wall"></div>
+        </div>
       </div>
     </div>
+  </div>
+  <div class="bullshit">
+    <div class="bullshit__oops">似乎出了什么问题！</div>
+    <div class="bullshit__headline">{{ tips }}</div>
+    <div class="bullshit__info">请仔细检查链接是否正确，点击按钮可返回上页</div>
+    <a class="bullshit__return-home" @click.prevent="goBack">返回上个页面</a>
   </div>
 </template>
 
 <script lang="ts" setup>
-import i_404 from '@/assets/img/404_images/404.png';
-import i_404_cloud from '@/assets/img/404_images/404_cloud.png';
 withDefaults(defineProps<{ tips?: string; }>(), {
   tips: '页面不存在......'
 });
 const router = useRouter();
-const goBack = () => {
-  router.back();
-};
+const goBack = () => router.back();
 
 </script>
-
 <style lang="scss" scoped>
-.wscn-http404-container{
-  transform: translate(-50%,-50%);
-  position: absolute;
-  top: 40%;
-  left: 50%;
-}
-.wscn-http404 {
-  position: relative;
-  width: 1200px;
-  padding: 0 50px;
+body {
+  background: #fff;
+  height: 100vh;
   overflow: hidden;
-  .pic-404 {
-    position: relative;
-    float: left;
-    width: 600px;
-    overflow: hidden;
-    &__parent {
-      width: 100%;
-    }
-    &__child {
-      position: absolute;
-      &.left {
-        width: 80px;
-        top: 17px;
-        left: 220px;
-        opacity: 0;
-        animation-name: cloudLeft;
-        animation-duration: 2s;
-        animation-timing-function: linear;
-        animation-fill-mode: forwards;
-        animation-delay: 1s;
-      }
-      &.mid {
-        width: 46px;
-        top: 10px;
-        left: 420px;
-        opacity: 0;
-        animation-name: cloudMid;
-        animation-duration: 2s;
-        animation-timing-function: linear;
-        animation-fill-mode: forwards;
-        animation-delay: 1.2s;
-      }
-      &.right {
-        width: 62px;
-        top: 100px;
-        left: 500px;
-        opacity: 0;
-        animation-name: cloudRight;
-        animation-duration: 2s;
-        animation-timing-function: linear;
-        animation-fill-mode: forwards;
-        animation-delay: 1s;
-      }
-      @keyframes cloudLeft {
-        0% {
-          top: 17px;
-          left: 220px;
-          opacity: 0;
-        }
-        20% {
-          top: 33px;
-          left: 188px;
-          opacity: 1;
-        }
-        80% {
-          top: 81px;
-          left: 92px;
-          opacity: 1;
-        }
-        100% {
-          top: 97px;
-          left: 60px;
-          opacity: 0;
-        }
-      }
-      @keyframes cloudMid {
-        0% {
-          top: 10px;
-          left: 420px;
-          opacity: 0;
-        }
-        20% {
-          top: 40px;
-          left: 360px;
-          opacity: 1;
-        }
-        70% {
-          top: 130px;
-          left: 180px;
-          opacity: 1;
-        }
-        100% {
-          top: 160px;
-          left: 120px;
-          opacity: 0;
-        }
-      }
-      @keyframes cloudRight {
-        0% {
-          top: 100px;
-          left: 500px;
-          opacity: 0;
-        }
-        20% {
-          top: 120px;
-          left: 460px;
-          opacity: 1;
-        }
-        80% {
-          top: 180px;
-          left: 340px;
-          opacity: 1;
-        }
-        100% {
-          top: 200px;
-          left: 300px;
-          opacity: 0;
-        }
-      }
-    }
+  display: flex;
+  flex-wrap: wrap;
+  font-family: "Anton", sans-serif;
+  align-items: flex-start;
+  perspective: 1000px;
+}
+body > a {
+  opacity: 0;
+  position: fixed;
+  bottom: -100px;
+  left: -100px;
+}
+
+div {
+  transform-style: preserve-3d;
+}
+
+.g-container {
+  display: flex;
+  width: 100vw;
+  height: 30vh;
+  justify-content: center;
+  align-items: center;
+  /* perspective: 1000px; */
+}
+
+.rail {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotateX(-30deg) rotateY(-30deg);
+}
+.rail .stamp {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #333;
+  color: #fff;
+  font-size: 7rem;
+}
+.rail .stamp:nth-child(1) {
+  -webkit-animation: stampSlide 40000ms -2300ms linear infinite;
+          animation: stampSlide 40000ms -2300ms linear infinite;
+}
+.rail .stamp:nth-child(2) {
+  -webkit-animation: stampSlide 40000ms -4300ms linear infinite;
+          animation: stampSlide 40000ms -4300ms linear infinite;
+}
+.rail .stamp:nth-child(3) {
+  -webkit-animation: stampSlide 40000ms -6300ms linear infinite;
+          animation: stampSlide 40000ms -6300ms linear infinite;
+}
+.rail .stamp:nth-child(4) {
+  -webkit-animation: stampSlide 40000ms -8300ms linear infinite;
+          animation: stampSlide 40000ms -8300ms linear infinite;
+}
+.rail .stamp:nth-child(5) {
+  -webkit-animation: stampSlide 40000ms -10300ms linear infinite;
+          animation: stampSlide 40000ms -10300ms linear infinite;
+}
+.rail .stamp:nth-child(6) {
+  -webkit-animation: stampSlide 40000ms -12300ms linear infinite;
+          animation: stampSlide 40000ms -12300ms linear infinite;
+}
+.rail .stamp:nth-child(7) {
+  -webkit-animation: stampSlide 40000ms -14300ms linear infinite;
+          animation: stampSlide 40000ms -14300ms linear infinite;
+}
+.rail .stamp:nth-child(8) {
+  -webkit-animation: stampSlide 40000ms -16300ms linear infinite;
+          animation: stampSlide 40000ms -16300ms linear infinite;
+}
+.rail .stamp:nth-child(9) {
+  -webkit-animation: stampSlide 40000ms -18300ms linear infinite;
+          animation: stampSlide 40000ms -18300ms linear infinite;
+}
+.rail .stamp:nth-child(10) {
+  -webkit-animation: stampSlide 40000ms -20300ms linear infinite;
+          animation: stampSlide 40000ms -20300ms linear infinite;
+}
+.rail .stamp:nth-child(11) {
+  -webkit-animation: stampSlide 40000ms -22300ms linear infinite;
+          animation: stampSlide 40000ms -22300ms linear infinite;
+}
+.rail .stamp:nth-child(12) {
+  -webkit-animation: stampSlide 40000ms -24300ms linear infinite;
+          animation: stampSlide 40000ms -24300ms linear infinite;
+}
+.rail .stamp:nth-child(13) {
+  -webkit-animation: stampSlide 40000ms -26300ms linear infinite;
+          animation: stampSlide 40000ms -26300ms linear infinite;
+}
+.rail .stamp:nth-child(14) {
+  -webkit-animation: stampSlide 40000ms -28300ms linear infinite;
+          animation: stampSlide 40000ms -28300ms linear infinite;
+}
+.rail .stamp:nth-child(15) {
+  -webkit-animation: stampSlide 40000ms -30300ms linear infinite;
+          animation: stampSlide 40000ms -30300ms linear infinite;
+}
+.rail .stamp:nth-child(16) {
+  -webkit-animation: stampSlide 40000ms -32300ms linear infinite;
+          animation: stampSlide 40000ms -32300ms linear infinite;
+}
+.rail .stamp:nth-child(17) {
+  -webkit-animation: stampSlide 40000ms -34300ms linear infinite;
+          animation: stampSlide 40000ms -34300ms linear infinite;
+}
+.rail .stamp:nth-child(18) {
+  -webkit-animation: stampSlide 40000ms -36300ms linear infinite;
+          animation: stampSlide 40000ms -36300ms linear infinite;
+}
+.rail .stamp:nth-child(19) {
+  -webkit-animation: stampSlide 40000ms -38300ms linear infinite;
+          animation: stampSlide 40000ms -38300ms linear infinite;
+}
+.rail .stamp:nth-child(20) {
+  -webkit-animation: stampSlide 40000ms -40300ms linear infinite;
+          animation: stampSlide 40000ms -40300ms linear infinite;
+}
+
+@-webkit-keyframes stampSlide {
+  0% {
+    transform: rotateX(90deg) rotateZ(-90deg) translateZ(-200px) translateY(130px);
   }
-  .bullshit {
-    position: relative;
-    float: left;
-    width: 300px;
-    padding: 30px 0;
-    overflow: hidden;
-    &__oops {
-      font-size: 32px;
-      font-weight: bold;
-      line-height: 40px;
-      color: #1482f0;
+  100% {
+    transform: rotateX(90deg) rotateZ(-90deg) translateZ(-200px) translateY(-3870px);
+  }
+}
+
+@keyframes stampSlide {
+  0% {
+    transform: rotateX(90deg) rotateZ(-90deg) translateZ(-200px) translateY(130px);
+  }
+  100% {
+    transform: rotateX(90deg) rotateZ(-90deg) translateZ(-200px) translateY(-3870px);
+  }
+}
+.world {
+  transform: rotateX(-30deg) rotateY(-30deg);
+}
+.world .forward {
+  position: absolute;
+  -webkit-animation: slide 2000ms linear infinite;
+          animation: slide 2000ms linear infinite;
+}
+.world .box {
+  width: 200px;
+  height: 200px;
+  transform-origin: 100% 100%;
+  -webkit-animation: roll 2000ms cubic-bezier(1, 0.01, 1, 1) infinite;
+          animation: roll 2000ms cubic-bezier(1, 0.01, 1, 1) infinite;
+}
+.world .box .wall {
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px solid #fafafa;
+  box-sizing: border-box;
+}
+.world .box .wall::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 7rem;
+}
+.world .box .wall:nth-child(1) {
+  transform: translateZ(100px);
+}
+.world .box .wall:nth-child(2) {
+  transform: rotateX(180deg) translateZ(100px);
+}
+.world .box .wall:nth-child(3) {
+  transform: rotateX(90deg) translateZ(100px);
+}
+.world .box .wall:nth-child(3)::before {
+  transform: rotateX(180deg) rotateZ(90deg) translateZ(-1px);
+  -webkit-animation: zeroFour 4000ms -2000ms linear infinite;
+          animation: zeroFour 4000ms -2000ms linear infinite;
+}
+.world .box .wall:nth-child(4) {
+  transform: rotateX(-90deg) translateZ(100px);
+}
+.world .box .wall:nth-child(4)::before {
+  transform: rotateX(180deg) rotateZ(-90deg) translateZ(-1px);
+  -webkit-animation: zeroFour 4000ms -2000ms linear infinite;
+          animation: zeroFour 4000ms -2000ms linear infinite;
+}
+.world .box .wall:nth-child(5) {
+  transform: rotateY(90deg) translateZ(100px);
+}
+.world .box .wall:nth-child(5)::before {
+  transform: rotateX(180deg) translateZ(-1px);
+  -webkit-animation: zeroFour 4000ms linear infinite;
+          animation: zeroFour 4000ms linear infinite;
+}
+.world .box .wall:nth-child(6) {
+  transform: rotateY(-90deg) translateZ(100px);
+}
+.world .box .wall:nth-child(6)::before {
+  transform: rotateX(180deg) rotateZ(180deg) translateZ(-1px);
+  -webkit-animation: zeroFour 4000ms linear infinite;
+          animation: zeroFour 4000ms linear infinite;
+}
+
+@-webkit-keyframes zeroFour {
+  0% {
+    content: "4";
+  }
+  100% {
+    content: "0";
+  }
+}
+
+@keyframes zeroFour {
+  0% {
+    content: "4";
+  }
+  100% {
+    content: "0";
+  }
+}
+@-webkit-keyframes roll {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  85% {
+    transform: rotateZ(90deg);
+  }
+  87% {
+    transform: rotateZ(88deg);
+  }
+  90% {
+    transform: rotateZ(90deg);
+  }
+  100% {
+    transform: rotateZ(90deg);
+  }
+}
+@keyframes roll {
+  0% {
+    transform: rotateZ(0deg);
+  }
+  85% {
+    transform: rotateZ(90deg);
+  }
+  87% {
+    transform: rotateZ(88deg);
+  }
+  90% {
+    transform: rotateZ(90deg);
+  }
+  100% {
+    transform: rotateZ(90deg);
+  }
+}
+@-webkit-keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-200px);
+  }
+}
+@keyframes slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-200px);
+  }
+}
+footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 32px;
+  color: #666;
+  font-size: 12px;
+  text-align: center;
+}
+.g-goto {
+  width: 100vw;
+  padding: 12px 0;
+}
+.g-goto p {
+  font-size: 14px;
+  text-align: center;
+  color: #999;
+  padding: 0 12px;
+  margin-bottom: 24px;
+}
+.g-btn-box {
+  /* width: 600px; */
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  justify-content: center;
+}
+.svg-border-animation {
+  position: relative;
+  width: 80px;
+  height: 32px;
+  margin: 12px;
+}
+
+.hover-text {
+  position: absolute;
+  line-height: 32px;
+  width: 80px;
+  top: 0;
+  color: #333;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: all .4s;
+}
+
+.hover-text:active {
+  background: #3F51B50b;
+}
+
+.shape {
+  fill: transparent;
+  stroke-width: 2px;
+  stroke: #333;
+  stroke-dasharray: 30 150;
+  stroke-dashoffset: 42;
+}
+
+.svg-border-animation:hover .hover-text {
+  transition: 0.4s;
+  color: #3F51B5;
+}
+
+.svg-border-animation:hover .shape {
+  animation: draw 0.4s linear forwards;
+}
+
+@keyframes draw {
+  0% {
+    stroke-dasharray: 30 150;
+    stroke-dashoffset: 42;
+    stroke-width: 2px;
+  }
+  100% {
+    stroke-dasharray: 224;
+    stroke-dashoffset: 0;
+    stroke-width: 2px;
+    stroke: #3F51B5;
+  }
+}
+
+.bullshit {
+  @apply relative float-left ml-10 top-50 w-300px overflow-hidden;
+  @media (min-width: 768px) {
+    @apply float-right -top-32 mr-52;
+  }
+
+  &__oops {
+    @apply text-3xl font-bold opacity-0 mb-4;
+    color: #1482f0;
+    animation-name: slideUp;
+    animation-duration: 0.5s;
+    animation-fill-mode: forwards;
+  }
+  &__headline {
+    @apply text-xl font-bold opacity-0 mb-2;
+    color: #222;
+    animation-name: slideUp;
+    animation-duration: 0.5s;
+    animation-delay: 0.1s;
+    animation-fill-mode: forwards;
+  }
+  &__info {
+    @apply text-sm opacity-0 mb-6;
+    color: grey;
+    animation-name: slideUp;
+    animation-duration: 0.5s;
+    animation-delay: 0.2s;
+    animation-fill-mode: forwards;
+  }
+  &__return-home {
+    @apply block float-left w-28 h-10 rounded-3xl text-center font-bold opacity-0 cursor-pointer;
+    background: #1482f0;
+    color: #ffffff;
+    font-size: 14px;
+    line-height: 36px;
+    animation-name: slideUp;
+    animation-duration: 0.5s;
+    animation-delay: 0.3s;
+    animation-fill-mode: forwards;
+  }
+  @keyframes slideUp {
+    0% {
+      transform: translateY(60px);
       opacity: 0;
-      margin-bottom: 20px;
-      animation-name: slideUp;
-      animation-duration: 0.5s;
-      animation-fill-mode: forwards;
     }
-    &__headline {
-      font-size: 20px;
-      line-height: 24px;
-      color: #222;
-      font-weight: bold;
-      opacity: 0;
-      margin-bottom: 10px;
-      animation-name: slideUp;
-      animation-duration: 0.5s;
-      animation-delay: 0.1s;
-      animation-fill-mode: forwards;
-    }
-    &__info {
-      font-size: 13px;
-      line-height: 21px;
-      color: grey;
-      opacity: 0;
-      margin-bottom: 30px;
-      animation-name: slideUp;
-      animation-duration: 0.5s;
-      animation-delay: 0.2s;
-      animation-fill-mode: forwards;
-    }
-    &__return-home {
-      display: block;
-      float: left;
-      width: 110px;
-      height: 36px;
-      background: #1482f0;
-      border-radius: 100px;
-      text-align: center;
-      color: #ffffff;
-      opacity: 0;
-      font-size: 14px;
-      line-height: 36px;
-      cursor: pointer;
-      animation-name: slideUp;
-      animation-duration: 0.5s;
-      animation-delay: 0.3s;
-      animation-fill-mode: forwards;
-    }
-    @keyframes slideUp {
-      0% {
-        transform: translateY(60px);
-        opacity: 0;
-      }
-      100% {
-        transform: translateY(0);
-        opacity: 1;
-      }
+    100% {
+      transform: translateY(0);
+      opacity: 1;
     }
   }
 }
