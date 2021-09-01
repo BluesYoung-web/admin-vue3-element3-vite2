@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-08-31 15:36:56
+ * @LastEditTime: 2021-09-01 16:59:16
  * @Description: 配置文件
  */
 import { defineConfig, ConfigEnv, UserConfigExport, loadEnv } from 'vite';
@@ -38,7 +38,7 @@ export default ({ mode, command }: ConfigEnv): UserConfigExport => {
       AutoComopnents({
         dirs: ['./src/components'],
         dts: './src/auto-components.d.ts',
-        resolvers: [ElementPlusResolver({ importStyle: 'sass' })]
+        resolvers: [ElementPlusResolver()]
       }),
       AutoImport({
         dts: './src/auto-imports.d.ts',
