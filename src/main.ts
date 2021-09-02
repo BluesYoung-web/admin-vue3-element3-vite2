@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-08-31 17:50:40
+ * @LastEditTime: 2021-09-02 19:31:04
  * @Description: 项目入口文件
  */
 
@@ -25,8 +25,6 @@ import './permission';
 import { getToken } from './util/auth';
 import { generateUserInfo } from './util/generateUserInfo';
 
-// 注册 svg icons
-import 'virtual:svg-icons-register';
 // 统一浏览器样式
 import 'normalize.css/normalize.css';
 // 自定义样式

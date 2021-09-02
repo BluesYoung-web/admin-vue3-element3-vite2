@@ -1,18 +1,19 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-09-01 16:59:16
+ * @LastEditTime: 2021-09-02 19:29:43
  * @Description: 配置文件
  */
 import { defineConfig, ConfigEnv, UserConfigExport, loadEnv } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import legacy from '@vitejs/plugin-legacy';
-import SvgIcons from 'vite-plugin-svg-icons';
 import Windicss from 'vite-plugin-windicss';
 import AutoImport from 'unplugin-auto-import/vite';
 import AutoComopnents from 'unplugin-vue-components/vite';
+import AutoIcons from 'unplugin-icons/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
+import IconsResolver from 'unplugin-icons/resolver';
 
 import { resolve } from 'path';
 import { createMockServe } from './mock/createMockServe';
@@ -38,7 +39,7 @@ export default ({ mode, command }: ConfigEnv): UserConfigExport => {
       AutoComopnents({
         dirs: ['./src/components'],
         dts: './src/auto-components.d.ts',
-        resolvers: [ElementPlusResolver()]
+        resolvers: [ElementPlusResolver(), IconsResolver()]
       }),
       AutoImport({
         dts: './src/auto-imports.d.ts',
@@ -47,8 +48,8 @@ export default ({ mode, command }: ConfigEnv): UserConfigExport => {
           './young-common-expose': ['deepClone', 'isArray', 'isJsonStr']
         }]
       }),
+      AutoIcons({ scale: 1.5 }),
       vueJsx(),
-      SvgIcons({ iconDirs: [resolve(__dirname, 'src/icons')], symbolId: 'icon-[dir]-[name]' }),
       Windicss(),
       // 不生成同名 polyfill 文件，打包速度翻倍
       // 如果出现兼容问题，可以删除此配置

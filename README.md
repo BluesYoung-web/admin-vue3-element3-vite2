@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-08-28 18:53:19
+ * @LastEditTime: 2021-09-02 19:28:06
  * @Description: 项目说明
 -->
 # 后台管理系统
@@ -107,6 +107,9 @@ yarn build
 - 此版本为 admin-vue3-element3 的改进版：
   - [x] 采用全新的 vite2.0
   - [x] 加入了 polyfill，兼容性(**国产浏览器的极速模式及所有的现代浏览器**)
+  - [x] 方法自动按需导入(基于[unplugin-auto-import](https://github.com/antfu/unplugin-auto-import))
+  - [x] 组件自动按需导入(基于[unplugin-vue-components](https://github.com/antfu/unplugin-vue-components))
+  - [x] 图标自动按需导入(基于[unplugin-icons](https://github.com/antfu/unplugin-icons))
   - [x] 防抖与节流的自定义指令
   - [x] 二次封装常用组件
     - 表格(配套导出为Excel表的方法)
@@ -115,7 +118,6 @@ yarn build
     - 富文本编辑器
     - 分页
     - tab
-    - svg
     - ...
 - **使用 windicss，零配置自动 css 摇树优化**
 - **拥有自动创建页面的 node 脚本，实现页面创建及路由注册自动化**
