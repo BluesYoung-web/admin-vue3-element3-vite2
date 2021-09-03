@@ -1,17 +1,17 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 14:10:09
- * @LastEditTime: 2021-08-27 09:33:49
+ * @LastEditTime: 2021-09-03 16:40:50
  * @Description: 侧边栏 logo 组件
 -->
 <template>
   <div class="sidebar-logo-container" :class="collapse ? 'collapse' : ''">
     <transition name="sidebarLogoFade">
       <router-link v-if="collapse" key="collapse" class="sidebar-logo-link" to="/">
-        <img src="/src/assets/img/logo.png" class="sidebar-logo-hide">
+        <icon-logos-vue class="sidebar-logo-hide" />
       </router-link>
       <router-link v-else key="expand" class="sidebar-logo-link" to="/">
-        <img src="/src/assets/img/logo.png" class="sidebar-logo">
+        <icon-logos-vue class="sidebar-logo" />
         <h1 class="sidebar-title">{{ title }}</h1>
       </router-link>
     </transition>

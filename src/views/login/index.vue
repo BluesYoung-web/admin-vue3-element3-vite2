@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-03 14:25:49
- * @LastEditTime: 2021-08-27 10:03:23
+ * @LastEditTime: 2021-09-03 17:35:39
  * @Description: 登录
 -->
 <template>
@@ -33,6 +33,7 @@
   </div>
 </template>
 <script lang="ts" setup>
+import type { FormRulesMap } from 'element-plus/es/components/form/src/form.type';
 import { login } from '../../api/user';
 import { setToken } from '../../util/auth';
 import { generateUserInfo } from '../../util/generateUserInfo';
@@ -57,10 +58,10 @@ const loginForm = ref<LoginForm>({
   username: 'guest',
   password: '111111'
 });
-const loginRules = ref<LoginRule>({
+const loginRules: FormRulesMap = {
   username: [{ required: true, type: 'string', trigger: 'blur', message: '请输入账户' }],
   password: [{ required: true, type: 'string', trigger: 'blur', message: '请输入密码' }]
-});
+};
 const loading = ref(false);
 const loginHandler = () => {
   loginRef.value?.validate(async (valid: boolean) => {

@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 11:30:30
- * @LastEditTime: 2021-08-27 10:11:03
+ * @LastEditTime: 2021-09-03 17:15:49
  * @Description: 顶部导航栏组件
 -->
 <template>
@@ -13,7 +13,7 @@
     <div class="right-menu">
       <el-dropdown class="avatar-container" trigger="click" size="large">
         <div class="avatar-wrapper">
-          <img src="/src/assets/img/head.png" class="user-avatar">
+          <icon-noto-v1-man-technologist-light-skin-tone class="user-avatar" />
           <span class="role-name">
             <p style="margin-top: 3px">{{ admin_name }}</p>
             <p>{{ role_name }}</p>
@@ -62,6 +62,7 @@
   </div>
 </template>
 <script lang="ts" setup>
+import type { FormRulesMap } from 'element-plus/lib/components/form/src/form.type';
 import { login_out, modifyPassword } from '../../api/user';
 import { useApp } from '../../store';
 import { getUserInfo } from '../../store/sessionStorage/index';
@@ -84,7 +85,7 @@ const beSame = (rule: any, value: any, callback: any) => {
     callback(new Error('两次输入的密码不一致'));
   }
 };
-const formRules = ref<LoginRule>({
+const formRules: FormRulesMap = {
   old_pwd: [
     { required: true, message: '请输入原始密码', trigger: 'blur' }
   ],
@@ -95,7 +96,7 @@ const formRules = ref<LoginRule>({
     { required: true, message: '请再次输入新密码', trigger: 'blur' },
     { validator: beSame, trigger: 'blur' }
   ]
-});
+};
 const isEdit = ref(false);
 const admin_name = computed(() => getUserInfo()?.admin_name);
 const role_name = computed(() => getUserInfo()?.role_name?.[0]);
@@ -193,8 +194,8 @@ const saveHandler = () => {
         cursor: pointer;
         width: 40px;
         height: 40px;
-        border-radius: 10px;
-        margin: 0 10px 0 0;
+        // border-radius: 50%;
+        margin-right: 10px;
       }
       .el-icon-caret-bottom {
         cursor: pointer;

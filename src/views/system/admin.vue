@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-03-20 16:46:54
- * @LastEditTime: 2021-08-27 10:52:55
+ * @LastEditTime: 2021-09-03 17:36:31
  * @Description: 管理员列表
 -->
 <template>
@@ -95,6 +95,7 @@
 </template>
 
 <script lang="ts" setup>
+import type { FormRulesMap } from 'element-plus/es/components/form/src/form.type';
 import { addAdminUserInfo, changeAdminState, editAdminUserInfo, getAdminInfo, getAdminList } from '../../api/system';
 interface Query{
   name: string;
@@ -179,12 +180,12 @@ const delUser = async (row: any) => {
 const isAdd = ref(false);
 const isEdit = ref(false);
 const form = ref<User_Info>(deepClone(FORM_TEMP));
-const rules = ref<LoginRule>({
+const rules: FormRulesMap = {
   name: [{ required: true, trigger: 'blur', message: '请输入用户名' }],
   real_name: [{ required: true, trigger: 'blur', message: '请输入真实姓名' }],
   pwd: [{ required: true, trigger: 'blur', message: '请输入密码' }],
   role: [{ required: true, trigger: 'change', message: '请至选择角色' }]
-});
+};
 const roleArr = ref<{
   autoid: number;
   role_name: string;
