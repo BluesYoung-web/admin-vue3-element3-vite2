@@ -8,7 +8,7 @@
 
 ## 配套后端程序
 
-- [admin-server正在开发中...](https://gitee.com/BluseYoung-web/admin-server.git)
+- [admin-server正在开发中...](https://gitee.com/BluesYoung-web/admin-server.git)
 
 ## 环境要求
 
