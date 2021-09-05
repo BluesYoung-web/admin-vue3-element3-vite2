@@ -511,20 +511,6 @@
   resolved "https://registry.npmjs.org/@tweenjs/tween.js/-/tween.js-18.6.4.tgz"
   integrity sha512-lB9lMjuqjtuJrx7/kOkqQBtllspPIN+96OvTCeJ2j5FEzinoAXTdAMFnDAQT1KVPRlnYfBrqxtqP66vDM40xxQ==
 
-"@types/axios@^0.14.0":
-  version "0.14.0"
-  resolved "https://registry.npm.taobao.org/@types/axios/download/@types/axios-0.14.0.tgz"
-  integrity sha1-7CMA++fX3d1+udOr+HmZlkyvzkY=
-  dependencies:
-    axios "*"
-
-"@types/dotenv@^8.2.0":
-  version "8.2.0"
-  resolved "https://registry.npm.taobao.org/@types/dotenv/download/@types/dotenv-8.2.0.tgz"
-  integrity sha1-XNZHEMPJjoLZ0VhEN1ozvxtF0FM=
-  dependencies:
-    dotenv "*"
-
 "@types/estree@^0.0.48":
   version "0.0.48"
   resolved "https://registry.npmjs.org/@types/estree/-/estree-0.0.48.tgz"
@@ -831,12 +817,12 @@ autoprefixer@^10.3.4:
     normalize-range "^0.1.2"
     postcss-value-parser "^4.1.0"
 
-axios@*, axios@^0.21.1:
-  version "0.21.1"
-  resolved "https://registry.npm.taobao.org/axios/download/axios-0.21.1.tgz?cache=0&sync_timestamp=1608611162952&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Faxios%2Fdownload%2Faxios-0.21.1.tgz"
-  integrity sha1-IlY0gZYvTWvemnbVFu8OXTwJsrg=
+axios@^0.21.3:
+  version "0.21.3"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.3.tgz#f85d9b747f9b66d59ca463605cedf1844872b82e"
+  integrity sha512-JtoZ3Ndke/+Iwt5n+BgSli/3idTvpt5OjKyoCmz4LX5+lPiY5l7C1colYezhlxThjNa/NhngCUWZSZFypIFuaA==
   dependencies:
-    follow-redirects "^1.10.0"
+    follow-redirects "^1.14.0"
 
 balanced-match@^1.0.0:
   version "1.0.2"
@@ -1302,11 +1288,6 @@ domutils@^2.6.0:
     domelementtype "^2.2.0"
     domhandler "^4.2.0"
 
-dotenv@*:
-  version "8.2.0"
-  resolved "https://registry.npm.taobao.org/dotenv/download/dotenv-8.2.0.tgz"
-  integrity sha1-l+YZJZradQ7qPk6j4mvO6lQksWo=
-
 electron-to-chromium@^1.3.723:
   version "1.3.740"
   resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.3.740.tgz"
@@ -1442,10 +1423,10 @@ fill-range@^7.0.1:
   dependencies:
     to-regex-range "^5.0.1"
 
-follow-redirects@^1.10.0:
-  version "1.13.2"
-  resolved "https://registry.npm.taobao.org/follow-redirects/download/follow-redirects-1.13.2.tgz"
-  integrity sha1-3XPI7/wScoulz0JZ12DqX7g+MUc=
+follow-redirects@^1.14.0:
+  version "1.14.3"
+  resolved "https://registry.yarnpkg.com/follow-redirects/-/follow-redirects-1.14.3.tgz#6ada78118d8d24caee595595accdc0ac6abd022e"
+  integrity sha512-3MkHxknWMUtb23apkgz/83fDoe+y+qr0TdgacGIA7bew+QLBo3vdgEN2xEsuXNivpFy4CyDhBBZnNZOtalmenw==
 
 frac@~1.1.2:
   version "1.1.2"
@@ -2510,16 +2491,16 @@ uniq@^1.0.1:
   resolved "https://registry.npm.taobao.org/uniq/download/uniq-1.0.1.tgz"
   integrity sha1-sxxa6CVIRKOoKBVBzisEuGWnNP8=
 
-unplugin-auto-import@^0.2.7:
-  version "0.2.7"
-  resolved "https://registry.yarnpkg.com/unplugin-auto-import/-/unplugin-auto-import-0.2.7.tgz#47276af071e6ef629bbdda7719139a5d75e9d54c"
-  integrity sha512-J9QAmI5WzjiW0bVaVeDEgZVxvjXBqB+sgAN+6/HRuOAaJoAbtE+oKa7H8TjlHvao+mKvvB3igUIMF35Mes5PYQ==
+unplugin-auto-import@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/unplugin-auto-import/-/unplugin-auto-import-0.4.1.tgz#1a27f08ad47910db89dbb2769a2010c6db37a4b5"
+  integrity sha512-OsNs+r9kQZyfgO0cKegrA0ZTg3bjpDogAUDjNzDR+7v+f80XLORbQNXO/PtyNdLuYM81nUrmnSQnHkopxIt6UQ==
   dependencies:
     "@antfu/utils" "^0.3.0"
     "@rollup/pluginutils" "^4.1.1"
     has-pkg "^0.0.1"
     magic-string "^0.25.7"
-    unplugin "^0.2.1"
+    unplugin "^0.2.7"
 
 unplugin-icons@^0.7.5:
   version "0.7.5"
@@ -2530,7 +2511,7 @@ unplugin-icons@^0.7.5:
     has-pkg "^0.0.1"
     unplugin "^0.2.3"
 
-unplugin-vue-components@^0.14.11:
+unplugin-vue-components@^0.14.7:
   version "0.14.11"
   resolved "https://registry.yarnpkg.com/unplugin-vue-components/-/unplugin-vue-components-0.14.11.tgz#aef2c0480316e864450cb3e0b7f63e8f10695027"
   integrity sha512-ulgt/waXWynt1QOik19YPO76nicB3u8RFWjiU3y4Gv9tx32bBYc9bsrkm+SfOBDxQPtdYc/yo5KQ3gSVKYdAow==
@@ -2543,13 +2524,6 @@ unplugin-vue-components@^0.14.11:
     minimatch "^3.0.4"
     resolve "^1.20.0"
     unplugin "^0.2.7"
-
-unplugin@^0.2.1:
-  version "0.2.3"
-  resolved "https://registry.nlark.com/unplugin/download/unplugin-0.2.3.tgz#01a405e4cb69d54229875c81561930d7b1630a97"
-  integrity sha1-AaQF5Mtp1UIph1yBVhkw17FjCpc=
-  dependencies:
-    webpack-virtual-modules "^0.4.3"
 
 unplugin@^0.2.3, unplugin@^0.2.7:
   version "0.2.7"
