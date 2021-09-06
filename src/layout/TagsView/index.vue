@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-11 13:35:58
- * @LastEditTime: 2021-08-27 10:10:40
+ * @LastEditTime: 2021-09-06 10:55:08
  * @Description: 标签选项卡组件
 -->
 <template>
@@ -37,9 +37,7 @@ interface MenuItem {
   title: string;
   handlerName: string;
 };
-interface Handlers {
-  [props: string]: () => void
-};
+type Handlers = Record<string, () => void>;
 const showContextMenu = ref(false);
 const { visitedViews, cachedViews, updateVisitedView, delView, delCachedView, delOtherViews, delAllViews, addView } = useTagsView();
 const menuList = computed(() => {

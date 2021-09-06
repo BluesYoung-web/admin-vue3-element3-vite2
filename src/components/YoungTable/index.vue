@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-03-01 16:41:54
- * @LastEditTime: 2021-08-27 09:36:04
+ * @LastEditTime: 2021-09-06 10:44:20
  * @Description: 自定义表格组件
 -->
 <template>
@@ -27,7 +27,7 @@
       <template #header="scope">
         <span v-if="tableHead[scope.$index].tool_content && !tableHead[scope.$index].only_export">
           <span>{{ scope.column.label }}</span>
-          <el-tooltip class="item" effect="dark" placement="bottom">
+          <el-tooltip class="item" placement="bottom">
             <template #content>
               <div v-html="tableHead[scope.$index].tool_content" />
             </template>
@@ -80,7 +80,6 @@
 /**
  * 定义组件属性
  */
-enum TableHeadAligin { 'left', 'center', 'right' };
 interface TableHeadItem {
   prop: string;
   label: string;

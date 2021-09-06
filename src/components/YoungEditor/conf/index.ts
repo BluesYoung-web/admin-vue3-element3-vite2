@@ -1,14 +1,12 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-05 13:41:16
- * @LastEditTime: 2021-08-27 10:14:05
+ * @LastEditTime: 2021-09-06 10:50:03
  * @Description: 富文本编辑器的基本配置
  */
 import type { EmotionsType } from 'wangeditor/dist/config/menus';
 
-type DicType = {
-  [key: string]: string;
-};
+type DicType = Record<string, string>;
 type CustomUpload = (files: FileList, insertImgCbk: Function) => void;
 // class 仅为保持编辑器不报错，效果同 interface
 export class CommonConfig {

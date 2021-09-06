@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-03-03 13:55:37
- * @LastEditTime: 2021-08-27 10:13:39
+ * @LastEditTime: 2021-09-06 10:50:38
  * @Description: 图片上传组件
 -->
 <template>
@@ -38,7 +38,7 @@ interface Props {
   modelValue: string[];
   showUpload?: boolean;
   limit?: number;
-  params?: { [p: string]: any };
+  params?: Record<string, any>;
   hideDel?: boolean;
 };
 const props = withDefaults(defineProps<Props>(), { showUpload: true, limit: 10, params: () => ({ com: 10000, task: 22 }) });

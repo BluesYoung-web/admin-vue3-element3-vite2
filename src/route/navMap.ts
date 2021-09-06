@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-25 17:05:01
- * @LastEditTime: 2021-08-27 09:29:55
+ * @LastEditTime: 2021-09-06 10:57:05
  * @Description: 前端路由鉴权
  */
 /**
@@ -33,8 +33,4 @@ navMap.set('10000/21', '/autoTest/test01');
 /**
  * 获取真实路由
  */
-const getUrl = (node_path: string): string => navMap.get(node_path) || node_path;
-
-export {
-  getUrl
-}
+export const getUrl = (node_path: string): string => navMap.get(node_path) || node_path;

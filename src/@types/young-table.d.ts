@@ -1,11 +1,10 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-01 17:07:01
- * @LastEditTime: 2021-07-07 11:58:27
+ * @LastEditTime: 2021-09-06 10:43:58
  * @Description: 自定义表格组件
  */
-declare enum TableHeadAligin { 'left', 'center', 'right' }
-
+type TableHeadAligin = 'left' | 'center' | 'right' | undefined;
 interface TableHeadItem<T> {
   prop: keyof T;
   label: string;

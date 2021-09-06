@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-03-23 17:34:05
- * @LastEditTime: 2021-08-27 09:35:55
+ * @LastEditTime: 2021-09-06 10:51:25
  * @Description: 选项卡组件
 -->
 <template>
@@ -18,10 +18,6 @@
 </template>
 
 <script lang="ts" setup>
-interface TabItem {
-  label: string;
-  name: string;
-};
 interface Props {
   modelValue: string;
   tabsMenu: TabItem[];
