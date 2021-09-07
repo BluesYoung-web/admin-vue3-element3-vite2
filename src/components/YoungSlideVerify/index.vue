@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-08-23 09:38:17
- * @LastEditTime: 2021-08-27 09:36:49
+ * @LastEditTime: 2021-09-07 16:56:02
  * @Description: 滑块验证
 -->
 <template>
@@ -30,8 +30,12 @@ const props = withDefaults(defineProps<{
   zIndex: 3000,
   target: 'body'
 });
-
-const emit = defineEmits(['update:modelValue', 'success', 'fail']);
+interface Emits {
+  (e: 'update:modelValue', v: boolean): void;
+  (e: 'success'): void;
+  (e: 'fail'): void;
+}
+const emit = defineEmits<Emits>();
 const canMove = ref(false);
 
 onMounted(() => {

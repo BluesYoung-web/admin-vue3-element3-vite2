@@ -1,16 +1,14 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-09 16:02:36
- * @LastEditTime: 2021-08-27 10:08:23
+ * @LastEditTime: 2021-09-07 17:02:23
  * @Description: 封装不同的请求方法
  */
 import net from './net';
 import { getToken } from './auth';
 import type { Method } from 'axios';
 
-interface ParamsObj {
-  [property: string]: any;
-}
+type ParamsObj = Record<string, any>;
 
 /**
  * 不需要 token 的请求，默认 post 请求

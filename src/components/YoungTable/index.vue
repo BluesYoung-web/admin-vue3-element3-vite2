@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-03-01 16:41:54
- * @LastEditTime: 2021-09-06 10:44:20
+ * @LastEditTime: 2021-09-07 16:52:50
  * @Description: 自定义表格组件
 -->
 <template>
@@ -17,7 +17,7 @@
     <el-table-column
       v-for="(item, index) in tableHead"
       :key="index"
-      :prop="item.prop"
+      :prop="String(item.prop)"
       :label="item.label"
       :width="item.width || ''"
       :sortable="item.sortable || false"
@@ -41,7 +41,7 @@
         <span v-if="!(scope.row[item.prop] instanceof Array)" v-html="scope.row[item.prop]" />
         <span v-else>
           <!-- 图片 -->
-          <span v-if="item.prop.indexOf('imgs') === 0">
+          <span v-if="String(item.prop).indexOf('imgs') === 0">
             <el-image
               v-for="(it, id) in scope.row[item.prop]"
                 :key="Number(id)"
@@ -77,32 +77,16 @@
   </el-table>
 </template>
 <script lang="ts" setup>
-/**
- * 定义组件属性
- */
-interface TableHeadItem {
-  prop: string;
-  label: string;
-  width?: string;
-  sortable?: boolean | 'custom';
-  fixed?: boolean;
-  aligin?: TableHeadAligin;
-  show_all?: boolean;
-  tool_content?: string;
-  not_sum?: boolean;
-  separator?: boolean;
-  only_export?: boolean;
-};
 interface Props {
-  tableData: any[];
-  tableHead: TableHeadItem[];
+  tableData: TableDataItem<any>[];
+  tableHead: TableHeadItem<any>[];
   tableHeight?: number;
 };
 const props = defineProps<Props>();
 /**
  * 定义事件
  */
-const emit = defineEmits(['sort-change']);
+const emit = defineEmits<{ (e: 'sort-change', event: any): void; }>();
 /**
  * 引用表格元素
  */

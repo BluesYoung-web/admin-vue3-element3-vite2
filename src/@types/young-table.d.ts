@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-01 17:07:01
- * @LastEditTime: 2021-09-06 10:43:58
+ * @LastEditTime: 2021-09-07 16:57:05
  * @Description: 自定义表格组件
  */
 type TableHeadAligin = 'left' | 'center' | 'right' | undefined;
@@ -22,7 +22,7 @@ interface TableHeadItem<T> {
 type TableDataItem<T> = {
   [key in keyof T]: T[key];
 }
-interface MultiRows {
+interface MultiRowItem {
   before?: unknown;
   value: unknown;
   after?: unknown;

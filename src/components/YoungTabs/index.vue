@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-03-23 17:34:05
- * @LastEditTime: 2021-09-06 10:51:25
+ * @LastEditTime: 2021-09-07 16:54:21
  * @Description: 选项卡组件
 -->
 <template>
@@ -23,7 +23,7 @@ interface Props {
   tabsMenu: TabItem[];
 };
 const props = defineProps<Props>();
-const emit = defineEmits(['update:modelValue']);
+const emit = defineEmits<{ (e: 'update:modelValue', v: string): void }>();
 const tab = ref(props.modelValue);
 const switchTab = (tab1: any) => emit('update:modelValue', (tab1.props as unknown as TabItem).name);
 </script>

@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-26 11:50:08
- * @LastEditTime: 2021-08-27 09:25:22
+ * @LastEditTime: 2021-09-07 17:04:35
  * @Description: 自定义表格组件
 -->
 <template>
@@ -16,10 +16,10 @@
       <el-input placeholder="请输入姓名" />
     </div>
     <div class="filter-item">
-      <el-button v-throttle="debounceSearchObj" type="primary">查询</el-button>
+      <el-button v-throttle="debounceSearchObj" type="primary" @click="getList">查询</el-button>
     </div>
     <div class="filter-item">
-      <el-button @click="exportHandler" type="success">导出</el-button>
+      <el-button type="success" @click="exportHandler">导出</el-button>
     </div>
   </div>
   <young-table class="mt-30px" :table-head="tableHead" :table-data="tableData" :table-height="700" @sort-change="log">
@@ -31,7 +31,7 @@
       </el-table-column>
     </template>
   </young-table>
-  <young-pagination v-model:page="query.page" v-model:limit="query.limit" :total="query.total" @page-change="pageChange" />
+  <young-pagination v-model:page="query.page" v-model:limit="query.limit" :total="query.total" @page-change="getList" />
 </template>
 
 <script lang="ts" setup>
@@ -40,8 +40,8 @@ interface Head {
   autoid: number,
   sp: string,
   imgs: string[],
-  m1: MultiRows[],
-  m2: MultiRows[]
+  m1: MultiRowItem[],
+  m2: MultiRowItem[]
 };
 const tableData = ref<TableDataItem<Head>[]>([]);
 const tableHead = ref<TableHeadItem<Head>[]>([]);
@@ -149,7 +149,7 @@ const query = ref({
   limit: 10,
   total: 100
 });
-const pageChange = () => console.log(query.value);
+const getList = () => console.log(query.value);
 const debounceSearchObj: ThrottleValue = {
   listener: 'click',
   delay: 1000,
