@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 10:51:05
- * @LastEditTime: 2021-08-27 10:14:18
+ * @LastEditTime: 2021-09-07 16:49:53
  * @Description: 弹出层组件，封装常用的按钮
 -->
 <template>
@@ -17,7 +17,7 @@
       <slot name="body" />
       <template #footer>
         <slot name="button" />
-        <el-button size="mini" @click="beforeClose">{{ cancelText }}</el-button>
+        <el-button v-show="showCancel" size="mini" @click="beforeClose">{{ cancelText }}</el-button>
         <slot name="step1" />
         <slot name="step2" />
         <el-button v-show="showSure" size="mini" type="primary" @click="sure">{{ sureText }}</el-button>
@@ -74,8 +74,9 @@ const sure = () => {
   emit('sure');
 };
 const beforeClose = () => {
-  if (props.isMore) {
+  if (props.isMore || !props.showCancel) {
     emit('clear');
+    emit('update:modelValue', false);
     return;
   }
   ElMessageBox.confirm('数据未保存，关闭将丢失数据，确认关闭？', '提示').then(() => {

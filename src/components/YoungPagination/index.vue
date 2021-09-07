@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-03-02 15:41:33
- * @LastEditTime: 2021-07-05 14:38:04
+ * @LastEditTime: 2021-09-07 16:50:28
  * @Description: 分页组件
 -->
 <template>
@@ -37,10 +37,16 @@ const props = withDefaults(defineProps<Props>(), {
   autoScroll: true,
   hidden: false
 });
-const emit = defineEmits(['page-change', 'update:page', 'update:limit']);
+interface Emits {
+  (e: 'page-change'): void;
+  (e: 'update:page', v: number): void;
+  (e: 'update:limit', v: number): void;
+};
+const emit = defineEmits<Emits>();
 const sizeChange = (val: number) => {
   emit('update:page', 1);
   emit('update:limit', val);
+  emit('page-change');
 };
 const pageChange = (val: number) => {
   emit('update:page', val);
