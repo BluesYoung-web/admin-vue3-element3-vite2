@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-08-26 09:47:54
- * @LastEditTime: 2021-08-26 17:22:09
+ * @LastEditTime: 2021-09-09 08:44:38
  * @Description: mock 中间件，可看到请求
  */
 
@@ -37,10 +37,10 @@ export const createMockServe = (opt: Young.MockPluginConfig = {}): Plugin => {
      * 本地 koa 服务器的钩子，添加自定义中间件
      */
     configureServer: async ({ middlewares }) => {
-      const { VITE_BASE_HTTP = '/api' } = opt.viteEnv ?? {};
+      const { VITE_BASE_HTTP = '/api' } = opt.viteEnv || {};
       const reg = new RegExp(VITE_BASE_HTTP + '$');
       middlewares.use(async (req, res, next) => {
-        if (req.url?.match(reg)) {
+        if (String(req.url).match(reg)) {
           const params = await bodyParse(req);
           const { com, task } = params;
           const controller = controllerMap.get(`${com}/${task}`);

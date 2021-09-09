@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-09-02 19:28:06
+ * @LastEditTime: 2021-09-09 08:44:14
  * @Description: 项目说明
 -->
 # 后台管理系统
@@ -14,7 +14,7 @@
 
 ```bash
 # 本地开发      node >= 16
-# 打包             node >= 12.13.0
+# 打包         node >= 12.18.1
 ```
 
 ## 权限管理
