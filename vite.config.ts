@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-09-03 16:37:43
+ * @LastEditTime: 2021-09-10 08:31:07
  * @Description: 配置文件
  */
 import { defineConfig, ConfigEnv, UserConfigExport, loadEnv } from 'vite';
@@ -14,6 +14,9 @@ import AutoComopnents from 'unplugin-vue-components/vite';
 import AutoIcons from 'unplugin-icons/vite';
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 import IconsResolver from 'unplugin-icons/resolver';
+// 自动处理 optimizeDeps 缓存
+import OptimizationPersist from 'vite-plugin-optimize-persist';
+import PkgConfig from 'vite-plugin-package-config';
 
 import { resolve } from 'path';
 import { createMockServe } from './mock/createMockServe';
@@ -51,6 +54,8 @@ export default ({ mode, command }: ConfigEnv): UserConfigExport => {
       AutoIcons({ scale: 1.5 }),
       vueJsx(),
       Windicss(),
+      PkgConfig(),
+      OptimizationPersist(),
       // 不生成同名 polyfill 文件，打包速度翻倍
       // 如果出现兼容问题，可以删除此配置
       legacy({ renderLegacyChunks: false })
@@ -75,17 +80,6 @@ export default ({ mode, command }: ConfigEnv): UserConfigExport => {
       target: 'es2015',
       brotliSize: false,
       // sourcemap: true
-    },
-    optimizeDeps: {
-      include: [
-        'core-js/stable',
-        'regenerator-runtime/runtime',
-        'element-plus',
-        'element-plus/lib/locale/lang/zh-cn',
-        'vue',
-        'axios',
-        'js-cookie'
-      ]
     }
   });
 }
