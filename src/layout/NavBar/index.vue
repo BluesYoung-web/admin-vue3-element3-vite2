@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 11:30:30
- * @LastEditTime: 2021-09-03 17:15:49
+ * @LastEditTime: 2021-09-10 09:04:37
  * @Description: 顶部导航栏组件
 -->
 <template>
@@ -65,7 +65,7 @@
 import type { FormRulesMap } from 'element-plus/lib/components/form/src/form.type';
 import { login_out, modifyPassword } from '../../api/user';
 import { useApp } from '../../store';
-import { getUserInfo } from '../../store/sessionStorage/index';
+import { USER_INFO } from '../../store/sessionStorage/index';
 import { removeToken } from '../../util/auth';
 
 import Hamburger from '../components/Hamburger/index.vue';
@@ -98,8 +98,8 @@ const formRules: FormRulesMap = {
   ]
 };
 const isEdit = ref(false);
-const admin_name = computed(() => getUserInfo()?.admin_name);
-const role_name = computed(() => getUserInfo()?.role_name?.[0]);
+const admin_name = computed(() => USER_INFO.value?.admin_name);
+const role_name = computed(() => USER_INFO.value?.role_name?.[0]);
 
 const loginOut = async () => {
   await login_out();

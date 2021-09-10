@@ -1,10 +1,10 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-10 09:01:29
- * @LastEditTime: 2021-02-26 15:39:29
- * @Description: 专门管理 sessionStorage 存储
+ * @LastEditTime: 2021-09-10 17:34:12
+ * @Description: 全局所有的 sessionStorage 存储
  */
-
+import { useSessionStorage } from '@vueuse/core';
 
 enum KEYS  {
   /**
@@ -18,56 +18,18 @@ enum KEYS  {
   /**
    * 存储用户拥有访问权限的路由节点
    */
-  ROLE_ROUTE = 'role_route'
+  ROLE_ROUTE = 'role_route',
+  /**
+   * 存储节点列表中节点的打开快照
+   */
+  SYSTEM_OPEN_KEYS = 'system_open_keys'
 };
 
-enum ENABLE_STATUS {
-  NO,
-  YES
-};
 
-export interface UserInfo {
-  admin_name: string;
-  real_name: string;
-  autoid: number;
-  is_enable: ENABLE_STATUS,
-  tel: string;
-  role_id: number[];
-  role_name: string[];
-};
+export const USER_INFO = useSessionStorage<UserInfo>(KEYS.USER_INFO, {} as any);
 
-const setUserInfo = (userinfo: UserInfo) => {
-  sessionStorage.setItem(KEYS.USER_INFO, JSON.stringify(userinfo));
-};
+export const NAV_ARR = useSessionStorage<NavArrItem[]>(KEYS.NAV_ARR, []);
 
-const getUserInfo = (): UserInfo => {
-  const json = sessionStorage.getItem(KEYS.USER_INFO) || '{}';
-  return JSON.parse(json);
-};
+export const ROLE_ROUTE = useSessionStorage<string[]>(KEYS.ROLE_ROUTE, []);
 
-const setNavArr = (nav_arr: NavArrItem[]) => {
-  sessionStorage.setItem(KEYS.NAV_ARR, JSON.stringify(nav_arr));
-};
-
-const getNavArr = (): NavArrItem[] => {
-  const json = sessionStorage.getItem(KEYS.NAV_ARR) || '[]';
-  return JSON.parse(json);
-};
-
-const setRoleRoute = (role_route: string[]) => {
-  sessionStorage.setItem(KEYS.ROLE_ROUTE, JSON.stringify(role_route));
-};
-
-const getRoleRoute = (): string[] => {
-  const json = sessionStorage.getItem(KEYS.ROLE_ROUTE) || '[]';
-  return JSON.parse(json);
-};
-
-export {
-  getUserInfo,
-  setUserInfo,
-  getNavArr,
-  setNavArr,
-  getRoleRoute,
-  setRoleRoute
-}
+export const SYSTEM_OPEN_KEYS = useSessionStorage<string[]>(KEYS.SYSTEM_OPEN_KEYS, []);

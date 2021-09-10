@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-09 17:21:19
- * @LastEditTime: 2021-08-27 11:31:15
+ * @LastEditTime: 2021-09-10 09:12:13
  * @Description: 页面权限控制
  */
 import router from './route/index';
@@ -9,7 +9,7 @@ import common from './route/common/index';
 import NProgress from 'nprogress';
 
 import { getToken } from './util/auth';
-import { getRoleRoute } from './store/sessionStorage/index';
+import { ROLE_ROUTE } from './store/sessionStorage/index';
 
 NProgress.configure({
   showSpinner: false
@@ -20,7 +20,7 @@ const getCommonRoutes = () => {
 }
 
 const hasPermission = (route: string) => {
-  const roleRoute = getRoleRoute().concat(getCommonRoutes());
+  const roleRoute = ROLE_ROUTE.value.concat(getCommonRoutes());
   return roleRoute.includes(route);
 }
 

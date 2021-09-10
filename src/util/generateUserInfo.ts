@@ -1,11 +1,11 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-10 08:57:28
- * @LastEditTime: 2021-08-27 11:47:12
+ * @LastEditTime: 2021-09-10 09:11:33
  * @Description: 获取用户详细信息及其拥有权限的路由
  */
 import { getUserInfo } from '../api/user';
-import { setUserInfo, setNavArr, setRoleRoute, UserInfo } from '../store/sessionStorage/index';
+import { USER_INFO, NAV_ARR, ROLE_ROUTE } from '../store/sessionStorage/index';
 // 使用前端权限控制时引入
 // import { commonNavArr, adminNavArr } from '../route/navArr';
 import { getUrl } from '../route/navMap';
@@ -60,9 +60,9 @@ const generateUserInfo = async () => {
     // 生成角色有权访问的路由
     const roleRoute: string[] = routes.map((route) => getUrl(route));
 
-    setUserInfo(userInfo);
-    setNavArr(navArr);
-    setRoleRoute(roleRoute);
+    USER_INFO.value = deepClone(userInfo);
+    NAV_ARR.value = deepClone(navArr);
+    ROLE_ROUTE.value = deepClone(roleRoute);
   } else {
     return;
   }

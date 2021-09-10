@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-26 11:49:25
- * @LastEditTime: 2021-08-27 11:47:59
+ * @LastEditTime: 2021-09-10 17:35:25
  * @Description: 节点列表
 -->
 <template>
@@ -87,6 +87,7 @@
 
 <script lang="ts" setup>
 import { getNodeList, addNode, editNode, delNode } from '../../api/system';
+import { SYSTEM_OPEN_KEYS } from '../../store/sessionStorage';
 const FORM_TEMP: AddNodeItem = {
   autoid: 0,
   node_name: '',
@@ -129,11 +130,10 @@ let tableData = ref<NavArrItem[]>([]);
  * 获取节点列表
  */
 const getList = async () => {
-  sessionStorage.setItem('system_open_keys', JSON.stringify([...expandKeys.value]));
+  SYSTEM_OPEN_KEYS.value = [...expandKeys.value];
   const temp = await getNodeList();
   tableData.value = deepClone(temp);
-  const res = sessionStorage.getItem('system_open_keys') as string;
-  expandKeys.value = new Set(JSON.parse(res));
+  expandKeys.value = new Set(SYSTEM_OPEN_KEYS.value);
 };
 /**
  * 添加节点
