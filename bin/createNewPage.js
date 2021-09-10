@@ -33,12 +33,12 @@ const getPageTemplate = (title, author) => {
  * @LastEditTime: ${time}
  * @Description: ${title}
 -->
-<template>
-  <h1>${ title }</h1>
-</template>
 <script lang="ts" setup>
 
 </script>
+<template>
+  <h1>${ title }</h1>
+</template>
 `;
 };
 /**
@@ -105,7 +105,7 @@ const generatePagesJSON = (dir, name, title) => {
     jsonData[dir] = [];
   }
   jsonData[dir].push({ name, title });
-  fs.writeFileSync(json_path, JSON.stringify(jsonData));
+  fs.writeFileSync(json_path, JSON.stringify(jsonData, null, 2));
   console.log('---路由配置已生成---');
 };
 /**

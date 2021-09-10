@@ -1,1 +1,50 @@
-{"myComponents":[{"name":"table","title":"表格组件"},{"name":"imgUpload","title":"图片上传组件"},{"name":"richTextEditor","title":"富文本编辑器"},{"name":"tab","title":"Tab组件"},{"name":"slide-verify","title":"滑块验证"}],"system":[{"name":"node","title":"节点列表"},{"name":"role","title":"角色列表"},{"name":"admin","title":"管理员列表"}],"vueUse":[{"name":"useEventListener","title":"useEventListener"}],"autoTest":[{"name":"test01","title":"自动创建页面测试"}]}
+{
+  "myComponents": [
+    {
+      "name": "table",
+      "title": "表格组件"
+    },
+    {
+      "name": "imgUpload",
+      "title": "图片上传组件"
+    },
+    {
+      "name": "richTextEditor",
+      "title": "富文本编辑器"
+    },
+    {
+      "name": "tab",
+      "title": "Tab组件"
+    },
+    {
+      "name": "slide-verify",
+      "title": "滑块验证"
+    }
+  ],
+  "system": [
+    {
+      "name": "node",
+      "title": "节点列表"
+    },
+    {
+      "name": "role",
+      "title": "角色列表"
+    },
+    {
+      "name": "admin",
+      "title": "管理员列表"
+    }
+  ],
+  "vueUse": [
+    {
+      "name": "useEventListener",
+      "title": "useEventListener"
+    }
+  ],
+  "autoTest": [
+    {
+      "name": "test01",
+      "title": "自动创建页面测试"
+    }
+  ]
+}
