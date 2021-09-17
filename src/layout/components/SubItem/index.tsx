@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-07-29 19:34:25
- * @LastEditTime: 2021-08-27 09:32:47
+ * @LastEditTime: 2021-09-17 14:10:51
  * @Description: 子组件
  */
 
@@ -14,7 +14,6 @@ export default defineComponent({
   setup(props) {
     return () => (
       <>
-        <i class={ props.icon ? 'el-icon-' + props.icon : '' }></i>
         <span id="title">{ props.title }</span>
       </>
     );

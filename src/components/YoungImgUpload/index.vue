@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-03-03 13:55:37
- * @LastEditTime: 2021-09-06 10:50:38
+ * @LastEditTime: 2021-09-17 12:20:39
  * @Description: 图片上传组件
 -->
 <template>
@@ -12,13 +12,20 @@
       <el-button
         v-if="showUpload"
         type="primary"
-        icon="el-icon-picture"
         :disabled="(modelValue.length >= 10)"
         @click="choseImg"
       >
+        <el-icon>
+          <picture-filled />
+        </el-icon>
         点击选取图片（不超过{{ limit }}张）
       </el-button>
-      <el-button type="success" icon="el-icon-upload" @click="uploadHandler">上传</el-button>
+      <el-button type="success" @click="uploadHandler">
+        <el-icon>
+          <upload-filled />
+        </el-icon>
+        上传
+      </el-button>
     </div>
     <div class="flex flex-wrap">
       <div
@@ -27,13 +34,23 @@
         class="relative"
       >
         <el-image :src="item" :preview-src-list="modelValue" lazy class="w-50px h-50px mr-5px mt-5px" />
-        <el-button v-if="!hideDel" icon="el-icon-delete" type="danger" circle class="absolute transform scale-65 right-0" @click="del(item)" />
+        <el-button
+          v-if="!hideDel" type="danger"
+          circle
+          class="absolute transform scale-65 right-0"
+          @click="del(item)"
+        >
+          <el-icon>
+            <delete />
+          </el-icon>
+        </el-button>
       </div>
     </div>
   </div>
 </template>
 <script lang="ts" setup>
 import { upload } from '../../util/request';
+import { PictureFilled, UploadFilled, Delete } from '@element-plus/icons';
 interface Props {
   modelValue: string[];
   showUpload?: boolean;

@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-03-01 16:41:54
- * @LastEditTime: 2021-09-07 16:52:50
+ * @LastEditTime: 2021-09-17 11:43:39
  * @Description: 自定义表格组件
 -->
 <template>
@@ -31,7 +31,9 @@
             <template #content>
               <div v-html="tableHead[scope.$index].tool_content" />
             </template>
-            <i class="el-icon-warning-outline" style="margin: 0px;color: #1890ff;" />
+            <el-icon color="#1890ff">
+              <warning />
+            </el-icon>
           </el-tooltip>
         </span>
         <span v-if="!tableHead[scope.$index].tool_content && !tableHead[scope.$index].only_export">{{ scope.column.label }}</span>
@@ -50,7 +52,9 @@
                 class="w-50px h-50px mr-5px"
             >
               <template #error class="image-slot">
-                <i style="font-size: 50px" class="el-icon-picture-outline w-50px h-50px mr-5px" />
+                <el-icon>
+                  <picture-filled style="font-size: 50px" class="w-50px h-50px mr-5px" />
+                </el-icon>
               </template>
             </el-image>
           </span>
@@ -77,6 +81,7 @@
   </el-table>
 </template>
 <script lang="ts" setup>
+import { Warning, PictureFilled } from '@element-plus/icons';
 interface Props {
   tableData: TableDataItem<any>[];
   tableHead: TableHeadItem<any>[];
