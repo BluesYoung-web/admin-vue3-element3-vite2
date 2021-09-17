@@ -47,5 +47,6 @@ declare global {
   const deepClone: typeof import('./young-common-expose')['deepClone']
   const isArray: typeof import('./young-common-expose')['isArray']
   const isJsonStr: typeof import('./young-common-expose')['isJsonStr']
+  const sleep: typeof import('./young-common-expose')['sleep']
 }
 export {}

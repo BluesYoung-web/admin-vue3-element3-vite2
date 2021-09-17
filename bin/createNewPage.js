@@ -105,6 +105,7 @@ const generatePagesJSON = (dir, name, title) => {
     jsonData[dir] = [];
   }
   jsonData[dir].push({ name, title });
+  // json 美化
   fs.writeFileSync(json_path, JSON.stringify(jsonData, null, 2));
   console.log('---路由配置已生成---');
 };

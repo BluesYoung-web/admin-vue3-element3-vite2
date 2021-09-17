@@ -1,12 +1,13 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-08 11:26:10
- * @LastEditTime: 2021-08-27 10:07:21
+ * @LastEditTime: 2021-09-17 10:53:03
  * @Description: HTTP 网络请求模块
  */
 import axios from 'axios';
 import type { AxiosRequestConfig, AxiosResponse } from 'axios';
-import { ElLoading, ILoadingInstance } from 'element-plus';
+import type { ILoadingInstance } from 'element-plus';
+import { ElLoading } from 'element-plus';
 import { removeToken } from './auth';
 
 /**

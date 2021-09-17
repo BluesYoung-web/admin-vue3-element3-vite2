@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-09-10 08:31:07
+ * @LastEditTime: 2021-09-17 11:03:21
  * @Description: 配置文件
  */
 import { defineConfig, ConfigEnv, UserConfigExport, loadEnv } from 'vite';
@@ -48,7 +48,7 @@ export default ({ mode, command }: ConfigEnv): UserConfigExport => {
         dts: './src/auto-imports.d.ts',
         imports: ['vue', 'vue-router', {
           'element-plus': ['ElMessage', 'ElMessageBox'],
-          './young-common-expose': ['deepClone', 'isArray', 'isJsonStr']
+          './young-common-expose': ['deepClone', 'isArray', 'isJsonStr', 'sleep']
         }]
       }),
       AutoIcons({ scale: 1.5 }),

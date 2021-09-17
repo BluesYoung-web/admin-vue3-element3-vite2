@@ -1,10 +1,14 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-08-14 10:59:06
- * @LastEditTime: 2021-07-06 15:21:04
- * @Description: 加入财务分隔符
+ * @LastEditTime: 2021-09-17 10:46:55
+ * @Description: 处理数值
  */
-const formatCurrency = (num: string | number) => {
+
+/**
+ * 加入财务分隔符
+ */
+export const formatCurrency = (num: string | number) => {
   if (num) {
     num = num.toString().replace(/\$|\,/g, '');
     if (num === '' || isNaN(+num)) {
@@ -30,8 +34,13 @@ const formatCurrency = (num: string | number) => {
   } else {
     return '0';
   }
-}
-
-export {
-  formatCurrency
 };
+/**
+ * 手机号隐藏中间4位
+ */
+export const telMasaike = (str: string | number, mid = '****') => {
+  str = String(str);
+  const start = str.substring(0, 3);
+  const end = str.substring(7, 11);
+  return start + mid + end;
+}
