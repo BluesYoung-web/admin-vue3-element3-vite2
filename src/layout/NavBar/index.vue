@@ -1,13 +1,13 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 11:30:30
- * @LastEditTime: 2021-09-10 09:04:37
+ * @LastEditTime: 2021-09-17 16:24:03
  * @Description: 顶部导航栏组件
 -->
 <template>
   <!-- 导航栏组件 -->
   <div class="navbar">
-    <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleClick" />
+    <hamburger v-model="APP_CONFIG.sidebar_opened" class="hamburger-container" />
     <head-nav />
     <!-- 右侧个人中心下拉框 -->
     <div class="right-menu">
@@ -18,7 +18,11 @@
             <p style="margin-top: 3px">{{ admin_name }}</p>
             <p>{{ role_name }}</p>
           </span>
-          <i class="el-icon-caret-bottom" />
+          <el-icon>
+            <caret-bottom
+              class="absolute cursor-pointer -right-10px top-25px text-lg"
+            />
+          </el-icon>
         </div>
         <template #dropdown>
           <el-dropdown-menu class="user-dropdown">
@@ -62,16 +66,15 @@
   </div>
 </template>
 <script lang="ts" setup>
+import { CaretBottom } from '@element-plus/icons';
 import type { FormRulesMap } from 'element-plus/lib/components/form/src/form.type';
 import { login_out, modifyPassword } from '../../api/user';
-import { useApp } from '../../store';
-import { USER_INFO } from '../../store/sessionStorage/index';
+import { USER_INFO, APP_CONFIG } from '../../store';
 import { removeToken } from '../../util/auth';
 
 import Hamburger from '../components/Hamburger/index.vue';
 import HeadNav from '../components/HeadNav/index.vue';
 
-const { toggleSideBar: toggleClick, sidebar } = useApp();
 const formRef = ref<any>(null);
 const form = ref({
   old_pwd: '',
@@ -196,13 +199,6 @@ const saveHandler = () => {
         height: 40px;
         // border-radius: 50%;
         margin-right: 10px;
-      }
-      .el-icon-caret-bottom {
-        cursor: pointer;
-        position: absolute;
-        right: -20px;
-        top: 25px;
-        font-size: 12px;
       }
     }
   }

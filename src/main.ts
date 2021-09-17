@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-09-02 19:31:04
+ * @LastEditTime: 2021-09-17 16:23:02
  * @Description: 项目入口文件
  */
 
@@ -19,7 +19,8 @@ import 'element-plus/dist/index.css';
 // import 'element-plus/theme-chalk/el-message.css';
 // import 'element-plus/theme-chalk/el-message-box.css';
 // 引入 VueRouter
-import Router from './route/index';
+import Router, { routes } from './route/index';
+import { ALL_ROUTES } from './store';
 // 引入路由导航守卫
 import './permission';
 import { getToken } from './util/auth';
@@ -50,6 +51,8 @@ const app = createApp(App);
 app.config.globalProperties.$ELEMENT = { size: 'mini' };
 // 使用路由
 app.use(Router);
+// 初始化路由表
+ALL_ROUTES.value = deepClone(routes);
 // 安装自定义插件
 app.use(MyPlugins, '来了老弟');
 

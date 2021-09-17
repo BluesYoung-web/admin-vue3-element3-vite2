@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-09 17:21:19
- * @LastEditTime: 2021-09-10 09:12:13
+ * @LastEditTime: 2021-09-17 16:23:20
  * @Description: 页面权限控制
  */
 import router from './route/index';
@@ -9,7 +9,7 @@ import common from './route/common/index';
 import NProgress from 'nprogress';
 
 import { getToken } from './util/auth';
-import { ROLE_ROUTE } from './store/sessionStorage/index';
+import { ROLE_ROUTE } from './store';
 
 NProgress.configure({
   showSpinner: false

@@ -1,11 +1,11 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-10 08:57:28
- * @LastEditTime: 2021-09-10 09:11:33
+ * @LastEditTime: 2021-09-17 16:24:44
  * @Description: 获取用户详细信息及其拥有权限的路由
  */
 import { getUserInfo } from '../api/user';
-import { USER_INFO, NAV_ARR, ROLE_ROUTE } from '../store/sessionStorage/index';
+import { USER_INFO, NAV_ARR, ROLE_ROUTE } from '../store';
 // 使用前端权限控制时引入
 // import { commonNavArr, adminNavArr } from '../route/navArr';
 import { getUrl } from '../route/navMap';

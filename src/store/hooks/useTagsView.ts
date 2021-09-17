@@ -1,8 +1,8 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-03-12 15:00:45
- * @LastEditTime: 2021-08-27 09:29:16
- * @Description:
+ * @LastEditTime: 2021-09-17 17:41:42
+ * @Description: 性能要求比较高，如果使用 sessionStorage 会出 bug，保持原样
  */
 import type { Ref } from 'vue';
 type CachedView = string | symbol | null | undefined;
@@ -15,10 +15,15 @@ interface TagsViewState {
   * 已缓存的页面名称
   */
   cachedViews: CachedView[];
+  /**
+   * 当前激活的导航菜单
+   */
+  currentMenuIndex: string;
 };
 interface Instance {
   visitedViews: Ref<YoungRoute[]>;
   cachedViews: Ref<(CachedView)[]>;
+  currentMenuIndex: Ref<string>;
   addView(view: YoungRoute): void;
   delView(view: YoungRoute): void;
   delOtherViews(view: YoungRoute): void;
@@ -33,7 +38,8 @@ export default () => {
   if (!instance) {
     let state = reactive<TagsViewState>({
       visitedViews: [],
-      cachedViews: []
+      cachedViews: [],
+      currentMenuIndex: ''
     });
     /**
      * 打开某个页面

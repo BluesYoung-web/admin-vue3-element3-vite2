@@ -1,13 +1,13 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 14:10:09
- * @LastEditTime: 2021-09-03 16:40:50
+ * @LastEditTime: 2021-09-17 16:23:55
  * @Description: 侧边栏 logo 组件
 -->
 <template>
   <div class="sidebar-logo-container" :class="collapse ? 'collapse' : ''">
     <transition name="sidebarLogoFade">
-      <router-link v-if="collapse" key="collapse" class="sidebar-logo-link" to="/">
+      <router-link v-if="!APP_CONFIG.sidebar_opened" key="collapse" class="sidebar-logo-link" to="/">
         <icon-logos-vue class="sidebar-logo-hide" />
       </router-link>
       <router-link v-else key="expand" class="sidebar-logo-link" to="/">
@@ -18,11 +18,10 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { useApp } from '../../../store';
+import { APP_CONFIG } from '../../../store';
 
 const title = import.meta.env.VITE_TITLE??'小黑后台';
-const { sidebar } = useApp();
-const collapse = computed(() => !sidebar.value.opened);
+const collapse = computed(() => !APP_CONFIG.value.sidebar_opened);
 </script>
 
 <style lang="scss" scoped>

@@ -1,23 +1,43 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 15:26:18
- * @LastEditTime: 2021-08-27 14:10:25
+ * @LastEditTime: 2021-09-17 17:45:57
  * @Description: 侧边栏菜单项
 -->
 <template>
   <div>
     <template v-if="isOne">
-      <app-link v-if="item.is_show" :to="resolvePath(item.node_path)">
-        <el-menu-item :index="item.node_name" :class="isNest ? '' : 'submenu-title-noDropdown'">
-          <sub-item :title="item.node_name" :icon="item.icon" />
+      <app-link
+        v-if="item.is_show"
+        :to="resolvePath(item.node_path)"
+      >
+        <el-menu-item
+          :index="item.node_path"
+          :class="isNest ? '' : 'submenu-title-noDropdown'"
+        >
+          <sub-item :title="item.node_name" />
         </el-menu-item>
       </app-link>
     </template>
-    <el-sub-menu v-else :index="item.node_name" popper-append-to-body>
+    <el-sub-menu
+      v-else
+      :index="item.node_name"
+      popper-append-to-body
+    >
       <template #title>
-        <sub-item v-if="item.is_show" :title="item.node_name" :icon="item.icon" />
+        <sub-item
+          v-if="item.is_show"
+          :title="item.node_name"
+        />
       </template>
-      <sidebar-item v-for="child in item.part" :key="child.node_path" :item="child" :is-nest="isOne" :bath-path="resolvePath(child.node_path)" class="nest-menu" />
+      <sidebar-item
+        v-for="child in item.part"
+        :key="child.node_path"
+        :item="child"
+        :is-nest="isOne"
+        :bath-path="resolvePath(child.node_path)"
+        class="nest-menu"
+      />
     </el-sub-menu>
   </div>
 </template>

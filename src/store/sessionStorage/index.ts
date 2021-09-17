@@ -1,10 +1,11 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-10 09:01:29
- * @LastEditTime: 2021-09-10 17:34:12
+ * @LastEditTime: 2021-09-17 17:43:21
  * @Description: 全局所有的 sessionStorage 存储
  */
 import { useSessionStorage } from '@vueuse/core';
+import type { RouteRecordRaw } from 'vue-router';
 
 enum KEYS  {
   /**
@@ -22,7 +23,19 @@ enum KEYS  {
   /**
    * 存储节点列表中节点的打开快照
    */
-  SYSTEM_OPEN_KEYS = 'system_open_keys'
+  SYSTEM_OPEN_KEYS = 'system_open_keys',
+  /**
+   * 网站全局配置
+   */
+  APP_CONFIG = 'app_config',
+  /**
+   * 侧边导航数组
+   */
+  LEFT_NAV = 'left_nav',
+  /**
+   * 所有的路由记录
+   */
+  ALL_ROUTES = 'all_routes',
 };
 
 
@@ -33,3 +46,11 @@ export const NAV_ARR = useSessionStorage<NavArrItem[]>(KEYS.NAV_ARR, []);
 export const ROLE_ROUTE = useSessionStorage<string[]>(KEYS.ROLE_ROUTE, []);
 
 export const SYSTEM_OPEN_KEYS = useSessionStorage<string[]>(KEYS.SYSTEM_OPEN_KEYS, []);
+
+export const APP_CONFIG = useSessionStorage<App_Config>(KEYS.APP_CONFIG, {
+  sidebar_opened: true
+} as App_Config);
+
+export const LEFT_NAV = useSessionStorage<NavArrItem[]>(KEYS.LEFT_NAV, []);
+
+export const ALL_ROUTES = useSessionStorage<RouteRecordRaw[]>(KEYS.ALL_ROUTES, []);

@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 17:14:23
- * @LastEditTime: 2021-09-06 10:55:28
+ * @LastEditTime: 2021-09-17 16:23:10
  * @Description: 整体布局
 -->
 <template>
@@ -19,15 +19,12 @@
 </template>
 <script lang="ts" setup>
 import { NavBar, Sidebar, AppMain, TagsView } from './AppMain/index';
-import { useApp } from '../store';
+import { APP_CONFIG } from '../store';
 // sidebar 与组件重名，会导致解析异常
-const { sidebar: sideBarStatus, device } = useApp();
 const classObj = computed(() => {
   return {
-    hideSidebar: !sideBarStatus.value.opened,
-    openSidebar: sideBarStatus.value.opened,
-    withoutAnimation: sideBarStatus.value.withoutAnimation,
-    mobile: device.value === 'mobile'
+    hideSidebar: !APP_CONFIG.value.sidebar_opened,
+    openSidebar: APP_CONFIG.value.sidebar_opened
   };
 });
 </script>
@@ -67,9 +64,5 @@ const classObj = computed(() => {
 
 .hideSidebar .fixed-header {
   width: calc(100% - 54px);
-}
-
-.mobile .fixed-header {
-  width: 100%;
 }
 </style>

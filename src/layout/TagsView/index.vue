@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-11 13:35:58
- * @LastEditTime: 2021-09-06 10:55:08
+ * @LastEditTime: 2021-09-17 17:48:02
  * @Description: 标签选项卡组件
 -->
 <template>
@@ -32,12 +32,8 @@
 <script lang="ts" setup>
 import YoungContextMenu from '../../components/YoungContextMenu/index.vue';
 import ScrollPane from '../components/ScrollPane/index.vue';
-import { useRoutes, useTagsView } from '../../store';
-interface MenuItem {
-  title: string;
-  handlerName: string;
-};
-type Handlers = Record<string, () => void>;
+import { useTagsView, ALL_ROUTES } from '../../store';
+
 const showContextMenu = ref(false);
 const { visitedViews, cachedViews, updateVisitedView, delView, delCachedView, delOtherViews, delAllViews, addView } = useTagsView();
 const menuList = computed(() => {
@@ -93,7 +89,7 @@ const moveToCurrentTag = () => {
   });
 };
 
-const menuHandlers: Handlers = {
+const menuHandlers: MenuHandlers = {
   'refresh': () => {
     const tag = selectedTag.value;
     tag && delCachedView(tag);
@@ -168,12 +164,9 @@ const filterAffixTags = (routes: YoungRoute[], basePath = '/') => {
   });
   return tags;
 };
-/**
- * 路由表
- */
-const { currentRoutes: routes } = useRoutes();
+
 const initTags = () => {
-  affixTags.value = filterAffixTags(routes.value as unknown as YoungRoute[]);
+  affixTags.value = filterAffixTags(ALL_ROUTES.value as unknown as YoungRoute[]);
   for (const tag of affixTags.value) {
     tag.name && addView(tag as unknown as YoungRoute);
   }

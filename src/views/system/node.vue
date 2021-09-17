@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-26 11:49:25
- * @LastEditTime: 2021-09-10 17:35:25
+ * @LastEditTime: 2021-09-17 16:24:54
  * @Description: 节点列表
 -->
 <template>
@@ -87,7 +87,7 @@
 
 <script lang="ts" setup>
 import { getNodeList, addNode, editNode, delNode } from '../../api/system';
-import { SYSTEM_OPEN_KEYS } from '../../store/sessionStorage';
+import { SYSTEM_OPEN_KEYS } from '../../store';
 const FORM_TEMP: AddNodeItem = {
   autoid: 0,
   node_name: '',
