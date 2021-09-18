@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-11 13:35:58
- * @LastEditTime: 2021-09-17 17:48:02
+ * @LastEditTime: 2021-09-17 18:02:24
  * @Description: 标签选项卡组件
 -->
 <template>
@@ -19,7 +19,13 @@
       >
         <span v-if="tag.meta && tag.meta.icon" :class="'el-icon-' + tag.meta.icon" />
         {{ tag.meta.title }}
-        <span v-if="!isAffix(tag) && (visitedViews.length > 1)" class="el-icon-close" @click.prevent.stop="closeSelectedTag(tag)" />
+        <el-icon>
+          <close-icon
+            v-if="!isAffix(tag) && (visitedViews.length > 1)"
+            class="y-close"
+            @click.prevent.stop="closeSelectedTag(tag)"
+          />
+        </el-icon>
       </router-link>
     </scroll-pane>
     <young-context-menu
@@ -33,6 +39,7 @@
 import YoungContextMenu from '../../components/YoungContextMenu/index.vue';
 import ScrollPane from '../components/ScrollPane/index.vue';
 import { useTagsView, ALL_ROUTES } from '../../store';
+import { Close as CloseIcon } from '@element-plus/icons';
 
 const showContextMenu = ref(false);
 const { visitedViews, cachedViews, updateVisitedView, delView, delCachedView, delOtherViews, delAllViews, addView } = useTagsView();
@@ -227,10 +234,10 @@ onMounted(() => {
 }
 .tags-view-wrapper {
   .tags-view-item {
-    .el-icon-close {
-      width: 16px;
-      height: 16px;
-      vertical-align: 2px;
+    .y-close {
+      width: 14px;
+      height: 14px;
+      vertical-align: -2px;
       border-radius: 50%;
       text-align: center;
       transition: all .3s cubic-bezier(.645, .045, .355, 1);
