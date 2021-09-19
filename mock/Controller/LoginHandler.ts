@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-08-26 15:34:41
- * @LastEditTime: 2021-08-26 16:33:58
+ * @LastEditTime: 2021-09-19 15:51:28
  * @Description: 登录相关
  */
 import { MockApi } from "../decorator/MockApi";
@@ -176,7 +176,7 @@ export class LoginController {
         },
         {
           autoid: 4,
-          is_show: 1,
+          is_show: 0,
           node_desc: '测试',
           node_name: '自动创建测试',
           node_path: '',
