@@ -43,7 +43,6 @@ declare module 'vue' {
     YoungImgUpload: typeof import('./components/YoungImgUpload/index.vue')['default']
     YoungPagination: typeof import('./components/YoungPagination/index.vue')['default']
     YoungSlideVerify: typeof import('./components/YoungSlideVerify/index.vue')['default']
-    YoungSvg: typeof import('./components/YoungSvg/index.vue')['default']
     YoungTable: typeof import('./components/YoungTable/index.vue')['default']
     YoungTabs: typeof import('./components/YoungTabs/index.vue')['default']
   }

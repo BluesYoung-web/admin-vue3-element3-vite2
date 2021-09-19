@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-09-17 11:03:21
+ * @LastEditTime: 2021-09-19 15:16:01
  * @Description: 配置文件
  */
 import { defineConfig, ConfigEnv, UserConfigExport, loadEnv } from 'vite';
@@ -17,6 +17,8 @@ import IconsResolver from 'unplugin-icons/resolver';
 // 自动处理 optimizeDeps 缓存
 import OptimizationPersist from 'vite-plugin-optimize-persist';
 import PkgConfig from 'vite-plugin-package-config';
+//  获取所有需要自动导入的自定义方法的名称
+import * as YoungMethods from './src/young-common-expose';
 
 import { resolve } from 'path';
 import { createMockServe } from './mock/createMockServe';
@@ -48,7 +50,7 @@ export default ({ mode, command }: ConfigEnv): UserConfigExport => {
         dts: './src/auto-imports.d.ts',
         imports: ['vue', 'vue-router', {
           'element-plus': ['ElMessage', 'ElMessageBox'],
-          './young-common-expose': ['deepClone', 'isArray', 'isJsonStr', 'sleep']
+          './young-common-expose': Object.keys(YoungMethods)
         }]
       }),
       AutoIcons({ scale: 1.5 }),

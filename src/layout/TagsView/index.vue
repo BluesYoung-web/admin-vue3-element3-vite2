@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-11 13:35:58
- * @LastEditTime: 2021-09-17 18:02:24
+ * @LastEditTime: 2021-09-19 15:21:42
  * @Description: 标签选项卡组件
 -->
 <template>
@@ -17,7 +17,7 @@
         class="tags-view-item"
         @contextmenu.prevent="openContextMenu(tag, $event)"
       >
-        <span v-if="tag.meta && tag.meta.icon" :class="'el-icon-' + tag.meta.icon" />
+        <span v-if="tag.meta && tag.meta.icon" />
         {{ tag.meta.title }}
         <el-icon>
           <close-icon
