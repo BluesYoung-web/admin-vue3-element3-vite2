@@ -39,6 +39,10 @@
     {
       "name": "useEventListener",
       "title": "useEventListener"
+    },
+    {
+      "name": "useClipboard",
+      "title": "剪切板测试"
     }
   ],
   "autoTest": [

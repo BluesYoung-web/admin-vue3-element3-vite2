@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-08-26 15:34:41
- * @LastEditTime: 2021-09-19 15:51:28
+ * @LastEditTime: 2021-09-28 11:22:34
  * @Description: 登录相关
  */
 import { MockApi } from "../decorator/MockApi";
@@ -167,6 +167,17 @@ export class LoginController {
               node_desc: '',
               node_name: 'useEventListener',
               node_path: '10000/20',
+              node_sort: 0,
+              node_type: 2,
+              parent_id: 3,
+              part: []
+            },
+            {
+              autoid: 32,
+              is_show: 1,
+              node_desc: '',
+              node_name: 'useClipboard',
+              node_path: '10000/23',
               node_sort: 0,
               node_type: 2,
               parent_id: 3,

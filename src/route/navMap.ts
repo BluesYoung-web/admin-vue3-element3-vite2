@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-02-25 17:05:01
- * @LastEditTime: 2021-09-06 10:57:05
+ * @LastEditTime: 2021-09-28 11:22:56
  * @Description: 前端路由鉴权
  */
 /**
@@ -20,6 +20,7 @@ navMap.set('10000/22', '/myComponents/slide-verify');
  * VueUse 使用示例
  */
 navMap.set('10000/20', '/vueUse/useEventListener');
+navMap.set('10000/23', '/vueUse/useClipboard');
 /**
  * 系统节点
  */

@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-11-12 10:59:58
- * @LastEditTime: 2021-08-27 11:47:40
+ * @LastEditTime: 2021-09-28 10:48:46
  * @Description: 常用的正则验证函数
  */
 import { isString, isObject } from './isType';
@@ -9,70 +9,52 @@ import { isString, isObject } from './isType';
  * 验证是否为合法的 email
  * @param {string} email
  */
-function isEmail(email: string) {
-  return /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/.test(email);
-}
+export const isEmail = (email: string) => /^\w+((-\w+)|(\.\w+))*\@[A-Za-z0-9]+((\.|-)[A-Za-z0-9]+)*\.[A-Za-z0-9]+$/.test(email);
 /**
  * 验证是否为合法的手机号
  * @param {string} tel
  */
-function isMobile(tel: string) {
-  return /^1[23456789]\d{9}$/.test(tel);
-}
+export const isMobile = (tel: string) => /^1[23456789]\d{9}$/.test(tel);
 /**
  * 验证是否为合法的 http url
  * @param {string} url
  */
-function isHttpUrl(url: string) {
-  return /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-.\/?%&=]*)?/.test(url);
-}
+export const isHttpUrl = (url: string) => /http(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-.\/?%&=]*)?/.test(url);
 /**
  * 验证是否为合法的 websocket url
  * @param {string} url
  */
-function isWebSocketUrl(url: string) {
-  return /ws(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-.\/?%&=]*)?/.test(url);
-}
+export const isWebSocketUrl = (url: string) => /ws(s)?:\/\/([\w-]+\.)+[\w-]+(\/[\w-.\/?%&=]*)?/.test(url);
 /**
  * 验证是否为合法的日期格式
  * @param {string} date
  */
-function isDate(date: string | number | Date) {
-  return !/Invalid|NaN/.test(new Date(date).toString());
-}
+export const isDate = (date: string | number | Date) => !/Invalid|NaN/.test(new Date(date).toString());
 /**
  * 验证是否为合法的ISO日期格式
  * @param {string} date
  */
-function isISODate(date: string) {
-  return /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/.test(new Date(date).toString());
-}
+export const isISODate = (date: string) => /^\d{4}[\/\-](0?[1-9]|1[012])[\/\-](0?[1-9]|[12][0-9]|3[01])$/.test(new Date(date).toString());
 /**
  * 是否为十进制数
  * @param {number} num
  */
-function isDecimal(num: string | number) {
-  return /^(?:-?\d+|-?\d{1,3}(?:,\d{3})+)?(?:\.\d+)?$/.test(num + '');
-}
+export const isDecimal = (num: string | number) => /^(?:-?\d+|-?\d{1,3}(?:,\d{3})+)?(?:\.\d+)?$/.test(num + '');
 /**
  * 是否为整数
  * @param {number} num
  */
-function isInteger(num: string | number) {
-  return /^\d+$/.test(num + '');
-}
+export const isInteger = (num: string | number) => /^\d+$/.test(num + '');
 /**
  * 是否为合法的身份证
  * @param {number} id
  */
-function isIdCard(id: string | number) {
-  return /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/.test(id + '');
-}
+export const isIdCard = (id: string | number) => /^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}([0-9]|X)$/.test(id + '');
 /**
  * 是否为合法车牌号
  * @param {string} value
  */
-function isLicensePlate(value: string) {
+export const isLicensePlate = (value: string) => {
 	// 新能源车牌
 	const xreg = /^[京津沪渝冀豫云辽黑湘皖鲁新苏浙赣鄂桂甘晋蒙陕吉闽贵粤青藏川宁琼使领A-Z]{1}[A-Z]{1}(([0-9]{5}[DF]$)|([DF][A-HJ-NP-Z0-9][0-9]{4}$))/;
 	// 旧车牌
@@ -84,33 +66,27 @@ function isLicensePlate(value: string) {
 	} else {
 		return false;
 	}
-}
+};
 /**
  * 是否为中文（不包含标点符号）
  * @param {string} str
  */
-function isChinese(str: string) {
-  return /^[\u4e00-\u9fa5]+$/gi.test(str);
-}
+export const isChinese = (str: string) => /^[\u4e00-\u9fa5]+$/gi.test(str);
 /**
  * 是否为英文字母
  * @param {string} str
  */
-function isLetter(str: string) {
-  return /^[a-zA-Z]+$/.test(str);
-}
+export const isLetter = (str: string) => /^[a-zA-Z]+$/.test(str);
 /**
  * 是否为合法的座机号码
  * @param {string} value
  */
-function isLandline(value: string) {
-	return /^\d{3,4}-\d{7,8}(-\d{3,4})?$/.test(value);
-}
+export const isLandline = (value: string) => /^\d{3,4}-\d{7,8}(-\d{3,4})?$/.test(value);
 /**
  * 是否为 JSON 字符串
  * @param {string} str
  */
-function isJsonStr(str: any) {
+export const isJsonStr = (str: any) => {
   if (isString(str)) {
     try {
       const obj = JSON.parse(str);
@@ -124,20 +100,24 @@ function isJsonStr(str: any) {
     }
   }
   return false;
-}
-export {
-  isEmail,
-  isMobile,
-  isHttpUrl,
-  isWebSocketUrl,
-  isDate,
-  isISODate,
-  isDecimal,
-  isInteger,
-  isIdCard,
-  isLicensePlate,
-  isChinese,
-  isLetter,
-  isLandline,
-  isJsonStr
-}
+};
+/**
+ * 判断是否为合法的财务数字(千分符字符串)
+ * @param {string} str
+ */
+export const isCurrencyStr = (str: string) => /^-?\d{1,3}(,\d{3})*(\.\d+)?$/.test(str);
+/**
+ * 判断是否为微信内置浏览器
+ */
+export const isWeChat = () => /MicroMessenger/img.test(navigator.userAgent);
+/**
+ * 判断是否为 iOS 浏览器
+ */
+export const isiOS = () => !!navigator.userAgent.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/);
+/**
+ * 判断是否为安卓浏览器
+ */
+export const isAndroid = () => {
+  const u = navigator.userAgent;
+  return u.indexOf('Android') > -1 || u.indexOf('Adr') > -1;
+};
