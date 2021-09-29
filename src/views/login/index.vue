@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-03 14:25:49
- * @LastEditTime: 2021-09-03 17:35:39
+ * @LastEditTime: 2021-09-29 11:07:35
  * @Description: 登录
 -->
 <template>
@@ -24,7 +24,7 @@
         <el-input v-model="loginForm.username" placeholder="请输入账户" tabindex="1" auto-complete="on" size="large" clearable />
       </el-form-item>
       <el-form-item prop="password">
-        <el-input v-model="loginForm.password" placeholder="请输入密码" type="password" tabindex="2" auto-complete="on" size="large" clearable  />
+        <el-input v-model="loginForm.password" placeholder="请输入密码" type="password" show-password tabindex="2" auto-complete="on" size="large" clearable  />
       </el-form-item>
       <el-button :loading="loading" type="primary" size="large" style="width: 100%; margin-bottom: 30px" @click="loginHandler">登 录</el-button>
     </el-form>

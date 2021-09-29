@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-08-26 15:34:41
- * @LastEditTime: 2021-09-28 11:22:34
+ * @LastEditTime: 2021-09-29 11:33:23
  * @Description: 登录相关
  */
 import { MockApi } from "../decorator/MockApi";
@@ -144,6 +144,17 @@ export class LoginController {
               node_desc: '滑块验证',
               node_name: '滑块验证',
               node_path: '10000/22',
+              node_sort: 0,
+              node_type: 2,
+              parent_id: 2,
+              part: []
+            },
+            {
+              autoid: 25,
+              is_show: 1,
+              node_desc: '自定义表单',
+              node_name: '自定义表单',
+              node_path: '10000/24',
               node_sort: 0,
               node_type: 2,
               parent_id: 2,

@@ -19,6 +19,10 @@
     {
       "name": "slide-verify",
       "title": "滑块验证"
+    },
+    {
+      "name": "formTest",
+      "title": "自定义表单测试"
     }
   ],
   "system": [
