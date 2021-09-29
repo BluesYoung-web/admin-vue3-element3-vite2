@@ -25,7 +25,7 @@
     "@vueuse/core": "^6.5.3",
     "axios": "^0.21.4",
     "core-js": "^3.18.1",
-    "element-plus": "^1.1.0-beta.17",
+    "element-plus": "^1.1.0-beta.18",
     "file-saver": "^2.0.5",
     "highlight.js": "^11.2.0",
     "js-cookie": "^3.0.1",
@@ -40,7 +40,7 @@
     "xlsx": "^0.17.2"
   },
   "devDependencies": {
-    "@iconify/json": "^1.1.407",
+    "@iconify/json": "^1.1.408",
     "@types/file-saver": "^2.0.3",
     "@types/js-cookie": "^2.2.7",
     "@types/md5": "^2.3.1",
@@ -65,7 +65,7 @@
     "vite": "2.5.10",
     "vite-plugin-optimize-persist": "^0.0.5",
     "vite-plugin-package-config": "^0.0.3",
-    "vite-plugin-windicss": "^1.4.7",
+    "vite-plugin-windicss": "^1.4.8",
     "windicss": "^3.1.8"
   },
   "keywords": [
