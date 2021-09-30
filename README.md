@@ -101,7 +101,7 @@ yarn build
 
 ## 项目说明
 
-- [在线预览](https://bluseyoung-web.gitee.io/admin-vue3-element3-vite2)
+- [在线预览](https://bluesyoung-web.gitee.io/admin-vue3-element3-vite2)
 - 本项目创意源自 Vue-Element-Admin
 - 主用技术栈：Vue3 Element-Plus TypeScript
 - 此版本为 admin-vue3-element3 的改进版：
