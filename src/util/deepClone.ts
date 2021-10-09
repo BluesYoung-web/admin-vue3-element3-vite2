@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-11-12 10:21:58
- * @LastEditTime: 2021-08-27 11:47:00
+ * @LastEditTime: 2021-10-09 09:41:40
  * @Description: 深度克隆
  */
 export const deepClone = (obj: any) => {
@@ -13,19 +13,44 @@ export const deepClone = (obj: any) => {
   if (typeof obj !== 'object') {
     return obj;
   }
-  const temp:any = isArray(obj) ? [] : {};
-  for (const key in obj) {
-    // 日期 | 正则 | 函数 类型的属性特殊处理
-    if ([Date, RegExp, Function].some((_type) => obj[key] instanceof _type)) {
-      temp[key] = obj[key];
-      continue;
+  const root = isArray(obj) ? [] : {};
+  // 定义循环栈
+  const loopList: any = [{
+    parent: root,
+    key: undefined,
+    data: obj
+  }];
+
+  while (loopList.length) {
+    // 深度优先遍历
+    const { parent, key, data } = loopList.pop() as any;
+
+    // 初始化赋值目标，key为undefined则拷贝到父元素，否则拷贝到子元素
+    let res = parent;
+    if (typeof key !== 'undefined') {
+      res = parent[key] = isArray(data) ? [] : {};
     }
-    if (obj.hasOwnProperty(key)) {
-      // 子属性值是否为复杂数据类型
-      temp[key] = typeof obj[key] === 'object' ? deepClone(obj[key]) : obj[key];
+
+    for (let [childKey, value] of Object.entries(data)) {
+      if (
+        typeof value === 'object' &&
+        value !== null &&
+        !([Date, RegExp, Function].some((_type) => value instanceof _type))
+      ) {
+        //  普通对象入栈，留待后续循环处理
+        loopList.push({
+          parent: res,
+          key: childKey,
+          data: value
+        });
+      } else {
+        //  特殊对象，直接赋值
+        res[childKey] = value;
+      }
     }
   }
-  return temp;
+
+  return root;
 };
 
 export default deepClone;
