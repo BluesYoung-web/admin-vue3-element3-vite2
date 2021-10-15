@@ -1,11 +1,10 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-08 11:26:10
- * @LastEditTime: 2021-09-17 10:53:03
+ * @LastEditTime: 2021-10-15 11:37:48
  * @Description: HTTP 网络请求模块
  */
 import axios from 'axios';
-import type { AxiosRequestConfig, AxiosResponse } from 'axios';
 import type { ILoadingInstance } from 'element-plus';
 import { ElLoading } from 'element-plus';
 import { removeToken } from './auth';
@@ -49,7 +48,7 @@ const net = axios.create({
 /**
  * 设置请求拦截器
  */
-net.interceptors.request.use((req: AxiosRequestConfig) => {
+net.interceptors.request.use((req) => {
   startLoading();
   return req;
 }, (error) => {
@@ -72,9 +71,9 @@ interface ResponseObj {
 /**
  * 设置响应拦截器
  */
-net.interceptors.response.use((response: AxiosResponse<ResponseObj>) => {
+net.interceptors.response.use((response) => {
   endLoading();
-  const res = response.data;
+  const res = response.data as ResponseObj;
   if (res.status === Status.OK) {
     return res.data;
   } else if (res.status === Status.TOKEN_NO_USE) {
