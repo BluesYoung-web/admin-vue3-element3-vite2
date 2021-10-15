@@ -1,13 +1,17 @@
 #app {
-
+  background-color: white;
   .main-container {
     min-height: 100%;
+    -webkit-transition: margin-left .28s;
+    -o-transition: margin-left .28s;
     transition: margin-left .28s;
     margin-left: $sideBarWidth !important;
     position: relative;
   }
 
   .sidebar-container {
+    -webkit-transition: width 0.28s;
+    -o-transition: width 0.28s;
     transition: width 0.28s;
     width: $sideBarWidth !important;
     background-color: $menuBg;
@@ -22,6 +26,8 @@
 
     // reset element-ui css
     .horizontal-collapse-transition {
+      -webkit-transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
+      -o-transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
       transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
     }
 
@@ -39,6 +45,7 @@
 
     &.has-logo {
       .el-scrollbar {
+        height: -webkit-calc(100% - 50px);
         height: calc(100% - 50px);
       }
     }
@@ -150,15 +157,22 @@
     }
 
     .sidebar-container {
+      -webkit-transition: -webkit-transform .28s;
+      transition: -webkit-transform .28s;
+      -o-transition: transform .28s;
       transition: transform .28s;
+      transition: transform .28s, -webkit-transform .28s;
       width: $sideBarWidth !important;
     }
 
     &.hideSidebar {
       .sidebar-container {
         pointer-events: none;
-        transition-duration: 0.3s;
-        transform: translate3d(-$sideBarWidth + 54, 0, 0);
+        -webkit-transition-duration: 0.3s;
+             -o-transition-duration: 0.3s;
+                transition-duration: 0.3s;
+        -webkit-transform: translate3d(-$sideBarWidth + 54, 0, 0);
+                transform: translate3d(-$sideBarWidth + 54, 0, 0);
       }
     }
   }
@@ -167,6 +181,8 @@
 
     .main-container,
     .sidebar-container {
+      -webkit-transition: none;
+      -o-transition: none;
       transition: none;
     }
   }
