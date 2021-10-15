@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-10 11:30:30
- * @LastEditTime: 2021-09-17 16:24:03
+ * @LastEditTime: 2021-10-15 16:12:32
  * @Description: 顶部导航栏组件
 -->
 <template>
@@ -11,6 +11,22 @@
     <head-nav />
     <!-- 右侧个人中心下拉框 -->
     <div class="right-menu">
+      <div class="inline-flex h-40px mr-5 items-center text-xl text-gray-600">
+        <el-tooltip
+          class="item"
+          :content="`点击${isFull ? '退出' : '进入'}全屏`"
+          placement="bottom"
+        >
+          <icon-mdi-fullscreen-exit
+            v-if="isFull"
+            @click="toggleFullScreen"
+          />
+          <icon-mdi-fullscreen
+            v-else
+            @click="toggleFullScreen"
+          />
+        </el-tooltip>
+      </div>
       <el-dropdown class="avatar-container" trigger="click" size="large">
         <div class="avatar-wrapper">
           <icon-noto-v1-man-technologist-light-skin-tone class="user-avatar" />
@@ -71,7 +87,9 @@ import type { FormRulesMap } from 'element-plus/lib/components/form/src/form.typ
 import { login_out, modifyPassword } from '../../api/user';
 import { USER_INFO, APP_CONFIG } from '../../store';
 import { removeToken } from '../../util/auth';
-
+import { toFullScreen, exitFullscreen } from '../../util/browser';
+import { useToggle } from '../../util/tool';
+const [isFull, toggleFullScreen] = useToggle(toFullScreen, exitFullscreen);
 import Hamburger from '../components/Hamburger/index.vue';
 import HeadNav from '../components/HeadNav/index.vue';
 
@@ -151,8 +169,7 @@ const saveHandler = () => {
     float: right;
     right: 10px;
     height: 100%;
-    width: 150px;
-    line-height: 50px;
+    width: 220px;
 
     &:focus {
       outline: none;

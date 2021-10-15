@@ -40,6 +40,8 @@ declare module 'vue' {
     IconFxemojiMonkeyface: typeof import('~icons/fxemoji/monkeyface')['default']
     IconFxemojiMonkeysee: typeof import('~icons/fxemoji/monkeysee')['default']
     IconLogosVue: typeof import('~icons/logos/vue')['default']
+    IconMdiFullscreen: typeof import('~icons/mdi/fullscreen')['default']
+    IconMdiFullscreenExit: typeof import('~icons/mdi/fullscreen-exit')['default']
     IconNotoV1ManTechnologistLightSkinTone: typeof import('~icons/noto-v1/man-technologist-light-skin-tone')['default']
     YoungContextMenu: typeof import('./components/YoungContextMenu/index.vue')['default']
     YoungDialog: typeof import('./components/YoungDialog/index.vue')['default']
