@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-08-14 10:59:06
- * @LastEditTime: 2021-09-17 10:46:55
+ * @LastEditTime: 2021-10-15 11:41:23
  * @Description: 处理数值
  */
 
@@ -43,4 +43,21 @@ export const telMasaike = (str: string | number, mid = '****') => {
   const start = str.substring(0, 3);
   const end = str.substring(7, 11);
   return start + mid + end;
+};
+/**
+ * 姓名隐藏中间值
+ */
+export const nameMasaike = (str: string, mid = '*') => {
+  const len = str.length;
+  if (len <= 2) {
+    return str[0] + mid;
+  } else {
+    return str[0] + mid + str[len - 1];
+  }
+};
+/**
+ * 身份证号隐藏出生年月日
+ */
+export const idMasaike = (str: string, mid = '********') => {
+  return `${str.substr(0, 6)}${mid}${str.substr(-4)}`;
 }
