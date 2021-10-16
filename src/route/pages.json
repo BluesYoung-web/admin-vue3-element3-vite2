@@ -52,7 +52,7 @@
   "autoTest": [
     {
       "name": "test01",
-      "title": "自动创建页面测试"
+      "title": "WebSocket测试"
     }
   ]
 }

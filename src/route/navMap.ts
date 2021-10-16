@@ -15,7 +15,7 @@ navMap.set('10000/16', '/myComponents/table');
 navMap.set('10000/17', '/myComponents/tab');
 navMap.set('10000/18', '/myComponents/imgUpload');
 navMap.set('10000/19', '/myComponents/richTextEditor');
-navMap.set('10000/22', '/myComponents/slide-verify');
+navMap.set('10000/25', '/myComponents/slide-verify');
 navMap.set('10000/24', '/myComponents/formTest');
 /**
  * VueUse 使用示例

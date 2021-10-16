@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-03 14:25:49
- * @LastEditTime: 2021-09-29 11:07:35
+ * @LastEditTime: 2021-10-16 16:56:55
  * @Description: 登录
 -->
 <template>
@@ -26,6 +26,10 @@
       <el-form-item prop="password">
         <el-input v-model="loginForm.password" placeholder="请输入密码" type="password" show-password tabindex="2" auto-complete="on" size="large" clearable  />
       </el-form-item>
+      <el-checkbox
+        v-model="USE_REAL_SERVER"
+        class="pb-1"
+      >使用真实服务器(由树莓派内网穿透实现，可能不在线)</el-checkbox>
       <el-button :loading="loading" type="primary" size="large" style="width: 100%; margin-bottom: 30px" @click="loginHandler">登 录</el-button>
     </el-form>
     </div>
@@ -37,6 +41,7 @@ import type { FormRulesMap } from 'element-plus/es/components/form/src/form.type
 import { login } from '../../api/user';
 import { setToken } from '../../util/auth';
 import { generateUserInfo } from '../../util/generateUserInfo';
+import { USE_REAL_SERVER } from '../../store';
 
 interface LoginForm {
   username: string;

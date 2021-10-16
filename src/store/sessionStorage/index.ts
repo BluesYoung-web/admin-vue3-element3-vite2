@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-10 09:01:29
- * @LastEditTime: 2021-09-17 17:43:21
+ * @LastEditTime: 2021-10-16 16:53:47
  * @Description: 全局所有的 sessionStorage 存储
  */
 import { useSessionStorage } from '@vueuse/core';
@@ -36,6 +36,10 @@ enum KEYS  {
    * 所有的路由记录
    */
   ALL_ROUTES = 'all_routes',
+  /**
+   * 是否使用真实服务器
+   */
+  USE_REAL_SERVER = 'use_real_server'
 };
 
 
@@ -54,3 +58,5 @@ export const APP_CONFIG = useSessionStorage<App_Config>(KEYS.APP_CONFIG, {
 export const LEFT_NAV = useSessionStorage<NavArrItem[]>(KEYS.LEFT_NAV, []);
 
 export const ALL_ROUTES = useSessionStorage<RouteRecordRaw[]>(KEYS.ALL_ROUTES, []);
+
+export const USE_REAL_SERVER = useSessionStorage<boolean>(KEYS.USE_REAL_SERVER, false);

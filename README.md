@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-09-29 16:46:55
+ * @LastEditTime: 2021-10-16 19:57:29
  * @Description: 项目说明
 -->
 # 后台管理系统
@@ -30,12 +30,16 @@
 # ！！！ 变量名必须以 VITE_ 开头
 # 使用 import.meta.变量名 获取
 
-VITE_TITLE = '***后台'
+VITE_TITLE = '小黑管理后台'
 
 # 后端使用 nginx 代理来跨域时，使用绝对路径
 VITE_BASE_HTTP = '/api'
 # websocket 连接地址，使用NGINX代理时为绝对路径，其他情况需要使用带协议的完整路径
 VITE_BASE_WS = '/wss'
+
+# 真实地址(树莓派内网穿透)
+VITE_PI_HTTP = 'http://frp.104300.xyz:15151/api/admin'
+VITE_PI_WS = 'ws://frp.104300.xyz:15151/wss/admin'
 ```
 
 ## 注意事项

@@ -1,13 +1,14 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-08 11:26:10
- * @LastEditTime: 2021-10-15 11:37:48
+ * @LastEditTime: 2021-10-16 17:00:25
  * @Description: HTTP 网络请求模块
  */
 import axios from 'axios';
 import type { ILoadingInstance } from 'element-plus';
 import { ElLoading } from 'element-plus';
 import { removeToken } from './auth';
+import { USE_REAL_SERVER } from '../store';
 
 /**
  * 加载动画实例
@@ -37,6 +38,12 @@ let mode = import.meta.env.MODE;
 const arr = mode.split('.');
 if (arr[1]) {
   BASE_URL = `${BASE_URL}/${arr[0]}`;
+}
+/**
+ * 请求真实服务器
+ */
+if (USE_REAL_SERVER.value) {
+  BASE_URL = import.meta.env.VITE_PI_HTTP;
 }
 /**
  * 创建 Axios 实例

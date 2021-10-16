@@ -1,16 +1,27 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-07-07 08:25:23
- * @LastEditTime: 2021-08-27 11:48:29
+ * @LastEditTime: 2021-10-16 19:54:32
  * @Description: 自动创建页面测试
 -->
 <template>
   <h1 class="text-center">WebSocket 使用示例</h1>
-  <div class="border-solid border-gray-500 p-5">
-    <p v-for="(msg, index) in msgList" :key="index" class="bg-cyan-100">{{ msg }}</p>
+  <div class="border-solid border-gray-500 p-5 rounded">
+    <p
+      v-for="(msg, index) in msgList"
+      :key="index"
+      class="bg-cyan-100 p-4 rounded"
+    >{{ msg }}</p>
   </div>
   <div>
-    <el-input v-model="content" @keyup.enter="sendMsg" />
+    <el-input
+      v-model="content"
+      type="textarea"
+      class="my-2"
+      :rows="3"
+      placeholder="输入一内容，然后回车，服务器收到之后，会返回你刚才输入的内容"
+      @keyup.enter="sendMsg"
+    />
     <el-button type="primary" @click="sendMsg">发送消息</el-button>
   </div>
 </template>

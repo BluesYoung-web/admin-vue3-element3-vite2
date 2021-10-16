@@ -1,12 +1,13 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-07-16 17:17:33
- * @LastEditTime: 2021-07-30 15:07:54
+ * @LastEditTime: 2021-10-16 17:04:06
  * @Description: 封装 WebSocket 相关的操作
  */
 import { useWebSocket } from '@vueuse/core';
 import { getToken } from './auth';
 import md5 from 'md5';
+import { USE_REAL_SERVER } from '../store';
 
 export class MySocket {
   private readonly status;
@@ -16,7 +17,13 @@ export class MySocket {
   private readonly close;
   constructor() {
     const ws_url = import.meta.env.VITE_BASE_WS;
-    const full_url = import.meta.env.DEV ? ws_url : `ws://${location.host}${ws_url}`;
+    let full_url = import.meta.env.DEV ? ws_url : `ws://${location.host}${ws_url}`;
+    /**
+     * 启用真实地址
+     */
+    if (USE_REAL_SERVER.value) {
+      full_url = import.meta.env.VITE_PI_WS;
+    }
     const { token, aid } = getToken();
     const { status, data, send, open, close } = useWebSocket(`${full_url}?sign=${md5(aid + token)}&aid=${aid}`, {
       autoReconnect: {
