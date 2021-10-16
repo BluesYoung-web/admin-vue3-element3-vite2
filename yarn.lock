@@ -408,10 +408,10 @@
   resolved "https://registry.yarnpkg.com/@element-plus/icons/-/icons-0.0.11.tgz#9b187c002774548b911850d17fa5fc2f9a515f57"
   integrity sha512-iKQXSxXu131Ai+I9Ymtcof9WId7kaXvB1+WRfAfpQCW7UiAMYgdNDqb/u0hgTo2Yq3MwC4MWJnNuTBEpG8r7+A==
 
-"@iconify/json@^1.1.414":
-  version "1.1.414"
-  resolved "https://registry.yarnpkg.com/@iconify/json/-/json-1.1.414.tgz#a67a6dfd5279a0fa1acecbb23f1dcda844b73f15"
-  integrity sha512-LA8t6W/TV1HKQ0T//ICGRTRNv9wg8fVAAC6fHp19UrrMxrhrTrNksh34ucGsoS2Clg7u2qeh4yhm71LTK/vFEw==
+"@iconify/json@^1.1.415":
+  version "1.1.415"
+  resolved "https://registry.yarnpkg.com/@iconify/json/-/json-1.1.415.tgz#2f5943d2075920e591ea30520cf7824bc139a619"
+  integrity sha512-o+Blvk+AWiynEcx8lmMVYXU4/LwqVPTMTMYT8MrRCFuJe+YHw4iovlrLcDMc1aF9vc+HsTQIqqQxPxE7OvBqPw==
 
 "@iconify/types@^1.0.10":
   version "1.0.10"
@@ -2208,10 +2208,10 @@ unplugin-auto-import@^0.4.12:
     resolve "^1.20.0"
     unplugin "^0.2.15"
 
-unplugin-icons@^0.12.15:
-  version "0.12.15"
-  resolved "https://registry.yarnpkg.com/unplugin-icons/-/unplugin-icons-0.12.15.tgz#39e1fa7ed4d6e556dc5fbd254c0d5c1318d3c584"
-  integrity sha512-irLvZ09zfhBczb4D6ZJgns4rgYwxkJjdrFi62Iql7iFIrJsP6FmrrRJ0C+iWWo1XHSF+tFWugoL7Wye9yVy+dA==
+unplugin-icons@^0.12.16:
+  version "0.12.16"
+  resolved "https://registry.yarnpkg.com/unplugin-icons/-/unplugin-icons-0.12.16.tgz#ad52886b77134173b4864c70175add471d603a55"
+  integrity sha512-eGxlLrf/aExIgfRTqv9ALFZSyurYUxPHYb7lDFBc1KfhVhnvq7TdLE3d5AUJgiNh7QxcO0ezsBQ8mQNlCH/+Og==
   dependencies:
     "@antfu/install-pkg" "^0.1.0"
     "@antfu/utils" "^0.3.0"
