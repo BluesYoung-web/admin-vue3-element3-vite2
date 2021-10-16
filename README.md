@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-10-16 19:57:29
+ * @LastEditTime: 2021-10-16 20:15:42
  * @Description: 项目说明
 -->
 # 后台管理系统
@@ -33,7 +33,8 @@
 VITE_TITLE = '小黑管理后台'
 
 # 后端使用 nginx 代理来跨域时，使用绝对路径
-VITE_BASE_HTTP = '/api'
+# 模拟与真实共存，路径不能重复，不然就无法发出真实请求
+VITE_BASE_HTTP = '/mockapi'
 # websocket 连接地址，使用NGINX代理时为绝对路径，其他情况需要使用带协议的完整路径
 VITE_BASE_WS = '/wss'
 
