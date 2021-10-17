@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-10-16 20:15:42
+ * @LastEditTime: 2021-10-17 10:09:01
  * @Description: 项目说明
 -->
 # 后台管理系统
@@ -106,7 +106,8 @@ yarn build
 
 ## 项目说明
 
-- [在线预览](https://bluesyoung-web.gitee.io/admin-vue3-element3-vite2)
+- [在线预览(Mock)](https://bluesyoung-web.gitee.io/admin-vue3-element3-vite2)
+- [在线预览(树莓派内网穿透服务器，可能不在线)](http://frp.104300.xyz:15151/)
 - 本项目创意源自 Vue-Element-Admin
 - 主用技术栈：Vue3 Element-Plus TypeScript
 - 此版本为 admin-vue3-element3 的改进版：

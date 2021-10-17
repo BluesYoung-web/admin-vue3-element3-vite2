@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-03 14:25:49
- * @LastEditTime: 2021-10-16 16:56:55
+ * @LastEditTime: 2021-10-17 10:14:36
  * @Description: 登录
 -->
 <template>
@@ -27,6 +27,7 @@
         <el-input v-model="loginForm.password" placeholder="请输入密码" type="password" show-password tabindex="2" auto-complete="on" size="large" clearable  />
       </el-form-item>
       <el-checkbox
+        v-if="isHttpRequest"
         v-model="USE_REAL_SERVER"
         class="pb-1"
       >使用真实服务器(由树莓派内网穿透实现，可能不在线)</el-checkbox>
@@ -47,7 +48,11 @@ interface LoginForm {
   username: string;
   password: string;
 };
-
+const isHttpRequest = computed(() => location.protocol === 'http:');
+/**
+ * 清除 sessionStorage，避免 mock 数据对真实访问请求造成影响
+ */
+sessionStorage.clear();
 /**
  * 路由实例，记录当前路径之类的
  */
