@@ -649,12 +649,12 @@
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.2.20.tgz#53746961f731a8ea666e3316271e944238dc31db"
   integrity sha512-FbpX+hD5BvXCQerEYO7jtAGHlhAkhTQ4KIV73kmLWNlawWhTiVuQxizgVb0BOkX5oG9cIRZ42EG++d/k/Efp0w==
 
-"@vueuse/core@^6.5.3":
-  version "6.5.3"
-  resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-6.5.3.tgz#15848eaccad18652df4cb4b6ccae7bd7921a0c7e"
-  integrity sha512-o3CTu4nEqs371sDY5qLBX0r4QOm6GVpm3ApQc2Y+p8OMI2rRGartQo8xRykpUfsyq602A+SVtm/wxIWBkD/KCQ==
+"@vueuse/core@^6.6.1":
+  version "6.6.1"
+  resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-6.6.1.tgz#ccf61e1ee62bec2db6156efbb0ae635be3c32e4c"
+  integrity sha512-55RYUoZ/n20rgrs/rMAgtlnOAhp8w5ps4W/AxeNKPwpLqHx98FObOY3VfBvXabu8mZ1DeimP3zTCf2LVPdJTPA==
   dependencies:
-    "@vueuse/shared" "6.5.3"
+    "@vueuse/shared" "6.6.1"
     vue-demi "*"
 
 "@vueuse/core@~6.1.0":
@@ -672,10 +672,10 @@
   dependencies:
     vue-demi "*"
 
-"@vueuse/shared@6.5.3":
-  version "6.5.3"
-  resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-6.5.3.tgz#6503fa4bfbf45d0616bacedb8a4bd003f01da73b"
-  integrity sha512-ChOKu3mECyZeqGJ/gHVm0CaHoZK5/TwNZr1ZM/aqH+RaRNQvC1qkLf1/8PBugzN3yRgC3BtZ/M1kLpGe/BFylw==
+"@vueuse/shared@6.6.1":
+  version "6.6.1"
+  resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-6.6.1.tgz#7d9dd35ace8f6fff56d474a1b3b95d699d237328"
+  integrity sha512-wAqdcVCSCIWBKU9dgNqQwo3D+eD5ld0Ncfsh2i9Tss5Qt0OgijJ1cxjposrtS32kQCRpVGa0MwjD5kcdHWwykw==
   dependencies:
     vue-demi "*"
 
@@ -2257,10 +2257,10 @@ util-deprecate@^1.0.1:
   resolved "https://registry.npm.taobao.org/util-deprecate/download/util-deprecate-1.0.2.tgz"
   integrity sha1-RQ1Nyfpw3nMnYvvS1KKJgUGaDM8=
 
-vite-plugin-optimize-persist@^0.0.5:
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/vite-plugin-optimize-persist/-/vite-plugin-optimize-persist-0.0.5.tgz#fdfb40e502c87ac09186c6ba47856cb33c891029"
-  integrity sha512-lQvUn+hSIyAxCt4jiPOgV65usVGYkbMUrRE8toI3BdSx0KBg0o4sThL0HEyO/vzHgIhrCO6eA7WCkJL9KhKXFw==
+vite-plugin-optimize-persist@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/vite-plugin-optimize-persist/-/vite-plugin-optimize-persist-0.1.0.tgz#d4b18e36e9669f47d2a7c24ec438ef2820ab2589"
+  integrity sha512-9pVjHUDJCPq7H1OiaQU8olejOoh8Caf+YVEqaaPcIBRJ/ENym1DdQQD/RCc3GzxVkCTlUwVIihpLkg98am9sEQ==
   dependencies:
     debug "^4.3.2"
     fs-extra "^10.0.0"

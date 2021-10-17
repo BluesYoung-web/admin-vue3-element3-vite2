@@ -22,7 +22,7 @@
   "dependencies": {
     "@element-plus/icons": "^0.0.11",
     "@tweenjs/tween.js": "^18.6.4",
-    "@vueuse/core": "^6.5.3",
+    "@vueuse/core": "^6.6.1",
     "axios": "^0.23.0",
     "core-js": "^3.18.3",
     "element-plus": "^1.1.0-beta.20",
@@ -63,7 +63,7 @@
     "unplugin-icons": "^0.12.16",
     "unplugin-vue-components": "^0.15.6",
     "vite": "2.6.7",
-    "vite-plugin-optimize-persist": "^0.0.5",
+    "vite-plugin-optimize-persist": "^0.1.0",
     "vite-plugin-package-config": "^0.0.3",
     "vite-plugin-windicss": "^1.4.11",
     "windicss": "^3.1.9"
