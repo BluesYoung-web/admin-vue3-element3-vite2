@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-03 14:25:49
- * @LastEditTime: 2021-10-17 11:20:50
+ * @LastEditTime: 2021-10-17 11:38:05
  * @Description: 登录
 -->
 <template>
@@ -28,7 +28,7 @@
       </el-form-item>
       <el-checkbox
         v-if="isHttpRequest"
-        v-model="USE_REAL_SERVER"
+        :model-value="true"
         :disabled="true"
         class="pb-1"
       >使用真实服务器(由树莓派内网穿透实现，可能不在线)</el-checkbox>

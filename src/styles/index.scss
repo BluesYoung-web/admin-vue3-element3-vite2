@@ -89,3 +89,25 @@ div:focus {
     }
   }
 }
+
+/*
+滚动条美化
+*/
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px
+}
+
+::-webkit-scrollbar-track {
+  background-color: rgba(73, 177, 245, .2);
+  border-radius: 2em
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #aaa;
+  border-radius: 2em;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent
+}
