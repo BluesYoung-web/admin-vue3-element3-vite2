@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-03 14:25:49
- * @LastEditTime: 2021-10-17 10:14:36
+ * @LastEditTime: 2021-10-17 11:20:50
  * @Description: 登录
 -->
 <template>
@@ -29,6 +29,7 @@
       <el-checkbox
         v-if="isHttpRequest"
         v-model="USE_REAL_SERVER"
+        :disabled="true"
         class="pb-1"
       >使用真实服务器(由树莓派内网穿透实现，可能不在线)</el-checkbox>
       <el-button :loading="loading" type="primary" size="large" style="width: 100%; margin-bottom: 30px" @click="loginHandler">登 录</el-button>
@@ -42,7 +43,7 @@ import type { FormRulesMap } from 'element-plus/es/components/form/src/form.type
 import { login } from '../../api/user';
 import { setToken } from '../../util/auth';
 import { generateUserInfo } from '../../util/generateUserInfo';
-import { USE_REAL_SERVER } from '../../store';
+import { ALL_ROUTES, LEFT_NAV, NAV_ARR, ROLE_ROUTE, SYSTEM_OPEN_KEYS, USER_INFO, USE_REAL_SERVER } from '../../store';
 
 interface LoginForm {
   username: string;
@@ -50,9 +51,15 @@ interface LoginForm {
 };
 const isHttpRequest = computed(() => location.protocol === 'http:');
 /**
- * 清除 sessionStorage，避免 mock 数据对真实访问请求造成影响
+ * 清除历史数据，避免 mock 数据对真实访问请求造成影响
  */
-sessionStorage.clear();
+USER_INFO.value = {} as any;
+NAV_ARR.value = [];
+ROLE_ROUTE.value = [];
+SYSTEM_OPEN_KEYS.value = [];
+LEFT_NAV.value = [];
+ALL_ROUTES.value = [];
+
 /**
  * 路由实例，记录当前路径之类的
  */
