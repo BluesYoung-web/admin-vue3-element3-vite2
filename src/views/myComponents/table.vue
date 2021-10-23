@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-26 11:50:08
- * @LastEditTime: 2021-09-07 17:04:35
+ * @LastEditTime: 2021-10-23 16:16:22
  * @Description: 自定义表格组件
 -->
 <template>
@@ -26,7 +26,7 @@
     <template #operate>
       <el-table-column label="操作" fixed="right" width="120">
         <template #default="scope">
-          <div style="color: cyan;">我是操作{{ scope.row.autoid }}</div>
+          <el-button type="primary">通过插槽放入</el-button>
         </template>
       </el-table-column>
     </template>
@@ -46,12 +46,12 @@ interface Head {
 const tableData = ref<TableDataItem<Head>[]>([]);
 const tableHead = ref<TableHeadItem<Head>[]>([]);
 tableHead.value = [
-  { prop: 'date', label: '日期', tool_content: '来了老弟' },
+  { prop: 'date', label: '日期', tool_content: '直接使用原生html' },
   { prop: 'autoid', label: 'UID' },
   { prop: 'sp', label: '特殊内容', sortable: true },
   { prop: 'imgs', label: '图片' },
-  { prop: 'm1', label: '多行1' },
-  { prop: 'm2', label: '多行2', show_all: true }
+  { prop: 'm1', label: '多行(自动隐藏)' },
+  { prop: 'm2', label: '多行(全部展示)', show_all: true }
 ];
 tableData.value = [
   {
@@ -77,7 +77,7 @@ tableData.value = [
   {
     date: '2021-01-01',
     autoid: 100,
-    sp: `<span style="color: red">来了老弟</span>`,
+    sp: `<span style="color: red">直接使用原生html</span>`,
     imgs: ['12321', 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'],
     m1: [
       { value: 1 },
@@ -97,7 +97,7 @@ tableData.value = [
   {
     date: '2021-01-01',
     autoid: 100,
-    sp: `<span style="color: red">来了老弟</span>`,
+    sp: `<span style="color: red">直接使用原生html</span>`,
     imgs: ['12321', 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'],
     m1: [
       { value: 1 },
@@ -117,7 +117,7 @@ tableData.value = [
   {
     date: '2021-01-01',
     autoid: 100,
-    sp: `<span style="color: red">来了老弟</span>`,
+    sp: `<span style="color: red">直接使用原生html</span>`,
     imgs: ['12321', 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'],
     m1: [
       { value: 1 },
@@ -137,7 +137,7 @@ tableData.value = [
   {
     date: '2021-01-01',
     autoid: 123,
-    sp: `<span style="color: red">特殊内容111</span>`,
+    sp: `<span style="color: red">直接使用原生html</span>`,
     imgs: ['1', '2', '3'],
     m1: [{ value: '111' }],
     m2: [{ value: '111' }],
