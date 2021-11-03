@@ -408,10 +408,10 @@
   resolved "https://registry.yarnpkg.com/@element-plus/icons/-/icons-0.0.11.tgz#9b187c002774548b911850d17fa5fc2f9a515f57"
   integrity sha512-iKQXSxXu131Ai+I9Ymtcof9WId7kaXvB1+WRfAfpQCW7UiAMYgdNDqb/u0hgTo2Yq3MwC4MWJnNuTBEpG8r7+A==
 
-"@iconify/json@^1.1.422":
-  version "1.1.422"
-  resolved "https://registry.yarnpkg.com/@iconify/json/-/json-1.1.422.tgz#209d82fc35e64bbd956296cc06c2d52c02415ed9"
-  integrity sha512-yxIjzblsWIRZfXK+bfBWtm1LDD7+QlBXO/K7xnqU+LiOk6rJXvh+Veks/LgDD2wAi3PYQHVzCZBqp6OGGz6K/Q==
+"@iconify/json@^1.1.423":
+  version "1.1.423"
+  resolved "https://registry.npmjs.org/@iconify/json/-/json-1.1.423.tgz#3507db88e10a58b63f78e817200f07eacb1a2c1e"
+  integrity sha512-CiL83VD0sUKKeEWha4PadLiJ+HNxN8gJO6MiAy6koIOu7FAI69vtR8BpfxfnuXf1EpKbBDvDaQbHsEYdzwRxJw==
 
 "@iconify/types@^1.0.10":
   version "1.0.10"
@@ -1036,10 +1036,10 @@ core-js@^3.18.1:
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.18.1.tgz#289d4be2ce0085d40fc1244c0b1a54c00454622f"
   integrity sha512-vJlUi/7YdlCZeL6fXvWNaLUPh/id12WXj3MbkMw5uOyF0PfWPBNOCNbs53YqgrvtujLNlt9JQpruyIKkUZ+PKA==
 
-core-js@^3.19.0:
-  version "3.19.0"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.19.0.tgz#9e40098a9bc326c7e81b486abbd5e12b9d275176"
-  integrity sha512-L1TpFRWXZ76vH1yLM+z6KssLZrP8Z6GxxW4auoCj+XiViOzNPJCAuTIkn03BGdFe6Z5clX5t64wRIRypsZQrUg==
+core-js@^3.19.1:
+  version "3.19.1"
+  resolved "https://registry.npmjs.org/core-js/-/core-js-3.19.1.tgz#f6f173cae23e73a7d88fa23b6e9da329276c6641"
+  integrity sha512-Tnc7E9iKd/b/ff7GFbhwPVzJzPztGrChB8X8GLqoYGdEOG8IpLnK1xPyo3ZoO3HsK6TodJS58VGPOxA+hLHQMg==
 
 crc-32@~1.2.0:
   version "1.2.0"
