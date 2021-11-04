@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2020-12-10 09:01:29
- * @LastEditTime: 2021-10-17 10:11:18
+ * @LastEditTime: 2021-11-04 19:39:22
  * @Description: 全局所有的 sessionStorage 存储
  */
 import { useSessionStorage } from '@vueuse/core';
@@ -60,6 +60,7 @@ export const LEFT_NAV = useSessionStorage<NavArrItem[]>(KEYS.LEFT_NAV, []);
 export const ALL_ROUTES = useSessionStorage<RouteRecordRaw[]>(KEYS.ALL_ROUTES, []);
 
 export const USE_REAL_SERVER = useSessionStorage<boolean>(KEYS.USE_REAL_SERVER,
+  !!import.meta.env.VITE_ENABLE_PI
   // https 里面不允许发起 http 请求
-  location.protocol === 'http:'
+  // location.protocol === 'http:'
 );

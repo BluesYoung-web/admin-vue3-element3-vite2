@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2020-12-03 14:25:49
- * @LastEditTime: 2021-10-17 11:38:05
+ * @LastEditTime: 2021-11-04 19:31:40
  * @Description: 登录
 -->
 <template>
@@ -27,7 +27,7 @@
         <el-input v-model="loginForm.password" placeholder="请输入密码" type="password" show-password tabindex="2" auto-complete="on" size="large" clearable  />
       </el-form-item>
       <el-checkbox
-        v-if="isHttpRequest"
+        v-if="USE_REAL_SERVER"
         :model-value="true"
         :disabled="true"
         class="pb-1"
@@ -49,7 +49,6 @@ interface LoginForm {
   username: string;
   password: string;
 };
-const isHttpRequest = computed(() => location.protocol === 'http:');
 /**
  * 清除历史数据，避免 mock 数据对真实访问请求造成影响
  */

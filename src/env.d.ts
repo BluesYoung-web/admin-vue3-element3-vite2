@@ -1,7 +1,7 @@
 /*
  * @Author: zhangyang
  * @Date: 2021-07-02 10:13:01
- * @LastEditTime: 2021-10-16 16:45:45
+ * @LastEditTime: 2021-11-04 19:38:52
  * @Description: import.meta.env.xxx 智能提示
  */
 interface ImportMetaEnv {
@@ -24,5 +24,9 @@ interface ImportMetaEnv {
   /**
    * 树莓派提供的真实服务器地址(内网穿透，可能不在线)
    */
-   VITE_PI_WS: string;
+  VITE_PI_WS: string;
+   /**
+    *  是否启用真实请求混入
+    */
+  VITE_ENABLE_PI?: boolean;
 }

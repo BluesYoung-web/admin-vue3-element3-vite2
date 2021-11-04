@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-02-24 11:28:17
- * @LastEditTime: 2021-10-17 10:09:01
+ * @LastEditTime: 2021-11-04 19:38:06
  * @Description: 项目说明
 -->
 # 后台管理系统
@@ -41,6 +41,8 @@ VITE_BASE_WS = '/wss'
 # 真实地址(树莓派内网穿透)
 VITE_PI_HTTP = 'http://frp.104300.xyz:15151/api/admin'
 VITE_PI_WS = 'ws://frp.104300.xyz:15151/wss/admin'
+# 是否启用真实请求混入(关闭时无需设置)
+VITE_ENABLE_PI = true
 ```
 
 ## 注意事项
