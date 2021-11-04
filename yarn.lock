@@ -649,12 +649,12 @@
   resolved "https://registry.yarnpkg.com/@vue/shared/-/shared-3.2.21.tgz#4cd80c0e62cf65a7adab2449e86b6f0cb33a130b"
   integrity sha512-5EQmIPK6gw4UVYUbM959B0uPsJ58+xoMESCZs3N89XyvJ9e+fX4pqEPrOGV8OroIk3SbEvJcC+eYc8BH9JQrHA==
 
-"@vueuse/core@^6.7.4":
-  version "6.7.4"
-  resolved "https://registry.yarnpkg.com/@vueuse/core/-/core-6.7.4.tgz#8e15524454388b11c9eb6ff59a6742602b976e2f"
-  integrity sha512-y39SD+pxDkv7/Fe369c02FQpr/148otQr64ScPDTpw4fGnspc8ONXCNU3gTrvDFRuiylirdPBpXgmt/GDQO7RA==
+"@vueuse/core@^6.7.5":
+  version "6.7.5"
+  resolved "https://registry.npmjs.org/@vueuse/core/-/core-6.7.5.tgz#c3d8edbac8408b07bc28251c928a7a4b29a28325"
+  integrity sha512-zgWai0i38TbfWGMVs1ybyEEdwwhjjMloQflRTMU0+pTmp3kEtQTDiVZiOrr758s+yRdr2OQiMQ323dyiKgKMFQ==
   dependencies:
-    "@vueuse/shared" "6.7.4"
+    "@vueuse/shared" "6.7.5"
     vue-demi "*"
 
 "@vueuse/core@~6.1.0":
@@ -672,10 +672,10 @@
   dependencies:
     vue-demi "*"
 
-"@vueuse/shared@6.7.4":
-  version "6.7.4"
-  resolved "https://registry.yarnpkg.com/@vueuse/shared/-/shared-6.7.4.tgz#9aa2967d20863cf3253afd08a2e6e84a61d2c89b"
-  integrity sha512-Lkm8myEiOj0sIqSXck5EXDbu0W705Q10BxydGLMfiV6wAY4U1zu+YgEgR37Wy2/mT1545pwQqiJ7bd3kQQFCMw==
+"@vueuse/shared@6.7.5":
+  version "6.7.5"
+  resolved "https://registry.npmjs.org/@vueuse/shared/-/shared-6.7.5.tgz#0a604c06473db5445e46de18b1d7bb6d9ada4be9"
+  integrity sha512-wUDMPTGUSTYsbiftKq7dYLKD2i3n0m8utbHBCyoxdyeKsmtQGIM2/XeeXjtALB7UXD6rqPsVgCMepNrPPt8zvw==
   dependencies:
     vue-demi "*"
 
@@ -2204,10 +2204,10 @@ unplugin-auto-import@^0.4.13:
     resolve "^1.20.0"
     unplugin "^0.2.15"
 
-unplugin-icons@^0.12.17:
-  version "0.12.17"
-  resolved "https://registry.yarnpkg.com/unplugin-icons/-/unplugin-icons-0.12.17.tgz#309fc513d7799a2f9ea509a1f38a01dedf229f34"
-  integrity sha512-y6KNKlwcLXlbfpZY48lO0blsH/uwHbvxD2sgCaw1AhgFk9Bjw7hA1kQxhUWPAIRySeobve2YP7HGKLHoIctXPA==
+unplugin-icons@^0.12.18:
+  version "0.12.18"
+  resolved "https://registry.npmjs.org/unplugin-icons/-/unplugin-icons-0.12.18.tgz#0156258c8e40f90d4a7ba0970ee5167cc96318ac"
+  integrity sha512-o2nc6AGGk4StTx5xMTndVBylszRg/hJvHMO1eEFfrfw9yh+eedre2S4F8EHltn3FjADL2a17GpXcvCAwmONgXA==
   dependencies:
     "@antfu/install-pkg" "^0.1.0"
     "@antfu/utils" "^0.3.0"
