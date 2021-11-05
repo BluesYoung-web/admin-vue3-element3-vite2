@@ -1,7 +1,7 @@
 <!--
  * @Author: zhangyang
  * @Date: 2021-03-03 13:55:37
- * @LastEditTime: 2021-09-17 12:20:39
+ * @LastEditTime: 2021-11-05 17:52:13
  * @Description: 图片上传组件
 -->
 <template>
@@ -12,7 +12,7 @@
       <el-button
         v-if="showUpload"
         type="primary"
-        :disabled="(modelValue.length >= 10)"
+        :disabled="(modelValue.length >= limit)"
         @click="choseImg"
       >
         <el-icon>
